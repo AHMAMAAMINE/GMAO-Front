@@ -1,0 +1,24 @@
+<div class="p-card-body">
+    <div class="p-field">
+        <label for="magasin">magasin</label>
+        <input type="text" pInputText id="magasin" [(ngModel)]="stock.magasin.reference" required autofocus />
+        <small class="p-invalid" *ngIf="submitted && !stock.magasin.reference">magasin is required.</small>
+    </div>
+    <div class="p-field">
+        <h5>Dropdown and Templating</h5>
+        <p-autoComplete [(ngModel)]="stock.material.reference" [suggestions]="this.materials"
+                        (completeMethod)="filterCountry($event)" field="name" [dropdown]="true">
+            <ng-template let-stock pTemplate="item">
+                <div class="country-item">
+                    <div>{{stock.reference}}</div>
+                </div>
+            </ng-template>
+        </p-autoComplete>
+        <small class="p-invalid" *ngIf="submitted && !stock.material.reference">material is required.</small>
+    </div>
+    <div class="p-field">
+        <label for="qte">quantite</label>
+        <input type="number" pInputText id="qte" [(ngModel)]="stock.qte" required autofocus />
+        <small class="p-invalid" *ngIf="submitted && !stock.qte">qte is required.</small>
+    </div>
+</div>
