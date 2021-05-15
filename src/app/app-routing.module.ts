@@ -39,6 +39,7 @@ import {AppAccessdeniedComponent} from './pages/app.accessdenied.component';
 import {AppLoginComponent} from './pages/app.login.component';
 import {CommandesComponent} from './view/admin/commandes/commandes.component';
 import {InterventionInfoComponent} from './view/admin/commandes/intervention-info/intervention-info.component';
+import { EquipesComponent } from './view/admin/equipes/equipes.component';
 
 @NgModule({
     imports: [
@@ -48,6 +49,7 @@ import {InterventionInfoComponent} from './view/admin/commandes/intervention-inf
                 children: [
                     {path: '', component: DashboardDemoComponent},
                     {path: 'view/commande', component: CommandesComponent},
+
                     {path: 'uikit/formlayout', component: FormLayoutDemoComponent},
                     {path: 'uikit/floatlabel', component: FloatLabelDemoComponent},
                     {path: 'uikit/invalidstate', component: InvalidStateDemoComponent},

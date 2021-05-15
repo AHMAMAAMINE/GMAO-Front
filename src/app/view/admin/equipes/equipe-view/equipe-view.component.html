@@ -1,0 +1,19 @@
+<p-dialog [(visible)]="viewDialog" [style]="{width: '450px'}" header="equipe Details" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <div class="p-field">
+            <label for="ref">Ref</label>
+            <input type="text" pInputText id="ref" [(ngModel)]="selectedEquipe.ref" disabled />
+        </div>
+        <div class="p-field">
+            <label for="libelle">libelle</label>
+            <input type="text" pInputText id="libelle" [(ngModel)]="selectedEquipe.libelle" disabled />
+        </div>
+
+
+
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Fermer" icon="pi pi-times" class="p-button-text" (click)="hideViewDialog()"></button>
+    </ng-template>
+</p-dialog>
