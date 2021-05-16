@@ -1,23 +1,35 @@
 <p-dialog [(visible)]="editDialog" [style]="{width: '450px'}" header="Commande Edit" [modal]="true" styleClass="p-fluid">
     <ng-template pTemplate="content">
         <div class="p-field">
-            <label for="ref">Ref</label>
-            <input type="text" pInputText id="ref" [(ngModel)]="selected.reference" required autofocus />
-            <small class="p-invalid" *ngIf="submitted && !selected.reference">ref is required.</small>
+            <label for="code">Code</label>
+            <input type="text" pInputText id="code" [(ngModel)]="selected.code" required autofocus />
+            <small class="p-invalid" *ngIf="submitted && !selected.code">code is required.</small>
         </div>
         <div class="p-field">
-            <label for="total">Total</label>
-            <input type="text" pInputText id="total" [(ngModel)]="selected.total" required autofocus />
-            <small class="p-invalid" *ngIf="submitted && !selected.total">total is required.</small>
+            <label for="libelle">Libelle</label>
+            <input type="text" pInputText id="libelle" [(ngModel)]="selected.libelle" required autofocus />
+            <small class="p-invalid" *ngIf="submitted && !selected.libelle">libelle is required.</small>
+        </div>
+        <div class="p-field">
+            <label for="description">Description</label>
+            <input type="text" pInputText id="description" [(ngModel)]="selected.description" required autofocus />
+            <small class="p-invalid" *ngIf="submitted && !selected.description">description is required.</small>
+        </div>
+        <div class="p-field">
+            <label for="dateDeProbleme">date De Probleme</label>
+            <input type="date" pInputText id="dateDeProbleme" [(ngModel)]="selected.dateDeProbleme" required autofocus />
+            <small class="p-invalid" *ngIf="submitted && !selected.dateDeProbleme">dateDeProbleme is required.</small>
         </div>
 
-
-
-        <div class="p-formgrid p-grid">
-            <div class="p-field p-col">
-                <label for="totalPaye">Total Paye</label>
-                <p-inputNumber id="totalPaye" [(ngModel)]="selected.totalPaye"></p-inputNumber>
-            </div>
+        <div class="p-field">
+            <label for="dateDebut">date Debut</label>
+            <input type="date" pInputText id="dateDebut" [(ngModel)]="selected.dateDebut" required autofocus />
+            <small class="p-invalid" *ngIf="submitted && !selected.dateDebut">dateDebut is required.</small>
+        </div>
+        <div class="p-field">
+            <label for="dateFin">date Fin</label>
+            <input type="datetime-local" pInputText id="dateFin" [(ngModel)]="selected.dateFin" required autofocus />
+            <small class="p-invalid" *ngIf="submitted && !selected.dateFin">dateFin is required.</small>
         </div>
     </ng-template>
 

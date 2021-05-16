@@ -70,6 +70,8 @@ export class InterventionEditComponent implements OnInit {
     set items(value: Array<Intervention>) {
         this.service.items = value;
     }
-
+    value(){
+      return  this.selected.dateFin.toLocaleString();
+    }
 
 }

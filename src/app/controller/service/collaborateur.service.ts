@@ -1,19 +1,19 @@
 import { Collaborateur } from './../model/collaborateur.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import {environment} from "../../../environments/environment";
 
 @Injectable({
   providedIn: 'root',
 })
 export class CollaborateurService {
   constructor(private http: HttpClient) {}
-  public urlBase: string = 'http://localhost:8036/collaborateur';
-
+  private url = environment.baseUrl + '/collaborateur';
   public _collaborateur: Collaborateur;
   public _collaborateurs: Array<Collaborateur>;
 
   findAll() {
-    this.http.get<Array<Collaborateur>>(this.urlBase + '/').subscribe(
+    this.http.get<Array<Collaborateur>>(this.url + '/').subscribe(
       (data) => {
         this._collaborateurs = data;
       },
@@ -45,7 +45,7 @@ export class CollaborateurService {
   }
 
   //   addCollaborateur(collaborateur: Collaborateur) {
-  //     this.http.post(this.urlBase + '/', collaborateur).subscribe(
+  //     this.http.post(this.url + '/', collaborateur).subscribe(
   //       (data) => {
   //         if (data == 1) {
 

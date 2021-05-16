@@ -1,0 +1,14 @@
+<div class="card">
+    <div class="card-body">
+        <div class="form-group">
+            <div class="p-field">
+                <label for="message">Message</label>
+                <textarea type="text" pInputText id="message" [(ngModel)]="conseilIntervention.message" required autofocus style="height: 300px"></textarea>
+                <small class="p-invalid" *ngIf="submitted && !conseilIntervention.message">message is required.</small>
+            </div>
+        </div>
+    </div>
+    <div class="p-card-footer">
+        <button pButton  label="Ajout"  class="p-button-text" (click)="ajouter()"></button>
+    </div>
+</div>

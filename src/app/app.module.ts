@@ -151,6 +151,8 @@ import { EquipeCreateComponent } from './view/admin/equipes/equipe-create/equipe
 import { EquipeListComponent } from './view/admin/equipes/equipe-list/equipe-list.component';
 import { EquipeEditComponent } from './view/admin/equipes/equipe-edit/equipe-edit.component';
 import { EquipeViewComponent } from './view/admin/equipes/equipe-view/equipe-view.component';
+import { InterventionMembreEquipComponent } from './view/admin/commandes/intervention-membre-equip/intervention-membre-equip.component';
+import { InterventionConseilComponent } from './view/admin/commandes/intervention-conseil/intervention-conseil.component';
 
 @NgModule({
     imports: [
@@ -296,7 +298,9 @@ import { EquipeViewComponent } from './view/admin/equipes/equipe-view/equipe-vie
         EquipeCreateComponent,
         EquipeListComponent,
         EquipeEditComponent,
-        EquipeViewComponent
+        EquipeViewComponent,
+        InterventionMembreEquipComponent,
+        InterventionConseilComponent
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},

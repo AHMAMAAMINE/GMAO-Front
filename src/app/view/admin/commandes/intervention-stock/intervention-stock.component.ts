@@ -8,6 +8,7 @@ import {MateraialIntervention} from '../../../../controller/model/materaial-inte
 import {Magasin} from '../../../../controller/model/magasin.model';
 import {Material} from '../../../../controller/model/material.model';
 import {Stock} from '../../../../controller/model/Stock.model';
+import {newArray} from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-intervention-stock',
@@ -15,32 +16,11 @@ import {Stock} from '../../../../controller/model/Stock.model';
   styleUrls: ['./intervention-stock.component.scss']
 })
 export class InterventionStockComponent implements OnInit {
-  countries: any[];
-  filteredCountries: any[];
-  constructor(private stockService: StockService, private service: InterventionService, private materialService: MaterialService, private  magasinService: MagasinService) { }
+  index: any;
+  values;
+  constructor(private stockService: StockService, private service: InterventionService, private materialService: MaterialService, private  magasinService: MagasinService) {
 
-
-
-  filterCountry(event) {
-
-    // in a real application, make a request to a remote url with the query and return filtered results, for demo we filter at client side
-    const filtered: any[] = [];
-    const query = event.query;
-    for (let i = 0; i < this.materials.length; i++) {
-
-      if ( this.materials[i].reference.toLowerCase().indexOf(query.toLowerCase()) === 0) {
-        filtered.push( this.materials[i].reference);
-      }
-    }
-
-    this.filteredCountries = filtered;
   }
-
-  ngOnInit(): void {
-    this.materialService.findAll();
-    this.magasinService.findAll();
-  }
-
 
   get intervention(): Intervention {
     return this.service.selected;
@@ -50,6 +30,9 @@ export class InterventionStockComponent implements OnInit {
   }
   get materials(): Array<Material>{
     return this.materialService.materials;
+  }
+  get material(): Material{
+    return this.materialService.material;
   }
   get magasins(): Array<Magasin>{
     return this.magasinService.magasins;
@@ -62,7 +45,21 @@ export class InterventionStockComponent implements OnInit {
     this.service.submitted = value;
   }
 
+  ngOnInit(): void {
+    this.materialService.findAll();
+    this.magasinService.findAll();
 
+  }
+
+  value(){
+    console.log(this.materialService.materials);
+    for (let i = 0 ; i < this.materials.length; i++){
+     console.log(this.materials[i].reference);
+     this.values.push(this.materials[i].reference);
+     console.log(this.values[0]);
+   }
+    return this.values;
+  }
   isupdateable() {
     // return this.stock.id != null;
   }
@@ -90,7 +87,6 @@ export class InterventionStockComponent implements OnInit {
   isSelected($event: any) {
     this.stock.magasin.reference = $event.target.value;
   }
-
   isSelecte($event: any) {
     this.stock.material.reference = $event.target.value;
   }

@@ -1,0 +1,22 @@
+
+
+<div class="card">
+    <div class="card-body">
+        <div class="form-group">
+            <label>Membre Equip</label>
+            <select class="form-control" (change)="isSelected($event)" pInputText>
+                <option *ngFor="let c of collaborateurs" [value]="c.codeCollaborateur"> {{c.fullname}}</option>
+            </select>
+            <label for="">Ref Equipe</label>
+            <input
+                    type="text"
+                    class="form-control"
+                    pInputText
+                    [(ngModel)]="collaborateur.equipe.ref"
+            />
+        </div>
+    </div>
+    <div class="p-card-footer">
+        <button pButton  label="Ajout"  class="p-button-text" (click)="saveCollaboraateur()"></button>
+    </div>
+</div>

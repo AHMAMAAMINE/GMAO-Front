@@ -14,7 +14,6 @@ export class InterventionInfoComponent implements OnInit {
   get intervention(): Intervention {
     return this.service.selected;
   }
-
   get interventions(): Array<Intervention> {
     return this.service.items;
   }
@@ -30,5 +29,9 @@ export class InterventionInfoComponent implements OnInit {
 
   set submitted(value: boolean) {
     this.service.submitted = value;
+  }
+
+  show() {
+    console.log(this.intervention.dateFin.toLocaleString())
   }
 }

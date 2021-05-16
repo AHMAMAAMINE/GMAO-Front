@@ -9,7 +9,7 @@ import { InterventionVo } from '../model/intervention-vo.model';
 import {InterventionMembreEquipe} from '../model/intervention-membre-equipe.model';
 import {UserService} from './user.service';
 import {environment} from '../../../environments/environment';
-import {Observable} from "rxjs";
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -120,6 +120,7 @@ export class InterventionService {
     this.collaborateur.intervention = this.selected;
     this.collaborateurs.push(this._collaborateur);
     this._codeCollaborateur = this.collaborateur.membreEquipe.collaborateur.codeCollaborateur;
+    this.selected.interventionMembreEquipe = this.collaborateurs;
     console.log(this._codeCollaborateur);
     this._collaborateur = null;
   }
@@ -127,6 +128,7 @@ export class InterventionService {
     this.materialIntervention.intervention = this.selected;
     this.materialIntervention.collaborateur.codeCollaborateur = this._codeCollaborateur;
     this.materialInterventions.push(this._materialIntervention);
+    this.selected.materaialInterventions = this.materialInterventions;
     this.stockService.stock = null;
     console.log(this._materialInterventions);
     // this.materialIntervention.push(this.materialIntervention);
@@ -158,7 +160,8 @@ export class InterventionService {
   }
 
   public save(): Observable<Intervention> {
-    return this.http.post<Intervention>(this.url, this.selected);
+    const stringifi = JSON.stringify(this.selected, this.getCircularReplacer());
+    return this.http.post<Intervention>(this.url + '/', JSON.parse(stringifi));
   }
   public update(index: number, intervention: Intervention) {
     this.selected = this.selected;
@@ -183,7 +186,7 @@ export class InterventionService {
   //   }
   // }
   public findAll(): Observable<Array<Intervention>> {
-    return this.http.get<Array<Intervention>>(this.url+'/');
+    return this.http.get<Array<Intervention>>(this.url + '/');
   }
 
   deleteByCode() {

@@ -16,18 +16,18 @@
         </div>
         <div class="p-field">
             <label for="dateDeProbleme">date De Probleme</label>
-            <input type="date" pInputText id="dateDeProbleme" [(ngModel)]="selected.dateDeProbleme" required autofocus />
+            <input type="datetime-local" pInputText id="dateDeProbleme" [(ngModel)]="selected.dateDeProbleme" required autofocus />
             <small class="p-invalid" *ngIf="submitted && !selected.dateDeProbleme">dateDeProbleme is required.</small>
         </div>
 
         <div class="p-field">
             <label for="dateDebut">date Debut</label>
-            <input type="date" pInputText id="dateDebut" [(ngModel)]="selected.dateDebut" required autofocus />
+            <input type="datetime-local" pInputText id="dateDebut" [(ngModel)]="selected.dateDebut" required autofocus />
             <small class="p-invalid" *ngIf="submitted && !selected.dateDebut">dateDebut is required.</small>
         </div>
         <div class="p-field">
             <label for="dateFin">date Fin</label>
-            <input type="date" pInputText id="dateFin" [(ngModel)]="selected.dateFin" required autofocus />
+            <input type="datetime-local" pInputText id="dateFin" [(ngModel)]="selected.dateFin" required autofocus />
             <small class="p-invalid" *ngIf="submitted && !selected.dateFin">dateFin is required.</small>
         </div>
 
@@ -38,7 +38,7 @@
         </div>
         </div>
        <div class="p-card-footer">
-           <button pButton  label="Ajout"  class="p-button-text" ></button>
+           <button pButton  label="Ajout"  class="p-button-text" (click)="show()"></button>
        </div>
 
 
