@@ -31,7 +31,5 @@ export class InterventionInfoComponent implements OnInit {
     this.service.submitted = value;
   }
 
-  show() {
-    console.log(this.intervention.dateFin.toLocaleString())
-  }
+
 }

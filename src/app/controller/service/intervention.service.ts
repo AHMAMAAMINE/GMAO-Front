@@ -27,7 +27,7 @@ export class InterventionService {
   private _materialIntervention: MateraialIntervention;
   private _conseilIntervention: Conseils;
   private _conseilInterventions: Array<Conseils>;
-  private url = environment.baseUrl + '/intervention';
+  private url = environment.baseUrl + 'intervention';
   private _selectes: Array<Intervention>;
   private _index: number;
   private _createDialog: boolean;
@@ -190,7 +190,7 @@ export class InterventionService {
   }
 
   deleteByCode() {
-    return this.http.delete<number>(this.url + 'Code/' + this.selected.code);
+    return this.http.delete<number>(this.url + '/Code/' + this.selected.code);
   }
   public deleteIndexById(id: number) {
     this.items.splice(this.findIndexById(id), 1);
