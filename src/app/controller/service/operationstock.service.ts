@@ -2,12 +2,27 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { StockService } from './stock-service.service';
 import { OperationStock } from '../model/operationStock.model';
+import {Magasin} from "../model/magasin.model";
+import {Material} from "../model/material.model";
+import {environment} from "../../../environments/environment";
+import {Equipe} from "../model/equipe.model";
 
 @Injectable({
   providedIn: 'root',
 })
 export class OperationstockService {
-  constructor(private http: HttpClient, private stockservice: StockService) {}
+
+//  private url = environment.baseUrl + 'operationStock';
+  private items: Array<OperationStock>;
+  private selected: OperationStock;
+  private selectes: Array<OperationStock>;
+
+  private createDialog: boolean;
+  private editDialog: boolean;
+  private viewDialog: boolean;
+  private submitted: boolean;
+
+     constructor(private http: HttpClient, private stockservice: StockService) {}
   get operationstock(): OperationStock {
     if (this._operationstock == null) {
       this._operationstock = new OperationStock();
@@ -51,7 +66,7 @@ export class OperationstockService {
           );
         }
         if (data === -2) {
-          open('http://localhost:4200/stockks');
+          open('http://localhost:4200/stocks');
           alert('veuiliez enregistre un stock');
         }
         if (data === -3) {
@@ -78,7 +93,7 @@ export class OperationstockService {
     return myClone;
   }
 
-  find(reference: String) {
+  find(reference: string) {
     this.http
       .get<Array<OperationStock>>(
         this.urlBase + this.url + '/trouve/refmagasin/' + reference
@@ -92,4 +107,20 @@ export class OperationstockService {
   // findByCritere(qteMax: number, qteMin: number) {
   //   this.http.post<Array<OperationStock>>(this.urlBase+this.url+'/criteria',qte)
   // }
+    findIndexById(id: number) {
+        return 0;
+    }
+
+  edit() { }
+
+    deleteByRef() {
+    }
+
+  deleteMultipleByRef() {
+
+  }
+
+  deleteMultipleIndexById() {
+
+  }
 }

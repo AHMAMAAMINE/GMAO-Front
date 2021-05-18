@@ -7,4 +7,10 @@ export class OperationStock {
   public magasinDestination = new Magasin();
   public  material = new Material();
   public  qte: number;
+//  public QteMin: number;
+//  public QteMax: number;
+
+  trim() {
+    return false;
+  }
 }

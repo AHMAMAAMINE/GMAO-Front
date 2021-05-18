@@ -7,4 +7,8 @@ export class Magasin {
   public adresse:string;
   public stocks=new Array<Stock>();
   public  typemagasin=new TypeMagasin();
+
+  trim() {
+    return false;
+  }
 }

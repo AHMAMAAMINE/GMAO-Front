@@ -1,0 +1,35 @@
+<p-dialog [(visible)]="createDialog" [style]="{width: '450px'}" header="Operation Stock Details" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+
+        <div class="p-field">
+                <label for="stockSource">Stock Source</label>
+                <input type="text" pInputText id="stockSource" [(ngModel)]="selected.magasinSource" required autofocus />
+                <small class="p-invalid" *ngIf="submitted && !selected.magasinSource">stockSource is required.</small>
+            </div>
+
+            <div class="p-field">
+                <label for="stockDestination">Stock Destination</label>
+                <input type="text" pInputText id="stockDestination" [(ngModel)]="selected.magasinDestination" required autofocus />
+                <small class="p-invalid" *ngIf="submitted && !selected.magasinDestination">stockDestination is required.</small>
+            </div>
+
+        <div class="p-field">
+            <label for="materiel">Matériel</label>
+            <input type="text" pInputText id="materiel" [(ngModel)]="selected.material" required autofocus />
+            <small class="p-invalid" *ngIf="submitted && !selected.material">materiel is required.</small>
+        </div>
+      <div class="p-formgrid p-grid">
+        <div class="p-field p-col">
+            <label for="quantite">Quantité</label>
+            <p-inputNumber id="quantite" [(ngModel)]="selected.qte"> <!-- required autofocus --> </p-inputNumber>
+        <!--    <small class="p-invalid" *ngIf="submitted && !operationstock.qte">quantite is required.</small> -->
+        </div>
+      </div>
+
+    </ng-template>
+            <ng-template pTemplate="footer">
+                <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideCreateDialog()"></button>
+                <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="save()"></button>
+            </ng-template>
+
+</p-dialog>

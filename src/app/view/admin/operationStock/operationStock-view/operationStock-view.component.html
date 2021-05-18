@@ -1,0 +1,32 @@
+<p-dialog [(visible)]="viewDialog" [style]="{width: '450px'}" header="Operation Stock Details" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+
+            <div class="p-field">
+                <label for="magasinSource">Magasin Source</label>
+                <input type="text" pInputText id="magasinSource" [(ngModel)]="selected.magasinSource" disabled />
+            </div>
+
+            <div class="p-field">
+                <label for="magasinDestination">Magasin Destination</label>
+                <input type="text" pInputText id="magasinDestination" [(ngModel)]="selected.magasinDestination" disabled />
+            </div>
+
+            <div class="p-formgrid p-grid">
+                <div class="p-field p-col">
+                    <label for="QteMin">Quantité Min</label>
+                    <p-inputNumber id="QteMin" [(ngModel)]="selected.QteMin" disabled></p-inputNumber>
+                </div>
+            </div>
+
+            <div class="p-formgrid p-grid">
+                <div class="p-field p-col">
+                    <label for="QteMax">Quantité Max</label>
+                    <p-inputNumber id="QteMax" [(ngModel)]="selected.QteMax" disabled></p-inputNumber>
+                </div>
+            </div>
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Fermer" icon="pi pi-times" class="p-button-text" (click)="hideViewDialog()"></button>
+    </ng-template>
+</p-dialog>

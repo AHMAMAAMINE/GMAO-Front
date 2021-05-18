@@ -71,7 +71,7 @@ export class UserService {
         this.router.navigate(['/chef-equipe']);
         break;
       case 'chef-stock':
-        this.router.navigate(['/operationStock']);
+        this.router.navigate(['/None']);
         break;
       default:
         break;
