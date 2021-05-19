@@ -1,12 +1,12 @@
-import {Component, OnInit} from "@angular/core";
-import {MessageService} from "primeng/api";
-import {InterventionService} from "../../../../controller/service/intervention.service";
-import {OperationstockService} from "../../../../controller/service/operationstock.service";
-import {OperationStock} from "../../../../controller/model/operationStock.model";
+import {Component, OnInit} from '@angular/core';
+import {MessageService} from 'primeng/api';
+import {InterventionService} from '../../../../controller/service/intervention.service';
+import {OperationstockService} from '../../../../controller/service/operationstock.service';
+import {OperationStock} from '../../../../controller/model/operationStock.model';
 
 
 @Component({
-    selector: 'app-operationStock-view',
+    selector: 'app-operation-stock-view',
     templateUrl: './operationStock-view.component.html',
     styleUrls: ['./operationStock-view.component.scss']
 })
@@ -31,5 +31,5 @@ export class OperationStockViewComponent implements OnInit {
     public hideViewDialog() {
         this.viewDialog = false;
     }
-    
+
 }

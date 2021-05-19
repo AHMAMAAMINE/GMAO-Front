@@ -2,10 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { StockService } from './stock-service.service';
 import { OperationStock } from '../model/operationStock.model';
-import {Magasin} from "../model/magasin.model";
-import {Material} from "../model/material.model";
-import {environment} from "../../../environments/environment";
-import {Equipe} from "../model/equipe.model";
+import {Observable} from 'rxjs';
+import {environment} from '../../../environments/environment';
+import {Intervention} from '../model/intervention.model';
 
 @Injectable({
   providedIn: 'root',
@@ -13,114 +12,123 @@ import {Equipe} from "../model/equipe.model";
 export class OperationstockService {
 
 //  private url = environment.baseUrl + 'operationStock';
-  private items: Array<OperationStock>;
-  private selected: OperationStock;
-  private selectes: Array<OperationStock>;
+  
 
-  private createDialog: boolean;
-  private editDialog: boolean;
-  private viewDialog: boolean;
-  private submitted: boolean;
+  private _createDialog: boolean;
+  private _editDialog: boolean;
+  private _viewDialog: boolean;
+  private _submitted: boolean;
+  private _index: number;
 
      constructor(private http: HttpClient, private stockservice: StockService) {}
-  get operationstock(): OperationStock {
-    if (this._operationstock == null) {
-      this._operationstock = new OperationStock();
+  get selected(): OperationStock {
+    if (this._selected == null) {
+      this._selected = new OperationStock();
     }
-    return this._operationstock;
+    return this._selected;
   }
 
-  set operationstock(value: OperationStock) {
-    this._operationstock = value;
+  set selected(value: OperationStock) {
+    this._selected = value;
   }
 
-  get operationstocks(): Array<OperationStock> {
-    if (this._operationstocks == null) {
-      this._operationstocks = new Array<OperationStock>();
-    }
-    return this._operationstocks;
+  get selecteds(): Array<OperationStock> {
+    return this._items;
   }
 
-  set operationstocks(value: Array<OperationStock>) {
-    this._operationstocks = value;
+  set selecteds(value: Array<OperationStock>) {
+    this._items = value;
   }
-  private urlBase = 'http://localhost:8036';
-  private url = '/Stock/OperationStockBean';
-  private _operationstock: OperationStock;
-  private _operationstocks: Array<OperationStock>;
-  findAll(): void {
-    this.http
-      .get<Array<OperationStock>>(this.urlBase + this.url + '/')
-      .subscribe((data) => {
-        this.operationstocks = data;
-      });
-  }
+  private url = environment.baseUrl + 'OperationStock';
+  private _selected: OperationStock;
+  private _items: Array<OperationStock>;
+ 
 
-  save() {
-    this.http
-      .post(this.urlBase + this.url + '/', this.operationstock)
-      .subscribe((data) => {
-        if (data === -1) {
-          alert(
-            'l un d est reference entre n est pas disponible dans la base de donnees'
-          );
-        }
-        if (data === -2) {
-          open('http://localhost:4200/stocks');
-          alert('veuiliez enregistre un stock');
-        }
-        if (data === -3) {
-          alert('la quantites voulu a transferee n est pas disponible ');
-        }
-        this.operationstock = null;
-        if (data > 0) {
-          this.operationstock.id = this.operationstocks.length + 1;
-          this.operationstocks.push(this.clone(this.operationstock));
-          this.findAll();
-          this.operationstock = null;
-        }
-      });
-  }
-
-  private clone(operationstock: OperationStock) {
-    const myClone = new OperationStock();
-    myClone.qte = operationstock.qte;
-    myClone.magasinSource.reference = operationstock.magasinSource.reference;
-    myClone.magasinDestination.reference =
-      operationstock.magasinDestination.reference;
-    myClone.id = operationstock.id;
-    myClone.material.reference = operationstock.material.reference;
-    return myClone;
-  }
-
-  find(reference: string) {
-    this.http
-      .get<Array<OperationStock>>(
-        this.urlBase + this.url + '/trouve/refmagasin/' + reference
-      )
-      .subscribe((data) => {
-        console.log(data);
-        this.operationstocks = data;
-      });
-  }
 
   // findByCritere(qteMax: number, qteMin: number) {
   //   this.http.post<Array<OperationStock>>(this.urlBase+this.url+'/criteria',qte)
   // }
-    findIndexById(id: number) {
-        return 0;
-    }
-
-  edit() { }
-
+   
     deleteByRef() {
     }
-
-  deleteMultipleByRef() {
-
+  public save(): Observable<OperationStock> {
+   
+    return this.http.post<OperationStock>(this.url + '/', this.selected);
+  }
+  public update(index: number, operationStock: OperationStock) {
+    this.selected = this.selected;
+    this._index = index;
+  }
+  public findAll(): Observable<Array<OperationStock>> {
+    return this.http.get<Array<OperationStock>>(this.url + '/');
   }
 
-  deleteMultipleIndexById() {
 
+  get createDialog(): boolean {
+    return this._createDialog;
+  }
+
+  set createDialog(value: boolean) {
+    this._createDialog = value;
+  }
+
+  get editDialog(): boolean {
+    return this._editDialog;
+  }
+
+  set editDialog(value: boolean) {
+    this._editDialog = value;
+  }
+
+  get viewDialog(): boolean {
+    return this._viewDialog;
+  }
+
+  set viewDialog(value: boolean) {
+    this._viewDialog = value;
+  }
+
+  get submitted(): boolean {
+    return this._submitted;
+  }
+
+  set submitted(value: boolean) {
+    this._submitted = value;
+  }
+  
+
+  get items(): Array<OperationStock> {
+    if (this._items == null) {
+      this._items = new Array<OperationStock>();
+    }
+    return this._items;
+  }
+
+  set items(value: Array<OperationStock>) {
+    this._items = value;
+  }
+  public deleteIndexById(id: number) {
+    this.items.splice(this.findIndexById(id), 1);
+  }
+  public edit(): Observable<OperationStock> {
+    return this.http.put<OperationStock>(this.url, this.selected);
+  }
+  public findIndexById(id: number): number {
+    let index = -1;
+    for (let i = 0; i < this.items.length; i++) {
+      if (this.items[i].id === id) {
+        index = i;
+        break;
+      }
+    }
+    return index;
+  }
+  deleteMultipleByReference() {
+    return this.http.post<number>(this.url + 'delete-multiple-by-reference' , this.selecteds);
+  }
+  public deleteMultipleIndexById() {
+    for (const item of this.selecteds){
+      this.deleteIndexById(item.id);
+    }
   }
 }

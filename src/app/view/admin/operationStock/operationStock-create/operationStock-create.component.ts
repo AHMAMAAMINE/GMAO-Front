@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import {MessageService} from "primeng/api";
-import {OperationstockService} from "../../../../controller/service/operationstock.service";
-import {OperationStock} from "../../../../controller/model/operationStock.model";
+import {MessageService} from 'primeng/api';
+import {OperationstockService} from '../../../../controller/service/operationstock.service';
+import {OperationStock} from '../../../../controller/model/operationStock.model';
 
 
 @Component({
-    selector: 'app-operationstock-create',
+    selector: 'app-operation-stock-create',
     templateUrl: './operationStock-create.component.html',
     styleUrls: ['./operationStock-create.component.scss']
 })
-export class operationStockCreateComponent implements OnInit {
+export class OperationStockCreateComponent implements OnInit {
     createDialog: boolean;
     editDialog: boolean;
     viewDialog: boolean;

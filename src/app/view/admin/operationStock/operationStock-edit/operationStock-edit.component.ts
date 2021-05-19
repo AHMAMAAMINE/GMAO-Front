@@ -1,8 +1,7 @@
-import {Component, OnInit} from "@angular/core";
-import {MessageService} from "primeng/api";
-import {OperationstockService} from "../../../../controller/service/operationstock.service";
-import {OperationStock} from "../../../../controller/model/operationStock.model";
-import {Equipe} from "../../../../controller/model/equipe.model";
+import {Component, OnInit} from '@angular/core';
+import {MessageService} from 'primeng/api';
+import {OperationstockService} from '../../../../controller/service/operationstock.service';
+import {OperationStock} from '../../../../controller/model/operationStock.model';
 
 
 @Component({
@@ -13,14 +12,9 @@ import {Equipe} from "../../../../controller/model/equipe.model";
 export class OperationStockEditComponent implements OnInit {
 
     createDialog: boolean;
-    editDialog: boolean;
     viewDialog: boolean;
-    submitted: boolean;
     subscribe: boolean;
 
-    private items: Array<OperationStock>;
-    private selected: OperationStock;
-    private selectes: Array<OperationStock>;
 
     constructor(private messageService: MessageService, private service: OperationstockService) { }
     ngOnInit(): void {
@@ -47,6 +41,38 @@ export class OperationStockEditComponent implements OnInit {
     public hideEditDialog() {
         this.editDialog = false;
     }
-    
+    get selected(): OperationStock {
+        return this.service.selected;
+    }
+
+    set selected(value: OperationStock) {
+        this.service.selected = value;
+    }
+
+    get editDialog(): boolean {
+        return this.service.editDialog;
+    }
+
+    set editDialog(value: boolean) {
+        this.service.editDialog = value;
+    }
+
+    get submitted(): boolean {
+        return this.service.submitted;
+    }
+
+    set submitted(value: boolean) {
+        this.service.submitted = value;
+    }
+
+    get items(): Array<OperationStock> {
+        return this.service.items;
+    }
+
+    set items(value: Array<OperationStock>) {
+        this.service.items = value;
+    }
+
+
 
 }
