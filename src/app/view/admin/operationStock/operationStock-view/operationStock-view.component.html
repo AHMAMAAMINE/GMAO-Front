@@ -1,29 +1,30 @@
 <p-dialog [(visible)]="viewDialog" [style]="{width: '450px'}" header="Operation Stock Details" [modal]="true" styleClass="p-fluid">
     <ng-template pTemplate="content">
 
-            <div class="p-field">
-                <label for="magasinSource">Magasin Source</label>
-                <input type="text" pInputText id="magasinSource" [(ngModel)]="selected.magasinSource" disabled />
-            </div>
+        <div class="p-field">
+            <label for="stockSource">Stock Source</label>
+            <input type="text" pInputText id="stockSource" [(ngModel)]="selected.magasinSource.reference" required autofocus />
+            <small class="p-invalid" *ngIf="submitted && !selected.magasinSource">stockSource is required.</small>
+        </div>
 
-            <div class="p-field">
-                <label for="magasinDestination">Magasin Destination</label>
-                <input type="text" pInputText id="magasinDestination" [(ngModel)]="selected.magasinDestination" disabled />
-            </div>
+        <div class="p-field">
+            <label for="stockDestination">Stock Destination</label>
+            <input type="text" pInputText id="stockDestination" [(ngModel)]="selected.magasinDestination.reference" required autofocus />
+            <small class="p-invalid" *ngIf="submitted && !selected.magasinDestination">stockDestination is required.</small>
+        </div>
 
-            <div class="p-formgrid p-grid">
-                <div class="p-field p-col">
-                    <label for="QteMin">Quantité Min</label>
-                    <p-inputNumber id="QteMin" [(ngModel)]="selected.QteMin" disabled></p-inputNumber>
-                </div>
+        <div class="p-field">
+            <label for="materiel">Matériel</label>
+            <input type="text" pInputText id="materiel" [(ngModel)]="selected.material.reference" required autofocus />
+            <small class="p-invalid" *ngIf="submitted && !selected.material">materiel is required.</small>
+        </div>
+        <div class="p-formgrid p-grid">
+            <div class="p-field p-col">
+                <label for="quantite">Quantité</label>
+                <p-inputNumber id="quantite" [(ngModel)]="selected.qte"> <!-- required autofocus --> </p-inputNumber>
+                <!--    <small class="p-invalid" *ngIf="submitted && !operationstock.qte">quantite is required.</small> -->
             </div>
-
-            <div class="p-formgrid p-grid">
-                <div class="p-field p-col">
-                    <label for="QteMax">Quantité Max</label>
-                    <p-inputNumber id="QteMax" [(ngModel)]="selected.QteMax" disabled></p-inputNumber>
-                </div>
-            </div>
+        </div>
     </ng-template>
 
     <ng-template pTemplate="footer">

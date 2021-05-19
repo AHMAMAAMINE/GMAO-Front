@@ -33,16 +33,19 @@ export class OperationstockService {
   }
 
   get selecteds(): Array<OperationStock> {
-    return this._items;
+       if(this._selecteds ==null)
+         this._selecteds=new Array<OperationStock>();
+    return this._selecteds;
   }
 
   set selecteds(value: Array<OperationStock>) {
-    this._items = value;
+    this._selecteds = value;
   }
   private url = environment.baseUrl + 'OperationStock';
   private _selected: OperationStock;
   private _items: Array<OperationStock>;
- 
+  private _selecteds: Array<OperationStock>;
+
 
 
   // findByCritere(qteMax: number, qteMin: number) {
@@ -64,37 +67,9 @@ export class OperationstockService {
   }
 
 
-  get createDialog(): boolean {
-    return this._createDialog;
-  }
 
-  set createDialog(value: boolean) {
-    this._createDialog = value;
-  }
 
-  get editDialog(): boolean {
-    return this._editDialog;
-  }
 
-  set editDialog(value: boolean) {
-    this._editDialog = value;
-  }
-
-  get viewDialog(): boolean {
-    return this._viewDialog;
-  }
-
-  set viewDialog(value: boolean) {
-    this._viewDialog = value;
-  }
-
-  get submitted(): boolean {
-    return this._submitted;
-  }
-
-  set submitted(value: boolean) {
-    this._submitted = value;
-  }
   
 
   get items(): Array<OperationStock> {
@@ -131,4 +106,37 @@ export class OperationstockService {
       this.deleteIndexById(item.id);
     }
   }
+
+  get createDialog(): boolean {
+    return this._createDialog;
+  }
+
+  set createDialog(value: boolean) {
+    this._createDialog = value;
+  }
+
+  get editDialog(): boolean {
+    return this._editDialog;
+  }
+
+  set editDialog(value: boolean) {
+    this._editDialog = value;
+  }
+
+  get submitted(): boolean {
+    return this._submitted;
+  }
+
+  set submitted(value: boolean) {
+    this._submitted = value;
+  }
+
+  get viewDialog(): boolean {
+    return this._viewDialog;
+  }
+
+  set viewDialog(value: boolean) {
+    this._viewDialog = value;
+  }
+
 }

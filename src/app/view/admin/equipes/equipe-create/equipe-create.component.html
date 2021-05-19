@@ -2,16 +2,20 @@
     <ng-template pTemplate="content">
         <div class="p-field">
             <label for="ref">Refernce</label>
-            <input type="text" pInputText id="ref" [(ngModel)]="selectedEquipe.reference" required autofocus />
-            <small class="p-invalid" *ngIf="submitted && !selectedEquipe.reference">ref is required.</small>
+            <input type="text" pInputText id="ref" [(ngModel)]="selectedEquipe.ref" required autofocus />
+            <small class="p-invalid" *ngIf="submitted && !selectedEquipe.ref">ref is required.</small>
         </div>
         <div class="p-field">
             <label for="libelle">libelle</label>
             <input type="text" pInputText id="libelle" [(ngModel)]="selectedEquipe.libelle" required autofocus />
             <small class="p-invalid" *ngIf="submitted && !selectedEquipe.libelle">libelle is required.</small>
         </div>
-
-
+        <div class="p-field">
+        <label>Membre Equip</label>
+        <select class="form-control" (change)="isSelected($event)" pInputText>
+            <option *ngFor="let c of collaborateurs" [value]="c.codeCollaborateur"> {{c.fullname}}</option>
+        </select>
+        </div>
 
         
     </ng-template>

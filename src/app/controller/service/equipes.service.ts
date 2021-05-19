@@ -1,12 +1,12 @@
-import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
-import { environment } from "src/environments/environment";
-import { Equipe } from "../model/equipe.model";
-import { MembreEquipe } from "../model/membre-equipe.model";
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
+import { Equipe } from '../model/equipe.model';
+import { MembreEquipe } from '../model/membre-equipe.model';
 
 
- @Injectable({
+@Injectable({
   providedIn: 'root'
 })
 export class EquipesService {
@@ -16,10 +16,11 @@ export class EquipesService {
 //   private urlEquipe = 'http://localhost:8036/membreEquipe/';
 //   private urlEquipeRef = 'http://localhost:8036/membreEquipe/equipe/ref/'
  public _selectedEquipe: Equipe;
- public _equipes : Array<Equipe>;
+ public _equipes: Array<Equipe>;
  private _selectesEquipe: Array<Equipe>;
+ private _membre: MembreEquipe;
  private _membres: Array<MembreEquipe>;
- private baseUrl='http://localhost:8036';
+ private baseUrl = 'http://localhost:8036';
  private url = environment.baseUrl + '/equipe/';
 
  private _index: number;
@@ -130,6 +131,12 @@ public deleteMultipleIndexById() {
 
   set membres(value: Array<MembreEquipe>) {
     this._membres = value;
+  }
+  get membre(): MembreEquipe{
+      if (this._membre == null){
+          this._membre = new MembreEquipe();
+      }
+      return this._membre;
   }
 
 }

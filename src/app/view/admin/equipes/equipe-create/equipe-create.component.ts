@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { Equipe } from 'src/app/controller/model/equipe.model';
 import { EquipesService } from 'src/app/controller/service/equipes.service';
+import {MembreEquipe} from '../../../../controller/model/membre-equipe.model';
+import {InterventionService} from '../../../../controller/service/intervention.service';
+import {Collaborateur} from '../../../../controller/model/collaborateur.model';
+import {CollaborateurService} from '../../../../controller/service/collaborateur.service';
 
 @Component({
   selector: 'app-equipe-create',
@@ -10,9 +14,10 @@ import { EquipesService } from 'src/app/controller/service/equipes.service';
 })
 export class EquipeCreateComponent implements OnInit {
 
-  constructor(private messageService: MessageService, private service: EquipesService) { }
+  constructor(private messageService: MessageService, private service: EquipesService, private services : CollaborateurService) { }
 
   ngOnInit(): void {
+      this.services.findAll();
   }
   public hideCreateDialog() {
     this.createDialog = false;
@@ -66,5 +71,13 @@ get equipes(): Array<Equipe> {
 set equipes(value: Array<Equipe>) {
     this.service.equipes = value;
 }
-
+get collaborateurs(): Array <Collaborateur>{
+      return this.services.collaborateurs;
+}
+get membreEquipe(): MembreEquipe {
+      return this.service.membre;
+}
+    isSelected($event: any) {
+         this.membreEquipe.collaborateur.codeCollaborateur = $event.target.value;
+    }
 }

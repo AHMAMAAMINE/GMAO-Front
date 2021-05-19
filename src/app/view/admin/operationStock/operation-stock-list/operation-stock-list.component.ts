@@ -121,6 +121,6 @@ export class OperationStockListComponent implements OnInit {
 
 
   delete(operationStock: any) {
-    
+
   }
 }

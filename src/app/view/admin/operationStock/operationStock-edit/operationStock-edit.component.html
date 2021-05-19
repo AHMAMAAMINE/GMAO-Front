@@ -3,19 +3,19 @@
 
         <div class="p-field">
             <label for="stockSource">Stock Source</label>
-            <input type="text" pInputText id="stockSource" [(ngModel)]="selected.magasinSource" required autofocus />
+            <input type="text" pInputText id="stockSource" [(ngModel)]="selected.magasinSource.reference" required autofocus />
             <small class="p-invalid" *ngIf="submitted && !selected.magasinSource">stockSource is required.</small>
         </div>
 
         <div class="p-field">
             <label for="stockDestination">Stock Destination</label>
-            <input type="text" pInputText id="stockDestination" [(ngModel)]="selected.magasinDestination" required autofocus />
+            <input type="text" pInputText id="stockDestination" [(ngModel)]="selected.magasinDestination.reference" required autofocus />
             <small class="p-invalid" *ngIf="submitted && !selected.magasinDestination">stockDestination is required.</small>
         </div>
 
         <div class="p-field">
             <label for="materiel">Matériel</label>
-            <input type="text" pInputText id="materiel" [(ngModel)]="selected.material" required autofocus />
+            <input type="text" pInputText id="materiel" [(ngModel)]="selected.material.reference" required autofocus />
             <small class="p-invalid" *ngIf="submitted && !selected.material">materiel is required.</small>
         </div>
         <div class="p-formgrid p-grid">

@@ -10,11 +10,7 @@ import {OperationStock} from '../../../../controller/model/operationStock.model'
     styleUrls: ['./operationStock-create.component.scss']
 })
 export class OperationStockCreateComponent implements OnInit {
-    createDialog: boolean;
-    editDialog: boolean;
-    viewDialog: boolean;
-    submitted: boolean;
-    subscribe: boolean;
+
 
     private items: Array<OperationStock>;
     private selected: OperationStock;
@@ -45,5 +41,20 @@ export class OperationStockCreateComponent implements OnInit {
             this.selected = new OperationStock();
         }
 
+    }
+    get createDialog(): boolean {
+        return this.service.createDialog;
+    }
+
+    set createDialog(value: boolean) {
+        this.service.createDialog = value;
+    }
+
+    get submitted(): boolean {
+        return this.service.submitted;
+    }
+
+    set submitted(value: boolean) {
+        this.service.submitted = value;
     }
 }
