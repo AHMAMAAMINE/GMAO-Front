@@ -2,27 +2,27 @@
     <ng-template pTemplate="content">
 
         <div class="p-field">
-                <label for="stockSource">Stock Source</label>
+                <label for="stockSource"><b>Stock Source:</b></label> <br>
                 <input type="text" pInputText id="stockSource" [(ngModel)]="selected.magasinSource.reference" required autofocus />
                 <small class="p-invalid" *ngIf="submitted && !selected.magasinSource">stockSource is required.</small>
             </div>
 
             <div class="p-field">
-                <label for="stockDestination">Stock Destination</label>
+                <label for="stockDestination"><b>Stock Destination:</b></label> <br>
                 <input type="text" pInputText id="stockDestination" [(ngModel)]="selected.magasinDestination.reference" required autofocus />
                 <small class="p-invalid" *ngIf="submitted && !selected.magasinDestination">stockDestination is required.</small>
             </div>
 
         <div class="p-field">
-            <label for="materiel">Matériel</label>
+            <label for="materiel"><b>Matériel:</b></label> <br>
             <input type="text" pInputText id="materiel" [(ngModel)]="selected.material.reference" required autofocus />
             <small class="p-invalid" *ngIf="submitted && !selected.material">materiel is required.</small>
         </div>
       <div class="p-formgrid p-grid">
         <div class="p-field p-col">
-            <label for="quantite">Quantité</label>
+            <label for="quantite"><b>Quantité:</b></label> <br>
             <p-inputNumber id="quantite" [(ngModel)]="selected.qte"> <!-- required autofocus --> </p-inputNumber>
-        <!--    <small class="p-invalid" *ngIf="submitted && !operationstock.qte">quantite is required.</small> -->
+        <!--    <small class="p-invalid" *ngIf="submitted && !selected.qte.toPrecision()">quantite is required.</small> -->
         </div>
       </div>
 
