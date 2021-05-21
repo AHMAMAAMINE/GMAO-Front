@@ -40,6 +40,7 @@ import {AppLoginComponent} from './pages/app.login.component';
 import {CommandesComponent} from './view/admin/commandes/commandes.component';
 import {InterventionInfoComponent} from './view/admin/commandes/intervention-info/intervention-info.component';
 import { EquipesComponent } from './view/admin/equipes/equipes.component';
+import {OperationStockComponent} from './view/admin/operationStock/operationStock.component';
 
 @NgModule({
     imports: [
@@ -49,7 +50,8 @@ import { EquipesComponent } from './view/admin/equipes/equipes.component';
                 children: [
                     {path: '', component: DashboardDemoComponent},
                     {path: 'view/commande', component: CommandesComponent},
-
+                    {path: 'view/equipes', component: EquipesComponent},
+                    {path: 'view/operation', component: OperationStockComponent},
                     {path: 'uikit/formlayout', component: FormLayoutDemoComponent},
                     {path: 'uikit/floatlabel', component: FloatLabelDemoComponent},
                     {path: 'uikit/invalidstate', component: InvalidStateDemoComponent},
