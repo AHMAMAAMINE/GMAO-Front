@@ -11,7 +11,6 @@ import {OperationStock} from '../../../../controller/model/operationStock.model'
 })
 export class OperationStockCreateComponent implements OnInit {
 
-
     private items: Array<OperationStock>;
     private selected: OperationStock;
     private selectes: Array<OperationStock>;
