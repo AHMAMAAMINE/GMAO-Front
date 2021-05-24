@@ -153,6 +153,11 @@ import { EquipeViewComponent } from "./view/admin/equipes/equipe-view/equipe-vie
 import { InterventionMembreEquipComponent } from "./view/admin/commandes/intervention-membre-equip/intervention-membre-equip.component";
 import { InterventionConseilComponent } from "./view/admin/commandes/intervention-conseil/intervention-conseil.component";
 import { StockComponent } from './view/admin/stock/stock.component';
+import {OperationStockListComponent} from "./view/admin/operationStock/operation-stock-list/operation-stock-list.component";
+import {OperationStockComponent} from "./view/admin/operationStock/operationStock.component";
+import {OperationStockCreateComponent} from "./view/admin/operationStock/operationStock-create/operationStock-create.component";
+import {OperationStockViewComponent} from "./view/admin/operationStock/operationStock-view/operationStock-view.component";
+import {OperationStockEditComponent} from "./view/admin/operationStock/operationStock-edit/operationStock-edit.component";
 
 @NgModule({
   imports: [
@@ -302,6 +307,11 @@ import { StockComponent } from './view/admin/stock/stock.component';
     InterventionMembreEquipComponent,
     InterventionConseilComponent,
     StockComponent,
+    OperationStockListComponent,
+    OperationStockCreateComponent,
+    OperationStockEditComponent,
+    OperationStockViewComponent,
+    OperationStockComponent,
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },
