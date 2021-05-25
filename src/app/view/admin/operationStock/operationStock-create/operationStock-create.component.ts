@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {MessageService} from 'primeng/api';
 import {OperationstockService} from '../../../../controller/service/operationstock.service';
 import {OperationStock} from '../../../../controller/model/operationStock.model';
+// import {Intervention} from "../../../../controller/model/intervention.model";
 
 
 @Component({
@@ -11,8 +12,8 @@ import {OperationStock} from '../../../../controller/model/operationStock.model'
 })
 export class OperationStockCreateComponent implements OnInit {
 
-    private items: Array<OperationStock>;
-    private selected: OperationStock;
+ //   private items: Array<OperationStock>;
+  //  private selected: OperationStock;
     private selectes: Array<OperationStock>;
 
 
@@ -56,5 +57,20 @@ export class OperationStockCreateComponent implements OnInit {
 
     set submitted(value: boolean) {
         this.service.submitted = value;
+    }
+
+    get selected(): OperationStock {
+        return this.service.selected;
+    }
+
+    set selected(value: OperationStock) {
+        this.service.selected = value;
+    }
+    get items(): Array<OperationStock> {
+        return this.service.items;
+    }
+
+    set items(value: Array<OperationStock>) {
+        this.service.items = value;
     }
 }
