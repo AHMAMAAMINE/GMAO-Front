@@ -190,7 +190,7 @@ export class InterventionService {
   }
 
   deleteByCode() {
-    return this.http.delete<number>(this.url + '/Code/' + this.selected.code);
+    return this.http.delete<number>(this.url + '/deleteCode/' + this.selected.code);
   }
   public deleteIndexById(id: number) {
     this.items.splice(this.findIndexById(id), 1);
@@ -310,4 +310,7 @@ export class InterventionService {
   }
 
 
+    public findByCode(code: string) {
+        return this.http.get<Intervention>(this.url + '/findCode/' + code);
+    }
 }

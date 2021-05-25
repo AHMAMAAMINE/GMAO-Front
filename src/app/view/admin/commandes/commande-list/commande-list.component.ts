@@ -74,7 +74,10 @@ export class CommandeListComponent implements OnInit {
         this.editDialog = true;
     }
     public view(commande: Intervention) {
+        console.log(commande.code)
+        this.findByCode(commande.code);
         this.selected = {...commande};
+        console.log(commande.etatIntervention.couleur);
         this.viewDialog = true;
     }
 
@@ -144,4 +147,11 @@ export class CommandeListComponent implements OnInit {
         this.service.selectes = value;
     }
 
+    private findByCode(code: string) {
+        this.service.findByCode(code).subscribe(
+            data => {
+                this.selected = data;
+        });
+
+    }
 }

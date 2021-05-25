@@ -1,19 +1,19 @@
 <p-dialog [(visible)]="viewDialog" [style]="{width: '450px'}" header="Commande Details" [modal]="true" styleClass="p-fluid">
     <ng-template pTemplate="content">
         <div class="p-field">
-            <label for="ref">Ref</label>
-            <input type="text" pInputText id="ref" [(ngModel)]="selected.reference" disabled />
+            <label for="ref">couleur de l intervention</label>
+            <input type="text" pInputText id="ref" [(ngModel)]="selected.etatIntervention.couleur" disabled />
         </div>
         <div class="p-field">
-            <label for="total">Total</label>
-            <input type="text" pInputText id="total" [(ngModel)]="selected.total" disabled />
+            <label for="total">Code</label>
+            <input type="text" pInputText id="total" [(ngModel)]="selected.code" disabled />
         </div>
 
 
 
         <div class="p-formgrid p-grid">
             <div class="p-field p-col">
-                <label for="totalPaye">Total Paye</label>
+                <label for="totalPaye"></label>
                 <p-inputNumber id="totalPaye" [(ngModel)]="selected.totalPaye" disabled></p-inputNumber>
             </div>
         </div>
