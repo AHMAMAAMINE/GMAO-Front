@@ -1,27 +1,71 @@
-<p-dialog [(visible)]="createDialog" [style]="{width: '450px'}" header="Equipe Details" [modal]="true" styleClass="p-fluid">
-    <ng-template pTemplate="content">
-        <div class="p-field">
-            <label for="ref">Refernce</label>
-            <input type="text" pInputText id="ref" [(ngModel)]="selectedEquipe.ref" required autofocus />
-            <small class="p-invalid" *ngIf="submitted && !selectedEquipe.ref">ref is required.</small>
-        </div>
-        <div class="p-field">
-            <label for="libelle">libelle</label>
-            <input type="text" pInputText id="libelle" [(ngModel)]="selectedEquipe.libelle" required autofocus />
-            <small class="p-invalid" *ngIf="submitted && !selectedEquipe.libelle">libelle is required.</small>
-        </div>
-        <div class="p-field">
-        <label>Membre Equip</label>
-        <select class="form-control" (change)="isSelected($event)" pInputText>
-            <option *ngFor="let c of collaborateurs" [value]="c.codeCollaborateur"> {{c.fullname}}</option>
-        </select>
-        </div>
+<p-dialog
+  [(visible)]="createDialog"
+  [style]="{ width: '450px' }"
+  header="Equipe Details"
+  [modal]="true"
+  styleClass="p-fluid"
+>
+  <ng-template pTemplate="content">
+    <div class="p-field">
+      <label for="ref">Refernce</label>
+      <input
+        type="text"
+        pInputText
+        id="ref"
+        [(ngModel)]="selectedEquipe.ref"
+        required
+        autofocus
+      />
+      <small class="p-invalid" *ngIf="submitted && !selectedEquipe.ref"
+        >ref is required.</small
+      >
+    </div>
+    <div class="p-field">
+      <label for="libelle">libelle</label>
+      <input
+        type="text"
+        pInputText
+        id="libelle"
+        [(ngModel)]="selectedEquipe.libelle"
+        required
+        autofocus
+      />
+      <small class="p-invalid" *ngIf="submitted && !selectedEquipe.libelle"
+        >libelle is required.</small
+      >
+    </div>
+    <div class="p-field">
+      <label>Membre Equip</label>
+      <select class="form-control" (change)="isSelected($event)" pInputText>
+        <option *ngFor="let c of collaborateurs" [value]="c.codeCollaborateur">
+          {{ c.fullname }}
+        </option>
+      </select>
+    </div>
+    <button
+      pButton
+      label="Ajouter"
+      class="p-button-text"
+      (click)="saveMembre()"
+    ></button>
+  </ng-template>
 
-        
-    </ng-template>
-
-    <ng-template pTemplate="footer">
-        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideCreateDialog()"></button>
-        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="save()"></button>
-    </ng-template>
+  <ng-template pTemplate="footer">
+    <button
+      pButton
+      pRipple
+      label="Cancel"
+      icon="pi pi-times"
+      class="p-button-text"
+      (click)="hideCreateDialog()"
+    ></button>
+    <button
+      pButton
+      pRipple
+      label="Save"
+      icon="pi pi-check"
+      class="p-button-text"
+      (click)="save()"
+    ></button>
+  </ng-template>
 </p-dialog>

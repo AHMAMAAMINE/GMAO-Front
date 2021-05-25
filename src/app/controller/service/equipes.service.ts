@@ -1,29 +1,28 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
-import { Equipe } from '../model/equipe.model';
-import { MembreEquipe } from '../model/membre-equipe.model';
-
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
+import { environment } from "src/environments/environment";
+import { Equipe } from "../model/equipe.model";
+import { MembreEquipe } from "../model/membre-equipe.model";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class EquipesService {
-    constructor(private http: HttpClient) {}
-//   private urlbase = 'http://localhost:8036';
-//   private url = 'http://localhost:8036/equipe/';
-//   private urlEquipe = 'http://localhost:8036/membreEquipe/';
-//   private urlEquipeRef = 'http://localhost:8036/membreEquipe/equipe/ref/'
- public _selectedEquipe: Equipe;
- public _equipes: Array<Equipe>;
- private _selectesEquipe: Array<Equipe>;
- private _membre: MembreEquipe;
- private _membres: Array<MembreEquipe>;
- private baseUrl = 'http://localhost:8036';
- private url = environment.baseUrl + '/equipe/';
+  constructor(private http: HttpClient) {}
+  //   private urlbase = 'http://localhost:8036';
+  //   private url = 'http://localhost:8036/equipe/';
+  //   private urlEquipe = 'http://localhost:8036/membreEquipe/';
+  //   private urlEquipeRef = 'http://localhost:8036/membreEquipe/equipe/ref/'
+  public _selectedEquipe: Equipe;
+  public _equipes: Array<Equipe>;
+  private _selectesEquipe: Array<Equipe>;
+  private _membre: MembreEquipe;
+  private _membres: Array<MembreEquipe>;
+  private baseUrl = "http://localhost:8036";
+  private url = environment.baseUrl + "/equipe/";
 
- private _index: number;
+  private _index: number;
   private _createDialog: boolean;
   private _editDialog: boolean;
   private _viewDialog: boolean;
@@ -31,44 +30,52 @@ export class EquipesService {
 
   public findAll(): Observable<Array<Equipe>> {
     return this.http.get<Array<Equipe>>(this.url);
-}
+  }
 
-public save(): Observable<Equipe> {
+  public save(): Observable<Equipe> {
     return this.http.post<Equipe>(this.url, this.selectedEquipe);
-}
+  }
+  public saveMembre() {
+    this.selectedEquipe.membres.push(this.membre);
+  }
 
-public edit(): Observable<Equipe> {
+  public edit(): Observable<Equipe> {
     return this.http.put<Equipe>(this.url, this.selectedEquipe);
-}
+  }
 
-public deleteByRef(): Observable<number> {
-    return this.http.delete<number>(this.url + 'ref/' + this.selectedEquipe.ref);
-}
+  public deleteByRef(): Observable<number> {
+    return this.http.delete<number>(
+      this.url + "ref/" + this.selectedEquipe.ref
+    );
+  }
 
-public deleteMultipleByRef(): Observable<number> {
-    return this.http.post<number>(this.url + 'delete-multiple-by-ref' , this.selectesEquipe);
-}
+  public deleteMultipleByRef(): Observable<number> {
+    return this.http.post<number>(
+      this.url + "delete-multiple-by-ref",
+      this.selectesEquipe
+    );
+  }
 
-public findIndexById(id: number): number {
+  public findIndexById(id: number): number {
     let index = -1;
     for (let i = 0; i < this.equipes.length; i++) {
-        if (this.equipes[i].id === id) {
-            index = i;
-            break;
-        }
+      if (this.equipes[i].id === id) {
+        index = i;
+        break;
+      }
     }
     return index;
-}
+  }
 
-public deleteIndexById(id: number) {
+  public deleteIndexById(id: number) {
     this.equipes.splice(this.findIndexById(id), 1);
-}
+  }
 
-public deleteMultipleIndexById() {
-    for (const equipes of this.selectesEquipe){
-        this.deleteIndexById(equipes.id);
+  public deleteMultipleIndexById() {
+    for (const equipes of this.selectesEquipe) {
+      this.deleteIndexById(equipes.id);
     }
-}
+  }
 
   get createDialog(): boolean {
     return this._createDialog;
@@ -102,8 +109,6 @@ public deleteMultipleIndexById() {
     this._viewDialog = value;
   }
 
-
-
   get selectesEquipe(): Array<Equipe> {
     return this._selectesEquipe;
   }
@@ -132,11 +137,10 @@ public deleteMultipleIndexById() {
   set membres(value: Array<MembreEquipe>) {
     this._membres = value;
   }
-  get membre(): MembreEquipe{
-      if (this._membre == null){
-          this._membre = new MembreEquipe();
-      }
-      return this._membre;
+  get membre(): MembreEquipe {
+    if (this._membre == null) {
+      this._membre = new MembreEquipe();
+    }
+    return this._membre;
   }
-
 }
