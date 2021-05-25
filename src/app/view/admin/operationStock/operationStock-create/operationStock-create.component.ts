@@ -15,6 +15,7 @@ export class OperationStockCreateComponent implements OnInit {
     private selected: OperationStock;
     private selectes: Array<OperationStock>;
 
+
     constructor(private messageService: MessageService, private service: OperationstockService) { }
 
     ngOnInit(): void {

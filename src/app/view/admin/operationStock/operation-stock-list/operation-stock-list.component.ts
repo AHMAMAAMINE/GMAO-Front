@@ -22,7 +22,7 @@ export class OperationStockListComponent implements OnInit {
 
   public deleteMultiple() {
     this.confirmationService.confirm({
-      message: 'Are you sure you want to delete the selected commandes?',
+      message: 'Are you sure you want to delete the selected Operation Stocks?',
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
@@ -32,7 +32,7 @@ export class OperationStockListComponent implements OnInit {
           this.messageService.add({
             severity: 'success',
             summary: 'Successful',
-            detail: 'Commandes Deleted',
+            detail: 'Operation Stock Deleted',
             life: 3000
           });
         });
