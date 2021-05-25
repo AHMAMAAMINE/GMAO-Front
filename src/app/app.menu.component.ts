@@ -223,7 +223,7 @@ export class AppMenuComponent implements OnInit {
           {
             label: "OperationStock",
             icon: "pi pi-users",
-            routerLink: ["view/operation"],
+            routerLink: ["/view/operation"],
           },
           { label: "Stock", icon: "pi pi-users", routerLink: ["view/stock"] },
 

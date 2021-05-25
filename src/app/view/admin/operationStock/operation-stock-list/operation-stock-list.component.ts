@@ -11,7 +11,6 @@ import {OperationStock} from '../../../../controller/model/operationStock.model'
 export class OperationStockListComponent implements OnInit {
 
   cols: any[];
-
   constructor(private messageService: MessageService, private confirmationService: ConfirmationService, private service: OperationstockService) {
   }
 
