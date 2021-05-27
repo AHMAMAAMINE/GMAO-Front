@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {MessageService} from 'primeng/api';
 import {OperationstockService} from '../../../../controller/service/operationstock.service';
 import {OperationStock} from '../../../../controller/model/operationStock.model';
+import {MagasinService} from "../../../../controller/service/magasin.service";
 // import {Intervention} from "../../../../controller/model/intervention.model";
 
 
@@ -15,12 +16,16 @@ export class OperationStockCreateComponent implements OnInit {
  //   private items: Array<OperationStock>;
   //  private selected: OperationStock;
     private selectes: Array<OperationStock>;
+    magasins: any;
+    stock: any;
 
 
-    constructor(private messageService: MessageService, private service: OperationstockService) { }
+    constructor(private messageService: MessageService, private service: OperationstockService, private magasinService: MagasinService) { }
 
     ngOnInit(): void {
+        this.magasinService.findAll();
     }
+
     public hideCreateDialog() {
         this.createDialog = false;
         this.submitted = false;
@@ -73,4 +78,12 @@ export class OperationStockCreateComponent implements OnInit {
     set items(value: Array<OperationStock>) {
         this.service.items = value;
     }
+
+    isSelected($event: any) {
+        this.stock.magasinSource.reference = $event.target.value;
+    }
+    isSelect($event: any) {
+        this.stock.magasinDestination.reference = $event.target.value;
+    }
+
 }

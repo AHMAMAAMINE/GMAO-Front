@@ -2,16 +2,22 @@
     <ng-template pTemplate="content">
 
         <div class="p-field">
-                <label for="stockSource"><b>Stock Source:</b></label> <br>
-                <input type="text" pInputText id="stockSource" [(ngModel)]="selected.magasinSource.reference" required autofocus />
-                <small class="p-invalid" *ngIf="submitted && !selected.magasinSource">stockSource is required.</small>
-            </div>
+            <label for=""><b>Magasin Source:</b></label>
+            <select class="form-control" pInputText (change)="isSelected($event)">
 
-            <div class="p-field">
-                <label for="stockDestination"><b>Stock Destination:</b></label> <br>
-                <input type="text" pInputText id="stockDestination" [(ngModel)]="selected.magasinDestination.reference" required autofocus />
-                <small class="p-invalid" *ngIf="submitted && !selected.magasinDestination">stockDestination is required.</small>
-            </div>
+                <option *ngFor="let c of magasins" > {{c.reference}}</option>
+            </select>
+            <small class="p-invalid" *ngIf="submitted && !stock.magasin.reference">magasin is required.</small>
+        </div>
+
+        <div class="p-field">
+            <label for=""><b>Magasin Destination:</b></label>
+            <select class="form-control" pInputText (change)="isSelect($event)">
+
+                <option *ngFor="let c of magasins" > {{c.reference}}</option>
+            </select>
+            <small class="p-invalid" *ngIf="submitted && !stock.magasin.reference">magasin is required.</small>
+        </div>
 
         <div class="p-field">
             <label for="materiel"><b>Matériel:</b></label> <br>
