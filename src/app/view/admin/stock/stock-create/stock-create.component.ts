@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+// import {MagasinService} from "../../../../controller/service/magasin.service";
 
 @Component({
   selector: 'app-stock-create',

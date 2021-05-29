@@ -2,13 +2,13 @@
     <ng-template pTemplate="content">
 
         <div class="p-field">
-            <label for="stockSource">Stock Source</label>
+            <label for="stockSource">Magasin Source</label>
             <input type="text" pInputText id="stockSource" [(ngModel)]="selected.magasinSource.reference" required autofocus />
             <small class="p-invalid" *ngIf="submitted && !selected.magasinSource">stockSource is required.</small>
         </div>
 
         <div class="p-field">
-            <label for="stockDestination">Stock Destination</label>
+            <label for="stockDestination">Magasin Destination</label>
             <input type="text" pInputText id="stockDestination" [(ngModel)]="selected.magasinDestination.reference" required autofocus />
             <small class="p-invalid" *ngIf="submitted && !selected.magasinDestination">stockDestination is required.</small>
         </div>
