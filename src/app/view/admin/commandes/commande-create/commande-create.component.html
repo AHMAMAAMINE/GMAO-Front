@@ -1,4 +1,4 @@
-<p-dialog [(visible)]="createDialog" [style]="{width: '500px'}" header="Commande Details" [modal]="true" styleClass="p-fluid">
+<p-dialog [(visible)]="createDialog" [style]="{width: '1000px'}" header="Intervention Details" [modal]="true" styleClass="p-fluid">
     <ng-template pTemplate="content">
 
         <p-tabView>
@@ -11,7 +11,7 @@
             <p-tabPanel leftIcon="pi pi-cloud" header="Stock">
                 <app-intervention-stock></app-intervention-stock>
             </p-tabPanel>
-           <p-tabPanel leftIcon="pi pi-comment" header="Conseil">
+           <p-tabPanel leftIcon="pi pi-comment" header="Consigne">
                 <app-intervention-conseil></app-intervention-conseil>
             </p-tabPanel>
 

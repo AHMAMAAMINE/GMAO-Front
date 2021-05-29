@@ -16,7 +16,8 @@
         </div>
         <div class="p-field">
             <label for="dateDeProbleme">date De Probleme</label>
-            <input type="date" pInputText id="dateDeProbleme" [(ngModel)]="selected.dateDeProbleme" required autofocus />
+<!--            <input type="date" pInputText id="dateDeProbleme" [(ngModel)]="selected.dateDeProbleme" required autofocus />-->
+            <p-calendar  id="dateDeProbleme" [(ngModel)]="selected.dateDeProbleme" [monthNavigator]="true" [yearNavigator]="true" dateFormat="yy-MM-dd"></p-calendar>
             <small class="p-invalid" *ngIf="submitted && !selected.dateDeProbleme">dateDeProbleme is required.</small>
         </div>
 

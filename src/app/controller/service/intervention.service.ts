@@ -121,7 +121,7 @@ export class InterventionService {
     this.collaborateurs.push(this._collaborateur);
     this._codeCollaborateur = this.collaborateur.membreEquipe.collaborateur.codeCollaborateur;
     this.selected.interventionMembreEquipe = this.collaborateurs;
-    console.log(this._codeCollaborateur);
+    console.log(this.collaborateurs)
     this._collaborateur = null;
   }
   saveStock(){
@@ -130,7 +130,6 @@ export class InterventionService {
     this.materialInterventions.push(this._materialIntervention);
     this.selected.materaialInterventions = this.materialInterventions;
     this.stockService.stock = null;
-    console.log(this._materialInterventions);
     // this.materialIntervention.push(this.materialIntervention);
 
   }
@@ -140,8 +139,6 @@ export class InterventionService {
     this.conseilInterventions.push(this._conseilIntervention);
     this.selected.conseils = this.conseilInterventions;
     this._conseilIntervention = null;
-    console.log(this._conseilInterventions);
-    console.log(this.selected);
   }
   public edit(): Observable<Intervention> {
     return this.http.put<Intervention>(this.url, this.selected);
@@ -313,4 +310,19 @@ export class InterventionService {
     public findByCode(code: string) {
         return this.http.get<Intervention>(this.url + '/findCode/' + code);
     }
+
+  // public addMembres() {
+  //   console.log(this.collaborateurs)
+  //   this.collaborateurs.push(this.cloneMembre(this.collaborateur));
+  //     console.log(this.collaborateurs)
+  //     this.collaborateur = new InterventionMembreEquipe();
+  //   }
+
+  // private cloneMembre(membre: any) {
+  //   const myCloneMembre = new InterventionMembreEquipe();
+  //   myCloneMembre.membreEquipe.collaborateur.codeCollaborateur = membre.membreEquipe.collaborateur.codeCollaborateur;
+  //   myCloneMembre.membreEquipe.collaborateur.fullname = membre.membreEquipe.collaborateur.fullname;
+  //   myCloneMembre.membreEquipe.equipe.ref = membre.membreEquipe.equipe.ref;
+  //   return myCloneMembre;
+  // }
 }

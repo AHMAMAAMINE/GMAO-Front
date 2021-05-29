@@ -28,7 +28,7 @@
         </div>
         <div class="p-field">
             <label for="dateFin">date Fin</label>
-            <input type="datetime-local" pInputText id="dateFin" [(ngModel)]="selected.dateFin" required autofocus />
+            <input type="date" pInputText id="dateFin" [(ngModel)]="selected.dateFin" required autofocus />
             <small class="p-invalid" *ngIf="submitted && !selected.dateFin">dateFin is required.</small>
         </div>
     </ng-template>
