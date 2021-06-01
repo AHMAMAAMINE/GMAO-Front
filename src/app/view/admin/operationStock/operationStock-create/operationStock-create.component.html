@@ -1,4 +1,4 @@
-<p-dialog [(visible)]="createDialog" [style]="{width: '450px'}" header="Operation Stock Details" [modal]="true" styleClass="p-fluid">
+<p-dialog [(visible)]="createDialog" [style]="{width: '1300px'}" header="Operation Stock Details" [modal]="true" styleClass="p-fluid">
     <ng-template pTemplate="content">
 
         <div class="p-field">
@@ -34,8 +34,10 @@
 
     </ng-template>
             <ng-template pTemplate="footer">
-                <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideCreateDialog()"></button>
-                <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="save()"></button>
+                <button style="border: 1px solid red; color: white; background-color: red; padding: 8px 16px; margin: 4px 2px; position: relative; right: 550px; border-radius: 5px;" pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideCreateDialog()"></button>
+                <button style="border: 1px solid green; padding: 8px 16px; margin: 4px 2px; color: white; background-color: green; position: relative; right: 540px; border-radius: 5px;" pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="save()"></button>
             </ng-template>
 
 </p-dialog>
+
+
