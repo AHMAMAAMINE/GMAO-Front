@@ -8,7 +8,7 @@ export class StockService {
   private _stock: Stock;
   private _stocks: Array<Stock>;
   private urlBase = 'http://localhost:8036';
-  private url = '/Stock-api/Stockage';
+  private url = '/Gmao/Stockage';
   private _index: number;
 
   get stock(): Stock {

@@ -18,15 +18,27 @@ import {newArray} from '@angular/compiler/src/util';
 export class InterventionStockComponent implements OnInit {
   index: any;
   values;
+  cols: any[];
+  valeur: any;
+  velues: any;
   constructor(private stockService: StockService, private service: InterventionService, private materialService: MaterialService, private  magasinService: MagasinService) {
 
   }
 
+  get selectes(): Array<Intervention> {
+    return this.service.selectes;
+  }
+  set selectes(value: Array<Intervention>) {
+    this.service.selectes = value;
+  }
   get intervention(): Intervention {
     return this.service.selected;
   }
   get stock(): Stock {
     return this.stockService.stock;
+  }
+  get stocks(): Array<Stock> {
+    return this.stockService.stocks;
   }
   get materials(): Array<Material>{
     return this.materialService.materials;
@@ -75,6 +87,8 @@ export class InterventionStockComponent implements OnInit {
       this.Save();
     }
     else {
+      this.valeur = '---select value-----';
+      this.velues = '---select value-----';
       const materialintervention = new MateraialIntervention();
       materialintervention.material = this.stock.material;
       materialintervention.magasin = this.stock.magasin;
@@ -82,13 +96,19 @@ export class InterventionStockComponent implements OnInit {
       this.service.materialIntervention = materialintervention;
       this.service.saveStock();
     }
-
   }
   isSelected($event: any) {
     this.stock.magasin.reference = $event.target.value;
   }
   isSelecte($event: any) {
     this.stock.material.reference = $event.target.value;
+  }
+  get materialInterventions(): Array<MateraialIntervention> {
+    return this.service.materialInterventions;
+  }
+
+  set materialInterventions(value: MateraialIntervention[]) {
+    this.service.materialInterventions = value;
   }
 
 }

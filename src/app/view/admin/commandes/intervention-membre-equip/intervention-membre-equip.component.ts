@@ -4,7 +4,10 @@ import {InterventionService} from '../../../../controller/service/intervention.s
 import {InterventionMembreEquipe} from '../../../../controller/model/intervention-membre-equipe.model';
 import {Collaborateur} from '../../../../controller/model/collaborateur.model';
 import {ConfirmationService, MessageService} from 'primeng/api';
+import {MembreEquipe} from '../../../../controller/model/membre-equipe.model';
 import {Intervention} from '../../../../controller/model/intervention.model';
+import {EquipesService} from '../../../../controller/service/equipes.service';
+import {Equipe} from '../../../../controller/model/equipe.model';
 
 @Component({
   selector: 'app-intervention-membre-equip',
@@ -12,12 +15,14 @@ import {Intervention} from '../../../../controller/model/intervention.model';
   styleUrls: ['./intervention-membre-equip.component.scss']
 })
 export class InterventionMembreEquipComponent implements OnInit {
-  constructor(private services: CollaborateurService, private serviceinterv: InterventionService, private messageService: MessageService, private confirmationService: ConfirmationService,
-              private service: InterventionService) { }
+  constructor(private services: CollaborateurService, private serviceinterv: InterventionService, private service: EquipesService) { }
 
 
   get collaborateur(): InterventionMembreEquipe {
     return this.serviceinterv.collaborateur;
+  }
+  set collaborateur(valeur: InterventionMembreEquipe)  {
+    this.serviceinterv.collaborateur = valeur;
   }
   get collaborateurs(): Array<Collaborateur> {
     return this.services.collaborateurs;
@@ -25,160 +30,54 @@ export class InterventionMembreEquipComponent implements OnInit {
   get MembresEquipe(): Array<InterventionMembreEquipe> {
     return this.serviceinterv.collaborateurs;
   }
-
-  get selected(): Intervention {
-    return this.service.selected;
+  cols: any[];
+  value: any;
+  values: any;
+  public edit(commande: InterventionMembreEquipe) {
+    this.collaborateur = {...commande};
+    this.editDialog = true;
   }
 
-  set selected(value: Intervention) {
-    this.service.selected = value;
+  ngOnInit(): void {
+    this.services.findAll();
+    this.service.findAll().subscribe(data => this.equipes = data );
   }
-
-  get items(): Array<Intervention> {
-    return this.service.items;
+  get Equipe(): Array<Equipe>{
+    return this.service.equipes;
   }
-
-  set items(value: Array<Intervention>) {
-    this.service.items = value;
+  set equipes(value: Array<Equipe>) {
+    this.service.equipes = value;
   }
-
-  get submitted(): boolean {
-    return this.service.submitted;
+  saveCollaboraateur() {
+    this.serviceinterv.saveCollaboraateur();
+    this.value = '---select value-----';
+    this.values = '---select value-----';
   }
-
-  set submitted(value: boolean) {
-    this.service.submitted = value;
-  }
-
-  get createDialog(): boolean {
-    return this.service.createDialog;
-  }
-
-  set createDialog(value: boolean) {
-    this.service.createDialog = value;
-  }
-
   get editDialog(): boolean {
-    return this.service.editDialog;
+    return this.serviceinterv.editDialog;
   }
 
   set editDialog(value: boolean) {
-    this.service.editDialog = value;
+    this.serviceinterv.editDialog = value;
   }
-
-  get viewDialog(): boolean {
-    return this.service.viewDialog;
-  }
-
-  set viewDialog(value: boolean) {
-    this.service.viewDialog = value;
-  }
-
-  get selectes(): Array<Intervention> {
-    return this.service.selectes;
-  }
-
-  set selectes(value: Array<Intervention>) {
-    this.service.selectes = value;
-  }
-
-  cols: any[];
-
-
-  ngOnInit(): void {
-    // this.serviceinterv.findAll();
-    this.services.findAll();
-    this.initCol();
-    this.service.findAll().subscribe(data => this.items = data);
-  }
-
-  saveCollaboraateur() {
-    console.log( this.collaborateur.membreEquipe.collaborateur.codeCollaborateur)
-    this.serviceinterv.saveCollaboraateur();
-
-  }
-  // set MembresEquipe(value:InterventionMembreEquipe):Array<InterventionMembreEquipe>{
-  //   val
-  // }
 
   isSelected($event: any) {
     this.collaborateur.membreEquipe.collaborateur.codeCollaborateur = $event.target.value;
   }
-
-
-
-  public delete(selected: Intervention) {
-    this.selected = selected;
-    this.confirmationService.confirm({
-      message: 'Are you sure you want to delete ' + selected.code + '?',
-      header: 'Confirm',
-      icon: 'pi pi-exclamation-triangle',
-      accept: () => {
-        this.service.deleteByCode().subscribe(data => {
-          this.items = this.items.filter(val => val.id !== this.selected.id);
-          this.selected = new Intervention();
-          this.messageService.add({
-            severity: 'success',
-            summary: 'Successful',
-            detail: 'Commande Deleted',
-            life: 3000
-          });
-        });
-      }
-    });
-  }
-  public deleteMultiple() {
-    this.confirmationService.confirm({
-      message: 'Are you sure you want to delete the selected commandes?',
-      header: 'Confirm',
-      icon: 'pi pi-exclamation-triangle',
-      accept: () => {
-        this.service.deleteMultipleByReference().subscribe(data => {
-          this.service.deleteMultipleIndexById();
-          this.selectes = null;
-          this.messageService.add({
-            severity: 'success',
-            summary: 'Successful',
-            detail: 'Commandes Deleted',
-            life: 3000
-          });
-        });
-      }
-    });
-  }
-  public openCreate() {
-    this.selected = new Intervention();
-    this.submitted = false;
-    this.createDialog = true;
+  get selectes(): Array<Intervention> {
+    return this.serviceinterv.selectes;
   }
 
-  public edit(commande: Intervention) {
-    this.selected = {...commande};
-    this.editDialog = true;
-  }
-  public view(commande: Intervention) {
-    console.log(commande.code);
-    this.findByCode(commande.code);
-    this.selected = {...commande};
-    console.log(commande.etatIntervention.couleur);
-    this.viewDialog = true;
+  set selectes(value: Array<Intervention>) {
+    this.serviceinterv.selectes = value;
   }
 
-  private initCol() {
-    this.cols = [
-      {field: 'code', header: 'Code'},
-      {field: 'libelle', header: 'Libelle'},
-      {field: 'dateDeProbleme', header: 'Date De Probleme'},
-      {field: 'dateDebut', header: 'date Debut'},
-      {field: 'dateFin', header: 'date Fin'},
-    ];
+  isEmpty() {
+    return this.collaborateur.membreEquipe.equipe.ref == null && this.collaborateur.membreEquipe.collaborateur.codeCollaborateur == null;
   }
 
-  private findByCode(code: string) {
-    this.service.findByCode(code).subscribe(
-        data => {
-          this.selected = data;
-        });
-
+  isSelecteds($event: any) {
+    this.collaborateur.membreEquipe.equipe.ref = $event.target.value;
+    console.log(this.collaborateur.membreEquipe.equipe.ref)
   }
 }

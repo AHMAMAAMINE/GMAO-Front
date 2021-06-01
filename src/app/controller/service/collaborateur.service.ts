@@ -1,14 +1,14 @@
 import { Collaborateur } from './../model/collaborateur.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {environment} from "../../../environments/environment";
+import {environment} from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CollaborateurService {
   constructor(private http: HttpClient) {}
-  private url = environment.baseUrl + '/collaborateur';
+  private url = environment.baseUrl + '/Gmao/collaborateur';
   public _collaborateur: Collaborateur;
   public _collaborateurs: Array<Collaborateur>;
 

@@ -4,26 +4,24 @@
     <div class="card-body">
         <div class="form-group">
             <label>Membre Equip</label>
-            <select class="form-control" (change)="isSelected($event)" pInputText>
-                <option>---select value-----</option>
+            <select class="form-control" (change)="isSelected($event)" [(ngModel)]="value"  pInputText>
+                <option [value]=''>---select value-----</option>
                 <option *ngFor="let c of collaborateurs" [value]="c.codeCollaborateur"> {{c.fullname}}</option>
             </select>
             <label >Ref Equipe</label>
-            <input
-                    type="text"
-                    class="form-control"
-                    pInputText
-                    [(ngModel)]="collaborateur.equipe.ref"
-            />
+            <select class="form-control" (change)="isSelecteds($event)" [(ngModel)]="values"  pInputText>
+                <option [value]=''>---select value-----</option>
+                <option *ngFor="let v of Equipe" [value]="v.ref"> {{v.ref}}</option>
+            </select>
         </div>
     </div>
     <div class="p-card-footer">
-        <button pButton  label="Ajout"  class="p-button-text" (click)="saveCollaboraateur()"></button>
+        <button pButton  label="Ajout"  class="p-button-text" [disabled]="isEmpty()" (click)="saveCollaboraateur()"></button>
     </div>
     <div class="card">
 
 
-        <p-table #dt [value]="MembresEquipe" [columns]="cols" [rows]="4" [paginator]="true" [globalFilterFields]="['reference','total','totalPaye']"
+        <p-table  [value]="MembresEquipe" [columns]="cols" [rows]="4" [paginator]="true" [globalFilterFields]="['reference','total','totalPaye']"
                  [(selection)]="selectes" [rowHover]="true" dataKey="id"
                  styleClass="p-datatable-customers"
                  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
@@ -41,12 +39,9 @@
                     <th style="width: 3rem">
                         <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                     </th>
-                    <th pSortableColumn="code">code <p-sortIcon field="code"></p-sortIcon></th>
-                    <th pSortableColumn="libelle">libelle <p-sortIcon field="libelle"></p-sortIcon></th>
-                    <th pSortableColumn="dateDeProbleme">dateDeProbleme <p-sortIcon field="dateDeProbleme"></p-sortIcon></th>
-                    <th pSortableColumn="dateDebut">dateDebut <p-sortIcon field="dateDebut"></p-sortIcon></th>
-                    <th pSortableColumn="dateFin">dateFin <p-sortIcon field="dateFin"></p-sortIcon></th>
-                    <th></th>
+                    <th>Equipe </th>
+                    <th>membre equipe</th>
+<!--                    <th></th>-->
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-membresEquipe>
@@ -59,11 +54,10 @@
 
 
 
-                    <td>
-                        <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="edit(intervention)"></button>
-                        <button pButton pRipple icon="pi pi-list" class="p-button-rounded p-button-info p-mr-2" (click)="view(intervention)"></button>
-                        <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="delete(intervention)"></button>
-                    </td>
+<!--                    <td>-->
+<!--                        <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-help p-mr-2" (click)="edit(membresEquipe)"></button>-->
+<!--                        <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="delete(membresEquipe)"></button>-->
+<!--                    </td>-->
                 </tr>
             </ng-template>
 <!--            <ng-template pTemplate="summary">-->

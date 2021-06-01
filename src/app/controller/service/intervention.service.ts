@@ -27,7 +27,7 @@ export class InterventionService {
   private _materialIntervention: MateraialIntervention;
   private _conseilIntervention: Conseils;
   private _conseilInterventions: Array<Conseils>;
-  private url = environment.baseUrl + 'intervention';
+  private url = environment.baseUrl + '/Gmao/intervention';
   private _selectes: Array<Intervention>;
   private _index: number;
   private _createDialog: boolean;
@@ -310,7 +310,6 @@ export class InterventionService {
     public findByCode(code: string) {
         return this.http.get<Intervention>(this.url + '/findCode/' + code);
     }
-
   // public addMembres() {
   //   console.log(this.collaborateurs)
   //   this.collaborateurs.push(this.cloneMembre(this.collaborateur));
