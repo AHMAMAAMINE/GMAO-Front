@@ -3,6 +3,7 @@ import {MessageService} from 'primeng/api';
 import {OperationstockService} from '../../../../controller/service/operationstock.service';
 import {OperationStock} from '../../../../controller/model/operationStock.model';
 import {MagasinService} from "../../../../controller/service/magasin.service";
+import {Magasin} from '../../../../controller/model/magasin.model';
 // import {Intervention} from "../../../../controller/model/intervention.model";
 
 
@@ -16,7 +17,6 @@ export class OperationStockCreateComponent implements OnInit {
  //   private items: Array<OperationStock>;
   //  private selected: OperationStock;
     private selectes: Array<OperationStock>;
-    magasins: any;
     stock: any;
 
 
@@ -24,13 +24,16 @@ export class OperationStockCreateComponent implements OnInit {
 
     ngOnInit(): void {
         this.magasinService.findAll();
+        console.log(this.magasins)
     }
 
     public hideCreateDialog() {
         this.createDialog = false;
         this.submitted = false;
     }
-
+    get magasins(): Array<Magasin> {
+        return this.magasinService.magasins;
+    }
     public save() {
         this.submitted = true;
         if (this.selected.magasinSource.trim()) {

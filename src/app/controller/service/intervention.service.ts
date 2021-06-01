@@ -27,7 +27,7 @@ export class InterventionService {
   private _materialIntervention: MateraialIntervention;
   private _conseilIntervention: Conseils;
   private _conseilInterventions: Array<Conseils>;
-  private url = environment.baseUrl + '/Gmao/intervention';
+  private url = environment.baseUrl + '/Intervention-api/intervention';
   private _selectes: Array<Intervention>;
   private _index: number;
   private _createDialog: boolean;

@@ -41,7 +41,7 @@ export class OperationstockService {
   set selecteds(value: Array<OperationStock>) {
     this._selecteds = value;
   }
-  private url = environment.baseUrl + 'OperationStock';
+  private url = environment.baseUrl + '/Stock/OperationStockBean';
   private _selected: OperationStock;
   private _items: Array<OperationStock>;
   private _selecteds: Array<OperationStock>;

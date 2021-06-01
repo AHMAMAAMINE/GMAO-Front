@@ -10,7 +10,7 @@ export class MagasinService {
   constructor(private http:HttpClient) { }
   private _magasin:Magasin;
   private _magasins:Array<Magasin>;
-  private UrlBase = 'http://localhost:8036/GMAO/Magasin';
+  private UrlBase = 'http://localhost:8036/GMAO/Magasin-api';
   get magasin(): Magasin {
     return this._magasin;
   }
