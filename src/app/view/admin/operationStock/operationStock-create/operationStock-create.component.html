@@ -7,7 +7,7 @@
 
                 <option *ngFor="let c of magasins" > {{c.reference}}</option>
             </select>
-            <small class="p-invalid" *ngIf="submitted && !stock.magasin.reference">magasin is required.</small>
+            <small class="p-invalid" *ngIf="submitted && !selected.magasinSource.reference">magasin is required.</small>
         </div>
 
         <div class="p-field">
@@ -16,13 +16,15 @@
 
                 <option *ngFor="let c of magasins" > {{c.reference}}</option>
             </select>
-            <small class="p-invalid" *ngIf="submitted && !stock.magasin.reference">magasin is required.</small>
+            <small class="p-invalid" *ngIf="submitted && !selected.magasinDestination.reference">magasin is required.</small>
         </div>
 
         <div class="p-field">
-            <label for="materiel"><b>Matériel:</b></label> <br>
-            <input type="text" pInputText id="materiel" [(ngModel)]="selected.material.reference" required autofocus />
-            <small class="p-invalid" *ngIf="submitted && !selected.material">materiel is required.</small>
+            <label for=""><b>Matériel:</b></label> <br>
+            <select class="form-control" pInputText (change)="isSelects($event)">
+
+                <option *ngFor="let c of materials" > {{c.reference}}</option>
+            </select>            <small class="p-invalid" *ngIf="submitted && !selected.material">materiel is required.</small>
         </div>
       <div class="p-formgrid p-grid">
         <div class="p-field p-col">

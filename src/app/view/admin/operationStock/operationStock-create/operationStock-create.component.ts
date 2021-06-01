@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import {MessageService} from 'primeng/api';
 import {OperationstockService} from '../../../../controller/service/operationstock.service';
 import {OperationStock} from '../../../../controller/model/operationStock.model';
-import {MagasinService} from "../../../../controller/service/magasin.service";
+import {MagasinService} from '../../../../controller/service/magasin.service';
 import {Magasin} from '../../../../controller/model/magasin.model';
+import {MaterialService} from '../../../../controller/service/material.service';
+import {Material} from '../../../../controller/model/material.model';
 // import {Intervention} from "../../../../controller/model/intervention.model";
 
 
@@ -20,11 +22,11 @@ export class OperationStockCreateComponent implements OnInit {
     stock: any;
 
 
-    constructor(private messageService: MessageService, private service: OperationstockService, private magasinService: MagasinService) { }
+    constructor(private messageService: MessageService, private service: OperationstockService, private magasinService: MagasinService, private materialService: MaterialService) { }
 
     ngOnInit(): void {
         this.magasinService.findAll();
-        console.log(this.magasins)
+        this.materialService.findAll();
     }
 
     public hideCreateDialog() {
@@ -50,6 +52,9 @@ export class OperationStockCreateComponent implements OnInit {
             this.selected = new OperationStock();
         }
 
+    }
+    get materials(): Array<Material> {
+        return this.materialService.materials;
     }
     get createDialog(): boolean {
         return this.service.createDialog;
@@ -83,10 +88,14 @@ export class OperationStockCreateComponent implements OnInit {
     }
 
     isSelected($event: any) {
-        this.stock.magasinSource.reference = $event.target.value;
+        this.selected.magasinSource.reference = $event.target.value;
     }
     isSelect($event: any) {
-        this.stock.magasinDestination.reference = $event.target.value;
+        this.selected.magasinDestination.reference = $event.target.value;
     }
 
+    isSelects($event: any) {
+        this.selected.material.reference = $event.target.value;
+
+    }
 }

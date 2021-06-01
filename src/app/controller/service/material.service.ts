@@ -10,7 +10,7 @@ export class MaterialService {
   constructor(private http: HttpClient) { }
   private _material: Material;
   private _materials: Array<Material>;
-  private UrlBase = 'http://localhost:8036/Gmao/Material';
+  private UrlBase = 'http://localhost:8036/Gmao/Material-api';
   get material(): Material {
     return this._material;
   }
