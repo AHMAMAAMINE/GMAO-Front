@@ -8,6 +8,7 @@ import {MembreEquipe} from '../../../../controller/model/membre-equipe.model';
 import {Intervention} from '../../../../controller/model/intervention.model';
 import {EquipesService} from '../../../../controller/service/equipes.service';
 import {Equipe} from '../../../../controller/model/equipe.model';
+import {MembreEquipeService} from '../../../../controller/service/membre-equipe.service';
 
 @Component({
   selector: 'app-intervention-membre-equip',
@@ -15,7 +16,7 @@ import {Equipe} from '../../../../controller/model/equipe.model';
   styleUrls: ['./intervention-membre-equip.component.scss']
 })
 export class InterventionMembreEquipComponent implements OnInit {
-  constructor(private services: CollaborateurService, private serviceinterv: InterventionService, private service: EquipesService) { }
+  constructor( private serviceinterv: InterventionService, private service: EquipesService) { }
 
 
   get collaborateur(): InterventionMembreEquipe {
@@ -24,10 +25,11 @@ export class InterventionMembreEquipComponent implements OnInit {
   set collaborateur(valeur: InterventionMembreEquipe)  {
     this.serviceinterv.collaborateur = valeur;
   }
-  get collaborateurs(): Array<Collaborateur> {
-    return this.services.collaborateurs;
+  get Membres(): Array<MembreEquipe> {
+    return this.service.membres;
   }
   get MembresEquipe(): Array<InterventionMembreEquipe> {
+    // console.log(    this.collaborateur.membreEquipe.equipe.ref )
     return this.serviceinterv.collaborateurs;
   }
   cols: any[];
@@ -39,7 +41,6 @@ export class InterventionMembreEquipComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.services.findAll();
     this.service.findAll().subscribe(data => this.equipes = data );
   }
   get Equipe(): Array<Equipe>{
@@ -60,7 +61,9 @@ export class InterventionMembreEquipComponent implements OnInit {
   set editDialog(value: boolean) {
     this.serviceinterv.editDialog = value;
   }
-
+  set membres(value: Array<MembreEquipe>) {
+    this.service.membres = value;
+  }
   isSelected($event: any) {
     this.collaborateur.membreEquipe.collaborateur.codeCollaborateur = $event.target.value;
   }
@@ -73,11 +76,15 @@ export class InterventionMembreEquipComponent implements OnInit {
   }
 
   isEmpty() {
-    return this.collaborateur.membreEquipe.equipe.ref == null && this.collaborateur.membreEquipe.collaborateur.codeCollaborateur == null;
+    return this.collaborateur.equipe.ref == null && this.collaborateur.membreEquipe.collaborateur.codeCollaborateur == null;
   }
 
   isSelecteds($event: any) {
-    this.collaborateur.membreEquipe.equipe.ref = $event.target.value;
-    console.log(this.collaborateur.membreEquipe.equipe.ref)
+    this.collaborateur.equipe.ref = $event.target.value;
+    this.service.findByRef(this.collaborateur.equipe.ref).subscribe(data => {this.membres = data.membreEquipe ; console.log(data)});
+  }
+
+  selectEquip() {
+    return this.collaborateur.equipe.ref == null;
   }
 }

@@ -1,12 +1,12 @@
-import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
-import { environment } from "src/environments/environment";
-import { Equipe } from "../model/equipe.model";
-import { MembreEquipe } from "../model/membre-equipe.model";
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
+import { Equipe } from '../model/equipe.model';
+import { MembreEquipe } from '../model/membre-equipe.model';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class EquipesService {
   constructor(private http: HttpClient) {}
@@ -19,8 +19,8 @@ export class EquipesService {
   private _selectesEquipe: Array<Equipe>;
   private _membre: MembreEquipe;
   private _membres: Array<MembreEquipe>;
-  private baseUrl = "http://localhost:8036";
-  private url = environment.baseUrl + "/equipe/";
+  private baseUrl = 'http://localhost:8036';
+  private url = environment.baseUrl + '/equipe/';
 
   private _index: number;
   private _createDialog: boolean;
@@ -31,12 +31,14 @@ export class EquipesService {
   public findAll(): Observable<Array<Equipe>> {
     return this.http.get<Array<Equipe>>(this.url);
   }
-
+  public findByRef(ref: string): Observable<Equipe>{
+    return this.http.get<Equipe>(this.url + '/reference/' + ref);
+  }
   public save(): Observable<Equipe> {
     return this.http.post<Equipe>(this.url, this.selectedEquipe);
   }
   public saveMembre() {
-    this.selectedEquipe.membres.push(this.membre);
+    this.selectedEquipe.membreEquipe.push(this.membre);
   }
 
   public edit(): Observable<Equipe> {
@@ -45,13 +47,13 @@ export class EquipesService {
 
   public deleteByRef(): Observable<number> {
     return this.http.delete<number>(
-      this.url + "ref/" + this.selectedEquipe.ref
+      this.url + 'ref/' + this.selectedEquipe.ref
     );
   }
 
   public deleteMultipleByRef(): Observable<number> {
     return this.http.post<number>(
-      this.url + "delete-multiple-by-ref",
+      this.url + 'delete-multiple-by-ref',
       this.selectesEquipe
     );
   }

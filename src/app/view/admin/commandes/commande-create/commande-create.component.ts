@@ -4,15 +4,19 @@ import {MessageService} from 'primeng/api';
 import {InterventionService} from '../../../../controller/service/intervention.service';
 import {Intervention} from '../../../../controller/model/intervention.model';
 import {TabViewModule} from 'primeng/tabview';
+import {DatePipe} from '@angular/common';
 
 @Component({
     selector: 'app-commande-create',
     templateUrl: './commande-create.component.html',
-    styleUrls: ['./commande-create.component.scss']
+    styleUrls: ['./commande-create.component.scss'],
+    providers:[DatePipe]
 })
 export class CommandeCreateComponent implements OnInit {
-
-    constructor(private messageService: MessageService, private service: InterventionService) {
+    myDate = new Date();
+    date : string;
+    constructor(private messageService: MessageService, private service: InterventionService,private datePipe: DatePipe) {
+        this.date = this.datePipe.transform(this.myDate, 'yyyy-MM-dd');
     }
 
     ngOnInit(): void {

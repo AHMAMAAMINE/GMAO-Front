@@ -8,7 +8,7 @@ import {environment} from '../../../environments/environment';
 })
 export class CollaborateurService {
   constructor(private http: HttpClient) {}
-  private url = environment.baseUrl + '/Gmao/collaborateur';
+  private url = environment.baseUrl + '/collaborateur';
   public _collaborateur: Collaborateur;
   public _collaborateurs: Array<Collaborateur>;
 
@@ -18,7 +18,7 @@ export class CollaborateurService {
         this._collaborateurs = data;
       },
       (error) => {
-        alert('Error Colaborateur');
+        // alert('Error Colaborateur');
       }
     );
   }

@@ -11,4 +11,36 @@
     <div class="p-card-footer">
         <button pButton  label="Ajout"  class="p-button-text" (click)="ajouter()"></button>
     </div>
+    <p-table  [value]="conseilInterventions" [columns]="cols" [rows]="4" [paginator]="true" [globalFilterFields]="['reference','total','totalPaye']"
+              [(selection)]="selectes" [rowHover]="true" dataKey="id"
+              styleClass="p-datatable-customers"
+              currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+        <ng-template pTemplate="caption">
+            <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header">
+                <h5 class="p-m-0">Manage Intervention</h5>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width: 3rem">
+                    <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                </th>
+                <th>Date De Message</th>
+                <th>collaborateur name </th>
+                <th>Message</th>
+
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-conseil>
+            <tr>
+                <td>
+                    <p-tableCheckbox [value]="conseil"></p-tableCheckbox>
+                </td>
+                <td>{{date}}</td>
+                <td>{{ conseil.collaborateur.codeCollaborateur}}</td>
+                <td>{{ conseil.message}}</td>
+
+            </tr>
+        </ng-template>
+    </p-table>
 </div>

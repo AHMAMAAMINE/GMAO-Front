@@ -3,15 +3,17 @@
 <div class="card" style="height: 1000px">
     <div class="card-body">
         <div class="form-group">
-            <label>Membre Equip</label>
-            <select class="form-control" (change)="isSelected($event)" [(ngModel)]="value"  pInputText>
-                <option [value]=''>---select value-----</option>
-                <option *ngFor="let c of collaborateurs" [value]="c.codeCollaborateur"> {{c.fullname}}</option>
-            </select>
+
             <label >Ref Equipe</label>
             <select class="form-control" (change)="isSelecteds($event)" [(ngModel)]="values"  pInputText>
                 <option [value]=''>---select value-----</option>
                 <option *ngFor="let v of Equipe" [value]="v.ref"> {{v.ref}}</option>
+            </select>
+
+            <label>Membre Equip</label>
+            <select class="form-control" (change)="isSelected($event)" [(ngModel)]="value"  pInputText [disabled]="selectEquip()">
+                <option [value]=''>---select value-----</option>
+                <option *ngFor="let c of Membres" [value]="c.collaborateur.codeCollaborateur"> {{c.collaborateur.fullname}}</option>
             </select>
         </div>
     </div>
@@ -28,10 +30,6 @@
             <ng-template pTemplate="caption">
                 <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header">
                     <h5 class="p-m-0">Manage Intervention</h5>
-                    <span class="p-input-icon-left">
-                        <i class="pi pi-search"></i>
-                        <input pInputText type="text"  placeholder="Search..." />
-                    </span>
                 </div>
             </ng-template>
             <ng-template pTemplate="header">

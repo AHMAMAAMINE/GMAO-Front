@@ -1,4 +1,5 @@
-<p-dialog [(visible)]="createDialog" [style]="{width: '1000px'}" header="Intervention Details" [modal]="true" styleClass="p-fluid">
+<p-dialog [(visible)]="createDialog" [style]="{width: '1000px'}"  [modal]="true" styleClass="p-fluid">
+    <p-header>Intervention <span style="position:relative;left: 350px; "> {{date  | date:'yyyy-MM-dd'}}</span> </p-header>
     <ng-template pTemplate="content">
 
         <p-tabView>
