@@ -1,16 +1,15 @@
-import { Injectable } from '@angular/core';
-import {Magasin} from '../model/magasin.model';
-import {HttpClient} from '@angular/common/http';
+import { Injectable } from "@angular/core";
+import { Magasin } from "../model/magasin.model";
+import { HttpClient } from "@angular/common/http";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class MagasinService {
-
-  constructor(private http:HttpClient) { }
-  private _magasin:Magasin;
-  private _magasins:Array<Magasin>;
-  private UrlBase = 'http://localhost:8036/GMAO/Magasin-api';
+  constructor(private http: HttpClient) {}
+  private _magasin: Magasin;
+  private _magasins: Array<Magasin>;
+  private UrlBase = "http://localhost:8036/GMAO/Magasin-api";
   get magasin(): Magasin {
     return this._magasin;
   }
@@ -26,11 +25,9 @@ export class MagasinService {
   set magasins(value: Array<Magasin>) {
     this._magasins = value;
   }
-  findAll(){
-    this.http.get<Array<Magasin>>(this.UrlBase+'/').subscribe(
-      data=>{
-        this.magasins=data;
-      }
-    );
+  findAll() {
+    this.http.get<Array<Magasin>>(this.UrlBase + "/").subscribe((data) => {
+      this.magasins = data;
+    });
   }
 }
