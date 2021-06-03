@@ -21,9 +21,11 @@ export class StockComponent implements OnInit {
   public intervetions: Array<Intervention>;
   public numInterventions: number;
   public numEquipes: number;
-  public interventionDto = new Array<Object>();
+  public interventionDto = {
+    data: [],
+  };
 
-  convertInterventions(Interventions: Array<Intervention>) {
+  convertInterventions(I) {
     let i = 0;
     this.intervetions.forEach((elem) => {
       ++i;
@@ -33,7 +35,7 @@ export class StockComponent implements OnInit {
         start: elem.dateDebut.slice(0, 10),
         end: elem.dateFin.slice(0, 10),
       };
-      this.interventionDto.push(obj);
+      this.interventionDto.data.push(obj);
     });
   }
 
@@ -43,26 +45,19 @@ export class StockComponent implements OnInit {
         this.intervetions = data;
         this.numInterventions = data.length;
         this.convertInterventions(data);
-
+        this.events = this.interventionDto.data;
         console.log(this.interventionDto);
-
-        this.fullcalendarOptions = {
-          plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
-          defaultDate: "2021-05-30",
-          header: {
-            left: "prev,next",
-            center: "title",
-            right: "dayGridMonth,timeGridWeek,timeGridDay",
-          },
-          editable: true,
-        };
       }
     });
-
-    // this.equipesService.findAll().subscribe((data) => {
-    //   if (data) {
-    //     this.numEquipes = data.length;
-    //   }
-    // });
+    this.fullcalendarOptions = {
+      plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
+      defaultDate: "2021-05-31",
+      header: {
+        left: "prev,next",
+        center: "title",
+        right: "dayGridMonth,timeGridWeek,timeGridDay",
+      },
+      editable: true,
+    };
   }
 }
