@@ -1,0 +1,52 @@
+<div class="login-body">
+    <div class="card login-panel p-fluid">
+        <div class="login-panel-content">
+            <div class="p-grid">
+                <div class="p-col-12 p-sm-6 p-md-6 logo-container">
+                    Bienvenu chez Maneo
+                </div>
+                <div class="p-col-10 username-container">
+                    <!-- <h:panelGroup> -->
+                    <div class="p-formgroup">
+                        <label>Login</label>
+                        <div class="login-input">
+                            <input type="text" [(ngModel)]="collaborateur.login" pInputText>
+                        </div>
+                    </div>
+                    <div class="p-formgroup">
+                        <label>Email</label>
+                        <div class="login-input">
+                            <input type="text" [(ngModel)]="collaborateur.email" pInputText>
+                        </div>
+                    </div>
+                    <div class="p-formgroup">
+                        <label>N°Telephone</label>
+                        <div class="login-input">
+                            <input type="text" [(ngModel)]="collaborateur.phone" pInputText>
+                        </div>
+                    </div>
+                    <div class="p-formgroup p-grid">
+                        <div class="p-col-6">
+                            <label>Nom </label>
+                            <input type="text" [(ngModel)]="collaborateur.fullname" pInputText>
+                        </div>
+
+                    </div>
+                    <div class="p-formgroup p-grid">
+                        <div class="p-col-6">
+                            <label>Mot de pass </label>
+                            <input pPassword type="password" [(ngModel)]="collaborateur.password" placeholder="Mot de pass"/>
+                        </div>
+                        <div class="p-col-6">
+                            <label>Confirmer le mot de pass</label>
+                            <input pPassword type="password" [(ngModel)]="collaborateur.password">
+                        </div>
+                    </div>
+                </div>
+                <div class="p-col-12 p-sm-6 p-md-6">
+                    <button [routerLink]="['/admin-login']"  pButton type="button" icon="pi "  label="S'inscrire" (click)="save()"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

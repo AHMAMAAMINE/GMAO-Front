@@ -87,8 +87,7 @@ import { TreeTableModule } from 'primeng/treetable';
 import { VirtualScrollerModule } from 'primeng/virtualscroller';
 import { AppComponent } from './app.component';
 import { AppCodeModule } from './app.code.component';
-import { AppMainComponent } from './app.main.component';
-import { AppConfigComponent } from './app.config.component';
+
 import { AppCrudComponent } from './pages/app.crud.component';
 import { AppCalendarComponent } from './pages/app.calendar.component';
 import { AppTimelineDemoComponent } from './pages/app.timelinedemo.component';
@@ -96,11 +95,8 @@ import { AppNotfoundComponent } from './pages/app.notfound.component';
 import { AppErrorComponent } from './pages/app.error.component';
 import { AppAccessdeniedComponent } from './pages/app.accessdenied.component';
 import { AppLoginComponent } from './pages/app.login.component';
-import { AppMenuComponent } from './app.menu.component';
-import { AppMenuitemComponent } from './app.menuitem.component';
-import { AppRightMenuComponent } from './app.right-menu.component';
-import { AppTopBarComponent } from './app.topbar.component';
-import { AppFooterComponent } from './app.footer.component';
+
+
 import { FormLayoutDemoComponent } from './demo/view/formlayoutdemo.component';
 import { FloatLabelDemoComponent } from './demo/view/floatlabeldemo.component';
 import { InvalidStateDemoComponent } from './demo/view/invalidstatedemo.component';
@@ -133,7 +129,7 @@ import { WidgetsComponent } from './utilities/widgets.component';
 import { CountryService } from './demo/service/countryservice';
 import { EventService } from './demo/service/eventservice';
 import { NodeService } from './demo/service/nodeservice';
-import { MenuService } from './app.menu.service';
+
 import { CustomerService } from './demo/service/customerservice';
 import { PhotoService } from './demo/service/photoservice';
 import { ProductService } from './demo/service/productservice';
@@ -158,7 +154,19 @@ import {OperationStockListComponent} from './view/admin/operationStock/operation
 import {OperationStockEditComponent} from './view/admin/operationStock/operationStock-edit/operationStock-edit.component';
 import {OperationStockViewComponent} from './view/admin/operationStock/operationStock-view/operationStock-view.component';
 import {OperationStockComponent} from './view/admin/operationStock/operationStock.component';
-
+import { SignInComponent } from './view/admin/connection/sign-in/sign-in.component';
+import { SignUpComponent } from './view/admin/connection/sign-up/sign-up.component';
+import { AdminMenuComponent } from './view/admin/admin-menu/admin-menu.component';
+import { AdminRightMenuComponent } from './view/admin/admin-right-menu/admin-right-menu.component';
+import { AdminTopBarComponent } from './view/admin/admin-top-bar/admin-top-bar.component';
+import { AdminConfigComponent } from './view/admin/admin-config/admin-config.component';
+import { AdminMainComponent } from './view/admin/admin-main/admin-main.component';
+import { HomeComponent } from './view/home/home.component';
+import { HomePageComponent } from './view/home/home-page/home-page.component';
+import {MenuService} from './controller/service/app.menu.service';
+import {AppMenuitemComponent} from './view/admin/admin-menu/app.menuitem.component';
+import { ChefEquipeComponent } from './view/chef-equipe/chef-equipe.component';
+import { CollaborateurComponent } from './view/collaborateur/collaborateur.component';
 
 @NgModule({
   imports: [
@@ -250,13 +258,6 @@ import {OperationStockComponent} from './view/admin/operationStock/operationStoc
   ],
   declarations: [
     AppComponent,
-    AppMainComponent,
-    AppMenuComponent,
-    AppMenuitemComponent,
-    AppConfigComponent,
-    AppRightMenuComponent,
-    AppTopBarComponent,
-    AppFooterComponent,
     DashboardDemoComponent,
     FormLayoutDemoComponent,
     FloatLabelDemoComponent,
@@ -312,7 +313,19 @@ import {OperationStockComponent} from './view/admin/operationStock/operationStoc
     OperationStockCreateComponent,
     OperationStockEditComponent,
     OperationStockViewComponent,
-    OperationStockComponent
+    OperationStockComponent,
+    SignInComponent,
+    SignUpComponent,
+    AdminMenuComponent,
+    AdminRightMenuComponent,
+    AdminTopBarComponent,
+    AdminConfigComponent,
+    AdminMainComponent,
+    HomeComponent,
+    HomePageComponent,
+    AppMenuitemComponent,
+    ChefEquipeComponent,
+    CollaborateurComponent,
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },

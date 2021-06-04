@@ -3,40 +3,41 @@ import {NavigationEnd, Router} from '@angular/router';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {Subscription} from 'rxjs';
 import {filter} from 'rxjs/operators';
-import {MenuService} from './app.menu.service';
-import {AppMainComponent} from './app.main.component';
+import {AdminMainComponent} from '../admin-main/admin-main.component';
+import {MenuService} from '../../../controller/service/app.menu.service';
+
 
 @Component({
     /* tslint:disable:component-selector */
     selector: '[app-menuitem]',
     /* tslint:enable:component-selector */
     template: `
-		<ng-container>
-			<div *ngIf="root" class="layout-menuitem-root-text">{{item.label}}</div>
-			<a [attr.href]="item.url" (click)="itemClick($event)" *ngIf="!item.routerLink || item.items" (mouseenter)="onMouseEnter()"
-			   (keydown.enter)="itemClick($event)" [attr.target]="item.target" [attr.tabindex]="0" [ngClass]="item.class" pRipple>
-				<i [ngClass]="item.icon" class="layout-menuitem-icon"></i>
-				<span class="layout-menuitem-text">{{item.label}}</span>
-				<i class="pi pi-fw pi-angle-down layout-submenu-toggler" *ngIf="item.items"></i>
-			</a>
-			<a (click)="itemClick($event)" (mouseenter)="onMouseEnter()" *ngIf="item.routerLink && !item.items"
-			   [routerLink]="item.routerLink" routerLinkActive="active-menuitem-routerlink"
-			   [routerLinkActiveOptions]="{exact: true}" [attr.target]="item.target" [attr.tabindex]="0" [ngClass]="item.class" pRipple>
-				<i [ngClass]="item.icon" class="layout-menuitem-icon"></i>
-				<span class="layout-menuitem-text">{{item.label}}</span>
-				<i class="pi pi-fw pi-angle-down layout-submenu-toggler" *ngIf="item.items"></i>
-			</a>
-			<div class="layout-menu-tooltip">
-				<div class="layout-menu-tooltip-arrow"></div>
-				<div class="layout-menu-tooltip-text">{{item.label}}</div>
-			</div>
-			<ul *ngIf="(item.items && root) || (item.items && active)"
-				[@children]="(root ? 'visible' : active ? 'visibleAnimated' : 'hiddenAnimated')">
-				<ng-template ngFor let-child let-i="index" [ngForOf]="item.items">
-					<li app-menuitem [item]="child" [index]="i" [parentKey]="key" [class]="child.badgeClass"></li>
-				</ng-template>
-			</ul>
-		</ng-container>
+        <ng-container>
+            <div *ngIf="root" class="layout-menuitem-root-text">{{item.label}}</div>
+            <a [attr.href]="item.url" (click)="itemClick($event)" *ngIf="!item.routerLink || item.items" (mouseenter)="onMouseEnter()"
+               (keydown.enter)="itemClick($event)" [attr.target]="item.target" [attr.tabindex]="0" [ngClass]="item.class" pRipple>
+                <i [ngClass]="item.icon" class="layout-menuitem-icon"></i>
+                <span class="layout-menuitem-text">{{item.label}}</span>
+                <i class="pi pi-fw pi-angle-down layout-submenu-toggler" *ngIf="item.items"></i>
+            </a>
+            <a (click)="itemClick($event)" (mouseenter)="onMouseEnter()" *ngIf="item.routerLink && !item.items"
+               [routerLink]="item.routerLink" routerLinkActive="active-menuitem-routerlink"
+               [routerLinkActiveOptions]="{exact: true}" [attr.target]="item.target" [attr.tabindex]="0" [ngClass]="item.class" pRipple>
+                <i [ngClass]="item.icon" class="layout-menuitem-icon"></i>
+                <span class="layout-menuitem-text">{{item.label}}</span>
+                <i class="pi pi-fw pi-angle-down layout-submenu-toggler" *ngIf="item.items"></i>
+            </a>
+            <div class="layout-menu-tooltip">
+                <div class="layout-menu-tooltip-arrow"></div>
+                <div class="layout-menu-tooltip-text">{{item.label}}</div>
+            </div>
+            <ul *ngIf="(item.items && root) || (item.items && active)"
+                [@children]="(root ? 'visible' : active ? 'visibleAnimated' : 'hiddenAnimated')">
+                <ng-template ngFor let-child let-i="index" [ngForOf]="item.items">
+                    <li app-menuitem [item]="child" [index]="i" [parentKey]="key" [class]="child.badgeClass"></li>
+                </ng-template>
+            </ul>
+        </ng-container>
     `,
     host: {
         '[class.layout-root-menuitem]': 'root',
@@ -85,8 +86,7 @@ export class AppMenuitemComponent implements OnInit, OnDestroy {
     menuResetSubscription: Subscription;
 
     key: string;
-
-    constructor(public appMain: AppMainComponent, public router: Router, private cd: ChangeDetectorRef, private menuService: MenuService) {
+    constructor(public appMain: AdminMainComponent, public router: Router, private cd: ChangeDetectorRef, private menuService: MenuService) {
         this.menuSourceSubscription = this.menuService.menuSource$.subscribe(key => {
             // deactivate current active menu
             if (this.active && this.key !== key && key.indexOf(this.key) !== 0) {
