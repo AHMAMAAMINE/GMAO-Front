@@ -6,18 +6,25 @@ import { MembreEquipe } from "../../../../controller/model/membre-equipe.model";
 import { InterventionService } from "../../../../controller/service/intervention.service";
 import { Collaborateur } from "../../../../controller/model/collaborateur.model";
 import { CollaborateurService } from "../../../../controller/service/collaborateur.service";
+import {DatePipe} from "@angular/common";
 
 @Component({
   selector: "app-equipe-create",
   templateUrl: "./equipe-create.component.html",
   styleUrls: ["./equipe-create.component.scss"],
+  providers: [DatePipe]
 })
 export class EquipeCreateComponent implements OnInit {
+  myDate = new Date();
+  date: string;
   constructor(
     private messageService: MessageService,
     private service: EquipesService,
-    private services: CollaborateurService
-  ) {}
+    private services: CollaborateurService,
+    private datePipe: DatePipe
+  ) {
+    this.date = this.datePipe.transform(this.myDate, 'yyyy-MM-dd');
+  }
 
   ngOnInit(): void {
     this.services.findAll();

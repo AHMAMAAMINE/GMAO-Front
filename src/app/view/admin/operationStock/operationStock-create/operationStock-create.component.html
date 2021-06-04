@@ -1,4 +1,5 @@
-<p-dialog [(visible)]="createDialog" [style]="{width: '1300px'}" header="Operation Stock Details" [modal]="true" styleClass="p-fluid">
+<p-dialog [(visible)]="createDialog" [style]="{width: '1300px'}" [modal]="true" styleClass="p-fluid">
+    <p-header><h2>Operation Stock</h2> <span style="position:relative; left: 565px;"> {{date  | date:'yyyy-MM-dd'}}</span> </p-header>
     <ng-template pTemplate="content">
 
         <div class="p-field">
@@ -33,6 +34,9 @@
         <!--    <small class="p-invalid" *ngIf="submitted && !selected.qte.toPrecision()">quantite is required.</small>  -->
         </div>
       </div>
+     <!--   <p-tabPanel leftIcon="pi pi-info-circle" header="Détail d'Opération Stock">
+            <app-operationStock-detail></app-operationStock-detail>
+        </p-tabPanel> -->
 
     </ng-template>
             <ng-template pTemplate="footer">
