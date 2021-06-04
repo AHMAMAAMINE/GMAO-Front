@@ -1,0 +1,65 @@
+<div class="card" class="button" class="ctr">
+    <div class="card-header" style="text-align: center; font-size: 20px; color: deepskyblue;"><b>Détail d'Opération Stock</b></div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">
+                <button type="button" class="btn btn-outline-primary" >Afficher tout les Stock</button>
+            </div>
+            <div class="col-md-4">
+                <!--   <input type="text" placeholder="chercher references" [(ngModel)]="operationstockVo.references">
+                <input type="number" placeholder="chercher Qte" [(ngModel)]="operationstockVo.Qte">
+                <input type="number" placeholder="chercher QteMin" [(ngModel)]="operationstockVo.QteMin">
+                <input type="number" placeholder="chercher QteMax" [(ngModel)]="operationstockVo.QteMax"> -->
+                <span><input style="position: relative; left: 150px;" type="text" class="form-control" placeholder="recherche multicritère" [(ngModel)]="reference" ><i class="fa fa-search mr-1 btn btn-secondary" style="position: relative; right: 400px; left: 605px; bottom: 38px; background-color: green;" (click)="Enter(reference)"></i></span>
+            </div>
+
+            <div class="form-group" class="min">
+                <label style="color: green; font-weight: bold;">Quantité Min</label>
+                <input type="number" class="form-control" [(ngModel)]="qteMin">
+            </div>
+
+            <div class="form-group" class="max">
+                <label style="color: red; font-weight: bold;">Quantité Max</label>
+                <input type="number" class="form-control" [(ngModel)]="qteMax">
+            </div>
+
+            <button class="find" style="background-color: dodgerblue; color: white;" (click)="findbyCritere(qteMax,qteMin)">Find</button>
+
+            <button class="sauce button1" style="position: absolute; top: 205px; right: 300px;" (click)="open(find)">+</button>
+
+        </div>
+
+        <br><br>     <br><br>     <br><br>     <br><br> <br>
+
+        <div class="row"><label></label></div>
+        <table>
+            <thead>
+            <!--   <th >Id</th> -->
+            <th >Magasin Source</th>
+            <th >Magasin Destination</th>
+            <!--  <th >Matériel</th> -->
+            <!--  <th >Quantité</th> -->
+            <th>Quantité Min</th>
+            <th>Quantité Max</th>
+
+            <!--  <th>Description</th> -->
+            </thead>
+            <tbody>
+            <tr *ngFor="let c of operationstocks index as i">
+                <!--  <td class="table-primary">{{i+1}}</td> -->
+                <td class="table-info" >{{c.magasinSource.reference}}</td>
+                <td class="table-info" >{{c.magasinDestination.reference}}</td>
+                <td class="table-secondary" >{{c.material.reference}}</td>
+                <td class="table-warning">{{c.qte}}</td>
+                <td class="form-control">{{qteMax}}</td>
+                <td class="form-control">{{qteMin}}</td>
+                <!--  <td class="table-success">{{c.descrition}}</td> -->
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+<ng-template #find let-modal >
+    <app-operation-stock-create></app-operation-stock-create>
+</ng-template>

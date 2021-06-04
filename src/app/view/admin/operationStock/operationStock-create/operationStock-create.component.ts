@@ -6,13 +6,15 @@ import {MagasinService} from '../../../../controller/service/magasin.service';
 import {Magasin} from '../../../../controller/model/magasin.model';
 import {MaterialService} from '../../../../controller/service/material.service';
 import {Material} from '../../../../controller/model/material.model';
+import {DatePipe} from "@angular/common";
 // import {Intervention} from "../../../../controller/model/intervention.model";
 
 
 @Component({
     selector: 'app-operation-stock-create',
     templateUrl: './operationStock-create.component.html',
-    styleUrls: ['./operationStock-create.component.scss']
+    styleUrls: ['./operationStock-create.component.scss'],
+    providers: [DatePipe]
 })
 export class OperationStockCreateComponent implements OnInit {
 
@@ -20,9 +22,12 @@ export class OperationStockCreateComponent implements OnInit {
   //  private selected: OperationStock;
     private selectes: Array<OperationStock>;
     stock: any;
+    myDate = new Date();
+    date: string;
 
-
-    constructor(private messageService: MessageService, private service: OperationstockService, private magasinService: MagasinService, private materialService: MaterialService) { }
+    constructor(private messageService: MessageService, private service: OperationstockService, private magasinService: MagasinService, private materialService: MaterialService, private datePipe: DatePipe) {
+        this.date = this.datePipe.transform(this.myDate, 'yyyy-MM-dd');
+    }
 
     ngOnInit(): void {
         this.magasinService.findAll();
