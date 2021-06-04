@@ -158,6 +158,8 @@ import {OperationStockListComponent} from './view/admin/operationStock/operation
 import {OperationStockEditComponent} from './view/admin/operationStock/operationStock-edit/operationStock-edit.component';
 import {OperationStockViewComponent} from './view/admin/operationStock/operationStock-view/operationStock-view.component';
 import {OperationStockComponent} from './view/admin/operationStock/operationStock.component';
+import { CollaborateurComponent } from './view/collaborateur/collaborateur.component';
+import { CollaborateurCreateComponent } from './view/collaborateur/collaborateur-create/collaborateur-create.component';
 
 
 @NgModule({
@@ -312,7 +314,9 @@ import {OperationStockComponent} from './view/admin/operationStock/operationStoc
     OperationStockCreateComponent,
     OperationStockEditComponent,
     OperationStockViewComponent,
-    OperationStockComponent
+    OperationStockComponent,
+    CollaborateurComponent,
+    CollaborateurCreateComponent
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },
