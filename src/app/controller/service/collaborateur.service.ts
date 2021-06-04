@@ -2,6 +2,7 @@ import { Collaborateur } from './../model/collaborateur.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {environment} from '../../../environments/environment';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -22,7 +23,9 @@ export class CollaborateurService {
       }
     );
   }
-
+  public save(): Observable<Collaborateur> {
+    return this.http.post<Collaborateur>(this.url, this.collaborateur);
+  }
   get collaborateur(): Collaborateur {
     if (this._collaborateur == null) {
       this._collaborateur = new Collaborateur();

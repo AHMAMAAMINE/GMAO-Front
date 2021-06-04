@@ -158,9 +158,19 @@ import {OperationStockListComponent} from './view/admin/operationStock/operation
 import {OperationStockEditComponent} from './view/admin/operationStock/operationStock-edit/operationStock-edit.component';
 import {OperationStockViewComponent} from './view/admin/operationStock/operationStock-view/operationStock-view.component';
 import {OperationStockComponent} from './view/admin/operationStock/operationStock.component';
+import { SignInComponent } from './view/admin/connection/sign-in/sign-in.component';
+import { SignUpComponent } from './view/admin/connection/sign-up/sign-up.component';
+import { AdminMenuComponent } from './view/admin/admin-menu/admin-menu.component';
+import { AdminRightMenuComponent } from './view/admin/admin-right-menu/admin-right-menu.component';
+import { AdminTopBarComponent } from './view/admin/admin-top-bar/admin-top-bar.component';
+import { AdminConfigComponent } from './view/admin/admin-config/admin-config.component';
+import { AdminMainComponent } from './view/admin/admin-main/admin-main.component';
+import { HomeComponent } from './view/home/home.component';
+import { HomePageComponent } from './view/home/home-page/home-page.component';
+import {MenuService} from './controller/service/app.menu.service';
+import {AppMenuitemComponent} from './view/admin/admin-menu/app.menuitem.component';
+import { ChefEquipeComponent } from './view/chef-equipe/chef-equipe.component';
 import { CollaborateurComponent } from './view/collaborateur/collaborateur.component';
-import { CollaborateurCreateComponent } from './view/collaborateur/collaborateur-create/collaborateur-create.component';
-
 
 @NgModule({
   imports: [
@@ -315,8 +325,18 @@ import { CollaborateurCreateComponent } from './view/collaborateur/collaborateur
     OperationStockEditComponent,
     OperationStockViewComponent,
     OperationStockComponent,
+    SignInComponent,
+    SignUpComponent,
+    AdminMenuComponent,
+    AdminRightMenuComponent,
+    AdminTopBarComponent,
+    AdminConfigComponent,
+    AdminMainComponent,
+    HomeComponent,
+    HomePageComponent,
+    AppMenuitemComponent,
+    ChefEquipeComponent,
     CollaborateurComponent,
-    CollaborateurCreateComponent
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },

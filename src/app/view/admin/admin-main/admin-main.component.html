@@ -10,17 +10,16 @@
     'layout-rtl': app.isRTL,
     'p-input-filled': app.inputStyle === 'filled',
     'p-ripple-disabled': !app.ripple}" [class]="app.topbarColor" (click)="onLayoutClick()">
-    <app-topbar></app-topbar>
+    <app-admin-top-bar></app-admin-top-bar>
 
-    <app-menu></app-menu>
-    <app-right-menu></app-right-menu>
+    <app-admin-menu></app-admin-menu>
+    <app-admin-right-menu></app-admin-right-menu>
 
     <div class="layout-main">
         <div class="layout-content">
             <router-outlet></router-outlet>
         </div>
-        <app-config></app-config>
-        <app-footer></app-footer>
+        <admin-config></admin-config>
     </div>
     <div class="layout-content-mask"></div>
 </div>
