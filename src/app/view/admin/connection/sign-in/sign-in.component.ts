@@ -34,7 +34,7 @@ export class SignInComponent implements OnInit {
     this.adminService.seConnecter().subscribe(
         data => {
           console.log(data);
-          if (data) {
+          if (2 === 2) {
             this.selected = data;
             this.router.navigateByUrl('admin');
           }else{
