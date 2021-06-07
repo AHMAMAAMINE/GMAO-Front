@@ -1,3 +1,4 @@
+import { CollaborateurService } from "./../../../controller/service/collaborateur.service";
 import { EquipesService } from "./../../../controller/service/equipes.service";
 import { Intervention } from "./../../../controller/model/intervention.model";
 import { InterventionService } from "./../../../controller/service/intervention.service";
@@ -14,13 +15,19 @@ import interactionPlugin from "@fullcalendar/interaction";
 export class StockComponent implements OnInit {
   constructor(
     private interventionService: InterventionService,
-    private equipesService: EquipesService
+    private collaborateurService: CollaborateurService
   ) {}
   public fullcalendarOptions: any;
   public events: any;
   public intervetions: Array<Intervention>;
   public encoursInterventions: number;
+
+  public numColaborateur: number;
+
+  public badInterventions: number;
+  public goodInterventions: number;
   public totalInterventions: number;
+
   public data: any;
 
   public numEquipes: number;
@@ -57,24 +64,41 @@ export class StockComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.data = {
-      labels: ["en cours", "complete", "hhehe"],
-      datasets: [
-        {
-          data: [300, 50, 100],
-          backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
-          hoverBackgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
-        },
-      ],
-    };
+    this.collaborateurService.findAll().subscribe((data) => {
+      this.numColaborateur = data.length;
+    });
 
     this.interventionService.findAll().subscribe((data) => {
       if (data) {
         this.intervetions = data;
         this.totalInterventions = data.length;
+
+        this.goodInterventions = data.filter((elem) => {
+          return elem.etatIntervention.couleur === "vert";
+        }).length;
+
         this.encoursInterventions = data.filter((elem) => {
           return elem.etatIntervention.couleur === "orange";
         }).length;
+
+        this.badInterventions = data.filter((elem) => {
+          return elem.etatIntervention.couleur === "rouge";
+        }).length;
+
+        this.data = {
+          labels: ["ongoing", "completed", "cancelled"],
+          datasets: [
+            {
+              data: [
+                this.encoursInterventions,
+                this.goodInterventions,
+                this.badInterventions,
+              ],
+              backgroundColor: ["orange", "green", "red"],
+              hoverBackgroundColor: ["orange", "green", "red"],
+            },
+          ],
+        };
 
         this.convertInterventions(data);
         this.events = this.interventionDto.data;

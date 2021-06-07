@@ -1,27 +1,20 @@
-import { Collaborateur } from './../model/collaborateur.model';
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import {environment} from '../../../environments/environment';
-import {Observable} from 'rxjs';
+import { Collaborateur } from "./../model/collaborateur.model";
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { environment } from "../../../environments/environment";
+import { Observable } from "rxjs";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class CollaborateurService {
   constructor(private http: HttpClient) {}
-  private url = environment.baseUrl + '/collaborateur';
+  private url = environment.baseUrl + "/collaborateur";
   public _collaborateur: Collaborateur;
   public _collaborateurs: Array<Collaborateur>;
 
   findAll() {
-    this.http.get<Array<Collaborateur>>(this.url + '/').subscribe(
-      (data) => {
-        this._collaborateurs = data;
-      },
-      (error) => {
-        // alert('Error Colaborateur');
-      }
-    );
+    return this.http.get<Array<Collaborateur>>(this.url + "/");
   }
   public save(): Observable<Collaborateur> {
     return this.http.post<Collaborateur>(this.url, this.collaborateur);
