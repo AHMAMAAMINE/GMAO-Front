@@ -31,6 +31,7 @@ export class StockComponent implements OnInit {
       ++i;
       let obj = {
         id: i,
+        // color: "red",
         title: elem.libelle,
         start: elem.dateDebut.slice(0, 10),
         end: elem.dateFin.slice(0, 10),
