@@ -5,7 +5,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
-
 import { AccordionModule } from 'primeng/accordion';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { AvatarModule } from 'primeng/avatar';
@@ -87,7 +86,6 @@ import { TreeTableModule } from 'primeng/treetable';
 import { VirtualScrollerModule } from 'primeng/virtualscroller';
 import { AppComponent } from './app.component';
 import { AppCodeModule } from './app.code.component';
-
 import { AppCrudComponent } from './pages/app.crud.component';
 import { AppCalendarComponent } from './pages/app.calendar.component';
 import { AppTimelineDemoComponent } from './pages/app.timelinedemo.component';
@@ -95,8 +93,6 @@ import { AppNotfoundComponent } from './pages/app.notfound.component';
 import { AppErrorComponent } from './pages/app.error.component';
 import { AppAccessdeniedComponent } from './pages/app.accessdenied.component';
 import { AppLoginComponent } from './pages/app.login.component';
-
-
 import { FormLayoutDemoComponent } from './demo/view/formlayoutdemo.component';
 import { FloatLabelDemoComponent } from './demo/view/floatlabeldemo.component';
 import { InvalidStateDemoComponent } from './demo/view/invalidstatedemo.component';
@@ -125,48 +121,6 @@ import { SpacingComponent } from './utilities/spacing.component';
 import { TypographyComponent } from './utilities/typography.component';
 import { TextComponent } from './utilities/text.component';
 import { WidgetsComponent } from './utilities/widgets.component';
-
-import { CountryService } from './demo/service/countryservice';
-import { EventService } from './demo/service/eventservice';
-import { NodeService } from './demo/service/nodeservice';
-
-import { CustomerService } from './demo/service/customerservice';
-import { PhotoService } from './demo/service/photoservice';
-import { ProductService } from './demo/service/productservice';
-import { IconService } from './demo/service/iconservice';
-import { CommandeCreateComponent } from './view/admin/commandes/commande-create/commande-create.component';
-import { CommandesComponent } from './view/admin/commandes/commandes.component';
-import { CommandeListComponent } from './view/admin/commandes/commande-list/commande-list.component';
-import { InterventionEditComponent } from './view/admin/commandes/commande-edit/commande-edit.component';
-import { CommandeViewComponent } from './view/admin/commandes/commande-view/commande-view.component';
-import { InterventionInfoComponent } from './view/admin/commandes/intervention-info/intervention-info.component';
-import { InterventionStockComponent } from './view/admin/commandes/intervention-stock/intervention-stock.component';
-import { EquipesComponent } from './view/admin/equipes/equipes.component';
-import { EquipeCreateComponent } from './view/admin/equipes/equipe-create/equipe-create.component';
-import { EquipeListComponent } from './view/admin/equipes/equipe-list/equipe-list.component';
-import { EquipeEditComponent } from './view/admin/equipes/equipe-edit/equipe-edit.component';
-import { EquipeViewComponent } from './view/admin/equipes/equipe-view/equipe-view.component';
-import { InterventionMembreEquipComponent } from './view/admin/commandes/intervention-membre-equip/intervention-membre-equip.component';
-import { InterventionConseilComponent } from './view/admin/commandes/intervention-conseil/intervention-conseil.component';
-import { StockComponent } from './view/admin/stock/stock.component';
-import {OperationStockCreateComponent} from './view/admin/operationStock/operationStock-create/operationStock-create.component';
-import {OperationStockListComponent} from './view/admin/operationStock/operation-stock-list/operation-stock-list.component';
-import {OperationStockEditComponent} from './view/admin/operationStock/operationStock-edit/operationStock-edit.component';
-import {OperationStockViewComponent} from './view/admin/operationStock/operationStock-view/operationStock-view.component';
-import {OperationStockComponent} from './view/admin/operationStock/operationStock.component';
-import { SignInComponent } from './view/admin/connection/sign-in/sign-in.component';
-import { SignUpComponent } from './view/admin/connection/sign-up/sign-up.component';
-import { AdminMenuComponent } from './view/admin/admin-menu/admin-menu.component';
-import { AdminRightMenuComponent } from './view/admin/admin-right-menu/admin-right-menu.component';
-import { AdminTopBarComponent } from './view/admin/admin-top-bar/admin-top-bar.component';
-import { AdminConfigComponent } from './view/admin/admin-config/admin-config.component';
-import { AdminMainComponent } from './view/admin/admin-main/admin-main.component';
-import { HomeComponent } from './view/home/home.component';
-import { HomePageComponent } from './view/home/home-page/home-page.component';
-import {MenuService} from './controller/service/app.menu.service';
-import {AppMenuitemComponent} from './view/admin/admin-menu/app.menuitem.component';
-
-import { CollaborateurComponent } from './view/collaborateur/collaborateur.component';
 import { CollaborateurConfigComponent } from './view/collaborateur/collaborateur-config/collaborateur-config.component';
 import { CollaborateurMainComponent } from './view/collaborateur/collaborateur-main/collaborateur-main.component';
 import { CollaborateurTopBarComponent } from './view/collaborateur/collaborateur-top-bar/collaborateur-top-bar.component';
@@ -190,6 +144,47 @@ import { ChefEquipeSignInComponent } from './view/chef-equipe/chef-equipe-connec
 import { ChefEquipeSignUpComponent } from './view/chef-equipe/chef-equipe-connection/chef-equipe-sign-up/chef-equipe-sign-up.component';
 import { ChefEquipeMenuItemComponent } from './view/chef-equipe/chef-equipe-menu/chef-equipe-menu-item/chef-equipe-menu-item.component';
 import {CollaborateurDemandeCongeViewComponent} from './view/collaborateur/collaborateur-demande-conge/collaborateur-demande-conge-view/collaborateur-demande-conge-view.component';
+
+import { CustomerService } from './demo/service/customerservice';
+import { PhotoService } from './demo/service/photoservice';
+import { ProductService } from './demo/service/productservice';
+import { IconService } from './demo/service/iconservice';
+import { CommandeCreateComponent } from './view/admin/commandes/commande-create/commande-create.component';
+import { CommandesComponent } from './view/admin/commandes/commandes.component';
+import { CommandeListComponent } from './view/admin/commandes/commande-list/commande-list.component';
+import { InterventionEditComponent } from './view/admin/commandes/commande-edit/commande-edit.component';
+import { CommandeViewComponent } from './view/admin/commandes/commande-view/commande-view.component';
+import { InterventionInfoComponent } from './view/admin/commandes/intervention-info/intervention-info.component';
+import { InterventionStockComponent } from './view/admin/commandes/intervention-stock/intervention-stock.component';
+import { EquipesComponent } from './view/admin/equipes/equipes.component';
+import { EquipeCreateComponent } from './view/admin/equipes/equipe-create/equipe-create.component';
+import { EquipeListComponent } from './view/admin/equipes/equipe-list/equipe-list.component';
+import { EquipeEditComponent } from './view/admin/equipes/equipe-edit/equipe-edit.component';
+import { EquipeViewComponent } from './view/admin/equipes/equipe-view/equipe-view.component';
+import { InterventionMembreEquipComponent } from './view/admin/commandes/intervention-membre-equip/intervention-membre-equip.component';
+import { InterventionConseilComponent } from './view/admin/commandes/intervention-conseil/intervention-conseil.component';
+import { StockComponent } from './view/admin/stock/stock.component';
+import { OperationStockCreateComponent } from './view/admin/operationStock/operationStock-create/operationStock-create.component';
+import { OperationStockListComponent } from './view/admin/operationStock/operation-stock-list/operation-stock-list.component';
+import { OperationStockEditComponent } from './view/admin/operationStock/operationStock-edit/operationStock-edit.component';
+import { OperationStockViewComponent } from './view/admin/operationStock/operationStock-view/operationStock-view.component';
+import { OperationStockComponent } from './view/admin/operationStock/operationStock.component';
+import { SignInComponent } from './view/admin/connection/sign-in/sign-in.component';
+import { SignUpComponent } from './view/admin/connection/sign-up/sign-up.component';
+import { AdminMenuComponent } from './view/admin/admin-menu/admin-menu.component';
+import { AdminRightMenuComponent } from './view/admin/admin-right-menu/admin-right-menu.component';
+import { AdminTopBarComponent } from './view/admin/admin-top-bar/admin-top-bar.component';
+import { AdminConfigComponent } from './view/admin/admin-config/admin-config.component';
+import { AdminMainComponent } from './view/admin/admin-main/admin-main.component';
+import { HomeComponent } from './view/home/home.component';
+import { HomePageComponent } from './view/home/home-page/home-page.component';
+import { MenuService } from './controller/service/app.menu.service';
+import { AppMenuitemComponent } from './view/admin/admin-menu/app.menuitem.component';
+import { CollaborateurComponent } from './view/collaborateur/collaborateur.component';
+import {CountryService} from './demo/service/countryservice';
+import {EventService} from './demo/service/eventservice';
+import {NodeService} from './demo/service/nodeservice';
+
 
 @NgModule({
   imports: [
@@ -349,7 +344,9 @@ import {CollaborateurDemandeCongeViewComponent} from './view/collaborateur/colla
     HomeComponent,
     HomePageComponent,
     AppMenuitemComponent,
+
     CollaborateurMenuComponent,
+
     CollaborateurComponent,
     CollaborateurConfigComponent,
     CollaborateurMainComponent,
