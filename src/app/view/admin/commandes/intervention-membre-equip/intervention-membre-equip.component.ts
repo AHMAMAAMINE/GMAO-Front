@@ -81,7 +81,7 @@ export class InterventionMembreEquipComponent implements OnInit {
 
   isSelecteds($event: any) {
     this.collaborateur.equipe.ref = $event.target.value;
-    this.service.findByRef(this.collaborateur.equipe.ref).subscribe(data => {this.membres = data.membreEquipe ; console.log(data)});
+    this.service.findByRef(this.collaborateur.equipe.ref).subscribe(data => this.membres = data.membres );
   }
 
   selectEquip() {

@@ -38,7 +38,7 @@ export class EquipesService {
     return this.http.post<Equipe>(this.url, this.selectedEquipe);
   }
   public saveMembre() {
-    this.selectedEquipe.membreEquipe.push(this.membre);
+    this.selectedEquipe.membres.push(this.membre);
   }
 
   public edit(): Observable<Equipe> {
