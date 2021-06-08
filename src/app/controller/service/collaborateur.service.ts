@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {environment} from '../../../environments/environment';
 import {Observable} from 'rxjs';
+import {Admin} from '../model/admin.model';
 
 @Injectable({
   providedIn: 'root',
@@ -12,6 +13,7 @@ export class CollaborateurService {
   private url = environment.baseUrl + '/collaborateur';
   public _collaborateur: Collaborateur;
   public _collaborateurs: Array<Collaborateur>;
+  private _selectes: Array<Collaborateur>;
 
   findAll() {
     this.http.get<Array<Collaborateur>>(this.url + '/').subscribe(
@@ -47,6 +49,18 @@ export class CollaborateurService {
     this._collaborateurs = value;
   }
 
+  get selectes(): Array<Collaborateur> {
+    return this._selectes;
+  }
+
+  set selectes(value: Array<Collaborateur>) {
+    this._selectes = value;
+  }
+
+  public signin(): Observable<Collaborateur> {
+    console.log(this._collaborateur);
+    return this.http.post<Collaborateur>(this.url + '/signin', this._collaborateur);
+  }
   //   addCollaborateur(collaborateur: Collaborateur) {
   //     this.http.post(this.url + '/', collaborateur).subscribe(
   //       (data) => {

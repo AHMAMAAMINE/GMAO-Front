@@ -13,6 +13,15 @@ import {AppErrorComponent} from './pages/app.error.component';
 import {AppNotfoundComponent} from './pages/app.notfound.component';
 import {HomePageComponent} from './view/home/home-page/home-page.component';
 
+import {CollaborateurDemandeCongeComponent} from './view/collaborateur/collaborateur-demande-conge/collaborateur-demande-conge.component';
+import {CollaborateurMainComponent} from './view/collaborateur/collaborateur-main/collaborateur-main.component';
+import {ChefEquipeMainComponent} from './view/chef-equipe/chef-equipe-main/chef-equipe-main.component';
+import {ChefEquipeSignInComponent} from './view/chef-equipe/chef-equipe-connection/chef-equipe-sign-in/chef-equipe-sign-in.component';
+import {ChefEquipeSignUpComponent} from './view/chef-equipe/chef-equipe-connection/chef-equipe-sign-up/chef-equipe-sign-up.component';
+import {HomeComponent} from './view/home/home.component';
+import {SignInCollaborateurComponent} from './view/collaborateur/connection-collaborateur/sign-in-collaborateur/sign-in-collaborateur.component';
+import {SignUpCollaborateurComponent} from './view/collaborateur/connection-collaborateur/sign-up-collaborateur/sign-up-collaborateur.component';
+
 @NgModule({
   imports: [
     RouterModule.forRoot(
@@ -20,6 +29,14 @@ import {HomePageComponent} from './view/home/home-page/home-page.component';
           {path: '', component: HomePageComponent},
           {path: 'admin-login', component: SignInComponent},
           {path: 'admin-signup', component: SignUpComponent},
+            {path: 'chef-equipe-login', component: ChefEquipeSignInComponent},
+            {path: 'chef-equipe-sign-up', component: ChefEquipeSignUpComponent},
+            {
+                path: 'chef-equipe', component: ChefEquipeMainComponent,
+                children: [
+                    {path: '', component: DashboardDemoComponent},
+                ]
+            },
           {
             path: 'admin', component: AdminMainComponent,
             children: [
@@ -30,6 +47,15 @@ import {HomePageComponent} from './view/home/home-page/home-page.component';
               { path: "view/operation", component: OperationStockComponent },
             ]
           },
+            {path: 'collaborateur-signin', component: SignInCollaborateurComponent},
+            {path: 'collaborateur-signup', component: SignUpCollaborateurComponent},
+            {
+                path: 'collaborateur', component: CollaborateurMainComponent,
+                children: [
+                    {path: '', component: DashboardDemoComponent},
+                    {path: 'collaborateur/demande/conge', component: CollaborateurDemandeCongeComponent},
+                ]
+            },
           {path: 'error', component: AppErrorComponent},
           {path: '404', component: AppNotfoundComponent},
           {path: '**', redirectTo: '/404'},

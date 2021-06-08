@@ -19,24 +19,16 @@ export class AdminRightMenuComponent implements OnInit {
         label: 'Favorites', icon: 'pi pi-fw pi-home', routerLink: ['/']
       },
       {
-        label: 'Company-Client', icon: 'pi pi-fw pi-tablet', routerLink: ['admin-company-client']
+        label: 'Interventions', icon: 'pi pi-fw pi-tablet', routerLink: ['view/commande']
       } ,
       {
-        label: 'Projet-Global', icon: 'pi pi-fw pi-briefcase', routerLink: ['admin-projet-global']
+        label: 'stock', icon: 'pi pi-fw pi-briefcase', routerLink: ['view/stock']
       } ,
       {
-        label: 'Factures Et Paiements', icon: 'pi pi-fw pi-check-square', routerLink: ['admin-factures-paiements']
+        label: 'equipes', icon: 'pi pi-fw pi-check-square', routerLink: ['view/equipes']
       } ,
-
       {
-        label: 'Budgets', icon: 'pi pi-fw pi-dollar', items :
-            [
-              {label: 'Nouveau budget', icon: 'pi pi-fw pi-list', routerLink: ['budget-create']},
-              {label: 'Demmandes', icon: 'pi pi-fw pi-calendar-plus', routerLink: ['budget-demmande-list']},
-            ]
-      },
-      {
-        label: 'Agencies', icon: 'pi pi-fw pi-tablet', routerLink: ['agence-list']
+        label: 'operation stock', icon: 'pi pi-fw pi-tablet', routerLink: ['view/operation']
       },
 
     ];

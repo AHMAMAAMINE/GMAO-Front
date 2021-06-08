@@ -1,18 +1,21 @@
 
-<p-dialog [(visible)]="createDialog" [style]="{width: '450px'}" header=" Create a new request" [modal]="true" styleClass="p-fluid ">
+<p-dialog [(visible)]="createDialog" [style]="{width: '450px'}" header=" Creer un demande de conge" [modal]="true" styleClass="p-fluid ">
     <ng-template pTemplate="content" >
-        <div class="p-grid">
-            <div class="p-field p-sm-6">
+
+            <div class="p-field p-sm-12">
                 <label for="code">Code</label>
                 <input type="text" pInputText id="code" [(ngModel)]="selected.code" required autofocus />
                 <small class="p-invalid" *ngIf="submitted && !selected.code">Code is required.</small>
             </div>
-            <div class="p-field p-sm-6">
-                <label >Collaborator</label>
-                <input type="text" pInputText [(ngModel)]="selected.code" placeholder="tapr your name" required autofocus />
-
-            </div>
+        <div class="p-field">
+            <label>Collaborateur</label>
+            <select class="form-control" (change)="isSelected($event)" pInputText>
+                <option *ngFor="let c of collaborateurs" [value]="c.codeCollaborateur">
+                    {{ c.fullname }}
+                </option>
+            </select>
         </div>
+
 
         <div class="p-grid">
             <div class="p-field p-sm-6">
@@ -28,7 +31,7 @@
         </div>
         <div class="p-grid">
             <div class="p-field p-sm-12">
-                <label>Msg Collaborateur</label>
+                <label>Ecrire un Message</label>
                 <textarea rows="5" cols="30" pInputTextarea autoResize="autoResize" [(ngModel)]="selected.messageCollaborateur"></textarea>
             </div>
         </div>

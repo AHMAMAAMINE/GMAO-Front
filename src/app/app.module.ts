@@ -165,8 +165,31 @@ import { HomeComponent } from './view/home/home.component';
 import { HomePageComponent } from './view/home/home-page/home-page.component';
 import {MenuService} from './controller/service/app.menu.service';
 import {AppMenuitemComponent} from './view/admin/admin-menu/app.menuitem.component';
-import { ChefEquipeComponent } from './view/chef-equipe/chef-equipe.component';
+
 import { CollaborateurComponent } from './view/collaborateur/collaborateur.component';
+import { CollaborateurConfigComponent } from './view/collaborateur/collaborateur-config/collaborateur-config.component';
+import { CollaborateurMainComponent } from './view/collaborateur/collaborateur-main/collaborateur-main.component';
+import { CollaborateurTopBarComponent } from './view/collaborateur/collaborateur-top-bar/collaborateur-top-bar.component';
+import { CollaborateurRightMenuComponent } from './view/collaborateur/collaborateur-right-menu/collaborateur-right-menu.component';
+import { ConnectionCollaborateurComponent } from './view/collaborateur/connection-collaborateur/connection-collaborateur.component';
+import { SignInCollaborateurComponent } from './view/collaborateur/connection-collaborateur/sign-in-collaborateur/sign-in-collaborateur.component';
+import {SignUpCollaborateurComponent} from './view/collaborateur/connection-collaborateur/sign-up-collaborateur/sign-up-collaborateur.component';
+import {CollaborateurMenuComponent} from './view/collaborateur/collaborateur-menu/collaborateur-menu.component';
+import {CollaborateurDemandeCongeCreateComponent} from './view/collaborateur/collaborateur-demande-conge/collaborateur-demande-conge-create/collaborateu-demande-conge-create.component';
+import {CollaborateurMenuItemComponent} from './view/collaborateur/collaborateur-menu/collaborateur-menu-item.component';
+import {CollaborateurDemandeCongeListComponent} from './view/collaborateur/collaborateur-demande-conge/collaborateur-demande-conge-list/collaborateur-demande-conge-list.component';
+import {CollaborateurDemandeCongeComponent} from './view/collaborateur/collaborateur-demande-conge/collaborateur-demande-conge.component';
+import { ChefEquipeComponent } from './view/chef-equipe/chef-equipe.component';
+import { ChefEquipeMenuComponent } from './view/chef-equipe/chef-equipe-menu/chef-equipe-menu.component';
+import { ChefEquipeMainComponent } from './view/chef-equipe/chef-equipe-main/chef-equipe-main.component';
+import { ChefEquipeConfigComponent } from './view/chef-equipe/chef-equipe-config/chef-equipe-config.component';
+import { ChefEquipeTopBarComponent } from './view/chef-equipe/chef-equipe-top-bar/chef-equipe-top-bar.component';
+import { ChefEquipeRightMenuComponent } from './view/chef-equipe/chef-equipe-right-menu/chef-equipe-right-menu.component';
+import { ChefEquipeConnectionComponent } from './view/chef-equipe/chef-equipe-connection/chef-equipe-connection.component';
+import { ChefEquipeSignInComponent } from './view/chef-equipe/chef-equipe-connection/chef-equipe-sign-in/chef-equipe-sign-in.component';
+import { ChefEquipeSignUpComponent } from './view/chef-equipe/chef-equipe-connection/chef-equipe-sign-up/chef-equipe-sign-up.component';
+import { ChefEquipeMenuItemComponent } from './view/chef-equipe/chef-equipe-menu/chef-equipe-menu-item/chef-equipe-menu-item.component';
+import {CollaborateurDemandeCongeViewComponent} from './view/collaborateur/collaborateur-demande-conge/collaborateur-demande-conge-view/collaborateur-demande-conge-view.component';
 
 @NgModule({
   imports: [
@@ -258,6 +281,7 @@ import { CollaborateurComponent } from './view/collaborateur/collaborateur.compo
   ],
   declarations: [
     AppComponent,
+    AppMenuitemComponent,
     DashboardDemoComponent,
     FormLayoutDemoComponent,
     FloatLabelDemoComponent,
@@ -321,11 +345,35 @@ import { CollaborateurComponent } from './view/collaborateur/collaborateur.compo
     AdminTopBarComponent,
     AdminConfigComponent,
     AdminMainComponent,
+    CollaborateurDemandeCongeViewComponent,
     HomeComponent,
     HomePageComponent,
     AppMenuitemComponent,
-    ChefEquipeComponent,
+    CollaborateurMenuComponent,
     CollaborateurComponent,
+    CollaborateurConfigComponent,
+    CollaborateurMainComponent,
+    CollaborateurTopBarComponent,
+    CollaborateurRightMenuComponent,
+    CollaborateurMenuComponent,
+    ConnectionCollaborateurComponent,
+    CollaborateurDemandeCongeCreateComponent,
+    SignUpCollaborateurComponent,
+    CollaborateurMenuItemComponent,
+    CollaborateurDemandeCongeListComponent,
+    CollaborateurDemandeCongeComponent,
+    SignInCollaborateurComponent,
+    ChefEquipeComponent,
+    ChefEquipeMenuComponent,
+    ChefEquipeMainComponent,
+    ChefEquipeConfigComponent,
+    ChefEquipeTopBarComponent,
+    ChefEquipeRightMenuComponent,
+    ChefEquipeConnectionComponent,
+    ChefEquipeSignInComponent,
+    ChefEquipeSignUpComponent,
+    ChefEquipeMenuItemComponent,
+
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },

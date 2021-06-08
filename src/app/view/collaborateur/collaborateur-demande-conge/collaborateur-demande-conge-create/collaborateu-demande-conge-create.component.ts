@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import {DemandeCongeService} from '../../../../controller/service/demande-conge.service';
 import {MessageService} from 'primeng/api';
 import {CollaborateurService} from '../../../../controller/service/collaborateur.service';
-import {EtatDemandeCongeService} from '../../../../controller/service/etat-demande-conge.service';
 import {EtatDemandeConge} from '../../../../controller/model/etat-demande-conge.model';
 import {Collaborateur} from '../../../../controller/model/collaborateur.model';
 import {DemandeConge} from '../../../../controller/model/demande-conge.model';
+import {EtatDemandeCongeService} from '../../../../controller/service/etat-demande-conge.service';
 
 @Component({
   selector: 'app-collaborateur-demande-conge-create',
@@ -20,7 +20,7 @@ export class CollaborateurDemandeCongeCreateComponent implements OnInit {
               private etatDemandeCongeService: EtatDemandeCongeService) { }
 
   ngOnInit(): void {
-    this.collaborateurService.findAll().subscribe(data => this.itemsc = data);
+    this.collaborateurService.findAll();
     this.etatDemandeCongeService.findAll().subscribe(data => this.itemse = data);
   }
 
@@ -33,30 +33,19 @@ export class CollaborateurDemandeCongeCreateComponent implements OnInit {
   public save() {
     this.submitted = true;
     if (this.selected.code.trim()) {
-      console.log('http://localhost:8036/maneo-rh/conge/');
-      console.log(this.selected);
       this.demandeCongeService.save().subscribe(data => {
-        if (data == null){
-          this.messageService.add({
-            severity: 'error',
-            summary: 'Error Message',
-            detail: 'Unsaved holiday request',
-          });
-        }else{
-          this.items.push({...data});
-          this.messageService.add({
-            severity: 'success',
-            summary: 'Successful',
-            detail: 'Holiday Requesr created',
-            life: 3000
-          });
-        }
+        this.items.push({...data});
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Successful',
+          detail: 'Commande Created',
+          life: 3000
+        });
       });
       this.createDialog = false;
       this.selected = new DemandeConge();
     }
   }
-
   get selected(): DemandeConge {
     return this.demandeCongeService.selected;
   }
@@ -96,12 +85,12 @@ export class CollaborateurDemandeCongeCreateComponent implements OnInit {
     this.collaborateurService.selectes = value;
   }
 
-  get itemsc(): Array<Collaborateur> {
-    return this.collaborateurService.items;
+  get collaborateurs(): Array<Collaborateur> {
+    return this.collaborateurService.collaborateurs;
   }
 
-  set itemsc(value: Array<Collaborateur>) {
-    this.collaborateurService.items = value;
+  set collaborateurs(value: Array<Collaborateur>) {
+    this.collaborateurService.collaborateurs = value;
   }
   get itemse(): Array<EtatDemandeConge> {
     return this.etatDemandeCongeService.items;
@@ -110,11 +99,5 @@ export class CollaborateurDemandeCongeCreateComponent implements OnInit {
   set itemse(value: Array<EtatDemandeConge>) {
     this.etatDemandeCongeService.items = value;
   }
-  /* get selectedc(): Collaborateur {
-     return this.collaborateurService.selected;
-   }
 
-   set selectedc(value: Collaborateur) {
-     this.collaborateurService.selected = value;
-   }*/
 }

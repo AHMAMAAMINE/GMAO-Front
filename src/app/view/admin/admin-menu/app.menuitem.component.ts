@@ -10,6 +10,7 @@ import {MenuService} from '../../../controller/service/app.menu.service';
 @Component({
     /* tslint:disable:component-selector */
     selector: '[app-menuitem]',
+    providers: [AdminMainComponent],
     /* tslint:enable:component-selector */
     template: `
         <ng-container>

@@ -3,7 +3,6 @@ import {environment} from '../../../environments/environment';
 import {DemandeConge} from '../model/demande-conge.model';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {DemandeCongeVo} from '../model/demande-conge-vo.model';
 import {Collaborateur} from '../model/collaborateur.model';
 import {CollaborateurService} from './collaborateur.service';
 
@@ -15,19 +14,6 @@ export class DemandeCongeService {
   private _items: Array<DemandeConge>;
   private _selected: DemandeConge;
   private _selectes: Array<DemandeConge>;
-  private _demandeCongeVo: DemandeCongeVo;
-
-  get demandeCongeVo(): DemandeCongeVo {
-    if(this._demandeCongeVo == null){
-      this._demandeCongeVo = new DemandeCongeVo();
-    }
-    return this._demandeCongeVo;
-  }
-
-  set demandeCongeVo(value: DemandeCongeVo) {
-    this._demandeCongeVo = value;
-  }
-
   private _createDialog: boolean;
   private _editDialog: boolean;
   private _viewDialog: boolean;
@@ -36,12 +22,6 @@ export class DemandeCongeService {
 
   public findAll(): Observable<Array<DemandeConge>> {
     return this.http.get<Array<DemandeConge>>(this.url);
-  }
- /* public findDemandeCongeOfCollaborateur(code: string): Observable<Array<DemandeConge>>{
-    return this.http.get<Array<DemandeConge>>(this.url + 'codec/' + code);
-  }*/
-  public findByCriteria(): Observable<Array<DemandeConge>> {
-     return  this.http.post<Array<DemandeConge>> (this.url + 'findByCriteriaConge', this.demandeCongeVo);
   }
   public save(): Observable<DemandeConge> {
     return this.http.post<DemandeConge>(this.url, this.selected);
