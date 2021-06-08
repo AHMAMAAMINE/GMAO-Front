@@ -35,7 +35,7 @@ export class ChefEquipeSignInComponent implements OnInit {
           console.log(data);
           if (data) {
             this.selected = data;
-            this.router.navigateByUrl('admin');
+            this.router.navigateByUrl('chef-equipe');
           }else{
             this.messageService.add(
                 {

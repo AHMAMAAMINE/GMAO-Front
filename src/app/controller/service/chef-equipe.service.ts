@@ -9,7 +9,7 @@ import {Admin} from '../model/admin.model';
   providedIn: 'root'
 })
 export class ChefEquipeService {
-  private url = environment.baseUrl + 'chef-equipe/';
+  private url = environment.baseUrl + '/chef-equipe/';
   private _items: Array<ChefEquipe>;
   private _selected: ChefEquipe;
   private _selectes: Array<ChefEquipe>;
