@@ -1,15 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import {DemandeCongeService} from '../../../../controller/service/demande-conge.service';
 import {ConfirmationService, MessageService} from 'primeng/api';
-import {DemandeCongeVo} from '../../../../controller/model/demande-conge-vo.model';
+
 import {DemandeConge} from '../../../../controller/model/demande-conge.model';
 import {Collaborateur} from '../../../../controller/model/collaborateur.model';
 import {CollaborateurService} from '../../../../controller/service/collaborateur.service';
-import {Entreprise} from '../../../../controller/model/entreprise.model';
+
 
 @Component({
   selector: 'app-collaborateur-demande-conge-list',
   templateUrl: './collaborateur-demande-conge-list.component.html',
+  providers: [ConfirmationService, MessageService],
+
   styleUrls: ['./collaborateur-demande-conge-list.component.scss']
 })
 export class CollaborateurDemandeCongeListComponent implements OnInit {
@@ -21,17 +23,7 @@ export class CollaborateurDemandeCongeListComponent implements OnInit {
 
   ngOnInit(): void {
     this.initCol();
-    //this.findItems(this.selectedC);
   }
-/*
-  findItems(selected: Collaborateur) {
-    this.demandeCongeService.findDemandeCongeOfCollaborateur(selected.code).subscribe(
-        data => {
-          this.items = data;
-        }
-    );
-  }*/
-
   public openCreate() {
     this.selected = new DemandeConge();
     this.submitted = false;
@@ -82,15 +74,7 @@ export class CollaborateurDemandeCongeListComponent implements OnInit {
       }
     });
   }
-  public  findByCriteria(){
-    console.log('http://localhost:8036/maneo-rh/conge/findByCriteriaConge');
-    this.demandeCongeService.findByCriteria().subscribe(
-        data => {
-          console.log(data);
-          this.items = data;
-        }
-    );
-  }
+
 
   private initCol() {
     this.cols = [
@@ -161,14 +145,8 @@ export class CollaborateurDemandeCongeListComponent implements OnInit {
   set selectes(value: Array<DemandeConge>) {
     this.demandeCongeService.selectes = value;
   }
-  get demandeCongeVo(): DemandeCongeVo{
-    return  this.demandeCongeService.demandeCongeVo;
-  }
-  set demandeCongeVo(value: DemandeCongeVo){
-    this.demandeCongeService.demandeCongeVo;
-  }
 
-  get selectedC(): Collaborateur {
-    return this.collaborateurService.selected;
+  get collaborateur(): Collaborateur {
+    return this.collaborateurService.collaborateur;
   }
 }

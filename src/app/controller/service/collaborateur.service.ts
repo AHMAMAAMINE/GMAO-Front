@@ -1,20 +1,21 @@
-import { Collaborateur } from "./../model/collaborateur.model";
-import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { environment } from "../../../environments/environment";
-import { Observable } from "rxjs";
+import { Collaborateur } from './../model/collaborateur.model';
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import {environment} from '../../../environments/environment';
+import {Observable} from 'rxjs';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class CollaborateurService {
   constructor(private http: HttpClient) {}
-  private url = environment.baseUrl + "/collaborateur";
+  private url = environment.baseUrl + '/collaborateur';
   public _collaborateur: Collaborateur;
   public _collaborateurs: Array<Collaborateur>;
+  private _selectes: Array<Collaborateur>;
 
   findAll() {
-    return this.http.get<Array<Collaborateur>>(this.url + "/");
+    return this.http.get<Array<Collaborateur>>(this.url + '/');
   }
   public save(): Observable<Collaborateur> {
     return this.http.post<Collaborateur>(this.url, this.collaborateur);
@@ -40,6 +41,18 @@ export class CollaborateurService {
     this._collaborateurs = value;
   }
 
+  get selectes(): Array<Collaborateur> {
+    return this._selectes;
+  }
+
+  set selectes(value: Array<Collaborateur>) {
+    this._selectes = value;
+  }
+
+  public signin(): Observable<Collaborateur> {
+    console.log(this._collaborateur);
+    return this.http.post<Collaborateur>(this.url + '/signin', this._collaborateur);
+  }
   //   addCollaborateur(collaborateur: Collaborateur) {
   //     this.http.post(this.url + '/', collaborateur).subscribe(
   //       (data) => {
