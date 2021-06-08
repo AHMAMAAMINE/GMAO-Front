@@ -184,6 +184,8 @@ import { CollaborateurComponent } from './view/collaborateur/collaborateur.compo
 import {CountryService} from './demo/service/countryservice';
 import {EventService} from './demo/service/eventservice';
 import {NodeService} from './demo/service/nodeservice';
+import { CollaborateurListComponent } from './view/collaborateur/collaborateur-list/collaborateur-list.component';
+import { CollaborateurCreateComponent } from './view/collaborateur/collaborateur-create/collaborateur-create.component';
 
 
 @NgModule({
@@ -370,6 +372,8 @@ import {NodeService} from './demo/service/nodeservice';
     ChefEquipeSignInComponent,
     ChefEquipeSignUpComponent,
     ChefEquipeMenuItemComponent,
+    CollaborateurListComponent,
+    CollaborateurCreateComponent,
 
   ],
   providers: [
