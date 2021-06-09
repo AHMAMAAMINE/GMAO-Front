@@ -27,7 +27,8 @@ export class EquipeCreateComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.collaborateurService.findAll();
+    this.collaborateurService.findAll().subscribe(data=>this.collaborateurService.collaborateurs=data);
+    console.log(this.collaborateurs)
   }
   public hideCreateDialog() {
     this.createDialog = false;

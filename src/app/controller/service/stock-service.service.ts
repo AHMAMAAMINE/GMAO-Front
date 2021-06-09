@@ -5,8 +5,8 @@ import { HttpClient } from "@angular/common/http";
   providedIn: "root",
 })
 export class StockService {
-  public _selected: Stock;
-  public _items: Array<Stock>;
+  private _selected: Stock;
+  private _items: Array<Stock>;
   private _stock: Stock;
   private _stocks: Array<Stock>;
   private urlBase = "http://localhost:8036";
@@ -27,6 +27,21 @@ export class StockService {
 
   set stock(value: Stock) {
     this._stock = value;
+  }
+
+  get selected(): Stock {
+    if(this._selected==null){
+      this._selected=new Stock();
+    }
+    return this._selected;
+  }
+
+  set selected(value: Stock) {
+    this._selected = value;
+  }
+
+  set items(value: Array<Stock>) {
+    this._items = value;
   }
 
   get items(): Array<Stock> {
