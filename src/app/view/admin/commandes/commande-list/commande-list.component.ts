@@ -17,6 +17,7 @@ export class CommandeListComponent implements OnInit {
 
     constructor(private messageService: MessageService, private confirmationService: ConfirmationService,
                 private service: InterventionService) {
+        this.editDialog = false;
     }
 
     ngOnInit(): void {
@@ -67,15 +68,17 @@ export class CommandeListComponent implements OnInit {
         this.selected = new Intervention();
         this.submitted = false;
         this.createDialog = true;
+        console.log(this.editDialog)
+        this.service.collaborateurs=null;
     }
 
     public edit(commande: Intervention) {
         this.service.findByCode(commande.code).subscribe(data => this.selected = data);
-        console.log(this.selected)
+        this.service.findByInterventionCode(commande.code).subscribe(data => this.service.collaborateurs = data);
         this.editDialog = true;
     }
     public view(commande: Intervention) {
-        console.log(commande.code)
+        console.log(commande.code);
         this.findByCode(commande.code);
         this.selected = {...commande};
         console.log(commande.etatIntervention.couleur);

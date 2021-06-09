@@ -23,7 +23,7 @@
     <div class="card">
 
 
-        <p-table  [value]="MembresEquipe" [columns]="cols" [rows]="4" [paginator]="true" [globalFilterFields]="['reference','total','totalPaye']"
+        <p-table  [value]="MembresEquipe"  [columns]="cols" [rows]="4" [paginator]="true" [globalFilterFields]="['reference','total','totalPaye']"
                  [(selection)]="selectes" [rowHover]="true" dataKey="id"
                  styleClass="p-datatable-customers"
                  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
@@ -39,7 +39,7 @@
                     </th>
                     <th>Equipe </th>
                     <th>membre equipe</th>
-<!--                    <th></th>-->
+                    <th [hidden]="!editDialog"></th>
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-membresEquipe>
@@ -52,10 +52,10 @@
 
 
 
-<!--                    <td>-->
-<!--                        <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-help p-mr-2" (click)="edit(membresEquipe)"></button>-->
-<!--                        <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="delete(membresEquipe)"></button>-->
-<!--                    </td>-->
+                    <td [hidden]="!editDialog">
+                        <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-help p-mr-2" (click)="edit(membresEquipe)"></button>
+                        <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="delete(membresEquipe)"></button>
+                    </td>
                 </tr>
             </ng-template>
 <!--            <ng-template pTemplate="summary">-->
