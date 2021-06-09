@@ -5,5 +5,5 @@ export class Equipe {
  public ref: string ;
  public membres =new  Array<MembreEquipe>();
  public code:string;
- // public chefEquipe =new MembreEquipe();
+ public chefEquipe =new MembreEquipe();
 }
