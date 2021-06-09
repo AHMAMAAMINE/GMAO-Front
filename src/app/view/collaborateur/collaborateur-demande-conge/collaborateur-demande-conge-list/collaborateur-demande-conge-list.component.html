@@ -30,25 +30,20 @@
                         </th>
                       <!--  <th pSortableColumn="code">Code<p-sortIcon field="code"></p-sortIcon></th>-->
                         <th pSortableColumn="collaborateur">Collaborateur<p-sortIcon field="collaborateur"></p-sortIcon></th>
-                        <th pSortableColumn="etatDemandeConfeLibelle">Etat Demande<p-sortIcon field="etatDemandeConfeLibelle"></p-sortIcon></th>
-                        <th pSortableColumn="dateDepart">Date départ <p-sortIcon field="dateDepart"></p-sortIcon></th>
-                        <th pSortableColumn="dateFin">Date fin <p-sortIcon field="dateFin"></p-sortIcon></th>
 
                         <th></th>
                     </tr>
                 </ng-template>
-                <ng-template pTemplate="body" let-demandeConge>
+                <ng-template pTemplate="body" let-collaborateur>
                     <tr>
                         <td>
-                            <p-tableCheckbox [value]="demandeConge"></p-tableCheckbox>
+                            <p-tableCheckbox [value]="collaborateur"></p-tableCheckbox>
                         </td>
                        <!-- <td>{{demandeConge.code}}</td>-->
-                        <td>{{demandeConge.collaborateur.nom}} {{demandeConge.collaborateur.prenom}}</td>
-                        <td>{{demandeConge.dateDepart}}</td>
-                        <td>{{demandeConge.dateFin}}</td>
-                        <td>{{demandeConge.etatDemandeConge.libelle}}</td>
+                        <td>{{collaborateur.fullname}</td>
+
                         <td>
-                            <button pButton pRipple icon="pi pi-list" class="p-button-rounded p-button-info p-mr-2" (click)="view(demandeConge)"></button>
+                            <button pButton pRipple icon="pi pi-list" class="p-button-rounded p-button-info p-mr-2" (click)="view(collaborateur)"></button>
                             <!--<button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="delete(demandeConge)"></button>-->
                         </td>
                     </tr>
@@ -61,8 +56,7 @@
             </p-table>
         </div>
 
-       <app-collaborateur-demande-conge-create></app-collaborateur-demande-conge-create>
-        <app-collaborateur-demande-conge-view></app-collaborateur-demande-conge-view>
+      <app-collaborateur-create></app-collaborateur-create>
         <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
     </div>
 </div>

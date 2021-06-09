@@ -1,5 +1,5 @@
 export class Collaborateur {
-  private id: number;
+  public id: number;
   public login: string;
   public password: string;
   public phone: string;
