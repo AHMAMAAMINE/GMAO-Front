@@ -39,7 +39,7 @@ export class InterventionService {
   private _submitted: boolean;
   urlmembre = environment.baseUrl + '/Collaborateurintervention-api/Collaborateurintervention';
   urlCriteria = 'http://localhost:8036/Intervention-api/intervention/criteria';
-  public _interventionVo: InterventionVo;
+  private _interventionVo: InterventionVo;
   get conseilIntervention(): Conseils {
     if (this._conseilIntervention == null) {
       this._conseilIntervention = new Conseils();
@@ -69,9 +69,11 @@ export class InterventionService {
     return this._interventionVo;
   }
 
-  set interventionVO(value: InterventionVo) {
+
+  set interventionVo(value: InterventionVo) {
     this._interventionVo = value;
   }
+
   get materialInterventions(): Array<MateraialIntervention> {
     if (this._materialInterventions == null) {
       this._materialInterventions = new Array<MateraialIntervention>();

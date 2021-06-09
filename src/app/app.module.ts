@@ -1,4 +1,3 @@
-import { StockListComponent } from './view/admin/stock/stock-list/stock-list.component';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -187,6 +186,7 @@ import { EventService } from './demo/service/eventservice';
 import { NodeService } from './demo/service/nodeservice';
 import { CollaborateurListComponent } from './view/collaborateur/collaborateur-list/collaborateur-list.component';
 import { CollaborateurCreateComponent } from './view/collaborateur/collaborateur-create/collaborateur-create.component';
+import {SearchInterventionComponent} from './view/admin/commandes/search-intervention/search-intervention.component';
 
 @NgModule({
   imports: [
@@ -348,7 +348,7 @@ import { CollaborateurCreateComponent } from './view/collaborateur/collaborateur
     AppMenuitemComponent,
 
     CollaborateurMenuComponent,
-    StockListComponent,
+
     CollaborateurComponent,
     CollaborateurConfigComponent,
     CollaborateurMainComponent,
@@ -374,6 +374,8 @@ import { CollaborateurCreateComponent } from './view/collaborateur/collaborateur
     ChefEquipeMenuItemComponent,
     CollaborateurListComponent,
     CollaborateurCreateComponent,
+    SearchInterventionComponent,
+
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },
