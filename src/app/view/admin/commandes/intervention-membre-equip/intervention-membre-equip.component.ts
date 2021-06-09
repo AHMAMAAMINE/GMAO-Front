@@ -29,8 +29,7 @@ export class InterventionMembreEquipComponent implements OnInit {
     return this.service.membres;
   }
   get MembresEquipe(): Array<InterventionMembreEquipe> {
-    // console.log(    this.collaborateur.membreEquipe.equipe.ref )
-    return this.serviceinterv.collaborateurs;
+    return  this.serviceinterv.collaborateurs;
   }
   cols: any[];
   value: any;

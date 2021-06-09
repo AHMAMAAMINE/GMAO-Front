@@ -1,18 +1,18 @@
-import { EtatIntervention } from "./../model/etat-intervention.model";
-import { MateraialIntervention } from "./../model/materaial-intervention.model";
-import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { Intervention } from "./../model/intervention.model";
-import { StockService } from "./stock-service.service";
-import { Conseils } from "../model/conseils.model";
-import { InterventionVo } from "../model/intervention-vo.model";
-import { InterventionMembreEquipe } from "../model/intervention-membre-equipe.model";
-import { UserService } from "./user.service";
-import { environment } from "../../../environments/environment";
-import { Observable } from "rxjs";
+import { EtatIntervention } from './../model/etat-intervention.model';
+import { MateraialIntervention } from './../model/materaial-intervention.model';
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Intervention } from './../model/intervention.model';
+import { StockService } from './stock-service.service';
+import { Conseils } from '../model/conseils.model';
+import { InterventionVo } from '../model/intervention-vo.model';
+import { InterventionMembreEquipe } from '../model/intervention-membre-equipe.model';
+import { UserService } from './user.service';
+import { environment } from '../../../environments/environment';
+import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class InterventionService {
   constructor(
@@ -30,15 +30,15 @@ export class InterventionService {
   private _materialIntervention: MateraialIntervention;
   private _conseilIntervention: Conseils;
   private _conseilInterventions: Array<Conseils>;
-  private url = environment.baseUrl + "/Intervention-api/intervention";
+  private url = environment.baseUrl + '/Intervention-api/intervention';
   private _selectes: Array<Intervention>;
   private _index: number;
   private _createDialog: boolean;
   private _editDialog: boolean;
   private _viewDialog: boolean;
   private _submitted: boolean;
-
-  urlCriteria = "http://localhost:8036/Intervention-api/intervention/criteria";
+  urlmembre = environment.baseUrl + '/Collaborateurintervention-api/Collaborateurintervention';
+  urlCriteria = 'http://localhost:8036/Intervention-api/intervention/criteria';
   public _interventionVo: InterventionVo;
   get conseilIntervention(): Conseils {
     if (this._conseilIntervention == null) {
@@ -152,7 +152,7 @@ export class InterventionService {
   getCircularReplacer = () => {
     const seen = new WeakSet();
     return (key, value) => {
-      if (typeof value === "object" && value !== null) {
+      if (typeof value === 'object' && value !== null) {
         if (seen.has(value)) {
           return;
         }
@@ -160,11 +160,11 @@ export class InterventionService {
       }
       return value;
     };
-  };
+  }
 
   public save(): Observable<Intervention> {
     const stringifi = JSON.stringify(this.selected, this.getCircularReplacer());
-    return this.http.post<Intervention>(this.url + "/", JSON.parse(stringifi));
+    return this.http.post<Intervention>(this.url + '/', JSON.parse(stringifi));
   }
   public update(index: number, intervention: Intervention) {
     this.selected = this.selected;
@@ -189,12 +189,12 @@ export class InterventionService {
   //   }
   // }
   public findAll(): Observable<Array<Intervention>> {
-    return this.http.get<Array<Intervention>>(this.url + "/");
+    return this.http.get<Array<Intervention>>(this.url + '/');
   }
 
   deleteByCode() {
     return this.http.delete<number>(
-      this.url + "/deleteCode/" + this.selected.code
+      this.url + '/deleteCode/' + this.selected.code
     );
   }
   public deleteIndexById(id: number) {
@@ -212,7 +212,7 @@ export class InterventionService {
   }
   deleteMultipleByReference() {
     return this.http.post<number>(
-      this.url + "delete-multiple-by-reference",
+      this.url + 'delete-multiple-by-reference',
       this.selectes
     );
   }
@@ -316,7 +316,7 @@ export class InterventionService {
   }
 
   public findByCode(code: string) {
-    return this.http.get<Intervention>(this.url + "/findCode/" + code);
+    return this.http.get<Intervention>(this.url + '/findCode/' + code);
   }
   // public addMembres() {
   //   console.log(this.collaborateurs)
@@ -332,4 +332,7 @@ export class InterventionService {
   //   myCloneMembre.membreEquipe.equipe.ref = membre.membreEquipe.equipe.ref;
   //   return myCloneMembre;
   // }
+    findByInterventionCode(code: string) {
+        return this.http.get<Array<InterventionMembreEquipe>>(this.urlmembre + '/intervcode/' + code);
+    }
 }

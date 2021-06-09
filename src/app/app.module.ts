@@ -1,3 +1,4 @@
+import { StockListComponent } from './view/admin/stock/stock-list/stock-list.component';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -127,12 +128,12 @@ import { CollaborateurTopBarComponent } from './view/collaborateur/collaborateur
 import { CollaborateurRightMenuComponent } from './view/collaborateur/collaborateur-right-menu/collaborateur-right-menu.component';
 import { ConnectionCollaborateurComponent } from './view/collaborateur/connection-collaborateur/connection-collaborateur.component';
 import { SignInCollaborateurComponent } from './view/collaborateur/connection-collaborateur/sign-in-collaborateur/sign-in-collaborateur.component';
-import {SignUpCollaborateurComponent} from './view/collaborateur/connection-collaborateur/sign-up-collaborateur/sign-up-collaborateur.component';
-import {CollaborateurMenuComponent} from './view/collaborateur/collaborateur-menu/collaborateur-menu.component';
-import {CollaborateurDemandeCongeCreateComponent} from './view/collaborateur/collaborateur-demande-conge/collaborateur-demande-conge-create/collaborateu-demande-conge-create.component';
-import {CollaborateurMenuItemComponent} from './view/collaborateur/collaborateur-menu/collaborateur-menu-item.component';
-import {CollaborateurDemandeCongeListComponent} from './view/collaborateur/collaborateur-demande-conge/collaborateur-demande-conge-list/collaborateur-demande-conge-list.component';
-import {CollaborateurDemandeCongeComponent} from './view/collaborateur/collaborateur-demande-conge/collaborateur-demande-conge.component';
+import { SignUpCollaborateurComponent } from './view/collaborateur/connection-collaborateur/sign-up-collaborateur/sign-up-collaborateur.component';
+import { CollaborateurMenuComponent } from './view/collaborateur/collaborateur-menu/collaborateur-menu.component';
+import { CollaborateurDemandeCongeCreateComponent } from './view/collaborateur/collaborateur-demande-conge/collaborateur-demande-conge-create/collaborateu-demande-conge-create.component';
+import { CollaborateurMenuItemComponent } from './view/collaborateur/collaborateur-menu/collaborateur-menu-item.component';
+import { CollaborateurDemandeCongeListComponent } from './view/collaborateur/collaborateur-demande-conge/collaborateur-demande-conge-list/collaborateur-demande-conge-list.component';
+import { CollaborateurDemandeCongeComponent } from './view/collaborateur/collaborateur-demande-conge/collaborateur-demande-conge.component';
 import { ChefEquipeComponent } from './view/chef-equipe/chef-equipe.component';
 import { ChefEquipeMenuComponent } from './view/chef-equipe/chef-equipe-menu/chef-equipe-menu.component';
 import { ChefEquipeMainComponent } from './view/chef-equipe/chef-equipe-main/chef-equipe-main.component';
@@ -143,7 +144,7 @@ import { ChefEquipeConnectionComponent } from './view/chef-equipe/chef-equipe-co
 import { ChefEquipeSignInComponent } from './view/chef-equipe/chef-equipe-connection/chef-equipe-sign-in/chef-equipe-sign-in.component';
 import { ChefEquipeSignUpComponent } from './view/chef-equipe/chef-equipe-connection/chef-equipe-sign-up/chef-equipe-sign-up.component';
 import { ChefEquipeMenuItemComponent } from './view/chef-equipe/chef-equipe-menu/chef-equipe-menu-item/chef-equipe-menu-item.component';
-import {CollaborateurDemandeCongeViewComponent} from './view/collaborateur/collaborateur-demande-conge/collaborateur-demande-conge-view/collaborateur-demande-conge-view.component';
+import { CollaborateurDemandeCongeViewComponent } from './view/collaborateur/collaborateur-demande-conge/collaborateur-demande-conge-view/collaborateur-demande-conge-view.component';
 
 import { CustomerService } from './demo/service/customerservice';
 import { PhotoService } from './demo/service/photoservice';
@@ -181,13 +182,11 @@ import { HomePageComponent } from './view/home/home-page/home-page.component';
 import { MenuService } from './controller/service/app.menu.service';
 import { AppMenuitemComponent } from './view/admin/admin-menu/app.menuitem.component';
 import { CollaborateurComponent } from './view/collaborateur/collaborateur.component';
-import {CountryService} from './demo/service/countryservice';
-import {EventService} from './demo/service/eventservice';
-import {NodeService} from './demo/service/nodeservice';
+import { CountryService } from './demo/service/countryservice';
+import { EventService } from './demo/service/eventservice';
+import { NodeService } from './demo/service/nodeservice';
 import { CollaborateurListComponent } from './view/collaborateur/collaborateur-list/collaborateur-list.component';
 import { CollaborateurCreateComponent } from './view/collaborateur/collaborateur-create/collaborateur-create.component';
-import { SearchInterventionComponent } from './view/admin/commandes/search-intervention/search-intervention.component';
-
 
 @NgModule({
   imports: [
@@ -349,7 +348,7 @@ import { SearchInterventionComponent } from './view/admin/commandes/search-inter
     AppMenuitemComponent,
 
     CollaborateurMenuComponent,
-
+    StockListComponent,
     CollaborateurComponent,
     CollaborateurConfigComponent,
     CollaborateurMainComponent,
@@ -375,8 +374,6 @@ import { SearchInterventionComponent } from './view/admin/commandes/search-inter
     ChefEquipeMenuItemComponent,
     CollaborateurListComponent,
     CollaborateurCreateComponent,
-    SearchInterventionComponent,
-
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },
