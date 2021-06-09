@@ -70,7 +70,8 @@ export class CommandeListComponent implements OnInit {
     }
 
     public edit(commande: Intervention) {
-        this.selected = {...commande};
+        this.service.findByCode(commande.code).subscribe(data => this.selected = data);
+        console.log(this.selected)
         this.editDialog = true;
     }
     public view(commande: Intervention) {

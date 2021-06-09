@@ -4,6 +4,6 @@ import {Equipe} from './equipe.model';
 export class MembreEquipe {
   public  id: number;
   public  collaborateur = new Collaborateur();
-   public  equipe = new Equipe();
+   // public  equipe = new Equipe();
   public  activer: boolean;
 }
