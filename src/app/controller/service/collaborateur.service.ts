@@ -3,22 +3,60 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {environment} from '../../../environments/environment';
 import {Observable} from 'rxjs';
+import {Equipe} from '../model/equipe.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CollaborateurService {
-  constructor(private http: HttpClient) {}
+  constructor(private _http: HttpClient) {}
   private url = environment.baseUrl + '/collaborateur';
   public _collaborateur: Collaborateur;
   public _collaborateurs: Array<Collaborateur>;
   private _selectes: Array<Collaborateur>;
 
+  private _createDialog: boolean;
+  private _editDialog: boolean;
+  private _viewDialog: boolean;
+  private _submitted: boolean;  
+
+  get viewDialog(): boolean {
+    return this._viewDialog;
+  }
+
+  set viewDialog(value: boolean) {
+    this._viewDialog = value;
+  }
+
+  get createDialog(): boolean {
+    return this._createDialog;
+  }
+
+  set createDialog(value: boolean) {
+    this._createDialog = value;
+  }
+
+  get submitted(): boolean {
+    return this._submitted;
+  }
+
+  set submitted(value: boolean) {
+    this._submitted = value;
+  }
+
+  get editDialog(): boolean {
+    return this._editDialog;
+  }
+
+  set editDialog(value: boolean) {
+    this._editDialog = value;
+  }
+
   findAll() {
-    return this.http.get<Array<Collaborateur>>(this.url + '/');
+    return this._http.get<Array<Collaborateur>>(this.url + '/');
   }
   public save(): Observable<Collaborateur> {
-    return this.http.post<Collaborateur>(this.url, this.collaborateur);
+    return this._http.post<Collaborateur>(this.url, this.collaborateur);
   }
   get collaborateur(): Collaborateur {
     if (this._collaborateur == null) {
@@ -51,7 +89,7 @@ export class CollaborateurService {
 
   public signin(): Observable<Collaborateur> {
     console.log(this._collaborateur);
-    return this.http.post<Collaborateur>(this.url + '/signin', this._collaborateur);
+    return this._http.post<Collaborateur>(this.url + '/signin', this._collaborateur);
   }
   //   addCollaborateur(collaborateur: Collaborateur) {
   //     this.http.post(this.url + '/', collaborateur).subscribe(
@@ -63,4 +101,36 @@ export class CollaborateurService {
   //       (error) => {}
   //     );
   //   }
-}
+
+  public edit(): Observable<Collaborateur> {
+      return this._http.put<Collaborateur>(this.url, this.collaborateur);
+  }
+
+  public deleteByCodeCollaborateur(): Observable<number> {
+    return this._http.delete<number>(
+        this.url + 'ref/' + this.collaborateur.codeCollaborateur
+    );
+  }
+
+  public deleteMultipleByCodeCollaborateur(): Observable<number> {
+    return this._http.post<number>(
+        this.url + 'delete-multiple-by-codeCollaborateur',
+        this.collaborateur
+    );
+  }
+
+  public findIndexById(id: number): number {
+    let index = -1;
+    for (let i = 0; i < this.collaborateurs.length; i++) {
+      if (this.collaborateurs[i].id === id) {
+        index = i;
+        break;
+      }
+    }
+    return index;
+  }
+
+  public deleteIndexById(id: number) {
+    this.collaborateurs.splice(this.findIndexById(id), 1);
+  }
+  }
