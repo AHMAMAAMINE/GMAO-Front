@@ -1,19 +1,19 @@
-import { Component, OnInit } from '@angular/core';
-import {StockService} from '../../../../controller/service/stock-service.service';
-import {InterventionService} from '../../../../controller/service/intervention.service';
-import {MaterialService} from '../../../../controller/service/material.service';
-import {MagasinService} from '../../../../controller/service/magasin.service';
-import {Intervention} from '../../../../controller/model/intervention.model';
-import {MateraialIntervention} from '../../../../controller/model/materaial-intervention.model';
-import {Magasin} from '../../../../controller/model/magasin.model';
-import {Material} from '../../../../controller/model/material.model';
-import {Stock} from '../../../../controller/model/Stock.model';
-import {newArray} from '@angular/compiler/src/util';
+import { Component, OnInit } from "@angular/core";
+import { StockService } from "../../../../controller/service/stock-service.service";
+import { InterventionService } from "../../../../controller/service/intervention.service";
+import { MaterialService } from "../../../../controller/service/material.service";
+import { MagasinService } from "../../../../controller/service/magasin.service";
+import { Intervention } from "../../../../controller/model/intervention.model";
+import { MateraialIntervention } from "../../../../controller/model/materaial-intervention.model";
+import { Magasin } from "../../../../controller/model/magasin.model";
+import { Material } from "../../../../controller/model/material.model";
+import { Stock } from "../../../../controller/model/Stock.model";
+import { newArray } from "@angular/compiler/src/util";
 
 @Component({
-  selector: 'app-intervention-stock',
-  templateUrl: './intervention-stock.component.html',
-  styleUrls: ['./intervention-stock.component.scss']
+  selector: "app-intervention-stock",
+  templateUrl: "./intervention-stock.component.html",
+  styleUrls: ["./intervention-stock.component.scss"],
 })
 export class InterventionStockComponent implements OnInit {
   index: any;
@@ -21,9 +21,12 @@ export class InterventionStockComponent implements OnInit {
   cols: any[];
   valeur: any;
   velues: any;
-  constructor(private stockService: StockService, private service: InterventionService, private materialService: MaterialService, private  magasinService: MagasinService) {
-
-  }
+  constructor(
+    private stockService: StockService,
+    private service: InterventionService,
+    private materialService: MaterialService,
+    private magasinService: MagasinService
+  ) {}
 
   get selectes(): Array<Intervention> {
     return this.service.selectes;
@@ -35,18 +38,18 @@ export class InterventionStockComponent implements OnInit {
     return this.service.selected;
   }
   get stock(): Stock {
-    return this.stockService.stock;
+    return this.stockService.selected;
   }
   get stocks(): Array<Stock> {
-    return this.stockService.stocks;
+    return this.stockService.items;
   }
-  get materials(): Array<Material>{
+  get materials(): Array<Material> {
     return this.materialService.materials;
   }
-  get material(): Material{
+  get material(): Material {
     return this.materialService.material;
   }
-  get magasins(): Array<Magasin>{
+  get magasins(): Array<Magasin> {
     return this.magasinService.magasins;
   }
   get submitted(): boolean {
@@ -60,35 +63,32 @@ export class InterventionStockComponent implements OnInit {
   ngOnInit(): void {
     this.materialService.findAll();
     this.magasinService.findAll();
-
   }
 
-  value(){
+  value() {
     console.log(this.materialService.materials);
-    for (let i = 0 ; i < this.materials.length; i++){
-     console.log(this.materials[i].reference);
-     this.values.push(this.materials[i].reference);
-     console.log(this.values[0]);
-   }
+    for (let i = 0; i < this.materials.length; i++) {
+      console.log(this.materials[i].reference);
+      this.values.push(this.materials[i].reference);
+      console.log(this.values[0]);
+    }
     return this.values;
   }
   isupdateable() {
     // return this.stock.id != null;
   }
 
-  public Save(){
+  public Save() {
     return this.stockService.save();
   }
-  empty() {
-  }
+  empty() {}
 
   evaluate() {
-    if (this.intervention.code == null){
+    if (this.intervention.code == null) {
       this.Save();
-    }
-    else {
-      this.valeur = '---select value-----';
-      this.velues = '---select value-----';
+    } else {
+      this.valeur = "---select value-----";
+      this.velues = "---select value-----";
       const materialintervention = new MateraialIntervention();
       materialintervention.material = this.stock.material;
       materialintervention.magasin = this.stock.magasin;
@@ -110,5 +110,4 @@ export class InterventionStockComponent implements OnInit {
   set materialInterventions(value: MateraialIntervention[]) {
     this.service.materialInterventions = value;
   }
-
 }

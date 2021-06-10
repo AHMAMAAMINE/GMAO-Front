@@ -1,3 +1,4 @@
+import { environment } from "src/environments/environment";
 import { Injectable } from "@angular/core";
 import { Stock } from "../model/Stock.model";
 import { HttpClient } from "@angular/common/http";
@@ -5,7 +6,7 @@ import { HttpClient } from "@angular/common/http";
   providedIn: "root",
 })
 export class StockService {
-  private url = environment.baseUrl + "conge/";
+  private url = environment.baseUrl + "/Stock-api/Stockage";
   private _items: Array<Stock>;
   private _selected: Stock;
   private _selectes: Array<Stock>;
@@ -13,17 +14,18 @@ export class StockService {
   private _editDialog: boolean;
   private _viewDialog: boolean;
   private _submitted: boolean;
+  private _index: number;
 
-  get stock(): Stock {
-    if (this._stock == null) {
-      this._stock = new Stock();
-    }
-    return this._stock;
-  }
+  // get stock(): Stock {
+  //   if (this._stock == null) {
+  //     this._stock = new Stock();
+  //   }
+  //   return this._stock;
+  // }
 
-  set stock(value: Stock) {
-    this._stock = value;
-  }
+  // set stock(value: Stock) {
+  //   this._stock = value;
+  // }
 
   get selected(): Stock {
     if (this._selected == null) {
@@ -47,21 +49,21 @@ export class StockService {
     return this._items;
   }
 
-  get stocks(): Array<Stock> {
-    if (this._stocks == null) {
-      this._stocks = new Array<Stock>();
-    }
-    return this._stocks;
-  }
+  // get stocks(): Array<Stock> {
+  //   if (this._stocks == null) {
+  //     this._stocks = new Array<Stock>();
+  //   }
+  //   return this._stocks;
+  // }
 
-  set stocks(value: Array<Stock>) {
-    this._stocks = value;
-  }
+  // set stocks(value: Array<Stock>) {
+  //   this._stocks = value;
+  // }
   constructor(private http: HttpClient) {}
 
   save() {
-    if (this.stock.id == null) {
-      this.http.post(this.urlBase + this.url + "/", this.stock).subscribe(
+    if (this.selected.id === null) {
+      this.http.post(this.url + "/", this.selected).subscribe(
         (data) => {
           if (data === 1) {
             this.findAll();
@@ -77,24 +79,22 @@ export class StockService {
       );
     } else {
       const stocke = new Stock();
-      stocke.qte = this.stock.qte - this.stocks[this._index].qte;
-      stocke.id = this.stock.id;
-      stocke.material.reference = this.stock.material.reference;
-      stocke.magasin.reference = this.stock.magasin.reference;
-      this.http
-        .post(this.urlBase + this.url + "/", stocke)
-        .subscribe((data) => {
-          console.log(data);
-        });
-      this.stocks[this._index] = this.clone(this.stock);
+      stocke.qte = this.selected.qte - this.selectes[this._index].qte;
+      stocke.id = this.selected.id;
+      stocke.material.reference = this.selected.material.reference;
+      stocke.magasin.reference = this.selected.magasin.reference;
+      this.http.post(this.url + "/", stocke).subscribe((data) => {
+        console.log(data);
+      });
+      this.items[this._index] = this.clone(this.selected);
     }
-    this.stock = null;
+    this.selected = null;
   }
 
   findAll() {
-    this.http.get<Array<Stock>>(this.urlBase + this.url + "/").subscribe(
+    this.http.get<Array<Stock>>(this.url + "/").subscribe(
       (data) => {
-        this.stocks = data;
+        this.selectes = data;
       },
       (error) => {
         console.log(error);
