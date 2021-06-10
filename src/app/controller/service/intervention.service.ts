@@ -360,4 +360,7 @@ export class InterventionService {
     return index;
   }
 
+  delete(codeCollaborateur: string, ref: string) {
+    return this.http.delete<number>(this.urlmembre + '/CollaborateurCod/' + codeCollaborateur + '/Equipe/' + ref);
+  }
 }

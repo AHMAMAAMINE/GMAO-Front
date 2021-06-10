@@ -113,4 +113,9 @@ export class InterventionMembreEquipComponent implements OnInit {
   set selection(value: InterventionMembreEquipe) {
     this.serviceinterv.selection = value;
   }
+
+  delete(membresEquipe: InterventionMembreEquipe) {
+    this.serviceinterv.delete(membresEquipe.membreEquipe.collaborateur.codeCollaborateur, membresEquipe.equipe.ref).subscribe();
+    this.MembresEquipe.splice(this.serviceinterv.findIndexByRef(membresEquipe.membreEquipe.collaborateur.codeCollaborateur, membresEquipe.equipe.ref)) ;
+  }
 }
