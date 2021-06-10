@@ -92,14 +92,7 @@ export class StockService {
   }
 
   findAll() {
-    this.http.get<Array<Stock>>(this.url + "/").subscribe(
-      (data) => {
-        this.selectes = data;
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+    return this.http.get<Array<Stock>>(this.url + "/");
   }
 
   clone(stock: Stock) {
