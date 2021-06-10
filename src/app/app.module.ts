@@ -187,6 +187,7 @@ import { NodeService } from './demo/service/nodeservice';
 import { CollaborateurListComponent } from './view/collaborateur/collaborateur-list/collaborateur-list.component';
 import { CollaborateurCreateComponent } from './view/collaborateur/collaborateur-create/collaborateur-create.component';
 import {SearchInterventionComponent} from './view/admin/commandes/search-intervention/search-intervention.component';
+import { StockViewComponent } from './view/stock/stock-view/stock-view.component';
 
 @NgModule({
   imports: [
@@ -375,6 +376,7 @@ import {SearchInterventionComponent} from './view/admin/commandes/search-interve
     CollaborateurListComponent,
     CollaborateurCreateComponent,
     SearchInterventionComponent,
+    StockViewComponent,
 
   ],
   providers: [

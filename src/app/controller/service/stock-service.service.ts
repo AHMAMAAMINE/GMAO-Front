@@ -5,14 +5,10 @@ import { HttpClient } from "@angular/common/http";
   providedIn: "root",
 })
 export class StockService {
-  private _selected: Stock;
+  private url = environment.baseUrl + "conge/";
   private _items: Array<Stock>;
-  private _stock: Stock;
-  private _stocks: Array<Stock>;
-  private urlBase = "http://localhost:8036";
-  private url = "/Stock-api/Stockage";
+  private _selected: Stock;
   private _selectes: Array<Stock>;
-  private _index: number;
   private _createDialog: boolean;
   private _editDialog: boolean;
   private _viewDialog: boolean;
@@ -30,8 +26,8 @@ export class StockService {
   }
 
   get selected(): Stock {
-    if(this._selected==null){
-      this._selected=new Stock();
+    if (this._selected == null) {
+      this._selected = new Stock();
     }
     return this._selected;
   }
