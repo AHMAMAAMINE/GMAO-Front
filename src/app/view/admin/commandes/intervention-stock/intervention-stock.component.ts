@@ -9,6 +9,7 @@ import { Magasin } from "../../../../controller/model/magasin.model";
 import { Material } from "../../../../controller/model/material.model";
 import { Stock } from "../../../../controller/model/Stock.model";
 import { newArray } from "@angular/compiler/src/util";
+import {InterventionMembreEquipe} from '../../../../controller/model/intervention-membre-equipe.model';
 
 @Component({
   selector: "app-intervention-stock",
@@ -65,15 +66,15 @@ export class InterventionStockComponent implements OnInit {
     this.magasinService.findAll();
   }
 
-  value() {
-    console.log(this.materialService.materials);
-    for (let i = 0; i < this.materials.length; i++) {
-      console.log(this.materials[i].reference);
-      this.values.push(this.materials[i].reference);
-      console.log(this.values[0]);
-    }
-    return this.values;
-  }
+  // value() {
+  //   console.log(this.materialService.materials);
+  //   for (let i = 0; i < this.materials.length; i++) {
+  //     console.log(this.materials[i].reference);
+  //     this.values.push(this.materials[i].reference);
+  //     console.log(this.values[0]);
+  //   }
+  //   return this.values;
+  // }
   isupdateable() {
     // return this.stock.id != null;
   }
@@ -109,5 +110,22 @@ export class InterventionStockComponent implements OnInit {
 
   set materialInterventions(value: MateraialIntervention[]) {
     this.service.materialInterventions = value;
+  }
+  get editDialog(): boolean {
+    return this.service.editDialog;
+  }
+
+  set editDialog(value: boolean) {
+    this.service.editDialog = value;
+  }
+  public edit(commande: Stock) {
+    console.log(commande.magasin.reference)
+    this.velues = commande.magasin.reference;
+    this.valeur = commande.material.reference;
+    this.stock.qte=commande.qte;
+    // this.selection = commande;
+    // console.log(commande.id);
+    // this.editDialog = true;
+
   }
 }

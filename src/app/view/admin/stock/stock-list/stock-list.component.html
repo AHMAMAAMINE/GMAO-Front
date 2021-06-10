@@ -58,33 +58,27 @@
             <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
           </th>
           <th pSortableColumn="code">
-            code <p-sortIcon field="code"></p-sortIcon>
+            Material <p-sortIcon field="code"></p-sortIcon>
           </th>
           <th pSortableColumn="libelle">
-            libelle <p-sortIcon field="libelle"></p-sortIcon>
+            Magasin <p-sortIcon field="libelle"></p-sortIcon>
           </th>
           <th pSortableColumn="dateDeProbleme">
-            dateDeProbleme <p-sortIcon field="dateDeProbleme"></p-sortIcon>
+            quantite <p-sortIcon field="dateDeProbleme"></p-sortIcon>
           </th>
-          <th pSortableColumn="dateDebut">
-            dateDebut <p-sortIcon field="dateDebut"></p-sortIcon>
-          </th>
-          <th pSortableColumn="dateFin">
-            dateFin <p-sortIcon field="dateFin"></p-sortIcon>
-          </th>
+
           <th></th>
         </tr>
       </ng-template>
-      <ng-template pTemplate="body" let-intervention>
+      <ng-template pTemplate="body" let-stock>
         <tr>
           <td>
-            <p-tableCheckbox [value]="intervention"></p-tableCheckbox>
+            <p-tableCheckbox [value]="stock"></p-tableCheckbox>
           </td>
-          <td>{{ intervention.code }}</td>
-          <td>{{ intervention.libelle }}</td>
-          <td>{{ intervention.dateDeProbleme }}</td>
-          <td>{{ intervention.dateDebut }}</td>
-          <td>{{ intervention.dateFin }}</td>
+          <td>{{ stock.material.reference }}</td>
+          <td>{{ stock.magasin.reference }}</td>
+          <td>{{ stock.qte }}</td>
+
 
           <td>
             <button
@@ -92,21 +86,21 @@
               pRipple
               icon="pi pi-pencil"
               class="p-button-rounded p-button-success p-mr-2"
-              (click)="edit(intervention)"
+              (click)="edit(stock)"
             ></button>
             <button
               pButton
               pRipple
               icon="pi pi-list"
               class="p-button-rounded p-button-info p-mr-2"
-              (click)="view(intervention)"
+              (click)="view(stock)"
             ></button>
             <button
               pButton
               pRipple
               icon="pi pi-trash"
               class="p-button-rounded p-button-danger"
-              (click)="delete(intervention)"
+              (click)="delete(stock)"
             ></button>
           </td>
         </tr>
