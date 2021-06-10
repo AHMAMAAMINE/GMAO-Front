@@ -35,8 +35,13 @@ export class InterventionMembreEquipComponent implements OnInit {
   value: any;
   values: any;
   public edit(commande: InterventionMembreEquipe) {
-    this.collaborateur = {...commande};
-    this.editDialog = true;
+    this.values = commande.equipe.ref;
+    this.service.findByRef(this.values).subscribe(data => this.membres = data.membres );
+    this.value = commande.membreEquipe.collaborateur.codeCollaborateur;
+    this.selection = commande;
+    console.log(commande.id);
+    // this.editDialog = true;
+
   }
 
   ngOnInit(): void {
@@ -49,9 +54,14 @@ export class InterventionMembreEquipComponent implements OnInit {
     this.service.equipes = value;
   }
   saveCollaboraateur() {
-    this.serviceinterv.saveCollaboraateur();
-    this.value = '---select value-----';
-    this.values = '---select value-----';
+    if (this.serviceinterv.findIndexByRef(this.collaborateur.membreEquipe.collaborateur.codeCollaborateur, this.collaborateur.equipe.ref) !== -1 && this.MembresEquipe.length !== 0) {
+      alert('donner un membre equipe qui n est pas deja sauvegarder');
+    }
+    else {
+      this.serviceinterv.saveCollaboraateur();
+      this.value = '---select value-----';
+      this.values = '---select value-----';
+    }
   }
   get editDialog(): boolean {
     return this.serviceinterv.editDialog;
@@ -83,7 +93,24 @@ export class InterventionMembreEquipComponent implements OnInit {
     this.service.findByRef(this.collaborateur.equipe.ref).subscribe(data => this.membres = data.membres );
   }
 
-  selectEquip() {
-    return this.collaborateur.equipe.ref == null;
+
+  editliste(collaborateur: InterventionMembreEquipe) {
+    if (this.serviceinterv.findIndexByRef(collaborateur.membreEquipe.collaborateur.codeCollaborateur, collaborateur.equipe.ref) !== -1 && this.MembresEquipe.length !== 0) {
+      alert('donner un membre equipe qui n est pas deja sauvegarder');
+    }
+    else if (collaborateur.membreEquipe.collaborateur.codeCollaborateur && collaborateur.equipe.ref) {
+      this.serviceinterv.saveCollaboraateur();
+      this.MembresEquipe[this.serviceinterv.findIndexByRef(this.selection.membreEquipe.collaborateur.codeCollaborateur, this.selection.equipe.ref)] = collaborateur;
+
+      }
+
+  }
+  get selection(): InterventionMembreEquipe {
+
+    return this.serviceinterv.selection;
+  }
+
+  set selection(value: InterventionMembreEquipe) {
+    this.serviceinterv.selection = value;
   }
 }

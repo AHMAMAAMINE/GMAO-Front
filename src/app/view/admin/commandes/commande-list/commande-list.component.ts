@@ -74,7 +74,9 @@ export class CommandeListComponent implements OnInit {
 
     public edit(commande: Intervention) {
         this.service.findByCode(commande.code).subscribe(data => this.selected = data);
+        console.log(this.selected.etatIntervention.code)
         this.service.findByInterventionCode(commande.code).subscribe(data => this.service.collaborateurs = data);
+        // this.service.findByCodeInterv(commande.code)
         this.editDialog = true;
     }
     public view(commande: Intervention) {

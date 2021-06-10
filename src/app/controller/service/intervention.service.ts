@@ -15,6 +15,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class InterventionService {
+  private _selection: InterventionMembreEquipe;
   constructor(
     private http: HttpClient,
     private stockService: StockService,
@@ -124,11 +125,11 @@ export class InterventionService {
   }
   saveCollaboraateur() {
     this.collaborateur.intervention = this.selected;
-    this.collaborateurs.push(this._collaborateur);
-    this._codeCollaborateur =
-      this.collaborateur.membreEquipe.collaborateur.codeCollaborateur;
+    if (!this.editDialog) {
+      this.collaborateurs.push(this._collaborateur);
+    }
+    this._codeCollaborateur = this.collaborateur.membreEquipe.collaborateur.codeCollaborateur;
     this.selected.interventionMembreEquipe = this.collaborateurs;
-    console.log(this.collaborateurs);
     this._collaborateur = null;
   }
   saveStock() {
@@ -168,10 +169,10 @@ export class InterventionService {
     const stringifi = JSON.stringify(this.selected, this.getCircularReplacer());
     return this.http.post<Intervention>(this.url + '/', JSON.parse(stringifi));
   }
-  public update(index: number, intervention: Intervention) {
-    this.selected = this.selected;
-    this._index = index;
-  }
+  // public update(index: number, intervention: Intervention) {
+  //   this.selected = this.selected;
+  //   this._index = index;
+  // }
   // public findAll(){
   //   if (this.userService.User.role === 'admin') {
   //     this.http.get<Array<Intervention>>(this.url + '/').subscribe(
@@ -272,6 +273,16 @@ export class InterventionService {
   set collaborateurs(value: Array<InterventionMembreEquipe>) {
     this._collaborateurs = value;
   }
+  get selection(): InterventionMembreEquipe {
+    if (this._selection == null) {
+      this._selection = new InterventionMembreEquipe();
+    }
+    return this._selection;
+  }
+
+  set selection(value: InterventionMembreEquipe) {
+    this._selection = value;
+  }
 
   get materials(): Array<MateraialIntervention> {
     if (this._materials == null) {
@@ -337,4 +348,16 @@ export class InterventionService {
     findByInterventionCode(code: string) {
         return this.http.get<Array<InterventionMembreEquipe>>(this.urlmembre + '/intervcode/' + code);
     }
+
+  findIndexByRef(codeCollaborateur: string, ref: string): number {
+    let index = -1;
+    for (let i = 0; i < this.collaborateurs.length; i++) {
+      if (this.collaborateurs[i].membreEquipe.collaborateur.codeCollaborateur === codeCollaborateur && this.collaborateurs[i].equipe.ref === ref) {
+        index = i;
+        break;
+      }
+    }
+    return index;
+  }
+
 }
