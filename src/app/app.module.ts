@@ -187,6 +187,10 @@ import { EventService } from './demo/service/eventservice';
 import { NodeService } from './demo/service/nodeservice';
 import { CollaborateurListComponent } from './view/collaborateur/collaborateur-list/collaborateur-list.component';
 import { CollaborateurCreateComponent } from './view/collaborateur/collaborateur-create/collaborateur-create.component';
+import { MembreEquipeComponent } from './view/admin/equipes/membre-equipe/membre-equipe.component';
+import { DemandeCongeListComponent } from './view/chef-equipe/chef-equipe-demandeConge/demande-conge-list/demande-conge-list.component';
+import { DemandeCongeCreateComponent } from './view/chef-equipe/chef-equipe-demandeConge/demande-conge-create/demande-conge-create.component';
+import { ChefTacheComponent } from './view/chef-equipe/chef-tache/chef-tache.component';
 
 @NgModule({
   imports: [
@@ -374,6 +378,11 @@ import { CollaborateurCreateComponent } from './view/collaborateur/collaborateur
     ChefEquipeMenuItemComponent,
     CollaborateurListComponent,
     CollaborateurCreateComponent,
+    MembreEquipeComponent,
+    DemandeCongeListComponent,
+    DemandeCongeCreateComponent,
+    ChefTacheComponent,
+
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },

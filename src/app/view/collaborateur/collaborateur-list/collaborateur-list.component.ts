@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {DemandeCongeService} from '../../../controller/service/demande-conge.service';
+
 import {ConfirmationService, MessageService} from 'primeng/api';
-import {CollaborateurService} from '../../../controller/service/collaborateur.service';
-import {DemandeConge} from '../../../controller/model/demande-conge.model';
-import {Collaborateur} from '../../../controller/model/collaborateur.model';
+import { Collaborateur } from 'src/app/controller/model/collaborateur.model';
+import { CollaborateurService } from 'src/app/controller/service/collaborateur.service';
+
 
 @Component({
   selector: 'app-collaborateur-list',
@@ -35,10 +35,10 @@ export class CollaborateurListComponent implements OnInit {
     this.viewDialog = true;
   }
 
-  public delete(selected: DemandeConge) {
+  public delete(selected: Collaborateur) {
     this.collaborateur = this.collaborateur;
     this.confirmationService.confirm({
-      message: 'are you sure to delete ' + selected.code + '?',
+      message: 'are you sure to delete ' + this.collaborateur.codeCollaborateur + '?',
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {

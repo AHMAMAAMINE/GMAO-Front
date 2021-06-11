@@ -1,6 +1,6 @@
 <p-dialog
   [(visible)]="createDialog"
-  [style]="{ width: '500px' }"
+  [style]="{ width: '1000px' }"
   [modal]="true"
   styleClass="p-fluid"
 >
@@ -34,7 +34,7 @@
         >libelle is required.</small
       >
     </div>
-    <div class="p-field">
+   <div class="p-field">
       <label>Membre Equip</label>
       <select class="form-control" (change)="isSelected($event)" pInputText>
         <option *ngFor="let c of collaborateurs" [value]="c.codeCollaborateur">
@@ -48,6 +48,7 @@
       class="p-button-text"
       (click)="saveMembre()"
     ></button>
+      <app-membre-equipe></app-membre-equipe>
   </ng-template>
 
   <ng-template pTemplate="footer">
@@ -67,5 +68,6 @@
       class="p-button-text"
       (click)="save()"
     ></button>
+
   </ng-template>
 </p-dialog>

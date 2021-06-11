@@ -3,14 +3,13 @@ import {environment} from '../../../environments/environment';
 import {DemandeConge} from '../model/demande-conge.model';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {Collaborateur} from '../model/collaborateur.model';
-import {CollaborateurService} from './collaborateur.service';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class DemandeCongeService {
-  private url = environment.baseUrl + 'conge/';
+  private url = environment.baseUrl + '/conge/';
   private _items: Array<DemandeConge>;
   private _selected: DemandeConge;
   private _selectes: Array<DemandeConge>;
@@ -23,9 +22,13 @@ export class DemandeCongeService {
   public findAll(): Observable<Array<DemandeConge>> {
     return this.http.get<Array<DemandeConge>>(this.url);
   }
-  public save(): Observable<DemandeConge> {
-    return this.http.post<DemandeConge>(this.url, this.selected);
-  }
+  public save(){
+      this.selected = this.selected;
+      this.items.push(this._selected);
+      console.log(this.items);
+      this._selected = null;
+      return this.http.post<DemandeConge>(this.url, this.selected);
+    }
   public edit(): Observable<DemandeConge> {
     return this.http.put<DemandeConge>(this.url, this.selected);
   }
