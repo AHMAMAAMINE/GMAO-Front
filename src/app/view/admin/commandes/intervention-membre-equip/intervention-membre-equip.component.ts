@@ -8,7 +8,7 @@ import {MembreEquipe} from '../../../../controller/model/membre-equipe.model';
 import {Intervention} from '../../../../controller/model/intervention.model';
 import {EquipesService} from '../../../../controller/service/equipes.service';
 import {Equipe} from '../../../../controller/model/equipe.model';
-import {MembreEquipeService} from '../../../../controller/service/membre-equipe.service';
+
 
 @Component({
   selector: 'app-intervention-membre-equip',

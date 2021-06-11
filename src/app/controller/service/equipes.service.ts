@@ -9,6 +9,7 @@ import { MembreEquipe } from '../model/membre-equipe.model';
   providedIn: 'root',
 })
 export class EquipesService {
+  items: Equipe[];
   constructor(private http: HttpClient) {}
   //   private urlbase = 'http://localhost:8036';
   //   private url = 'http://localhost:8036/equipe/';
@@ -34,13 +35,20 @@ export class EquipesService {
   public findByRef(ref: string): Observable<Equipe>{
     return this.http.get<Equipe>(this.url + '/reference/' + ref);
   }
-  public save(): Observable<Equipe> {
+  public save() {
+    this.selectedEquipe = this.selectedEquipe;
+    this.equipes.push(this._selectedEquipe);
+    console.log(this.equipes);
+    this._selectedEquipe = null;
     return this.http.post<Equipe>(this.url, this.selectedEquipe);
   }
-  public saveMembre() {
-    this.selectedEquipe.membres.push(this.membre);
+  // public save(): Observable<Equipe> {
+    // return this.http.post<Equipe>(this.url, this.selectedEquipe);
+  // }
+  saveMembre() {
+    this.membres.push(this.membre);
+    console.log(this.membres);
   }
-
   public edit(): Observable<Equipe> {
     return this.http.put<Equipe>(this.url, this.selectedEquipe);
   }

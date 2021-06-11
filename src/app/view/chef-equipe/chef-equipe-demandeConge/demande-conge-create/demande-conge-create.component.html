@@ -1,16 +1,18 @@
-
-<p-dialog [(visible)]="createDialog" [style]="{width: '450px'}" header=" Creer un demande de conge" [modal]="true" styleClass="p-fluid ">
+<p-dialog [(visible)]="createDialog" [style]="{width: '450px'}" header=" Create a new request" [modal]="true" styleClass="p-fluid ">
     <ng-template pTemplate="content" >
-
-        <div class="p-field">
-            <label>Collaborateur</label>
-            <select class="form-control" (change)="isSelected($event)" pInputText>
-                <option *ngFor="let c of collaborateurs" [value]="c.codeCollaborateur">
-                    {{ c.fullname }}
-                </option>
-            </select>
+        <div class="p-grid">
+            <div class="p-field p-sm-12">
+                <select class="form-control" (change)="isSelected($event)" pInputText>
+                    <option *ngFor="let c of collaborateurs" [value]="c.codeCollaborateur">
+                        {{ c.fullname }}
+                    </option>
+                </select>
         </div>
-
+            <div class="p-field p-sm-12">
+                <label>Message  Collaborateur</label>
+                <textarea rows="5" cols="30" pInputTextarea autoResize="autoResize" [(ngModel)]="selected.messageCollaborateur"></textarea>
+            </div>
+        </div>
 
         <div class="p-grid">
             <div class="p-field p-sm-6">
@@ -24,39 +26,14 @@
                 <small class="p-invalid" *ngIf="submitted && !selected.dateFin">date is required.</small>
             </div>
         </div>
-        <div class="p-grid">
-            <div class="p-field p-sm-12">
-                <label>Ecrire un Message</label>
-                <textarea rows="5" cols="30" pInputTextarea autoResize="autoResize" [(ngModel)]="selected.messageCollaborateur"></textarea>
-            </div>
+        <div class="p-fluid">
+            <label>Commentaire</label>
+            <textarea rows="5" cols="30" pInputTextarea autoResize="autoResize" [(ngModel)]="selected.commentaireValidateur"></textarea>
         </div>
+
     </ng-template>
     <ng-template pTemplate="footer">
         <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideCreateDialog()"></button>
         <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="save()"></button>
     </ng-template>
 </p-dialog>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

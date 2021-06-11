@@ -2,17 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import {DemandeCongeService} from '../../../../controller/service/demande-conge.service';
 import {MessageService} from 'primeng/api';
 import {CollaborateurService} from '../../../../controller/service/collaborateur.service';
-import {EtatDemandeConge} from '../../../../controller/model/etat-demande-conge.model';
-import {Collaborateur} from '../../../../controller/model/collaborateur.model';
-import {DemandeConge} from '../../../../controller/model/demande-conge.model';
 import {EtatDemandeCongeService} from '../../../../controller/service/etat-demande-conge.service';
+import {DemandeConge} from '../../../../controller/model/demande-conge.model';
+import {Collaborateur} from '../../../../controller/model/collaborateur.model';
+import {EtatDemandeConge} from '../../../../controller/model/etat-demande-conge.model';
 
 @Component({
-  selector: 'app-collaborateur-demande-conge-create',
-  templateUrl: './collaborateur-demande-conge-create.component.html',
-  styleUrls: ['./collaborateur-demande-conge-create.component.scss']
+  selector: 'app-demande-conge-create',
+  templateUrl: './demande-conge-create.component.html',
+  styleUrls: ['./demande-conge-create.component.scss']
 })
-export class CollaborateurDemandeCongeCreateComponent implements OnInit {
+export class DemandeCongeCreateComponent implements OnInit {
 
   constructor(private demandeCongeService: DemandeCongeService,
               private messageService: MessageService,
@@ -20,8 +20,9 @@ export class CollaborateurDemandeCongeCreateComponent implements OnInit {
               private etatDemandeCongeService: EtatDemandeCongeService) { }
 
   ngOnInit(): void {
+    this.etatDemandeCongeService.findAll().subscribe(data => this.itemset = data);
     this.collaborateurService.findAll();
-    this.etatDemandeCongeService.findAll().subscribe(data => this.itemse = data);
+
   }
 
 
@@ -33,19 +34,40 @@ export class CollaborateurDemandeCongeCreateComponent implements OnInit {
   public save() {
     this.submitted = true;
     if (this.selected.code.trim()) {
+      console.log('http://localhost:8036/conge/');
+      console.log(this.selected);
       this.demandeCongeService.save().subscribe(data => {
-        this.items.push({...data});
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Successful',
-          detail: 'DemandeConge Created',
-          life: 3000
-        });
+        if (data == null){
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error Message',
+            detail: 'Unsaved holiday request',
+          });
+        }else{
+          this.selected = data;
+          if (this.selected.etatDemandeConge.code === 'e1'){
+            this.items.push({...data});
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Successful',
+              detail: 'Holiday Requesr created',
+              life: 3000
+            });
+          }else {
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Successful',
+              detail: 'Holiday Requesr created',
+              life: 3000
+            });
+          }
+        }
       });
       this.createDialog = false;
       this.selected = new DemandeConge();
     }
   }
+
   get selected(): DemandeConge {
     return this.demandeCongeService.selected;
   }
@@ -88,15 +110,11 @@ export class CollaborateurDemandeCongeCreateComponent implements OnInit {
   get collaborateurs(): Array<Collaborateur> {
     return this.collaborateurService.collaborateurs;
   }
-
-  set collaborateurs(value: Array<Collaborateur>) {
-    this.collaborateurService.collaborateurs = value;
-  }
-  get itemse(): Array<EtatDemandeConge> {
+  get itemset(): Array<EtatDemandeConge> {
     return this.etatDemandeCongeService.items;
   }
 
-  set itemse(value: Array<EtatDemandeConge>) {
+  set itemset(value: Array<EtatDemandeConge>) {
     this.etatDemandeCongeService.items = value;
   }
 

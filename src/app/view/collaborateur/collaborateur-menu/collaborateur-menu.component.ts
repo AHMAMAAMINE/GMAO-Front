@@ -69,7 +69,7 @@ export class CollaborateurMenuComponent implements OnInit {
         routerLink: ["collaborateur/demande/conge"],
       },
       {
-        label: "suuuuuuuz",
+        label: "ajouter collaborateur",
         icon: "pi pi-fw pi-tablet",
         routerLink: ["list"],
       },

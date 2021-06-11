@@ -15,35 +15,11 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class InterventionService {
-  private _selection: InterventionMembreEquipe;
-  private urlmaterial = environment.baseUrl + '/MaterialIntervention-api/Materialintervention' ;
   constructor(
     private http: HttpClient,
     private stockService: StockService,
     private userService: UserService
   ) {}
-  public _selected: Intervention;
-  public _items: Array<Intervention>;
-  private _collaborateurs = this.selected.interventionMembreEquipe;
-  private _collaborateur: InterventionMembreEquipe;
-  private _codeCollaborateur =
-    this.collaborateur.membreEquipe.collaborateur.codeCollaborateur;
-  private _materialInterventions = this.selected.materaialInterventions;
-  private _materialIntervention: MateraialIntervention;
-  private _conseilIntervention: Conseils;
-  private _conseilInterventions: Array<Conseils>;
-  private url = environment.baseUrl + '/Intervention-api/intervention';
-  private _selectes: Array<Intervention>;
-  private _index: number;
-  private _createDialog: boolean;
-  private _editDialog: boolean;
-  private _viewDialog: boolean;
-  private _submitted: boolean;
-  urlmembre =
-    environment.baseUrl +
-    '/Collaborateurintervention-api/Collaborateurintervention';
-  urlCriteria = 'http://localhost:8036/Intervention-api/intervention/criteria';
-  private _interventionVo: InterventionVo;
   get conseilIntervention(): Conseils {
     if (this._conseilIntervention == null) {
       this._conseilIntervention = new Conseils();
@@ -53,6 +29,17 @@ export class InterventionService {
 
   set conseilIntervention(value: Conseils) {
     this._conseilIntervention = value;
+  }
+
+  get iteams(): Conseils {
+    if (this._iteams == null) {
+      this._iteams = new Conseils();
+    }
+    return this._iteams;
+  }
+
+  set iteams(value: Conseils) {
+    this._iteams = value;
   }
 
   get conseilInterventions(): Array<Conseils> {
@@ -108,127 +95,6 @@ export class InterventionService {
 
   set collaborateur(value: InterventionMembreEquipe) {
     this._collaborateur = value;
-  }
-
-  private _materials: Array<MateraialIntervention>;
-  private _etatIntervention: EtatIntervention;
-
-  public findByCriteria() {
-    this.http
-      .post<Array<Intervention>>(this.urlCriteria, this.interventionVo)
-      .subscribe(
-        (data) => {
-          this.items = data;
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
-  }
-  saveCollaboraateur() {
-    this.collaborateur.intervention = this.selected;
-    if (!this.editDialog) {
-      this.collaborateurs.push(this._collaborateur);
-    }
-    this._codeCollaborateur =
-      this.collaborateur.membreEquipe.collaborateur.codeCollaborateur;
-    this.selected.interventionMembreEquipe = this.collaborateurs;
-    this._collaborateur = null;
-  }
-  saveStock() {
-    this.materialIntervention.intervention = this.selected;
-    this.materialIntervention.collaborateur.codeCollaborateur =
-      this._codeCollaborateur;
-    if (!this.editDialog)
-    {
-      this.materialInterventions.push(this._materialIntervention);
-    }
-    this.selected.materaialInterventions = this.materialInterventions;
-    this.stockService.selected = null;
-    // this.materialIntervention.push(this.materialIntervention);
-  }
-  saveConseil() {
-    this.conseilIntervention.intervention = this.selected;
-    this.conseilIntervention.collaborateur.codeCollaborateur =
-      this._codeCollaborateur;
-    this.conseilInterventions.push(this._conseilIntervention);
-    this.selected.conseils = this.conseilInterventions;
-    this._conseilIntervention = null;
-  }
-  public edit(): Observable<Intervention> {
-    return this.http.put<Intervention>(this.url, this.selected);
-  }
-  getCircularReplacer = () => {
-    const seen = new WeakSet();
-    return (key, value) => {
-      if (typeof value === 'object' && value !== null) {
-        if (seen.has(value)) {
-          return;
-        }
-        seen.add(value);
-      }
-      return value;
-    };
-  }
-
-  public save(): Observable<Intervention> {
-    const stringifi = JSON.stringify(this.selected, this.getCircularReplacer());
-    return this.http.post<Intervention>(this.url + '/', JSON.parse(stringifi));
-  }
-  // public update(index: numb0er, intervention: Intervention) {
-  //   this.selected = this.selected;
-  //   this._index = index;
-  // }
-  // public findAll(){
-  //   if (this.userService.User.role === 'admin') {
-  //     this.http.get<Array<Intervention>>(this.url + '/').subscribe(
-  //       data => {
-  //         this.items = data;
-  //       }
-  //       // }, error => {
-  //       //   console.log(error); }
-  //     );
-  //   }
-  //   else {// (this.userService.User.role === 'collaborateur')
-  // this.http.get<Array<Intervention>>(this.url + '/codeCollan/' + this.userService.User.collaborateur.codeCollaborateur).subscribe(
-  //   data => {
-  //     this.items = data;
-  //   }
-  // );
-  //   }
-  // }
-  public findAll(): Observable<Array<Intervention>> {
-    return this.http.get<Array<Intervention>>(this.url + '/');
-  }
-
-  deleteByCode() {
-    return this.http.delete<number>(
-      this.url + '/deleteCode/' + this.selected.code
-    );
-  }
-  public deleteIndexById(id: number) {
-    this.items.splice(this.findIndexById(id), 1);
-  }
-  public findIndexById(id: number): number {
-    let index = -1;
-    for (let i = 0; i < this.items.length; i++) {
-      if (this.items[i].id === id) {
-        index = i;
-        break;
-      }
-    }
-    return index;
-  }
-  deleteMultipleByReference() {
-    return this.http.post<number>(
-      this.url + 'delete-multiple-by-reference',
-      this.selectes
-    );
-  }
-  public deleteMultipleIndexById() {
-    for (const item of this.selectes) {
-      this.deleteIndexById(item.id);
-    }
   }
   get createDialog(): boolean {
     return this._createDialog;
@@ -333,6 +199,155 @@ export class InterventionService {
   set items(value: Array<Intervention>) {
     this._items = value;
   }
+  private _selection: InterventionMembreEquipe;
+  private urlmaterial = environment.baseUrl + '/MaterialIntervention-api/Materialintervention' ;
+  public _selected: Intervention;
+  public _items: Array<Intervention>;
+  private _collaborateurs = this.selected.interventionMembreEquipe;
+  private _collaborateur: InterventionMembreEquipe;
+  private _codeCollaborateur =
+    this.collaborateur.membreEquipe.collaborateur.codeCollaborateur;
+  private _materialInterventions = this.selected.materaialInterventions;
+  private _materialIntervention: MateraialIntervention;
+  private _conseilIntervention: Conseils;
+  private _iteams: Conseils;
+  private _conseilInterventions: Array<Conseils>;
+  private url = environment.baseUrl + '/Intervention-api/intervention';
+  private _selectes: Array<Intervention>;
+  private _index: number;
+  private _createDialog: boolean;
+  private _editDialog: boolean;
+  private _viewDialog: boolean;
+  private _submitted: boolean;
+  urlmembre =
+    environment.baseUrl +
+    '/Collaborateurintervention-api/Collaborateurintervention';
+  urlCriteria = 'http://localhost:8036/Intervention-api/intervention/criteria';
+  private _interventionVo: InterventionVo;
+
+  private _materials: Array<MateraialIntervention>;
+  private _etatIntervention: EtatIntervention;
+  urlconsigne = environment.baseUrl + '/GMAO/Conseils-api';
+
+  public findByCriteria() {
+    this.http
+      .post<Array<Intervention>>(this.urlCriteria, this.interventionVo)
+      .subscribe(
+        (data) => {
+          this.items = data;
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+  }
+  saveCollaboraateur() {
+    this.collaborateur.intervention = this.selected;
+    if (!this.editDialog) {
+      this.collaborateurs.push(this._collaborateur);
+    }
+    this._codeCollaborateur =
+      this.collaborateur.membreEquipe.collaborateur.codeCollaborateur;
+    this.selected.interventionMembreEquipe = this.collaborateurs;
+    this._collaborateur = null;
+  }
+  saveStock() {
+    this.materialIntervention.intervention = this.selected;
+    this.materialIntervention.collaborateur.codeCollaborateur =
+      this._codeCollaborateur;
+    if (!this.editDialog)
+    {
+      this.materialInterventions.push(this._materialIntervention);
+    }
+    this.selected.materaialInterventions = this.materialInterventions;
+    this.stockService.selected = null;
+    // this.materialIntervention.push(this.materialIntervention);
+  }
+  saveConseil() {
+    this.conseilIntervention.intervention = this.selected;
+    this.conseilIntervention.collaborateur.codeCollaborateur =
+      this._codeCollaborateur;
+    if (!this.editDialog) {
+     this.conseilInterventions.push(this._conseilIntervention);
+    }
+    this.selected.conseils = this.conseilInterventions;
+    this._conseilIntervention = null;
+  }
+  public edit(): Observable<Intervention> {
+    return this.http.put<Intervention>(this.url, this.selected);
+  }
+  getCircularReplacer = () => {
+    const seen = new WeakSet();
+    return (key, value) => {
+      if (typeof value === 'object' && value !== null) {
+        if (seen.has(value)) {
+          return;
+        }
+        seen.add(value);
+      }
+      return value;
+    };
+  }
+
+  public save(): Observable<Intervention> {
+    const stringifi = JSON.stringify(this.selected, this.getCircularReplacer());
+    return this.http.post<Intervention>(this.url + '/', JSON.parse(stringifi));
+  }
+  // public update(index: numb0er, intervention: Intervention) {
+  //   this.selected = this.selected;
+  //   this._index = index;
+  // }
+  // public findAll(){
+  //   if (this.userService.User.role === 'admin') {
+  //     this.http.get<Array<Intervention>>(this.url + '/').subscribe(
+  //       data => {
+  //         this.items = data;
+  //       }
+  //       // }, error => {
+  //       //   console.log(error); }
+  //     );
+  //   }
+  //   else {// (this.userService.User.role === 'collaborateur')
+  // this.http.get<Array<Intervention>>(this.url + '/codeCollan/' + this.userService.User.collaborateur.codeCollaborateur).subscribe(
+  //   data => {
+  //     this.items = data;
+  //   }
+  // );
+  //   }
+  // }
+  public findAll(): Observable<Array<Intervention>> {
+    return this.http.get<Array<Intervention>>(this.url + '/');
+  }
+
+  deleteByCode() {
+    return this.http.delete<number>(
+      this.url + '/deleteCode/' + this.selected.code
+    );
+  }
+  public deleteIndexById(id: number) {
+    this.items.splice(this.findIndexById(id), 1);
+  }
+  public findIndexById(id: number): number {
+    let index = -1;
+    for (let i = 0; i < this.items.length; i++) {
+      if (this.items[i].id === id) {
+        index = i;
+        break;
+      }
+    }
+    return index;
+  }
+  deleteMultipleByReference() {
+    return this.http.post<number>(
+      this.url + 'delete-multiple-by-reference',
+      this.selectes
+    );
+  }
+  public deleteMultipleIndexById() {
+    for (const item of this.selectes) {
+      this.deleteIndexById(item.id);
+    }
+  }
 
   public findByCode(code: string) {
     return this.http.get<Intervention>(this.url + '/findCode/' + code);
@@ -382,7 +397,6 @@ export class InterventionService {
         break;
       }
     }
-    console.log(index);
     return index;
   }
   delete(codeCollaborateur: string, ref: string) {
@@ -402,4 +416,25 @@ export class InterventionService {
     deleteMaterial(Mag: string , Mat: string) {
         return this.http.delete(this.urlmaterial + '/material/' + Mat + '/Mag/' + Mag);
     }
+  findByCodeIntervention(code: string) {
+    return this.http.get<Array<Conseils>>(this.urlconsigne + '/intervention/' + code);
+  }
+
+  findIndexByRefa(message: string, codeCollaborateur: string) {
+    let index = -1;
+    for (let i = 0; i < this.conseilInterventions.length; i++) {
+      if (
+          this.conseilInterventions[i].message === message &&
+          this.conseilInterventions[i].collaborateur.codeCollaborateur === codeCollaborateur
+      ) {
+        index = i;
+        break;
+      }
+    }
+    return index;
+  }
+
+  deletes(codeCollaborateur: string, message: string) {
+    return this.http.delete(this.urlconsigne + '/code/' + codeCollaborateur + '/message/' + message);
+  }
 }

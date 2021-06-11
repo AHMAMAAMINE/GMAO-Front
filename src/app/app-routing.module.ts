@@ -22,8 +22,10 @@ import { ChefEquipeSignUpComponent } from "./view/chef-equipe/chef-equipe-connec
 import { HomeComponent } from "./view/home/home.component";
 import { SignInCollaborateurComponent } from "./view/collaborateur/connection-collaborateur/sign-in-collaborateur/sign-in-collaborateur.component";
 import { SignUpCollaborateurComponent } from "./view/collaborateur/connection-collaborateur/sign-up-collaborateur/sign-up-collaborateur.component";
-import {StockCreateComponent} from './view/admin/stock/stock-create/stock-create.component';
-import {StockJdidComponent} from './view/admin/stock-jdid/stock-jdid.component';
+import { StockCreateComponent } from "./view/admin/stock/stock-create/stock-create.component";
+import { StockJdidComponent } from "./view/admin/stock-jdid/stock-jdid.component";
+import { DemandeCongeListComponent } from "./view/chef-equipe/chef-equipe-demandeConge/demande-conge-list/demande-conge-list.component";
+import { ChefEquipeTacheListComponent } from "./view/chef-equipe/chef-tache/chef-equipe-tache-list/chef-equipe-tache-list.component";
 
 @NgModule({
   imports: [
@@ -37,16 +39,23 @@ import {StockJdidComponent} from './view/admin/stock-jdid/stock-jdid.component';
         {
           path: "chef-equipe",
           component: ChefEquipeMainComponent,
-          children: [{ path: "", component: DashboardDemoComponent }],
+          children: [
+            { path: "", component: DashboardDemoComponent },
+            { path: "chef-equipe-conge", component: DemandeCongeListComponent },
+            {
+              path: "chef-equipe-tache",
+              component: ChefEquipeTacheListComponent,
+            },
+          ],
         },
         {
           path: "admin",
           component: AdminMainComponent,
           children: [
             // { path: "", component: DashboardDemoComponent },
-              {path:"", component: StockComponent},
+            { path: "", component: StockComponent },
             { path: "view/commande", component: CommandesComponent },
-              {path: "view/stock-jadid",component:StockJdidComponent},
+            { path: "view/stock-jadid", component: StockJdidComponent },
             { path: "view/stock", component: StockComponent },
             { path: "view/equipes", component: EquipesComponent },
             { path: "view/operation", component: OperationStockComponent },
