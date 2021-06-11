@@ -23,6 +23,7 @@ import { HomeComponent } from "./view/home/home.component";
 import { SignInCollaborateurComponent } from "./view/collaborateur/connection-collaborateur/sign-in-collaborateur/sign-in-collaborateur.component";
 import { SignUpCollaborateurComponent } from "./view/collaborateur/connection-collaborateur/sign-up-collaborateur/sign-up-collaborateur.component";
 import {DemandeCongeListComponent} from './view/chef-equipe/chef-equipe-demandeConge/demande-conge-list/demande-conge-list.component';
+import {ChefEquipeTacheListComponent} from './view/chef-equipe/chef-tache/chef-equipe-tache-list/chef-equipe-tache-list.component';
 
 @NgModule({
   imports: [
@@ -39,6 +40,7 @@ import {DemandeCongeListComponent} from './view/chef-equipe/chef-equipe-demandeC
           children: [
               { path: "", component: DashboardDemoComponent },
               { path: "chef-equipe-conge", component: DemandeCongeListComponent },
+              { path: "chef-equipe-tache", component: ChefEquipeTacheListComponent },
           ],
         },
         {

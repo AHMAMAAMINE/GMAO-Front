@@ -193,6 +193,8 @@ import { MembreEquipeComponent } from './view/admin/equipes/membre-equipe/membre
 import { DemandeCongeCreateComponent } from './view/chef-equipe/chef-equipe-demandeConge/demande-conge-create/demande-conge-create.component';
 import { DemandeCongeListComponent } from './view/chef-equipe/chef-equipe-demandeConge/demande-conge-list/demande-conge-list.component';
 import { ChefTacheComponent } from './view/chef-equipe/chef-tache/chef-tache.component';
+import { ChefEquipeTacheCreateComponent } from './view/chef-equipe/chef-tache/chef-equipe-tache-create/chef-equipe-tache-create.component';
+import { ChefEquipeTacheListComponent } from './view/chef-equipe/chef-tache/chef-equipe-tache-list/chef-equipe-tache-list.component';
 
 @NgModule({
   imports: [
@@ -387,6 +389,8 @@ import { ChefTacheComponent } from './view/chef-equipe/chef-tache/chef-tache.com
     StockViewComponent,
     StockListComponent,
     SearchInterventionComponent,
+    ChefEquipeTacheCreateComponent,
+    ChefEquipeTacheListComponent,
 
   ],
   providers: [
