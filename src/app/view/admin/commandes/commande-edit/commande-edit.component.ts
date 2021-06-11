@@ -11,6 +11,7 @@ import {InterventionService} from '../../../../controller/service/intervention.s
 export class InterventionEditComponent implements OnInit {
 
     constructor(private messageService: MessageService, private service: InterventionService) {
+
     }
 
     ngOnInit(): void {

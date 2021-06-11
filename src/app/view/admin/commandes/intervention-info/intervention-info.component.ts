@@ -9,7 +9,9 @@ import {InterventionService} from '../../../../controller/service/intervention.s
 })
 export class InterventionInfoComponent implements OnInit {
 
-  constructor(private service: InterventionService) { }
+  constructor(private service: InterventionService) {
+
+  }
 
   get intervention(): Intervention {
     return this.service.selected;
@@ -19,6 +21,7 @@ export class InterventionInfoComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
   }
   get selected(): Intervention {
     return this.service.selected;

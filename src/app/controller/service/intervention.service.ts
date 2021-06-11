@@ -263,20 +263,24 @@ export class InterventionService {
       );
   }
   saveCollaboraateur() {
-    this.collaborateur.intervention = this.selected;
-    if (!this.editDialog || this.collaborateurs.length === 0) {
-      this.collaborateurs.push(this._collaborateur);
+    if (this.findIndexByRef(this.collaborateur.membreEquipe.collaborateur.codeCollaborateur, this.collaborateur.equipe.ref) === -1)
+    {
+      this.collaborateur.intervention = this.selected;
+      if (!this.editDialg) {
+        this.collaborateurs.push(this._collaborateur);
+      }
+      this._codeCollaborateur =
+          this.collaborateur.membreEquipe.collaborateur.codeCollaborateur;
+      this.selected.interventionMembreEquipe = this.collaborateurs;
+      console.log(this.collaborateurs)
     }
-    this._codeCollaborateur =
-      this.collaborateur.membreEquipe.collaborateur.codeCollaborateur;
-    this.selected.interventionMembreEquipe = this.collaborateurs;
-    this._collaborateur = null;
+    this.collaborateur = null;
   }
   saveStock() {
     this.materialIntervention.intervention = this.selected;
     this.materialIntervention.collaborateur.codeCollaborateur =
       this._codeCollaborateur;
-    if (!this.editDialog || this.materialInterventions.length === 0)
+    if (!this.editDialg )
     {
       this.materialInterventions.push(this._materialIntervention);
     }
@@ -288,18 +292,19 @@ export class InterventionService {
     this.conseilIntervention.intervention = this.selected;
     this.conseilIntervention.collaborateur.codeCollaborateur =
       this._codeCollaborateur;
-    if (!this.editDialog || this.conseilInterventions.length === 0) {
+    if (!this.editDialg) {
      this.conseilInterventions.push(this._conseilIntervention);
     }
     this.selected.conseils = this.conseilInterventions;
     this._conseilIntervention = null;
   }
   public edit(): Observable<Intervention> {
-    this.selected.interventionMembreEquipe = this.collaborateurs;
-    this.selected.materaialInterventions = this.materialInterventions;
-    this.selected.conseils = this.conseilInterventions;
+    // this.selected.interventionMembreEquipe = this.collaborateurs;
+    // this.selected.materaialInterventions = this.materialInterventions;
+    // this.selected.conseils = this.conseilInterventions;
     console.log(this.selected);
-    return this.http.put<Intervention>(this.url + '/code/' + this.interv.code, this.selected);
+    const stringifi = JSON.stringify(this.selected, this.getCircularReplacer());
+    return this.http.put<Intervention>(this.url + '/code/' + this.interv.code,  JSON.parse(stringifi));
   }
   getCircularReplacer = () => {
     const seen = new WeakSet();
@@ -413,6 +418,7 @@ export class InterventionService {
   }
   findIndexByRefs(referenceMAg: string, Mat: string): number {
     let index = -1;
+    console.log(this.materialInterventions.length);
     for (let i = 0; i < this.materialInterventions.length; i++) {
       if (
           this.materialInterventions[i].magasin.reference === referenceMAg &&
@@ -424,13 +430,13 @@ export class InterventionService {
     }
     return index;
   }
-  delete(codeCollaborateur: string, ref: string) {
+  delete(interv: string , codeCollaborateur: string, ref: string) {
     return this.http.delete<number>(
       this.urlmembre +
         '/CollaborateurCod/' +
         codeCollaborateur +
         '/Equipe/' +
-        ref
+        ref + '/interv/' + interv
     );
   }
 
@@ -438,8 +444,8 @@ export class InterventionService {
         return this.http.get<Array<MateraialIntervention>>(this.urlmaterial + '/intervention/' + code);
     }
 
-    deleteMaterial(Mag: string , Mat: string) {
-        return this.http.delete(this.urlmaterial + '/material/' + Mat + '/Mag/' + Mag);
+    deleteMaterial(interv: string , Mag: string , Mat: string) {
+        return this.http.delete(this.urlmaterial + '/material/' + Mat + '/Mag/' + Mag + '/interv/' + interv);
     }
   findByCodeIntervention(code: string) {
     return this.http.get<Array<Conseils>>(this.urlconsigne + '/intervention/' + code);
@@ -459,7 +465,7 @@ export class InterventionService {
     return index;
   }
 
-  deletes(codeCollaborateur: string, message: string) {
-    return this.http.delete(this.urlconsigne + '/code/' + codeCollaborateur + '/message/' + message);
+  deletes(interv: string, codeCollaborateur: string, message: string) {
+    return this.http.delete(this.urlconsigne + '/code/' + codeCollaborateur + '/message/' + message + '/interv/' + interv);
   }
 }

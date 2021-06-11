@@ -27,9 +27,9 @@ export class InterventionStockComponent implements OnInit {
     private materialService: MaterialService,
     private magasinService: MagasinService
   ) {
-    if (!this.editDialog){
-      this.stock.qte = null;
-    }
+    // if (!this.editDialog){
+    //   this.stock.qte = null;
+    // }
   }
 
   get selectes(): Array<Intervention> {
@@ -120,6 +120,13 @@ export class InterventionStockComponent implements OnInit {
   set materialInterventions(value: MateraialIntervention[]) {
     this.service.materialInterventions = value;
   }
+  get editDialg(): boolean {
+    return this.service.editDialg;
+  }
+
+  set editDialg(value: boolean) {
+    this.service.editDialg = value;
+  }
   get editDialog(): boolean {
     return this.service.editDialog;
   }
@@ -133,26 +140,41 @@ export class InterventionStockComponent implements OnInit {
     this.valeur = commande.material.reference;
     this.stock.qte = commande.qte;
     this.selection = commande;
-    // this.editDialog = true;
+    this.editDialg = true;
 
   }
 
   editliste(collaborateur: Stock) {
-    if (this.service.findIndexByRefs(collaborateur.magasin.reference, collaborateur.material.reference) !== -1 && this.stocks.length !== 0) {
+    if (this.service.findIndexByRefs(collaborateur.magasin.reference, collaborateur.material.reference) !== -1 && this.materialInterventions.length !== 0) {
       alert('donner un membre equipe qui n est pas deja sauvegarder');
     }
     else if ( collaborateur.magasin.reference && collaborateur.material.reference) {
+      const materialintervention = new MateraialIntervention();
+      materialintervention.material = collaborateur.material;
+      materialintervention.magasin = collaborateur.magasin;
+      materialintervention.qte = collaborateur.qte;
+      this.service.materialIntervention = materialintervention;
       this.service.saveStock();
       const v = this.service.findIndexByRefs(this.selection.magasin.reference, this.selection.material.reference);
-      this.materialInterventions[v].qte = collaborateur.qte;
-      this.materialInterventions[v].magasin.reference = collaborateur.magasin.reference;
-      this.materialInterventions[v].material.reference = collaborateur.material.reference;
-
+      if (v > -1)
+      {
+        this.materialInterventions[v].qte = collaborateur.qte;
+        this.materialInterventions[v].magasin.reference = collaborateur.magasin.reference;
+        this.materialInterventions[v].material.reference = collaborateur.material.reference;
+        this.valeur = '---select value-----';
+        this.velues = '---select value-----';
+      }
+      this.editDialg = false;
     }
   }
 
-  delete(stock: Stock) {
-    this.service.deleteMaterial(stock.magasin.reference, stock.material.reference).subscribe();
-    this.materialInterventions.splice(this.service.findIndexByRefs(stock.magasin.reference, stock.material.reference)) ;
+  delete(stock: MateraialIntervention) {
+    this.service.deleteMaterial(stock.intervention.code, stock.magasin.reference, stock.material.reference).subscribe(
+        data => {
+          if (data > 0) {
+            this.materialInterventions.splice(this.service.findIndexByRefs(stock.magasin.reference, stock.material.reference));
+          }
+        }
+    );
   }
 }
