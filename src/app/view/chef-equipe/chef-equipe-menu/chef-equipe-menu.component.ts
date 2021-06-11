@@ -39,6 +39,9 @@ export class ChefEquipeMenuComponent implements OnInit {
       {
         label: 'demande Conge', icon: 'pi pi-fw pi-tablet', routerLink: ['chef-equipe-conge']
       } ,
+      {
+        label: 'tache', icon: 'pi pi-fw pi-tablet', routerLink: ['chef-equipe-tache']
+      } ,
     ];
   }
 
