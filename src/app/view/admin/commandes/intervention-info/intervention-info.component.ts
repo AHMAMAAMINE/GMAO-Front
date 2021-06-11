@@ -29,6 +29,13 @@ export class InterventionInfoComponent implements OnInit {
   get submitted(): boolean {
     return this.service.submitted;
   }
+  get viewDialog(): boolean {
+    return this.service.viewDialog;
+  }
+
+  set viewDialog(value: boolean) {
+    this.service.viewDialog = value;
+  }
 
   set submitted(value: boolean) {
     this.service.submitted = value;

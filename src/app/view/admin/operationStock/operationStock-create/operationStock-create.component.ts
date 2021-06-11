@@ -43,10 +43,11 @@ export class OperationStockCreateComponent implements OnInit {
     }
     public save() {
         this.submitted = true;
-        if (this.selected.magasinSource.trim()) {
+        console.log("s")
+
             this.service.save().subscribe(data => {
-                // this.items.push({...data});
-                this.messageService.add({
+                    console.log(data)
+                    this.messageService.add({
                     severity: 'success',
                     summary: 'Successful',
                     detail: 'Operation Stock Created',
@@ -55,7 +56,7 @@ export class OperationStockCreateComponent implements OnInit {
             });
             this.createDialog = false;
             this.selected = new OperationStock();
-        }
+
 
     }
     get materials(): Array<Material> {

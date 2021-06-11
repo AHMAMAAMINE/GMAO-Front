@@ -55,6 +55,7 @@ export class OperationstockService {
     deleteByRef() {
     }
   public save() {
+      console.log(this.selected)
     return this.http.post(this.url + '/', this.selected);
   }
   public update(index: number, operationStock: OperationStock) {

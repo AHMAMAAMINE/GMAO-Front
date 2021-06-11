@@ -134,4 +134,11 @@ export class InterventionMembreEquipComponent implements OnInit {
         }
     );
   }
+  get viewDialog(): boolean {
+    return this.service.viewDialog;
+  }
+
+  set viewDialog(value: boolean) {
+    this.service.viewDialog = value;
+  }
 }

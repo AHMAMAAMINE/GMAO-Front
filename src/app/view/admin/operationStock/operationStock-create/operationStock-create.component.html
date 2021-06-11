@@ -5,7 +5,7 @@
         <div class="p-field">
             <label for=""><b>Magasin Source:</b></label>
             <select class="form-control" pInputText (change)="isSelected($event)">
-
+                <option [value]=''>---select value-----</option>
                 <option *ngFor="let c of magasins" > {{c.reference}}</option>
             </select>
             <small class="p-invalid" *ngIf="submitted && !selected.magasinSource.reference">magasin is required.</small>
@@ -14,7 +14,7 @@
         <div class="p-field">
             <label for=""><b>Magasin Destination:</b></label>
             <select class="form-control" pInputText (change)="isSelect($event)">
-
+                <option [value]=''>---select value-----</option>
                 <option *ngFor="let c of magasins" > {{c.reference}}</option>
             </select>
             <small class="p-invalid" *ngIf="submitted && !selected.magasinDestination.reference">magasin is required.</small>
@@ -23,7 +23,7 @@
         <div class="p-field">
             <label for=""><b>Matériel:</b></label> <br>
             <select class="form-control" pInputText (change)="isSelects($event)">
-
+                <option [value]=''>---select value-----</option>
                 <option *ngFor="let c of materials" > {{c.reference}}</option>
             </select>            <small class="p-invalid" *ngIf="submitted && !selected.material">materiel is required.</small>
         </div>
@@ -34,9 +34,7 @@
         <!--    <small class="p-invalid" *ngIf="submitted && !selected.qte.toPrecision()">quantite is required.</small>  -->
         </div>
       </div>
-     <!--   <p-tabPanel leftIcon="pi pi-info-circle" header="Détail d'Opération Stock">
-            <app-operationStock-detail></app-operationStock-detail>
-        </p-tabPanel> -->
+
 
     </ng-template>
             <ng-template pTemplate="footer">

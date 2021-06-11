@@ -82,8 +82,10 @@ export class CommandeListComponent implements OnInit {
         this.editDialog = true;
     }
     public view(commande: Intervention) {
-        this.findByCode(commande.code);
-        this.selected = {...commande};
+        this.service.findByCode(commande.code).subscribe(data => this.selected = data);
+        this.service.findByInterventionCode(commande.code).subscribe(data => this.service.collaborateurs = data);
+        this.service.findByCodeInterv(commande.code).subscribe(data => this.service.materialInterventions = data);
+        this.service.findByCodeIntervention(commande.code).subscribe(data => this.service.conseilInterventions = data);
         this.viewDialog = true;
     }
 
