@@ -128,13 +128,13 @@ export class EquipeListComponent implements OnInit {
       this.service.viewDialog = value;
   }
 
-  get selectesEquipe(): Array<Equipe> {
-      return this.service.selectesEquipe;
-  }
+    get selectesEquipe(): Array<Equipe> {
+        return this.service.selectesEquipe;
+    }
 
-  set selectesEquipe(value: Array<Equipe>) {
-      this.service.selectesEquipe = value;
-  }
+    set selectesEquipe(value: Array<Equipe>) {
+        this.service.selectesEquipe = value;
+    }
 
 
 }

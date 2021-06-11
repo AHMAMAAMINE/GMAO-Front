@@ -24,6 +24,9 @@ export class MembreEquipeComponent implements OnInit {
   set membres(value: Array<MembreEquipe>) {
     this.equipeService.membres = value;
   }
+  get membres(): Array<MembreEquipe> {
+    return this.equipeService.membres ;
+  }
 
   get createDialog(): boolean {
     return this.equipeService.createDialog;
@@ -48,5 +51,11 @@ export class MembreEquipeComponent implements OnInit {
     return this.equipeService.equipes;
   }
 
+  get selectesEquipe(): Array<Equipe> {
+    return this.equipeService.selectesEquipe;
+  }
 
+  set selectesEquipe(value: Array<Equipe>) {
+    this.equipeService.selectesEquipe = value;
+  }
 }

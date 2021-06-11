@@ -37,7 +37,17 @@
    <div class="p-field">
       <label>Membre Equip</label>
       <select class="form-control" (change)="isSelected($event)" pInputText>
-        <option *ngFor="let c of collaborateurs" [value]="c.codeCollaborateur">
+          <option [value]=''>---select value-----</option>
+          <option *ngFor="let c of collaborateurs" [value]="c.codeCollaborateur">
+          {{ c.fullname }}
+        </option>
+      </select>
+    </div>
+    <div class="p-field">
+      <label>chef equipe</label>
+      <select class="form-control" (change)="isSelecte($event)" pInputText>
+          <option [value]=''>---select value-----</option>
+          <option *ngFor="let c of collaborateurs" [value]="c.codeCollaborateur">
           {{ c.fullname }}
         </option>
       </select>

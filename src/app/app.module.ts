@@ -352,11 +352,8 @@ import { ChefEquipeTacheListComponent } from "./view/chef-equipe/chef-tache/chef
     HomeComponent,
     HomePageComponent,
     AppMenuitemComponent,
-
     CollaborateurMenuComponent,
-
     CollaborateurComponent,
-
     CollaborateurMainComponent,
     CollaborateurTopBarComponent,
     CollaborateurRightMenuComponent,

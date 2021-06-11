@@ -1,6 +1,6 @@
 <div class="card" style="height: 1000px">
 
-    <p-table  [value]="membres" [columns]="cols" [rows]="4" [paginator]="true" [globalFilterFields]="['reference','total','totalPaye']"
+    <p-table  [value]="selectesEquipe" [columns]="cols" [rows]="4" [paginator]="true" [globalFilterFields]="['reference','total','totalPaye']"
               [(selection)]="membres" [rowHover]="true" dataKey="id"
               styleClass="p-datatable-customers"
               currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
@@ -14,17 +14,23 @@
                 <th style="width: 3rem">
                     <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                 </th>
-                <th>collaborateur</th>
+                <th>Reference</th>
+                <th>libelle</th>
+                <th>Membre equipe</th>
+                <th>Chef equipe</th>
 
 
             </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-membres>
+        <ng-template pTemplate="body" let-equipe>
             <tr>
                 <td>
-                    <p-tableCheckbox [value]="membres"></p-tableCheckbox>
+                    <p-tableCheckbox [value]="equipe"></p-tableCheckbox>
                 </td>
-                <td>{{membres.membre.collaborateur.fullname}}</td>
+                <td>{{equipe.reference}}</td>
+                <td>{{equipe.libelle}}</td>
+                <td>{{equipe.membres.collaborateur.codeCollaborateur}}</td>
+                <td>{{equipe.chefEquipe.collaborateur.codeCollaborateur}}</td>
 
             </tr>
         </ng-template>

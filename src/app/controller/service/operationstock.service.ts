@@ -54,9 +54,8 @@ export class OperationstockService {
    
     deleteByRef() {
     }
-  public save(): Observable<OperationStock> {
-   
-    return this.http.post<OperationStock>(this.url + '/', this.selected);
+  public save() {
+    return this.http.post(this.url + '/', this.selected);
   }
   public update(index: number, operationStock: OperationStock) {
     this.selected = this.selected;

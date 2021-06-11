@@ -35,6 +35,7 @@ export class EquipeCreateComponent implements OnInit {
     this.submitted = false;
   }
   public saveMembre() {
+    console.log(this.selectedEquipe)
     this.service.saveMembre();
   }
 
@@ -42,7 +43,7 @@ export class EquipeCreateComponent implements OnInit {
     this.submitted = true;
     if (this.selectedEquipe.ref.trim()) {
       this.service.save().subscribe((data) => {
-        this.equipes.push({ ...data });
+        // this.equipes.push({ ...data });
         this.messageService.add({
           severity: "success",
           summary: "Successful",
@@ -92,6 +93,10 @@ export class EquipeCreateComponent implements OnInit {
     return this.service.membre;
   }
   isSelected($event: any) {
-    this.membreEquipe.collaborateur.codeCollaborateur = $event.target.value;
+    this.selectedEquipe.membres.push($event.target.value) ;
   }
+
+    isSelecte($event: any) {
+        this.selectedEquipe.chefEquipe.collaborateur.codeCollaborateur=$event.target.value;
+    }
 }

@@ -28,7 +28,7 @@ export class StockCreateComponent implements OnInit {
     return this.interventionService.interventionVo;
   }
   get stock(): Stock {
-    return this.stockService.stock;
+    return this.stockService.selected;
   }
   get materials(): Array<Material> {
     return this.materialService.materials;

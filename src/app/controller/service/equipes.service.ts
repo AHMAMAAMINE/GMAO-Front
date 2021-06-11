@@ -36,16 +36,14 @@ export class EquipesService {
     return this.http.get<Equipe>(this.url + '/reference/' + ref);
   }
   public save() {
-    this.selectedEquipe = this.selectedEquipe;
-    this.equipes.push(this._selectedEquipe);
-    this._selectedEquipe = null;
+    console.log(this.selectedEquipe);
     return this.http.post<Equipe>(this.url, this.selectedEquipe);
   }
   // public save(): Observable<Equipe> {
     // return this.http.post<Equipe>(this.url, this.selectedEquipe);
   // }
   saveMembre() {
-    this.membres.push(this.membre);
+    this.selectesEquipe.push(this.selectedEquipe);
   }
   public edit(): Observable<Equipe> {
     return this.http.put<Equipe>(this.url, this.selectedEquipe);
@@ -118,6 +116,9 @@ export class EquipesService {
   }
 
   get selectesEquipe(): Array<Equipe> {
+    if (this._selectesEquipe == null){
+      this._selectesEquipe = new Array<Equipe>();
+    }
     return this._selectesEquipe;
   }
 

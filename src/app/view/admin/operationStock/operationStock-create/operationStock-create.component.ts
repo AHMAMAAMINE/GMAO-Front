@@ -45,7 +45,7 @@ export class OperationStockCreateComponent implements OnInit {
         this.submitted = true;
         if (this.selected.magasinSource.trim()) {
             this.service.save().subscribe(data => {
-                this.items.push({...data});
+                // this.items.push({...data});
                 this.messageService.add({
                     severity: 'success',
                     summary: 'Successful',
