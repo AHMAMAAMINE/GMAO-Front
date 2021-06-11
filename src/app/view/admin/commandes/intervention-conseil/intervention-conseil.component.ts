@@ -10,10 +10,9 @@ import { DatePipe } from '@angular/common';
   providers: [DatePipe]
 })
 export class InterventionConseilComponent implements OnInit {
-  myDate = new Date();
-  date: string;
-  constructor(private service: InterventionService, private datePipe: DatePipe) {
-     this.date = this.datePipe.transform(this.myDate, 'yyyy-MM-dd');
+
+  constructor(private service: InterventionService) {
+      this.conseilIntervention.message=null;
   }
   cols: any[];
   ngOnInit(): void {
@@ -28,7 +27,14 @@ export class InterventionConseilComponent implements OnInit {
   get selectes(): Array<Intervention> {
     return this.service.selectes;
   }
+  get iteams(): Conseils {
 
+    return this.service.iteams;
+  }
+
+  set iteams(value: Conseils) {
+    this.service.iteams = value;
+  }
   set selectes(value: Array<Intervention>) {
     this.service.selectes = value;
   }
@@ -41,5 +47,32 @@ export class InterventionConseilComponent implements OnInit {
 
   set submitted(value: boolean) {
     this.service.submitted = value;
+  }
+  get editDialog(): boolean {
+    return this.service.editDialog;
+  }
+
+  set editDialog(value: boolean) {
+    this.service.editDialog = value;
+  }
+
+  edit(membresEquipe: Conseils) {
+    this.conseilIntervention.message = membresEquipe.message;
+    this.iteams = membresEquipe;
+  }
+
+  delete(membresEquipe: Conseils) {
+
+  }
+
+  editliste(conseilIntervention: Conseils) {
+    if (this.service.findIndexByRefa(conseilIntervention.message, conseilIntervention.collaborateur.codeCollaborateur) !== -1 && this.conseilInterventions.length !== 0) {
+      alert('donner un membre equipe qui n est pas deja sauvegarder');
+    }
+    else if (conseilIntervention.message) {
+      this.service.saveConseil();
+      this.conseilInterventions[this.service.findIndexByRefa(this.iteams.message, this.iteams.collaborateur.codeCollaborateur)].collaborateur.codeCollaborateur = this.iteams.collaborateur.codeCollaborateur;
+      this.conseilInterventions[this.service.findIndexByRefa(this.iteams.message, this.iteams.collaborateur.codeCollaborateur)].message= conseilIntervention.message;
+    }
   }
 }
