@@ -39,7 +39,7 @@ export class AdminMenuComponent implements OnInit {
         label: 'interventions', icon: 'pi pi-fw pi-tablet', routerLink: ['view/commande']
       } ,
       {
-        label: 'stock', icon: 'pi pi-fw pi-tablet', routerLink: ['view/stock-jadid']
+        label: 'stock jdid', icon: 'pi pi-fw pi-tablet', routerLink: ['view/stock-jadid']
       } ,
       {
         label: 'equipes', icon: 'pi pi-fw pi-check-square', routerLink: ['view/equipes']

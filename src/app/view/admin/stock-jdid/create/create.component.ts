@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {StockService} from '../../../../controller/service/stock-service.service';
 import {MaterialService} from '../../../../controller/service/material.service';
 import {MagasinService} from '../../../../controller/service/magasin.service';
-import {MessageService} from 'primeng/api';
+import {ConfirmationService, MessageService} from 'primeng/api';
 import {Stock} from '../../../../controller/model/Stock.model';
 import {Material} from '../../../../controller/model/material.model';
 import {Magasin} from '../../../../controller/model/magasin.model';
@@ -20,11 +20,6 @@ export class CreateComponent implements OnInit {
       private magasinService: MagasinService,
       private messageService: MessageService
   ) {}
-
-  cols: any[];
-  valeur: any;
-  velues: any;
-
   public openCreate() {
     this.selected = new Stock();
     this.submitted = false;
@@ -47,11 +42,6 @@ export class CreateComponent implements OnInit {
   }
 
   private initCol() {
-    this.cols = [
-      { field: "magasin", header: "Magasin" },
-      { field: "material", header: "Material" },
-      { field: "quantite", header: "Quantite" },
-    ];
   }
 
   get materials(): Array<Material> {

@@ -1,5 +1,4 @@
-import { StockListComponent } from "./view/admin/stock/stock-list/stock-list.component";
-import { StockViewComponent } from "./view/admin/stock/stock-view/stock-view.component";
+
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
@@ -198,6 +197,7 @@ import { ChefSuiviComponent } from './view/chef-equipe/chef-suivi/chef-suivi.com
 import { SuiviListComponent } from './view/chef-equipe/chef-suivi/suivi-list/suivi-list.component';
 import {ListComponent} from './view/admin/stock-jdid/list/list.component';
 import {CreateComponent} from './view/admin/stock-jdid/create/create.component';
+import {StockJdidComponent} from './view/admin/stock-jdid/stock-jdid.component';
 
 @NgModule({
   imports: [
@@ -384,8 +384,6 @@ import {CreateComponent} from './view/admin/stock-jdid/create/create.component';
     DemandeCongeListComponent,
     DemandeCongeCreateComponent,
     ChefTacheComponent,
-    StockViewComponent,
-    StockListComponent,
     SearchInterventionComponent,
     ChefEquipeTacheCreateComponent,
     ChefEquipeTacheListComponent,
@@ -393,6 +391,7 @@ import {CreateComponent} from './view/admin/stock-jdid/create/create.component';
     SuiviListComponent,
     ListComponent,
     CreateComponent,
+    StockJdidComponent,
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },
