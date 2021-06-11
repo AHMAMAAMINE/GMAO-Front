@@ -1,23 +1,19 @@
-import { InterventionVo } from "./../../../../controller/model/intervention-vo.model";
-import { MateraialIntervention } from "./../../../../controller/model/materaial-intervention.model";
-import { Magasin } from "./../../../../controller/model/magasin.model";
-import { Material } from "./../../../../controller/model/material.model";
-import { Stock } from "./../../../../controller/model/Stock.model";
-import { Intervention } from "./../../../../controller/model/intervention.model";
-import { InterventionService } from "./../../../../controller/service/intervention.service";
-import { MagasinService } from "./../../../../controller/service/magasin.service";
-import { MaterialService } from "./../../../../controller/service/material.service";
-import { StockService } from "./../../../../controller/service/stock-service.service";
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit } from '@angular/core';
+import {StockService} from '../../../../controller/service/stock-service.service';
+import {MaterialService} from '../../../../controller/service/material.service';
+import {MagasinService} from '../../../../controller/service/magasin.service';
 import {MessageService} from 'primeng/api';
-// import {MagasinService} from "../../../../controller/service/magasin.service";
+import {Stock} from '../../../../controller/model/Stock.model';
+import {Material} from '../../../../controller/model/material.model';
+import {Magasin} from '../../../../controller/model/magasin.model';
 
 @Component({
-  selector: "app-stock-create",
-  templateUrl: "./stock-create.component.html",
-  styleUrls: ["./stock-create.component.scss"],
+  selector: 'app-create',
+  templateUrl: './create.component.html',
+  styleUrls: ['./create.component.scss']
 })
-export class StockCreateComponent implements OnInit {
+export class CreateComponent implements OnInit {
+
   constructor(
       private service: StockService,
       private materialService: MaterialService,
@@ -26,6 +22,8 @@ export class StockCreateComponent implements OnInit {
   ) {}
 
   cols: any[];
+  valeur: any;
+  velues: any;
 
   public openCreate() {
     this.selected = new Stock();
@@ -144,6 +142,10 @@ export class StockCreateComponent implements OnInit {
   }
 
   evaluate() {
+    return null;
+  }
+
+  isSelecte($event: Event) {
     return null;
   }
 }

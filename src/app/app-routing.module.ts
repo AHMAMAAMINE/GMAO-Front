@@ -22,6 +22,8 @@ import { ChefEquipeSignUpComponent } from "./view/chef-equipe/chef-equipe-connec
 import { HomeComponent } from "./view/home/home.component";
 import { SignInCollaborateurComponent } from "./view/collaborateur/connection-collaborateur/sign-in-collaborateur/sign-in-collaborateur.component";
 import { SignUpCollaborateurComponent } from "./view/collaborateur/connection-collaborateur/sign-up-collaborateur/sign-up-collaborateur.component";
+import {StockCreateComponent} from './view/admin/stock/stock-create/stock-create.component';
+import {StockJdidComponent} from './view/admin/stock-jdid/stock-jdid.component';
 
 @NgModule({
   imports: [
@@ -41,8 +43,10 @@ import { SignUpCollaborateurComponent } from "./view/collaborateur/connection-co
           path: "admin",
           component: AdminMainComponent,
           children: [
-            { path: "", component: DashboardDemoComponent },
+            // { path: "", component: DashboardDemoComponent },
+              {path:"", component: StockComponent},
             { path: "view/commande", component: CommandesComponent },
+              {path: "view/stock-jadid",component:StockJdidComponent},
             { path: "view/stock", component: StockComponent },
             { path: "view/equipes", component: EquipesComponent },
             { path: "view/operation", component: OperationStockComponent },

@@ -189,6 +189,9 @@ import { NodeService } from './demo/service/nodeservice';
 import { CollaborateurListComponent } from './view/collaborateur/collaborateur-list/collaborateur-list.component';
 import { CollaborateurCreateComponent } from './view/collaborateur/collaborateur-create/collaborateur-create.component';
 import {SearchInterventionComponent} from './view/admin/commandes/search-intervention/search-intervention.component';
+import { StockJdidComponent } from './view/admin/stock-jdid/stock-jdid.component';
+import { CreateComponent } from './view/admin/stock-jdid/create/create.component';
+import { ListComponent } from './view/admin/stock-jdid/list/list.component';
 
 @NgModule({
   imports: [
@@ -379,6 +382,9 @@ import {SearchInterventionComponent} from './view/admin/commandes/search-interve
     SearchInterventionComponent,
     StockViewComponent,
     StockListComponent,
+    StockJdidComponent,
+    CreateComponent,
+    ListComponent,
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },
