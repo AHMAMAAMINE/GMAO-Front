@@ -123,7 +123,7 @@ import { SpacingComponent } from "./utilities/spacing.component";
 import { TypographyComponent } from "./utilities/typography.component";
 import { TextComponent } from "./utilities/text.component";
 import { WidgetsComponent } from "./utilities/widgets.component";
-import { CollaborateurConfigComponent } from "./view/collaborateur/collaborateur-config/collaborateur-config.component";
+
 import { CollaborateurMainComponent } from "./view/collaborateur/collaborateur-main/collaborateur-main.component";
 import { CollaborateurTopBarComponent } from "./view/collaborateur/collaborateur-top-bar/collaborateur-top-bar.component";
 import { CollaborateurRightMenuComponent } from "./view/collaborateur/collaborateur-right-menu/collaborateur-right-menu.component";
@@ -138,7 +138,7 @@ import { CollaborateurDemandeCongeComponent } from "./view/collaborateur/collabo
 import { ChefEquipeComponent } from "./view/chef-equipe/chef-equipe.component";
 import { ChefEquipeMenuComponent } from "./view/chef-equipe/chef-equipe-menu/chef-equipe-menu.component";
 import { ChefEquipeMainComponent } from "./view/chef-equipe/chef-equipe-main/chef-equipe-main.component";
-import { ChefEquipeConfigComponent } from "./view/chef-equipe/chef-equipe-config/chef-equipe-config.component";
+
 import { ChefEquipeTopBarComponent } from "./view/chef-equipe/chef-equipe-top-bar/chef-equipe-top-bar.component";
 import { ChefEquipeRightMenuComponent } from "./view/chef-equipe/chef-equipe-right-menu/chef-equipe-right-menu.component";
 import { ChefEquipeConnectionComponent } from "./view/chef-equipe/chef-equipe-connection/chef-equipe-connection.component";
@@ -176,7 +176,6 @@ import { SignUpComponent } from "./view/admin/connection/sign-up/sign-up.compone
 import { AdminMenuComponent } from "./view/admin/admin-menu/admin-menu.component";
 import { AdminRightMenuComponent } from "./view/admin/admin-right-menu/admin-right-menu.component";
 import { AdminTopBarComponent } from "./view/admin/admin-top-bar/admin-top-bar.component";
-import { AdminConfigComponent } from "./view/admin/admin-config/admin-config.component";
 import { AdminMainComponent } from "./view/admin/admin-main/admin-main.component";
 import { HomeComponent } from "./view/home/home.component";
 import { HomePageComponent } from "./view/home/home-page/home-page.component";
@@ -348,7 +347,6 @@ import { ChefEquipeTacheListComponent } from "./view/chef-equipe/chef-tache/chef
     AdminMenuComponent,
     AdminRightMenuComponent,
     AdminTopBarComponent,
-    AdminConfigComponent,
     AdminMainComponent,
     CollaborateurDemandeCongeViewComponent,
     HomeComponent,
@@ -358,7 +356,7 @@ import { ChefEquipeTacheListComponent } from "./view/chef-equipe/chef-tache/chef
     CollaborateurMenuComponent,
 
     CollaborateurComponent,
-    CollaborateurConfigComponent,
+
     CollaborateurMainComponent,
     CollaborateurTopBarComponent,
     CollaborateurRightMenuComponent,
@@ -373,7 +371,6 @@ import { ChefEquipeTacheListComponent } from "./view/chef-equipe/chef-tache/chef
     ChefEquipeComponent,
     ChefEquipeMenuComponent,
     ChefEquipeMainComponent,
-    ChefEquipeConfigComponent,
     ChefEquipeTopBarComponent,
     ChefEquipeRightMenuComponent,
     ChefEquipeConnectionComponent,
