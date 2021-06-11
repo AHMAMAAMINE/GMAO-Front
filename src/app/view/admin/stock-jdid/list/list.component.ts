@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import {StockService} from '../../../../controller/service/stock-service.service';
 import {MaterialService} from '../../../../controller/service/material.service';
-import {MessageService} from 'primeng/api';
+import {ConfirmationService, MessageService} from 'primeng/api';
 import {Stock} from '../../../../controller/model/Stock.model';
 import {Material} from '../../../../controller/model/material.model';
 
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
+  providers : [MessageService, ConfirmationService  ],
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {

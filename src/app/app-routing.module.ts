@@ -19,10 +19,10 @@ import { CollaborateurMainComponent } from "./view/collaborateur/collaborateur-m
 import { ChefEquipeMainComponent } from "./view/chef-equipe/chef-equipe-main/chef-equipe-main.component";
 import { ChefEquipeSignInComponent } from "./view/chef-equipe/chef-equipe-connection/chef-equipe-sign-in/chef-equipe-sign-in.component";
 import { ChefEquipeSignUpComponent } from "./view/chef-equipe/chef-equipe-connection/chef-equipe-sign-up/chef-equipe-sign-up.component";
-import { HomeComponent } from "./view/home/home.component";
+
 import { SignInCollaborateurComponent } from "./view/collaborateur/connection-collaborateur/sign-in-collaborateur/sign-in-collaborateur.component";
 import { SignUpCollaborateurComponent } from "./view/collaborateur/connection-collaborateur/sign-up-collaborateur/sign-up-collaborateur.component";
-import { StockCreateComponent } from "./view/admin/stock/stock-create/stock-create.component";
+
 import { StockJdidComponent } from "./view/admin/stock-jdid/stock-jdid.component";
 import { DemandeCongeListComponent } from "./view/chef-equipe/chef-equipe-demandeConge/demande-conge-list/demande-conge-list.component";
 import { ChefEquipeTacheListComponent } from "./view/chef-equipe/chef-tache/chef-equipe-tache-list/chef-equipe-tache-list.component";
@@ -56,7 +56,6 @@ import { ChefEquipeTacheListComponent } from "./view/chef-equipe/chef-tache/chef
             { path: "", component: StockComponent },
             { path: "view/commande", component: CommandesComponent },
             { path: "view/stock-jadid", component: StockJdidComponent },
-            { path: "view/stock", component: StockComponent },
             { path: "view/equipes", component: EquipesComponent },
             { path: "view/operation", component: OperationStockComponent },
           ],
