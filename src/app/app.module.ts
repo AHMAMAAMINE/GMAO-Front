@@ -194,6 +194,10 @@ import { DemandeCongeListComponent } from "./view/chef-equipe/chef-equipe-demand
 import { ChefTacheComponent } from "./view/chef-equipe/chef-tache/chef-tache.component";
 import { ChefEquipeTacheCreateComponent } from "./view/chef-equipe/chef-tache/chef-equipe-tache-create/chef-equipe-tache-create.component";
 import { ChefEquipeTacheListComponent } from "./view/chef-equipe/chef-tache/chef-equipe-tache-list/chef-equipe-tache-list.component";
+import { ChefSuiviComponent } from './view/chef-equipe/chef-suivi/chef-suivi.component';
+import { SuiviListComponent } from './view/chef-equipe/chef-suivi/suivi-list/suivi-list.component';
+import {ListComponent} from './view/admin/stock-jdid/list/list.component';
+import {CreateComponent} from './view/admin/stock-jdid/create/create.component';
 
 @NgModule({
   imports: [
@@ -388,6 +392,10 @@ import { ChefEquipeTacheListComponent } from "./view/chef-equipe/chef-tache/chef
     SearchInterventionComponent,
     ChefEquipeTacheCreateComponent,
     ChefEquipeTacheListComponent,
+    ChefSuiviComponent,
+    SuiviListComponent,
+    ListComponent,
+    CreateComponent,
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },

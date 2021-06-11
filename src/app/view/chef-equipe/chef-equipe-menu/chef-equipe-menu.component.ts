@@ -37,6 +37,9 @@ export class ChefEquipeMenuComponent implements OnInit {
   ngOnInit() {
     this.model = [
       {
+        label: 'Home Page', icon: 'pi pi-fw pi-home', routerLink: ['home-page']
+      } ,
+      {
         label: 'demande Conge', icon: 'pi pi-fw pi-tablet', routerLink: ['chef-equipe-conge']
       } ,
       {
