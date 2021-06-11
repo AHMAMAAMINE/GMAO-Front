@@ -11,14 +11,17 @@
             </select>
 
             <label>Membre Equip</label>
-            <select class="form-control" (change)="isSelected($event)" [(ngModel)]="value"  pInputText [disabled]="selectEquip()">
+            <select class="form-control" (change)="isSelected($event)" [(ngModel)]="value"  pInputText >
                 <option [value]=''>---select value-----</option>
                 <option *ngFor="let c of Membres" [value]="c.collaborateur.codeCollaborateur"> {{c.collaborateur.fullname}}</option>
             </select>
         </div>
     </div>
-    <div class="p-card-footer">
-        <button pButton  label="Ajout"  class="p-button-text" [disabled]="isEmpty()" (click)="saveCollaboraateur()"></button>
+    <div class="p-card-footer" [hidden]="editDialog">
+        <button pButton  label="Ajout"  class="p-button-text" [disabled]="isEmpty()"  (click)="saveCollaboraateur()"></button>
+    </div>
+    <div class="p-card-footer" [hidden]="!editDialog">
+        <button pButton  label="edit"  class="p-button-text"   (click)="editliste(collaborateur)"></button>
     </div>
     <div class="card">
 

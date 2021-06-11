@@ -20,26 +20,6 @@ export class InterventionService {
     private stockService: StockService,
     private userService: UserService
   ) {}
-  public _selected: Intervention;
-  public _items: Array<Intervention>;
-  private _collaborateurs = this.selected.interventionMembreEquipe;
-  private _collaborateur: InterventionMembreEquipe;
-  private _codeCollaborateur =
-    this.collaborateur.membreEquipe.collaborateur.codeCollaborateur;
-  private _materialInterventions = this.selected.materaialInterventions;
-  private _materialIntervention: MateraialIntervention;
-  private _conseilIntervention: Conseils;
-  private _conseilInterventions: Array<Conseils>;
-  private url = environment.baseUrl + '/Intervention-api/intervention';
-  private _selectes: Array<Intervention>;
-  private _index: number;
-  private _createDialog: boolean;
-  private _editDialog: boolean;
-  private _viewDialog: boolean;
-  private _submitted: boolean;
-  urlmembre = environment.baseUrl + '/Collaborateurintervention-api/Collaborateurintervention';
-  urlCriteria = 'http://localhost:8036/Intervention-api/intervention/criteria';
-  public _interventionVo: InterventionVo;
   get conseilIntervention(): Conseils {
     if (this._conseilIntervention == null) {
       this._conseilIntervention = new Conseils();
@@ -49,6 +29,17 @@ export class InterventionService {
 
   set conseilIntervention(value: Conseils) {
     this._conseilIntervention = value;
+  }
+
+  get iteams(): Conseils {
+    if (this._iteams == null) {
+      this._iteams = new Conseils();
+    }
+    return this._iteams;
+  }
+
+  set iteams(value: Conseils) {
+    this._iteams = value;
   }
 
   get conseilInterventions(): Array<Conseils> {
@@ -69,9 +60,10 @@ export class InterventionService {
     return this._interventionVo;
   }
 
-  set interventionVO(value: InterventionVo) {
+  set interventionVo(value: InterventionVo) {
     this._interventionVo = value;
   }
+
   get materialInterventions(): Array<MateraialIntervention> {
     if (this._materialInterventions == null) {
       this._materialInterventions = new Array<MateraialIntervention>();
@@ -104,9 +96,138 @@ export class InterventionService {
   set collaborateur(value: InterventionMembreEquipe) {
     this._collaborateur = value;
   }
+  get createDialog(): boolean {
+    return this._createDialog;
+  }
+
+  set createDialog(value: boolean) {
+    this._createDialog = value;
+  }
+
+  get editDialog(): boolean {
+    return this._editDialog;
+  }
+
+  set editDialog(value: boolean) {
+    this._editDialog = value;
+  }
+
+  get submitted(): boolean {
+    return this._submitted;
+  }
+
+  set submitted(value: boolean) {
+    this._submitted = value;
+  }
+
+  get viewDialog(): boolean {
+    return this._viewDialog;
+  }
+
+  set viewDialog(value: boolean) {
+    this._viewDialog = value;
+  }
+
+  get selectes(): Array<Intervention> {
+    return this._selectes;
+  }
+
+  set selectes(value: Array<Intervention>) {
+    this._selectes = value;
+  }
+  get collaborateurs(): Array<InterventionMembreEquipe> {
+    if (this._collaborateurs == null) {
+      this._collaborateurs = new Array<InterventionMembreEquipe>();
+    }
+    return this._collaborateurs;
+  }
+
+  set collaborateurs(value: Array<InterventionMembreEquipe>) {
+    this._collaborateurs = value;
+  }
+  get selection(): InterventionMembreEquipe {
+    if (this._selection == null) {
+      this._selection = new InterventionMembreEquipe();
+    }
+    return this._selection;
+  }
+
+  set selection(value: InterventionMembreEquipe) {
+    this._selection = value;
+  }
+
+  get materials(): Array<MateraialIntervention> {
+    if (this._materials == null) {
+      this._materials = new Array<MateraialIntervention>();
+    }
+    return this._materials;
+  }
+
+  set materials(value: Array<MateraialIntervention>) {
+    this._materials = value;
+  }
+
+  get etatIntervention(): EtatIntervention {
+    if (this._etatIntervention == null) {
+      this._etatIntervention = new EtatIntervention();
+    }
+    return this._etatIntervention;
+  }
+
+  set etatIntervention(value: EtatIntervention) {
+    this._etatIntervention = value;
+  }
+
+  get selected(): Intervention {
+    if (this._selected == null) {
+      this._selected = new Intervention();
+    }
+    return this._selected;
+  }
+
+  set selected(value: Intervention) {
+    this._selected = value;
+  }
+
+  get items(): Array<Intervention> {
+    if (this._items == null) {
+      this._items = new Array<Intervention>();
+    }
+    return this._items;
+  }
+
+  set items(value: Array<Intervention>) {
+    this._items = value;
+  }
+  private _selection: InterventionMembreEquipe;
+  private urlmaterial = environment.baseUrl + '/MaterialIntervention-api/Materialintervention' ;
+  public _selected: Intervention;
+  public _items: Array<Intervention>;
+  private _collaborateurs = this.selected.interventionMembreEquipe;
+  private _collaborateur: InterventionMembreEquipe;
+  private _codeCollaborateur =
+    this.collaborateur.membreEquipe.collaborateur.codeCollaborateur;
+  private _materialInterventions = this.selected.materaialInterventions;
+  private _materialIntervention: MateraialIntervention;
+  private _conseilIntervention: Conseils;
+  private _iteams: Conseils;
+  private _conseilInterventions: Array<Conseils>;
+  private url = environment.baseUrl + '/Intervention-api/intervention';
+  private _selectes: Array<Intervention>;
+  private _index: number;
+  private _createDialog: boolean;
+  private _editDialog: boolean;
+  private _viewDialog: boolean;
+  private _submitted: boolean;
+  urlmembre =
+    environment.baseUrl +
+    '/Collaborateurintervention-api/Collaborateurintervention';
+  urlCriteria = 'http://localhost:8036/Intervention-api/intervention/criteria';
+  private _interventionVo: InterventionVo;
 
   private _materials: Array<MateraialIntervention>;
   private _etatIntervention: EtatIntervention;
+  urlconsigne = environment.baseUrl + '/GMAO/Conseils-api';
 
   public findByCriteria() {
     this.http
@@ -122,27 +243,33 @@ export class InterventionService {
   }
   saveCollaboraateur() {
     this.collaborateur.intervention = this.selected;
-    this.collaborateurs.push(this._collaborateur);
+    if (!this.editDialog) {
+      this.collaborateurs.push(this._collaborateur);
+    }
     this._codeCollaborateur =
       this.collaborateur.membreEquipe.collaborateur.codeCollaborateur;
     this.selected.interventionMembreEquipe = this.collaborateurs;
-    console.log(this.collaborateurs);
     this._collaborateur = null;
   }
   saveStock() {
     this.materialIntervention.intervention = this.selected;
     this.materialIntervention.collaborateur.codeCollaborateur =
       this._codeCollaborateur;
-    this.materialInterventions.push(this._materialIntervention);
+    if (!this.editDialog)
+    {
+      this.materialInterventions.push(this._materialIntervention);
+    }
     this.selected.materaialInterventions = this.materialInterventions;
-    this.stockService.stock = null;
+    this.stockService.selected = null;
     // this.materialIntervention.push(this.materialIntervention);
   }
   saveConseil() {
     this.conseilIntervention.intervention = this.selected;
     this.conseilIntervention.collaborateur.codeCollaborateur =
       this._codeCollaborateur;
-    this.conseilInterventions.push(this._conseilIntervention);
+    if (!this.editDialog) {
+     this.conseilInterventions.push(this._conseilIntervention);
+    }
     this.selected.conseils = this.conseilInterventions;
     this._conseilIntervention = null;
   }
@@ -166,10 +293,10 @@ export class InterventionService {
     const stringifi = JSON.stringify(this.selected, this.getCircularReplacer());
     return this.http.post<Intervention>(this.url + '/', JSON.parse(stringifi));
   }
-  public update(index: number, intervention: Intervention) {
-    this.selected = this.selected;
-    this._index = index;
-  }
+  // public update(index: numb0er, intervention: Intervention) {
+  //   this.selected = this.selected;
+  //   this._index = index;
+  // }
   // public findAll(){
   //   if (this.userService.User.role === 'admin') {
   //     this.http.get<Array<Intervention>>(this.url + '/').subscribe(
@@ -221,99 +348,6 @@ export class InterventionService {
       this.deleteIndexById(item.id);
     }
   }
-  get createDialog(): boolean {
-    return this._createDialog;
-  }
-
-  set createDialog(value: boolean) {
-    this._createDialog = value;
-  }
-
-  get editDialog(): boolean {
-    return this._editDialog;
-  }
-
-  set editDialog(value: boolean) {
-    this._editDialog = value;
-  }
-
-  get submitted(): boolean {
-    return this._submitted;
-  }
-
-  set submitted(value: boolean) {
-    this._submitted = value;
-  }
-
-  get viewDialog(): boolean {
-    return this._viewDialog;
-  }
-
-  set viewDialog(value: boolean) {
-    this._viewDialog = value;
-  }
-
-  get selectes(): Array<Intervention> {
-    return this._selectes;
-  }
-
-  set selectes(value: Array<Intervention>) {
-    this._selectes = value;
-  }
-  get collaborateurs(): Array<InterventionMembreEquipe> {
-    if (this._collaborateurs == null) {
-      this._collaborateurs = new Array<InterventionMembreEquipe>();
-    }
-    return this._collaborateurs;
-  }
-
-  set collaborateurs(value: Array<InterventionMembreEquipe>) {
-    this._collaborateurs = value;
-  }
-
-  get materials(): Array<MateraialIntervention> {
-    if (this._materials == null) {
-      this._materials = new Array<MateraialIntervention>();
-    }
-    return this._materials;
-  }
-
-  set materials(value: Array<MateraialIntervention>) {
-    this._materials = value;
-  }
-
-  get etatIntervention(): EtatIntervention {
-    if (this._etatIntervention == null) {
-      this._etatIntervention = new EtatIntervention();
-    }
-    return this._etatIntervention;
-  }
-
-  set etatIntervention(value: EtatIntervention) {
-    this._etatIntervention = value;
-  }
-
-  get selected(): Intervention {
-    if (this._selected == null) {
-      this._selected = new Intervention();
-    }
-    return this._selected;
-  }
-
-  set selected(value: Intervention) {
-    this._selected = value;
-  }
-
-  get items(): Array<Intervention> {
-    if (this._items == null) {
-      this._items = new Array<Intervention>();
-    }
-    return this._items;
-  }
-
-  set items(value: Array<Intervention>) {
-    this._items = value;
-  }
 
   public findByCode(code: string) {
     return this.http.get<Intervention>(this.url + '/findCode/' + code);
@@ -332,7 +366,75 @@ export class InterventionService {
   //   myCloneMembre.membreEquipe.equipe.ref = membre.membreEquipe.equipe.ref;
   //   return myCloneMembre;
   // }
-    findByInterventionCode(code: string) {
-        return this.http.get<Array<InterventionMembreEquipe>>(this.urlmembre + '/intervcode/' + code);
+  findByInterventionCode(code: string) {
+    return this.http.get<Array<InterventionMembreEquipe>>(
+      this.urlmembre + '/intervcode/' + code
+    );
+  }
+
+  findIndexByRef(codeCollaborateur: string, ref: string): number {
+    let index = -1;
+    for (let i = 0; i < this.collaborateurs.length; i++) {
+      if (
+        this.collaborateurs[i].membreEquipe.collaborateur.codeCollaborateur ===
+          codeCollaborateur &&
+        this.collaborateurs[i].equipe.ref === ref
+      ) {
+        index = i;
+        break;
+      }
     }
+    return index;
+  }
+  findIndexByRefs(referenceMAg: string, Mat: string): number {
+    let index = -1;
+    for (let i = 0; i < this.collaborateurs.length; i++) {
+      if (
+          this.materialInterventions[i].magasin.reference === referenceMAg &&
+          this.materialInterventions[i].material.reference === Mat
+      ) {
+        index = i;
+        break;
+      }
+    }
+    return index;
+  }
+  delete(codeCollaborateur: string, ref: string) {
+    return this.http.delete<number>(
+      this.urlmembre +
+        '/CollaborateurCod/' +
+        codeCollaborateur +
+        '/Equipe/' +
+        ref
+    );
+  }
+
+    findByCodeInterv(code: string) {
+        return this.http.get<Array<MateraialIntervention>>(this.urlmaterial + '/intervention/' + code);
+    }
+
+    deleteMaterial(Mag: string , Mat: string) {
+        return this.http.delete(this.urlmaterial + '/material/' + Mat + '/Mag/' + Mag);
+    }
+  findByCodeIntervention(code: string) {
+    return this.http.get<Array<Conseils>>(this.urlconsigne + '/intervention/' + code);
+  }
+
+  findIndexByRefa(message: string, codeCollaborateur: string) {
+    let index = -1;
+    for (let i = 0; i < this.conseilInterventions.length; i++) {
+      if (
+          this.conseilInterventions[i].message === message &&
+          this.conseilInterventions[i].collaborateur.codeCollaborateur === codeCollaborateur
+      ) {
+        index = i;
+        break;
+      }
+    }
+    return index;
+  }
+
+  deletes(codeCollaborateur: string, message: string) {
+    return this.http.delete(this.urlconsigne + '/code/' + codeCollaborateur + '/message/' + message);
+  }
 }

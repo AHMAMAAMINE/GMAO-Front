@@ -1,5 +1,5 @@
 import { Material } from "./../../../../controller/model/material.model";
-import {ConfirmationService, MessageService} from 'primeng/api';
+import { ConfirmationService, MessageService } from "primeng/api";
 import { StockService } from "./../../../../controller/service/stock-service.service";
 import { Stock } from "./../../../../controller/model/Stock.model";
 import { MaterialService } from "./../../../../controller/service/material.service";
@@ -10,7 +10,7 @@ import { Component, OnInit } from "@angular/core";
   selector: "app-stock-list",
   templateUrl: "./stock-list.component.html",
   styleUrls: ["./stock-list.component.scss"],
-  providers: [MessageService, ConfirmationService]
+  providers: [MessageService, ConfirmationService],
 })
 export class StockListComponent implements OnInit {
   constructor(
@@ -57,9 +57,9 @@ export class StockListComponent implements OnInit {
     return this.materialService.materials;
   }
 
-  get stocks(): Array<Stock> {
-    return this.service.stocks;
-  }
+  // get stocks(): Array<Stock> {
+  //   return this.service.stocks;
+  // }
 
   get selected(): Stock {
     return this.service.selected;
@@ -113,5 +113,14 @@ export class StockListComponent implements OnInit {
     return this.service.selectes;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.service.findAll().subscribe(
+      (data) => {
+        this.items = data;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
 }

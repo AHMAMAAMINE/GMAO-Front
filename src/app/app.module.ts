@@ -1,4 +1,5 @@
 import { StockListComponent } from './view/admin/stock/stock-list/stock-list.component';
+import { StockViewComponent } from './view/admin/stock/stock-view/stock-view.component';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -187,9 +188,10 @@ import { EventService } from './demo/service/eventservice';
 import { NodeService } from './demo/service/nodeservice';
 import { CollaborateurListComponent } from './view/collaborateur/collaborateur-list/collaborateur-list.component';
 import { CollaborateurCreateComponent } from './view/collaborateur/collaborateur-create/collaborateur-create.component';
+import {SearchInterventionComponent} from './view/admin/commandes/search-intervention/search-intervention.component';
 import { MembreEquipeComponent } from './view/admin/equipes/membre-equipe/membre-equipe.component';
-import { DemandeCongeListComponent } from './view/chef-equipe/chef-equipe-demandeConge/demande-conge-list/demande-conge-list.component';
 import { DemandeCongeCreateComponent } from './view/chef-equipe/chef-equipe-demandeConge/demande-conge-create/demande-conge-create.component';
+import { DemandeCongeListComponent } from './view/chef-equipe/chef-equipe-demandeConge/demande-conge-list/demande-conge-list.component';
 import { ChefTacheComponent } from './view/chef-equipe/chef-tache/chef-tache.component';
 
 @NgModule({
@@ -352,7 +354,7 @@ import { ChefTacheComponent } from './view/chef-equipe/chef-tache/chef-tache.com
     AppMenuitemComponent,
 
     CollaborateurMenuComponent,
-    StockListComponent,
+
     CollaborateurComponent,
     CollaborateurConfigComponent,
     CollaborateurMainComponent,
@@ -382,6 +384,9 @@ import { ChefTacheComponent } from './view/chef-equipe/chef-tache/chef-tache.com
     DemandeCongeListComponent,
     DemandeCongeCreateComponent,
     ChefTacheComponent,
+    StockViewComponent,
+    StockListComponent,
+    SearchInterventionComponent,
 
   ],
   providers: [

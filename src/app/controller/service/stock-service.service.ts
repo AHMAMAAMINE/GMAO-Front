@@ -1,37 +1,37 @@
 import { Injectable } from "@angular/core";
 import { Stock } from "../model/Stock.model";
 import { HttpClient } from "@angular/common/http";
+import {environment} from '../../../environments/environment';
+import {MateraialIntervention} from '../model/materaial-intervention.model';
 @Injectable({
   providedIn: "root",
 })
 export class StockService {
-  private _selected: Stock;
+  private url = environment.baseUrl + "/Stock-api/Stockage";
   private _items: Array<Stock>;
-  private _stock: Stock;
-  private _stocks: Array<Stock>;
-  private urlBase = "http://localhost:8036";
-  private url = "/Stock-api/Stockage";
+  private _selected: Stock;
   private _selectes: Array<Stock>;
-  private _index: number;
   private _createDialog: boolean;
   private _editDialog: boolean;
   private _viewDialog: boolean;
   private _submitted: boolean;
+  private _index: number;
 
-  get stock(): Stock {
-    if (this._stock == null) {
-      this._stock = new Stock();
-    }
-    return this._stock;
-  }
+  // get stock(): Stock {
+  //   if (this._stock == null) {
+  //     this._stock = new Stock();
+  //   }
+  //   return this._stock;
+  // }
 
-  set stock(value: Stock) {
-    this._stock = value;
-  }
+  // set stock(value: Stock) {
+  //   this._stock = value;
+  // }
+  private _selection: MateraialIntervention;
 
   get selected(): Stock {
-    if(this._selected==null){
-      this._selected=new Stock();
+    if (this._selected == null) {
+      this._selected = new Stock();
     }
     return this._selected;
   }
@@ -39,7 +39,16 @@ export class StockService {
   set selected(value: Stock) {
     this._selected = value;
   }
+  get selection(): MateraialIntervention {
+    if (this._selection == null) {
+      this._selection = new MateraialIntervention();
+    }
+    return this._selection;
+  }
 
+  set selection(value: MateraialIntervention) {
+    this._selection = value;
+  }
   set items(value: Array<Stock>) {
     this._items = value;
   }
@@ -51,21 +60,21 @@ export class StockService {
     return this._items;
   }
 
-  get stocks(): Array<Stock> {
-    if (this._stocks == null) {
-      this._stocks = new Array<Stock>();
-    }
-    return this._stocks;
-  }
+  // get stocks(): Array<Stock> {
+  //   if (this._stocks == null) {
+  //     this._stocks = new Array<Stock>();
+  //   }
+  //   return this._stocks;
+  // }
 
-  set stocks(value: Array<Stock>) {
-    this._stocks = value;
-  }
+  // set stocks(value: Array<Stock>) {
+  //   this._stocks = value;
+  // }
   constructor(private http: HttpClient) {}
 
   save() {
-    if (this.stock.id == null) {
-      this.http.post(this.urlBase + this.url + "/", this.stock).subscribe(
+    if (this.selected.id === null) {
+      this.http.post(this.url + "/", this.selected).subscribe(
         (data) => {
           if (data === 1) {
             this.findAll();
@@ -81,29 +90,20 @@ export class StockService {
       );
     } else {
       const stocke = new Stock();
-      stocke.qte = this.stock.qte - this.stocks[this._index].qte;
-      stocke.id = this.stock.id;
-      stocke.material.reference = this.stock.material.reference;
-      stocke.magasin.reference = this.stock.magasin.reference;
-      this.http
-        .post(this.urlBase + this.url + "/", stocke)
-        .subscribe((data) => {
-          console.log(data);
-        });
-      this.stocks[this._index] = this.clone(this.stock);
+      stocke.qte = this.selected.qte - this.selectes[this._index].qte;
+      stocke.id = this.selected.id;
+      stocke.material.reference = this.selected.material.reference;
+      stocke.magasin.reference = this.selected.magasin.reference;
+      this.http.post(this.url + "/", stocke).subscribe((data) => {
+        console.log(data);
+      });
+      this.items[this._index] = this.clone(this.selected);
     }
-    this.stock = null;
+    this.selected = null;
   }
 
   findAll() {
-    this.http.get<Array<Stock>>(this.urlBase + this.url + "/").subscribe(
-      (data) => {
-        this.stocks = data;
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+    return this.http.get<Array<Stock>>(this.url + "/");
   }
 
   clone(stock: Stock) {
