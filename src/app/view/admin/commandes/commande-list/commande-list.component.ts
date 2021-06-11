@@ -68,13 +68,13 @@ export class CommandeListComponent implements OnInit {
         this.selected = new Intervention();
         this.submitted = false;
         this.createDialog = true;
-        console.log(this.editDialog);
         this.service.collaborateurs = null;
+        this.service.materialInterventions = null;
+        this.service.materialIntervention=null;
     }
 
     public edit(commande: Intervention) {
         this.service.findByCode(commande.code).subscribe(data => this.selected = data);
-        console.log(this.selected.etatIntervention.code);
         this.service.findByInterventionCode(commande.code).subscribe(data => this.service.collaborateurs = data);
         this.service.findByCodeInterv(commande.code).subscribe(data => this.service.materialInterventions = data);
         this.editDialog = true;

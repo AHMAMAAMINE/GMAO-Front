@@ -39,7 +39,6 @@ export class InterventionMembreEquipComponent implements OnInit {
     this.service.findByRef(this.values).subscribe(data => this.membres = data.membres );
     this.value = commande.membreEquipe.collaborateur.codeCollaborateur;
     this.selection = commande;
-    console.log(commande.id);
     // this.editDialog = true;
 
   }
@@ -101,7 +100,6 @@ export class InterventionMembreEquipComponent implements OnInit {
     else if (collaborateur.membreEquipe.collaborateur.codeCollaborateur && collaborateur.equipe.ref) {
       this.serviceinterv.saveCollaboraateur();
       this.MembresEquipe[this.serviceinterv.findIndexByRef(this.selection.membreEquipe.collaborateur.codeCollaborateur, this.selection.equipe.ref)] = collaborateur;
-
       }
 
   }

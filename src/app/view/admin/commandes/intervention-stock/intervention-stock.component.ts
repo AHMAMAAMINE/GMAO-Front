@@ -1,24 +1,23 @@
-import { Component, OnInit } from "@angular/core";
-import { StockService } from "../../../../controller/service/stock-service.service";
-import { InterventionService } from "../../../../controller/service/intervention.service";
-import { MaterialService } from "../../../../controller/service/material.service";
-import { MagasinService } from "../../../../controller/service/magasin.service";
-import { Intervention } from "../../../../controller/model/intervention.model";
-import { MateraialIntervention } from "../../../../controller/model/materaial-intervention.model";
-import { Magasin } from "../../../../controller/model/magasin.model";
-import { Material } from "../../../../controller/model/material.model";
-import { Stock } from "../../../../controller/model/Stock.model";
-import { newArray } from "@angular/compiler/src/util";
+import { Component, OnInit } from '@angular/core';
+import { StockService } from '../../../../controller/service/stock-service.service';
+import { InterventionService } from '../../../../controller/service/intervention.service';
+import { MaterialService } from '../../../../controller/service/material.service';
+import { MagasinService } from '../../../../controller/service/magasin.service';
+import { Intervention } from '../../../../controller/model/intervention.model';
+import { MateraialIntervention } from '../../../../controller/model/materaial-intervention.model';
+import { Magasin } from '../../../../controller/model/magasin.model';
+import { Material } from '../../../../controller/model/material.model';
+import { Stock } from '../../../../controller/model/Stock.model';
+import { newArray } from '@angular/compiler/src/util';
 import {InterventionMembreEquipe} from '../../../../controller/model/intervention-membre-equipe.model';
 
 @Component({
-  selector: "app-intervention-stock",
-  templateUrl: "./intervention-stock.component.html",
-  styleUrls: ["./intervention-stock.component.scss"],
+  selector: 'app-intervention-stock',
+  templateUrl: './intervention-stock.component.html',
+  styleUrls: ['./intervention-stock.component.scss'],
 })
 export class InterventionStockComponent implements OnInit {
   index: any;
-  values;
   cols: any[];
   valeur: any;
   velues: any;
@@ -27,7 +26,11 @@ export class InterventionStockComponent implements OnInit {
     private service: InterventionService,
     private materialService: MaterialService,
     private magasinService: MagasinService
-  ) {}
+  ) {
+    if (!this.editDialog){
+      this.stock.qte = null;
+    }
+  }
 
   get selectes(): Array<Intervention> {
     return this.service.selectes;
@@ -60,7 +63,13 @@ export class InterventionStockComponent implements OnInit {
   set submitted(value: boolean) {
     this.service.submitted = value;
   }
+  get selection(): MateraialIntervention {
+    return this.stockService.selection;
+  }
 
+  set selection(value: MateraialIntervention) {
+    this.stockService.selection = value;
+  }
   ngOnInit(): void {
     this.materialService.findAll();
     this.magasinService.findAll();
@@ -88,8 +97,8 @@ export class InterventionStockComponent implements OnInit {
     if (this.intervention.code == null) {
       this.Save();
     } else {
-      this.valeur = "---select value-----";
-      this.velues = "---select value-----";
+      this.valeur = '---select value-----';
+      this.velues = '---select value-----';
       const materialintervention = new MateraialIntervention();
       materialintervention.material = this.stock.material;
       materialintervention.magasin = this.stock.magasin;
@@ -118,14 +127,32 @@ export class InterventionStockComponent implements OnInit {
   set editDialog(value: boolean) {
     this.service.editDialog = value;
   }
-  public edit(commande: Stock) {
-    console.log(commande.magasin.reference)
+  public edit(commande: MateraialIntervention) {
+    console.log(commande.magasin.reference);
     this.velues = commande.magasin.reference;
     this.valeur = commande.material.reference;
-    this.stock.qte=commande.qte;
-    // this.selection = commande;
-    // console.log(commande.id);
+    this.stock.qte = commande.qte;
+    this.selection = commande;
     // this.editDialog = true;
 
+  }
+
+  editliste(collaborateur: Stock) {
+    if (this.service.findIndexByRefs(collaborateur.magasin.reference, collaborateur.material.reference) !== -1 && this.stocks.length !== 0) {
+      alert('donner un membre equipe qui n est pas deja sauvegarder');
+    }
+    else if ( collaborateur.magasin.reference && collaborateur.material.reference) {
+      this.service.saveStock();
+      const v = this.service.findIndexByRefs(this.selection.magasin.reference, this.selection.material.reference);
+      this.materialInterventions[v].qte = collaborateur.qte;
+      this.materialInterventions[v].magasin.reference = collaborateur.magasin.reference;
+      this.materialInterventions[v].material.reference = collaborateur.material.reference;
+
+    }
+  }
+
+  delete(stock: Stock) {
+    this.service.deleteMaterial(stock.magasin.reference, stock.material.reference).subscribe();
+    this.materialInterventions.splice(this.service.findIndexByRefs(stock.magasin.reference, stock.material.reference)) ;
   }
 }

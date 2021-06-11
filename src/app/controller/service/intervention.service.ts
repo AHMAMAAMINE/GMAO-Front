@@ -139,7 +139,10 @@ export class InterventionService {
     this.materialIntervention.intervention = this.selected;
     this.materialIntervention.collaborateur.codeCollaborateur =
       this._codeCollaborateur;
-    this.materialInterventions.push(this._materialIntervention);
+    if (!this.editDialog)
+    {
+      this.materialInterventions.push(this._materialIntervention);
+    }
     this.selected.materaialInterventions = this.materialInterventions;
     this.stockService.selected = null;
     // this.materialIntervention.push(this.materialIntervention);
@@ -368,7 +371,20 @@ export class InterventionService {
     }
     return index;
   }
-
+  findIndexByRefs(referenceMAg: string, Mat: string): number {
+    let index = -1;
+    for (let i = 0; i < this.collaborateurs.length; i++) {
+      if (
+          this.materialInterventions[i].magasin.reference === referenceMAg &&
+          this.materialInterventions[i].material.reference === Mat
+      ) {
+        index = i;
+        break;
+      }
+    }
+    console.log(index);
+    return index;
+  }
   delete(codeCollaborateur: string, ref: string) {
     return this.http.delete<number>(
       this.urlmembre +
@@ -381,5 +397,9 @@ export class InterventionService {
 
     findByCodeInterv(code: string) {
         return this.http.get<Array<MateraialIntervention>>(this.urlmaterial + '/intervention/' + code);
+    }
+
+    deleteMaterial(Mag: string , Mat: string) {
+        return this.http.delete(this.urlmaterial + '/material/' + Mat + '/Mag/' + Mag);
     }
 }

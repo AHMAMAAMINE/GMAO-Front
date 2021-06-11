@@ -15,7 +15,8 @@
 <!--        </p-dropdown>-->
         <label for="">material</label>
             <select class="form-control" pInputText (change)="isSelecte($event)" [(ngModel)]="valeur">
-                <option *ngFor="let c of materials" [value]="c.reference"> {{c.reference}}</option>
+                <option [value]=''>---select value-----</option>
+                <option *ngFor="let c of materials" > {{c.reference}}</option>
             </select>
 
         <small class="p-invalid" *ngIf="submitted && !stock.material.reference">material is required.</small>
@@ -25,7 +26,13 @@
         <input type="number" pInputText id="qte" [(ngModel)]="stock.qte" required autofocus />
         <small class="p-invalid" *ngIf="submitted && !stock.qte">qte is required.</small>
     </div>
-    <button pButton  label="Ajout"  class="p-button-text" (click)="evaluate()" ></button>
+    <div class="p-card-footer" [hidden]="editDialog">
+    <button pButton  label="Ajout"  class="p-button-text" (click)="evaluate()" >
+    </button>
+    </div>
+        <div class="p-card-footer" [hidden]="!editDialog">
+            <button pButton  label="edit"  class="p-button-text"   (click)="editliste(stock)"></button>
+        </div>
 </div>
     <p-table  [value]="materialInterventions" [columns]="cols" [rows]="4" [paginator]="true" [globalFilterFields]="['reference','total','totalPaye']"
               [(selection)]="selectes" [rowHover]="true" dataKey="id"
