@@ -4,6 +4,8 @@ import {TacheIntervention} from '../../../../controller/model/tache-intervention
 import {EtatTacheService} from '../../../../controller/service/etat-tache.service';
 import {EquipesService} from '../../../../controller/service/equipes.service';
 import {TacheInterventionService} from '../../../../controller/service/tache-intervention.service';
+import {CollaborateurService} from '../../../../controller/service/collaborateur.service';
+import {Collaborateur} from '../../../../controller/model/collaborateur.model';
 
 @Component({
   selector: 'app-chef-equipe-tache-create',
@@ -16,6 +18,7 @@ export class ChefEquipeTacheCreateComponent implements OnInit {
               private service: TacheInterventionService,
               private equipesService: EquipesService,
               private etatTacheService: EtatTacheService,
+              private collaborateurService: CollaborateurService,
               ) {
   }
 
@@ -43,6 +46,15 @@ export class ChefEquipeTacheCreateComponent implements OnInit {
       this.createDialog = false;
       this.selected = new TacheIntervention();
     }
+  }
+  get collaborateur(): Collaborateur {
+    return this.collaborateurService.collaborateur;
+  }
+  set collaborateur(value: Collaborateur) {
+    this.collaborateurService.collaborateur = value;
+  }
+  get collaborateurs(): Array<Collaborateur> {
+    return this.collaborateurService.collaborateurs;
   }
   get selected(): TacheIntervention {
     return this.service.selected;

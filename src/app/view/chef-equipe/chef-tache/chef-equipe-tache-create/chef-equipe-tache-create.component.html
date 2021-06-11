@@ -21,6 +21,14 @@
                 </textarea>
             </div>
         </div>
+        <div class="p-field">
+            <label>Membre Equip</label>
+            <select class="form-control" (change)="isSelected($event)" pInputText>
+                <option *ngFor="let c of collaborateurs" [value]="c.codeCollaborateur">
+                    {{ c.fullname }}
+                </option>
+            </select>
+        </div>
         <div class="p-grid">
             <div class="p-field p-sm-6">
                 <label for="datedemarre">Date Début</label>

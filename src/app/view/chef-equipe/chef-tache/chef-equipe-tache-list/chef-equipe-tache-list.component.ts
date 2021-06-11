@@ -48,7 +48,7 @@ export class ChefEquipeTacheListComponent implements OnInit {
     return this.service.selected;
   }
   set selected(value: TacheIntervention) {
-    this.selected = value;
+    this.service.selected = value;
   }
 
   get items(): Array<TacheIntervention> {
