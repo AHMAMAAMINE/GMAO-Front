@@ -12,7 +12,8 @@ import { DatePipe } from '@angular/common';
 export class InterventionConseilComponent implements OnInit {
 
   constructor(private service: InterventionService) {
-      this.conseilIntervention.message=null;
+      this.conseilIntervention.message = null;
+      this.conseilInterventions = null;
   }
   cols: any[];
   ngOnInit(): void {
@@ -23,6 +24,9 @@ export class InterventionConseilComponent implements OnInit {
   }
   get conseilInterventions(): Array<Conseils> {
     return this.service.conseilInterventions;
+  }
+  set conseilInterventions(value: Array<Conseils>) {
+    this.service.conseilInterventions = value;
   }
   get selectes(): Array<Intervention> {
     return this.service.selectes;

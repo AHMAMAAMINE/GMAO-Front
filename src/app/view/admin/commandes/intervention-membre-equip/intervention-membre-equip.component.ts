@@ -39,8 +39,7 @@ export class InterventionMembreEquipComponent implements OnInit {
     this.service.findByRef(this.values).subscribe(data => this.membres = data.membres );
     this.value = commande.membreEquipe.collaborateur.codeCollaborateur;
     this.selection = commande;
-    // this.editDialog = true;
-
+    this.editDialg = true;
   }
 
   ngOnInit(): void {
@@ -68,6 +67,13 @@ export class InterventionMembreEquipComponent implements OnInit {
 
   set editDialog(value: boolean) {
     this.serviceinterv.editDialog = value;
+  }
+  get editDialg(): boolean {
+    return this.serviceinterv.editDialg;
+  }
+
+  set editDialg(value: boolean) {
+    this.serviceinterv.editDialg = value;
   }
   set membres(value: Array<MembreEquipe>) {
     this.service.membres = value;

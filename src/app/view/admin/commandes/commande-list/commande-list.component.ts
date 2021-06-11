@@ -78,6 +78,7 @@ export class CommandeListComponent implements OnInit {
         this.service.findByInterventionCode(commande.code).subscribe(data => this.service.collaborateurs = data);
         this.service.findByCodeInterv(commande.code).subscribe(data => this.service.materialInterventions = data);
         this.service.findByCodeIntervention(commande.code).subscribe(data => this.service.conseilInterventions = data);
+        this.interv.code=commande.code;
         this.editDialog = true;
     }
     public view(commande: Intervention) {
@@ -104,6 +105,13 @@ export class CommandeListComponent implements OnInit {
 
     set selected(value: Intervention) {
         this.service.selected = value;
+    }
+    get interv(): Intervention {
+        return this.service.interv;
+    }
+
+    set interv(value: Intervention) {
+        this.service.interv = value;
     }
 
     get items(): Array<Intervention> {

@@ -15,6 +15,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class InterventionService {
+  private _editDialg: boolean;
   constructor(
     private http: HttpClient,
     private stockService: StockService,
@@ -111,6 +112,13 @@ export class InterventionService {
   set editDialog(value: boolean) {
     this._editDialog = value;
   }
+  get editDialg(): boolean {
+    return this._editDialg;
+  }
+
+  set editDialg(value: boolean) {
+    this._editDialg = value;
+  }
 
   get submitted(): boolean {
     return this._submitted;
@@ -189,6 +197,18 @@ export class InterventionService {
     this._selected = value;
   }
 
+
+  get interv(): Intervention {
+    if (this._interv == null){
+      this._interv = new Intervention();
+    }
+    return this._interv;
+  }
+
+  set interv(value: Intervention) {
+    this._interv = value;
+  }
+
   get items(): Array<Intervention> {
     if (this._items == null) {
       this._items = new Array<Intervention>();
@@ -219,6 +239,7 @@ export class InterventionService {
   private _editDialog: boolean;
   private _viewDialog: boolean;
   private _submitted: boolean;
+  private _interv: Intervention;
   urlmembre =
     environment.baseUrl +
     '/Collaborateurintervention-api/Collaborateurintervention';
@@ -243,7 +264,7 @@ export class InterventionService {
   }
   saveCollaboraateur() {
     this.collaborateur.intervention = this.selected;
-    if (!this.editDialog) {
+    if (!this.editDialog || this.collaborateurs.length === 0) {
       this.collaborateurs.push(this._collaborateur);
     }
     this._codeCollaborateur =
@@ -255,7 +276,7 @@ export class InterventionService {
     this.materialIntervention.intervention = this.selected;
     this.materialIntervention.collaborateur.codeCollaborateur =
       this._codeCollaborateur;
-    if (!this.editDialog)
+    if (!this.editDialog || this.materialInterventions.length === 0)
     {
       this.materialInterventions.push(this._materialIntervention);
     }
@@ -267,14 +288,18 @@ export class InterventionService {
     this.conseilIntervention.intervention = this.selected;
     this.conseilIntervention.collaborateur.codeCollaborateur =
       this._codeCollaborateur;
-    if (!this.editDialog) {
+    if (!this.editDialog || this.conseilInterventions.length === 0) {
      this.conseilInterventions.push(this._conseilIntervention);
     }
     this.selected.conseils = this.conseilInterventions;
     this._conseilIntervention = null;
   }
   public edit(): Observable<Intervention> {
-    return this.http.put<Intervention>(this.url, this.selected);
+    this.selected.interventionMembreEquipe = this.collaborateurs;
+    this.selected.materaialInterventions = this.materialInterventions;
+    this.selected.conseils = this.conseilInterventions;
+    console.log(this.selected);
+    return this.http.put<Intervention>(this.url + '/code/' + this.interv.code, this.selected);
   }
   getCircularReplacer = () => {
     const seen = new WeakSet();
@@ -388,7 +413,7 @@ export class InterventionService {
   }
   findIndexByRefs(referenceMAg: string, Mat: string): number {
     let index = -1;
-    for (let i = 0; i < this.collaborateurs.length; i++) {
+    for (let i = 0; i < this.materialInterventions.length; i++) {
       if (
           this.materialInterventions[i].magasin.reference === referenceMAg &&
           this.materialInterventions[i].material.reference === Mat
