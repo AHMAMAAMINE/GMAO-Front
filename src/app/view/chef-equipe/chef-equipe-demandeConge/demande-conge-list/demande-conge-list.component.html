@@ -5,7 +5,7 @@
             <p-toolbar styleClass="p-mb-4">
                 <ng-template pTemplate="left">
                     <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2 p-mb-2" (click)="openCreate()"></button>
-                   <!-- <button pButton pRipple label="Delete" icon="pi pi-trash" class="p-button-danger p-mb-2" (click)="deleteMultiple()" [disabled]="!selectes || !selectes.length"></button>-->
+                    <button pButton pRipple label="Delete" icon="pi pi-trash" class="p-button-danger p-mb-2" (click)="deleteMultiple()" [disabled]="!selectes || !selectes.length"></button>
                 </ng-template>
 
                 <ng-template pTemplate="right">
@@ -21,6 +21,10 @@
                 <ng-template pTemplate="caption">
                     <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header">
                         <h5 class="p-m-0">Demandes</h5>
+<!--                        <span  (click)="findByCriteria()" class="p-input-icon-left">-->
+<!--                       <i class="pi pi-search" ></i>-->
+<!--                        <input pInputText type="text"  [(ngModel)]="demandeCongeVo.nomCollaborateur" placeholder="Search..." />-->
+<!--                    </span>-->
                     </div>
                 </ng-template>
                 <ng-template pTemplate="header">
@@ -28,23 +32,29 @@
                         <th style="width: 3rem">
                             <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                         </th>
-                      <!--  <th pSortableColumn="code">Code<p-sortIcon field="code"></p-sortIcon></th>-->
+                        <th pSortableColumn="code">Code<p-sortIcon field="code"></p-sortIcon></th>
                         <th pSortableColumn="collaborateur">Collaborateur<p-sortIcon field="collaborateur"></p-sortIcon></th>
-
+                        <th pSortableColumn="dateDepart">Date départ <p-sortIcon field="dateDepart"></p-sortIcon></th>
+                        <th pSortableColumn="dateFin">Date fin <p-sortIcon field="dateFin"></p-sortIcon></th>
+                        <th pSortableColumn="etatDemandeConfeLibelle">Etat Demande<p-sortIcon field="etatDemandeConfeLibelle"></p-sortIcon></th>
                         <th></th>
                     </tr>
                 </ng-template>
-                <ng-template pTemplate="body" let-collaborateur>
+                <ng-template pTemplate="body" let-demandeConge>
                     <tr>
                         <td>
-                            <p-tableCheckbox [value]="collaborateur"></p-tableCheckbox>
+                            <p-tableCheckbox [value]="demandeConge"></p-tableCheckbox>
                         </td>
-                       <!-- <td>{{demandeConge.code}}</td>-->
-                        <td>{{collaborateur.fullname}</td>
-
+                        <td>{{demandeConge.code}}</td>
+                        <td>{{demandeConge.collaborateur.nom}} {{demandeConge.collaborateur.prenom}}</td>
+                        <td>{{demandeConge.dateDepart}}</td>
+                        <td>{{demandeConge.dateFin}}</td>
+                        <td>{{demandeConge.etatDemandeConge.libelle}}</td>
                         <td>
-                            <button pButton pRipple icon="pi pi-list" class="p-button-rounded p-button-info p-mr-2" (click)="view(collaborateur)"></button>
-                            <!--<button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="delete(demandeConge)"></button>-->
+                            <button pButton pRipple icon="pi pi-check" class="p-button-rounded p-button-success p-mr-2" (click)="edit(demandeConge,1)"></button>
+                            <button pButton pRipple icon="pi pi-times" class="p-button-rounded p-button-danger p-mr-2" (click)="edit(demandeConge,2)"></button>
+                            <button pButton pRipple icon="pi pi-list" class="p-button-rounded p-button-info p-mr-2" (click)="view(demandeConge)"></button>
+                            <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="delete(demandeConge)"></button>
                         </td>
                     </tr>
                 </ng-template>
@@ -56,7 +66,8 @@
             </p-table>
         </div>
 
-      <app-collaborateur-create></app-collaborateur-create>
+        <app-demande-conge-create></app-demande-conge-create>
+
         <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
     </div>
 </div>

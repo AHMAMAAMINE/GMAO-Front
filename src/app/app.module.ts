@@ -189,6 +189,10 @@ import { NodeService } from './demo/service/nodeservice';
 import { CollaborateurListComponent } from './view/collaborateur/collaborateur-list/collaborateur-list.component';
 import { CollaborateurCreateComponent } from './view/collaborateur/collaborateur-create/collaborateur-create.component';
 import {SearchInterventionComponent} from './view/admin/commandes/search-intervention/search-intervention.component';
+import { MembreEquipeComponent } from './view/admin/equipes/membre-equipe/membre-equipe.component';
+import { DemandeCongeCreateComponent } from './view/chef-equipe/chef-equipe-demandeConge/demande-conge-create/demande-conge-create.component';
+import { DemandeCongeListComponent } from './view/chef-equipe/chef-equipe-demandeConge/demande-conge-list/demande-conge-list.component';
+import { ChefTacheComponent } from './view/chef-equipe/chef-tache/chef-tache.component';
 
 @NgModule({
   imports: [
@@ -376,9 +380,14 @@ import {SearchInterventionComponent} from './view/admin/commandes/search-interve
     ChefEquipeMenuItemComponent,
     CollaborateurListComponent,
     CollaborateurCreateComponent,
-    SearchInterventionComponent,
+    MembreEquipeComponent,
+    DemandeCongeListComponent,
+    DemandeCongeCreateComponent,
+    ChefTacheComponent,
     StockViewComponent,
     StockListComponent,
+    SearchInterventionComponent,
+
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },
