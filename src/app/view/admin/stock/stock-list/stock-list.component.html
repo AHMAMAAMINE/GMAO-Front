@@ -57,22 +57,18 @@
           <th style="width: 3rem">
             <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
           </th>
-          <th pSortableColumn="code">
-            code <p-sortIcon field="code"></p-sortIcon>
+          <th pSortableColumn="id">
+            Id <p-sortIcon field="Id"></p-sortIcon>
           </th>
-          <th pSortableColumn="libelle">
-            libelle <p-sortIcon field="libelle"></p-sortIcon>
+          <th pSortableColumn="magasin">
+            Magasin <p-sortIcon field="Magasin"></p-sortIcon>
           </th>
-          <th pSortableColumn="dateDeProbleme">
-            dateDeProbleme <p-sortIcon field="dateDeProbleme"></p-sortIcon>
+          <th pSortableColumn="material">
+            Material <p-sortIcon field="Material"></p-sortIcon>
           </th>
-          <th pSortableColumn="dateDebut">
-            dateDebut <p-sortIcon field="dateDebut"></p-sortIcon>
+          <th pSortableColumn="quantite">
+            Quantite <p-sortIcon field="Quantite"></p-sortIcon>
           </th>
-          <th pSortableColumn="dateFin">
-            dateFin <p-sortIcon field="dateFin"></p-sortIcon>
-          </th>
-          <th></th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-intervention>
@@ -119,8 +115,8 @@
     </p-table>
   </div>
 
-  <!-- <app-commande-create></app-commande-create>
-    <app-commande-edit></app-commande-edit>
-    <app-commande-view></app-commande-view> -->
+<!--  <app-intervention-stock></app-intervention-stock>-->
+<!--  <app-commande-edit></app-commande-edit>-->
+<!--   <app-commande-view></app-commande-view> -->
   <p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>
 </div>

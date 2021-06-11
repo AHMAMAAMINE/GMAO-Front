@@ -15,7 +15,6 @@ import { Component, OnInit } from "@angular/core";
 export class StockListComponent implements OnInit {
   constructor(
     private service: StockService,
-    private MagasinService: MagasinService,
     private materialService: MaterialService,
     private messageService: MessageService
   ) {}
@@ -45,11 +44,10 @@ export class StockListComponent implements OnInit {
 
   private initCol() {
     this.cols = [
-      { field: "code", header: "Code" },
-      { field: "libelle", header: "Libelle" },
-      { field: "dateDeProbleme", header: "Date De Probleme" },
-      { field: "dateDebut", header: "date Debut" },
-      { field: "dateFin", header: "date Fin" },
+      { field: "id", header: "Id" },
+      { field: "magasin", header: "Magasin" },
+      { field: "material", header: "Material" },
+      { field: "quantite", header: "Quantite" },
     ];
   }
 
@@ -123,4 +121,8 @@ export class StockListComponent implements OnInit {
       }
     );
   }
+
+    deleteMultiple() {
+
+    }
 }
