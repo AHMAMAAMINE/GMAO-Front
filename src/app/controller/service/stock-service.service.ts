@@ -1,7 +1,8 @@
-import { environment } from "src/environments/environment";
 import { Injectable } from "@angular/core";
 import { Stock } from "../model/Stock.model";
 import { HttpClient } from "@angular/common/http";
+import {environment} from '../../../environments/environment';
+import {MateraialIntervention} from '../model/materaial-intervention.model';
 @Injectable({
   providedIn: "root",
 })
@@ -26,6 +27,7 @@ export class StockService {
   // set stock(value: Stock) {
   //   this._stock = value;
   // }
+  private _selection: MateraialIntervention;
 
   get selected(): Stock {
     if (this._selected == null) {
@@ -37,7 +39,16 @@ export class StockService {
   set selected(value: Stock) {
     this._selected = value;
   }
+  get selection(): MateraialIntervention {
+    if (this._selection == null) {
+      this._selection = new MateraialIntervention();
+    }
+    return this._selection;
+  }
 
+  set selection(value: MateraialIntervention) {
+    this._selection = value;
+  }
   set items(value: Array<Stock>) {
     this._items = value;
   }

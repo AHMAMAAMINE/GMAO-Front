@@ -1,21 +1,22 @@
-import { EtatIntervention } from "./../model/etat-intervention.model";
-import { MateraialIntervention } from "./../model/materaial-intervention.model";
-import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { Intervention } from "./../model/intervention.model";
-import { StockService } from "./stock-service.service";
-import { Conseils } from "../model/conseils.model";
-import { InterventionVo } from "../model/intervention-vo.model";
-import { InterventionMembreEquipe } from "../model/intervention-membre-equipe.model";
-import { UserService } from "./user.service";
-import { environment } from "../../../environments/environment";
-import { Observable } from "rxjs";
+import { EtatIntervention } from './../model/etat-intervention.model';
+import { MateraialIntervention } from './../model/materaial-intervention.model';
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Intervention } from './../model/intervention.model';
+import { StockService } from './stock-service.service';
+import { Conseils } from '../model/conseils.model';
+import { InterventionVo } from '../model/intervention-vo.model';
+import { InterventionMembreEquipe } from '../model/intervention-membre-equipe.model';
+import { UserService } from './user.service';
+import { environment } from '../../../environments/environment';
+import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class InterventionService {
   private _selection: InterventionMembreEquipe;
+  private urlmaterial = environment.baseUrl + '/MaterialIntervention-api/Materialintervention' ;
   constructor(
     private http: HttpClient,
     private stockService: StockService,
@@ -31,7 +32,7 @@ export class InterventionService {
   private _materialIntervention: MateraialIntervention;
   private _conseilIntervention: Conseils;
   private _conseilInterventions: Array<Conseils>;
-  private url = environment.baseUrl + "/Intervention-api/intervention";
+  private url = environment.baseUrl + '/Intervention-api/intervention';
   private _selectes: Array<Intervention>;
   private _index: number;
   private _createDialog: boolean;
@@ -40,8 +41,8 @@ export class InterventionService {
   private _submitted: boolean;
   urlmembre =
     environment.baseUrl +
-    "/Collaborateurintervention-api/Collaborateurintervention";
-  urlCriteria = "http://localhost:8036/Intervention-api/intervention/criteria";
+    '/Collaborateurintervention-api/Collaborateurintervention';
+  urlCriteria = 'http://localhost:8036/Intervention-api/intervention/criteria';
   private _interventionVo: InterventionVo;
   get conseilIntervention(): Conseils {
     if (this._conseilIntervention == null) {
@@ -138,7 +139,10 @@ export class InterventionService {
     this.materialIntervention.intervention = this.selected;
     this.materialIntervention.collaborateur.codeCollaborateur =
       this._codeCollaborateur;
-    this.materialInterventions.push(this._materialIntervention);
+    if (!this.editDialog)
+    {
+      this.materialInterventions.push(this._materialIntervention);
+    }
     this.selected.materaialInterventions = this.materialInterventions;
     this.stockService.selected = null;
     // this.materialIntervention.push(this.materialIntervention);
@@ -157,7 +161,7 @@ export class InterventionService {
   getCircularReplacer = () => {
     const seen = new WeakSet();
     return (key, value) => {
-      if (typeof value === "object" && value !== null) {
+      if (typeof value === 'object' && value !== null) {
         if (seen.has(value)) {
           return;
         }
@@ -165,11 +169,11 @@ export class InterventionService {
       }
       return value;
     };
-  };
+  }
 
   public save(): Observable<Intervention> {
     const stringifi = JSON.stringify(this.selected, this.getCircularReplacer());
-    return this.http.post<Intervention>(this.url + "/", JSON.parse(stringifi));
+    return this.http.post<Intervention>(this.url + '/', JSON.parse(stringifi));
   }
   // public update(index: numb0er, intervention: Intervention) {
   //   this.selected = this.selected;
@@ -194,12 +198,12 @@ export class InterventionService {
   //   }
   // }
   public findAll(): Observable<Array<Intervention>> {
-    return this.http.get<Array<Intervention>>(this.url + "/");
+    return this.http.get<Array<Intervention>>(this.url + '/');
   }
 
   deleteByCode() {
     return this.http.delete<number>(
-      this.url + "/deleteCode/" + this.selected.code
+      this.url + '/deleteCode/' + this.selected.code
     );
   }
   public deleteIndexById(id: number) {
@@ -217,7 +221,7 @@ export class InterventionService {
   }
   deleteMultipleByReference() {
     return this.http.post<number>(
-      this.url + "delete-multiple-by-reference",
+      this.url + 'delete-multiple-by-reference',
       this.selectes
     );
   }
@@ -331,7 +335,7 @@ export class InterventionService {
   }
 
   public findByCode(code: string) {
-    return this.http.get<Intervention>(this.url + "/findCode/" + code);
+    return this.http.get<Intervention>(this.url + '/findCode/' + code);
   }
   // public addMembres() {
   //   console.log(this.collaborateurs)
@@ -349,7 +353,7 @@ export class InterventionService {
   // }
   findByInterventionCode(code: string) {
     return this.http.get<Array<InterventionMembreEquipe>>(
-      this.urlmembre + "/intervcode/" + code
+      this.urlmembre + '/intervcode/' + code
     );
   }
 
@@ -367,14 +371,35 @@ export class InterventionService {
     }
     return index;
   }
-
+  findIndexByRefs(referenceMAg: string, Mat: string): number {
+    let index = -1;
+    for (let i = 0; i < this.collaborateurs.length; i++) {
+      if (
+          this.materialInterventions[i].magasin.reference === referenceMAg &&
+          this.materialInterventions[i].material.reference === Mat
+      ) {
+        index = i;
+        break;
+      }
+    }
+    console.log(index);
+    return index;
+  }
   delete(codeCollaborateur: string, ref: string) {
     return this.http.delete<number>(
       this.urlmembre +
-        "/CollaborateurCod/" +
+        '/CollaborateurCod/' +
         codeCollaborateur +
-        "/Equipe/" +
+        '/Equipe/' +
         ref
     );
   }
+
+    findByCodeInterv(code: string) {
+        return this.http.get<Array<MateraialIntervention>>(this.urlmaterial + '/intervention/' + code);
+    }
+
+    deleteMaterial(Mag: string , Mat: string) {
+        return this.http.delete(this.urlmaterial + '/material/' + Mat + '/Mag/' + Mag);
+    }
 }

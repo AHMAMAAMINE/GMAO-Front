@@ -40,10 +40,7 @@
     >
       <ng-template pTemplate="caption">
         <div
-          class="
-            p-d-flex p-flex-column p-flex-md-row p-jc-md-between
-            table-header
-          "
+          class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header"
         >
           <h5 class="p-m-0">Manage Stock</h5>
           <span class="p-input-icon-left">
@@ -57,30 +54,27 @@
           <th style="width: 3rem">
             <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
           </th>
-          <th pSortableColumn="id">
-            Id <p-sortIcon field="Id"></p-sortIcon>
+          <th pSortableColumn="code">
+            Material <p-sortIcon field="code"></p-sortIcon>
           </th>
-          <th pSortableColumn="magasin">
-            Magasin <p-sortIcon field="Magasin"></p-sortIcon>
+          <th pSortableColumn="libelle">
+            Magasin <p-sortIcon field="libelle"></p-sortIcon>
           </th>
-          <th pSortableColumn="material">
-            Material <p-sortIcon field="Material"></p-sortIcon>
+          <th pSortableColumn="dateDeProbleme">
+            quantite <p-sortIcon field="dateDeProbleme"></p-sortIcon>
           </th>
-          <th pSortableColumn="quantite">
-            Quantite <p-sortIcon field="Quantite"></p-sortIcon>
-          </th>
+
+          <th></th>
         </tr>
       </ng-template>
-      <ng-template pTemplate="body" let-intervention>
+      <ng-template pTemplate="body" let-stock>
         <tr>
           <td>
-            <p-tableCheckbox [value]="intervention"></p-tableCheckbox>
+            <p-tableCheckbox [value]="stock"></p-tableCheckbox>
           </td>
-          <td>{{ intervention.code }}</td>
-          <td>{{ intervention.libelle }}</td>
-          <td>{{ intervention.dateDeProbleme }}</td>
-          <td>{{ intervention.dateDebut }}</td>
-          <td>{{ intervention.dateFin }}</td>
+          <td>{{ stock.material.reference }}</td>
+          <td>{{ stock.magasin.reference }}</td>
+          <td>{{ stock.qte }}</td>
 
           <td>
             <button
@@ -88,21 +82,21 @@
               pRipple
               icon="pi pi-pencil"
               class="p-button-rounded p-button-success p-mr-2"
-              (click)="edit(intervention)"
+              (click)="edit(stock)"
             ></button>
             <button
               pButton
               pRipple
               icon="pi pi-list"
               class="p-button-rounded p-button-info p-mr-2"
-              (click)="view(intervention)"
+              (click)="view(stock)"
             ></button>
             <button
               pButton
               pRipple
               icon="pi pi-trash"
               class="p-button-rounded p-button-danger"
-              (click)="delete(intervention)"
+              (click)="delete(stock)"
             ></button>
           </td>
         </tr>
@@ -115,8 +109,8 @@
     </p-table>
   </div>
 
-<!--  <app-intervention-stock></app-intervention-stock>-->
-<!--  <app-commande-edit></app-commande-edit>-->
-<!--   <app-commande-view></app-commande-view> -->
+  <!--  <app-intervention-stock></app-intervention-stock>-->
+  <!--  <app-commande-edit></app-commande-edit>-->
+  <!--   <app-commande-view></app-commande-view> -->
   <p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>
 </div>
