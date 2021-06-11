@@ -39,8 +39,7 @@ export class InterventionMembreEquipComponent implements OnInit {
     this.service.findByRef(this.values).subscribe(data => this.membres = data.membres );
     this.value = commande.membreEquipe.collaborateur.codeCollaborateur;
     this.selection = commande;
-    // this.editDialog = true;
-
+    this.editDialg = true;
   }
 
   ngOnInit(): void {
@@ -68,6 +67,13 @@ export class InterventionMembreEquipComponent implements OnInit {
 
   set editDialog(value: boolean) {
     this.serviceinterv.editDialog = value;
+  }
+  get editDialg(): boolean {
+    return this.serviceinterv.editDialg;
+  }
+
+  set editDialg(value: boolean) {
+    this.serviceinterv.editDialg = value;
   }
   set membres(value: Array<MembreEquipe>) {
     this.service.membres = value;
@@ -99,7 +105,13 @@ export class InterventionMembreEquipComponent implements OnInit {
     }
     else if (collaborateur.membreEquipe.collaborateur.codeCollaborateur && collaborateur.equipe.ref) {
       this.serviceinterv.saveCollaboraateur();
-      this.MembresEquipe[this.serviceinterv.findIndexByRef(this.selection.membreEquipe.collaborateur.codeCollaborateur, this.selection.equipe.ref)] = collaborateur;
+      if(this.editDialg)
+      {
+        this.MembresEquipe[this.serviceinterv.findIndexByRef(this.selection.membreEquipe.collaborateur.codeCollaborateur, this.selection.equipe.ref)] = collaborateur;
+      }
+      this.editDialg = false;
+      this.value = '---select value-----';
+      this.values = '---select value-----';
       }
 
   }
@@ -113,7 +125,13 @@ export class InterventionMembreEquipComponent implements OnInit {
   }
 
   delete(membresEquipe: InterventionMembreEquipe) {
-    this.serviceinterv.delete(membresEquipe.membreEquipe.collaborateur.codeCollaborateur, membresEquipe.equipe.ref).subscribe();
-    this.MembresEquipe.splice(this.serviceinterv.findIndexByRef(membresEquipe.membreEquipe.collaborateur.codeCollaborateur, membresEquipe.equipe.ref)) ;
+    console.log(membresEquipe);
+    this.serviceinterv.delete(membresEquipe.intervention.code, membresEquipe.membreEquipe.collaborateur.codeCollaborateur, membresEquipe.equipe.ref).subscribe(
+        data => {
+          if (data > 0){
+            this.MembresEquipe.splice(this.serviceinterv.findIndexByRef(membresEquipe.membreEquipe.collaborateur.codeCollaborateur, membresEquipe.equipe.ref)) ;
+          }
+        }
+    );
   }
 }

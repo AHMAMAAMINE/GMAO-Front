@@ -38,7 +38,6 @@ export class EquipesService {
   public save() {
     this.selectedEquipe = this.selectedEquipe;
     this.equipes.push(this._selectedEquipe);
-    console.log(this.equipes);
     this._selectedEquipe = null;
     return this.http.post<Equipe>(this.url, this.selectedEquipe);
   }
@@ -47,7 +46,6 @@ export class EquipesService {
   // }
   saveMembre() {
     this.membres.push(this.membre);
-    console.log(this.membres);
   }
   public edit(): Observable<Equipe> {
     return this.http.put<Equipe>(this.url, this.selectedEquipe);

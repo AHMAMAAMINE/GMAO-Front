@@ -11,6 +11,7 @@ import {InterventionService} from '../../../../controller/service/intervention.s
 export class InterventionEditComponent implements OnInit {
 
     constructor(private messageService: MessageService, private service: InterventionService) {
+
     }
 
     ngOnInit(): void {
@@ -21,6 +22,7 @@ export class InterventionEditComponent implements OnInit {
         if (this.selected.code.trim()) {
             if (this.selected.id) {
                 this.items[this.service.findIndexById(this.selected.id)] = this.selected;
+                console.log(this.selected)
                 this.service.edit().subscribe(data => {
                     this.selected = data;
                     this.messageService.add({

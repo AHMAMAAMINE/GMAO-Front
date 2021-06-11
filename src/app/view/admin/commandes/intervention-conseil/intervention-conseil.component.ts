@@ -12,7 +12,8 @@ import { DatePipe } from '@angular/common';
 export class InterventionConseilComponent implements OnInit {
 
   constructor(private service: InterventionService) {
-      this.conseilIntervention.message=null;
+      this.conseilIntervention.message = null;
+      this.conseilInterventions = null;
   }
   cols: any[];
   ngOnInit(): void {
@@ -23,6 +24,9 @@ export class InterventionConseilComponent implements OnInit {
   }
   get conseilInterventions(): Array<Conseils> {
     return this.service.conseilInterventions;
+  }
+  set conseilInterventions(value: Array<Conseils>) {
+    this.service.conseilInterventions = value;
   }
   get selectes(): Array<Intervention> {
     return this.service.selectes;
@@ -55,15 +59,27 @@ export class InterventionConseilComponent implements OnInit {
   set editDialog(value: boolean) {
     this.service.editDialog = value;
   }
+  get editDialg(): boolean {
+    return this.service.editDialg;
+  }
 
+  set editDialg(value: boolean) {
+    this.service.editDialg = value;
+  }
   edit(membresEquipe: Conseils) {
     this.conseilIntervention.message = membresEquipe.message;
     this.iteams = membresEquipe;
+    this.editDialg = true;
   }
 
   delete(membresEquipe: Conseils) {
-    this.service.deletes(membresEquipe.collaborateur.codeCollaborateur, membresEquipe.message).subscribe();
-    this.conseilInterventions.splice(this.service.findIndexByRefa(membresEquipe.collaborateur.codeCollaborateur, membresEquipe.message)) ;
+    this.service.deletes(membresEquipe.intervention.code,membresEquipe.collaborateur.codeCollaborateur, membresEquipe.message).subscribe(
+        data => {
+          if (data > 0){
+            this.conseilInterventions.splice(this.service.findIndexByRefa(membresEquipe.collaborateur.codeCollaborateur, membresEquipe.message)) ;
+          }
+        }
+    );
   }
 
   editliste(conseilIntervention: Conseils) {
@@ -72,8 +88,12 @@ export class InterventionConseilComponent implements OnInit {
     }
     else if (conseilIntervention.message) {
       this.service.saveConseil();
-      this.conseilInterventions[this.service.findIndexByRefa(this.iteams.message, this.iteams.collaborateur.codeCollaborateur)].collaborateur.codeCollaborateur = this.iteams.collaborateur.codeCollaborateur;
-      this.conseilInterventions[this.service.findIndexByRefa(this.iteams.message, this.iteams.collaborateur.codeCollaborateur)].message= conseilIntervention.message;
+      if (this.editDialg)
+      {
+        this.conseilInterventions[this.service.findIndexByRefa(this.iteams.message, this.iteams.collaborateur.codeCollaborateur)].collaborateur.codeCollaborateur = this.iteams.collaborateur.codeCollaborateur;
+        this.conseilInterventions[this.service.findIndexByRefa(this.iteams.message, this.iteams.collaborateur.codeCollaborateur)].message = conseilIntervention.message;
+      }
     }
+    this.editDialg = false;
   }
 }
