@@ -433,4 +433,8 @@ export class InterventionService {
     }
     return index;
   }
+
+  deletes(codeCollaborateur: string, message: string) {
+    return this.http.delete(this.urlconsigne + '/code/' + codeCollaborateur + '/message/' + message);
+  }
 }

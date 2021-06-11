@@ -62,7 +62,8 @@ export class InterventionConseilComponent implements OnInit {
   }
 
   delete(membresEquipe: Conseils) {
-
+    this.service.deletes(membresEquipe.collaborateur.codeCollaborateur, membresEquipe.message).subscribe();
+    this.conseilInterventions.splice(this.service.findIndexByRefa(membresEquipe.collaborateur.codeCollaborateur, membresEquipe.message)) ;
   }
 
   editliste(conseilIntervention: Conseils) {
