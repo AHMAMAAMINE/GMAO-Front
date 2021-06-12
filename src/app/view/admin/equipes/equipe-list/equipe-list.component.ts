@@ -11,7 +11,7 @@ import { EquipesService } from 'src/app/controller/service/equipes.service';
 export class EquipeListComponent implements OnInit {
   cols: any[];
   constructor(private messageService: MessageService, private confirmationService: ConfirmationService,
-    private service: EquipesService) { }
+              private service: EquipesService) { }
     ngOnInit(): void {
       this.initCol();
       this.service.findAll().subscribe(data => this.equipes = data);
