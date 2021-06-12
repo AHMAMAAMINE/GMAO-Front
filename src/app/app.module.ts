@@ -198,6 +198,7 @@ import { SuiviListComponent } from './view/chef-equipe/chef-suivi/suivi-list/sui
 import {ListComponent} from './view/admin/stock-jdid/list/list.component';
 import {CreateComponent} from './view/admin/stock-jdid/create/create.component';
 import {StockJdidComponent} from './view/admin/stock-jdid/stock-jdid.component';
+import { AdmincollaborateurComponent } from './view/admin/admincollaborateur/admincollaborateur.component';
 
 @NgModule({
   imports: [
@@ -392,6 +393,8 @@ import {StockJdidComponent} from './view/admin/stock-jdid/stock-jdid.component';
     ListComponent,
     CreateComponent,
     StockJdidComponent,
+    CollaborateurComponent,
+    AdmincollaborateurComponent,
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },

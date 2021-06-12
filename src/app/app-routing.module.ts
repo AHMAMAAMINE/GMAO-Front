@@ -27,6 +27,8 @@ import { StockJdidComponent } from "./view/admin/stock-jdid/stock-jdid.component
 import { DemandeCongeListComponent } from "./view/chef-equipe/chef-equipe-demandeConge/demande-conge-list/demande-conge-list.component";
 import { ChefEquipeTacheListComponent } from "./view/chef-equipe/chef-tache/chef-equipe-tache-list/chef-equipe-tache-list.component";
 
+import {AdmincollaborateurComponent} from "./view/admin/admincollaborateur/admincollaborateur.component";
+
 @NgModule({
   imports: [
     RouterModule.forRoot(
@@ -58,6 +60,7 @@ import { ChefEquipeTacheListComponent } from "./view/chef-equipe/chef-tache/chef
             { path: "view/stock-jadid", component: StockJdidComponent },
             { path: "view/equipes", component: EquipesComponent },
             { path: "view/operation", component: OperationStockComponent },
+              { path: "view/admin-collaborateur", component: AdmincollaborateurComponent },
           ],
         },
         {
