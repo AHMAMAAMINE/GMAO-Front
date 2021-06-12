@@ -72,12 +72,12 @@
 
                   </tr>
               </ng-template>
-              <ng-template pTemplate="body" let-equipe>
+              <ng-template pTemplate="body" let-equipe >
                   <tr>
                       <td>{{valeur}}</td>
                       <td>{{values}}</td>
                       <td>{{equipe.collaborateur.codeCollaborateur}}</td>
-                      <td><p-checkbox (click)=checkCheckBoxvalue($event)">Check me!</p-checkbox></td>
+                      <td><p-radioButton (onClick)="checkCheckBoxvalue(equipe)" ></p-radioButton></td>
                   </tr>
               </ng-template>
           </p-table>
