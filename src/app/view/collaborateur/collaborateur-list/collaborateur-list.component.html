@@ -14,13 +14,13 @@
                 </ng-template>
             </p-toolbar>
 
-            <p-table #dt [value]="items" [columns]="cols" [rows]="4" [paginator]="true" [globalFilterFields]="['code','collaborateur','dateDepart','dateFin','etatDemandeConfeLibelle']"
+            <p-table #dt [value]="collaborateurs" [columns]="cols" [rows]="4" [paginator]="true" [globalFilterFields]="['code','collaborateur','dateDepart','dateFin','etatDemandeConfeLibelle']"
                      [(selection)]="selectes" [rowHover]="true" dataKey="id"
                      styleClass="p-datatable-customers"
                      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
                 <ng-template pTemplate="caption">
                     <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header">
-                        <h5 class="p-m-0">Demandes</h5>
+                        <h5 class="p-m-0">ajouter collaborateur</h5>
                     </div>
                 </ng-template>
                 <ng-template pTemplate="header">
@@ -39,18 +39,13 @@
                         <td>
                             <p-tableCheckbox [value]="collaborateur"></p-tableCheckbox>
                         </td>
-                       <!-- <td>{{demandeConge.code}}</td>-->
                         <td>{{collaborateur.fullname}</td>
 
-                        <td>
-                            <button pButton pRipple icon="pi pi-list" class="p-button-rounded p-button-info p-mr-2" (click)="view(collaborateur)"></button>
-                            <!--<button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="delete(demandeConge)"></button>-->
-                        </td>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="summary">
                     <div class="p-d-flex p-ai-center p-jc-between">
-                        In total there are {{items ? items.length : 0 }} items.
+                        In total there are {{collaborateurs ? collaborateurs.length : 0 }} collaborateurs.
                     </div>
                 </ng-template>
             </p-table>
