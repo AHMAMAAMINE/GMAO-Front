@@ -68,9 +68,10 @@ export class StockComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.equipeService.findAll().subscribe((data)=>{
+    this.equipeService.findAll().subscribe((data) => {
+      console.log(data);
       this.numEquipes = data.length;
-    })
+    });
     this.collaborateurService.findAll().subscribe((data) => {
       this.numColaborateur = data.length;
     });
