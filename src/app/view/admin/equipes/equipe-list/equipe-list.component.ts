@@ -61,6 +61,8 @@ export class EquipeListComponent implements OnInit {
       this.selectedEquipe = new Equipe();
       this.submitted = false;
       this.createDialog = true;
+      this.membres=null;
+
   }
     get selectevEquipe(): Equipe {
 
@@ -79,6 +81,9 @@ export class EquipeListComponent implements OnInit {
 
   public view(equipe: Equipe) {
       this.selectedEquipe = {...equipe};
+      this.service.findByRef(equipe.ref).subscribe(data => this.membres = data.membres);
+      this.service.findByRef(equipe.ref).subscribe(data => this.selectedEquipe = data);
+      console.log(this.selectedEquipe)
       this.viewDialog = true;
   }
     get membres(): Array<MembreEquipe> {

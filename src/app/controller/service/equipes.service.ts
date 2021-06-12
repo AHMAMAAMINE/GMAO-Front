@@ -60,10 +60,8 @@ export class EquipesService {
     return this.http.put<Equipe>(this.url + 'ref/' + this.ref, this.selectedEquipe);
   }
 
-  public deleteByRef(): Observable<number> {
-    return this.http.delete<number>(
-      this.url + 'ref/' + this.selectedEquipe.ref
-    );
+  public deleteByRef() {
+    return this.http.delete(this.url + 'reference/' + this.selectedEquipe.ref);
   }
 
   public deleteMultipleByRef(): Observable<number> {

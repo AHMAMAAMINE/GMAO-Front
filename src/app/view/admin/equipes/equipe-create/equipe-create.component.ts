@@ -38,6 +38,7 @@ export class EquipeCreateComponent implements OnInit {
 
   set createDialog(value: boolean) {
     this.service.createDialog = value;
+
   }
 
   get submitted(): boolean {
@@ -87,7 +88,7 @@ export class EquipeCreateComponent implements OnInit {
   public saveMembre() {
     this.valeur = this.selectedEquipe.ref;
     this.values = this.selectedEquipe.libelle;
-    this.valorant=this.selectedEquipe.code;
+    this.valorant = this.selectedEquipe.code;
     this.membres.push(this.membreEquipe);
     this.membreEquipe = null;
     console.log(this.membres);

@@ -97,6 +97,8 @@ set equipes(value: Array<Equipe>) {
 
 public hideEditDialog() {
 this.editDialog = false;
+
+
 }
     isSelected($event: any) {
         this.membreEquipe.collaborateur.codeCollaborateur = $event.target.value ;
