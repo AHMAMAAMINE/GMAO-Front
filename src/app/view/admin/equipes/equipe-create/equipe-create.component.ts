@@ -1,17 +1,17 @@
-import { Component, OnInit } from "@angular/core";
-import { MessageService } from "primeng/api";
-import { Equipe } from "src/app/controller/model/equipe.model";
-import { EquipesService } from "src/app/controller/service/equipes.service";
-import { MembreEquipe } from "../../../../controller/model/membre-equipe.model";
+import { Component, OnInit } from '@angular/core';
+import { MessageService } from 'primeng/api';
+import { Equipe } from 'src/app/controller/model/equipe.model';
+import { EquipesService } from 'src/app/controller/service/equipes.service';
+import { MembreEquipe } from '../../../../controller/model/membre-equipe.model';
 
-import { Collaborateur } from "../../../../controller/model/collaborateur.model";
-import { CollaborateurService } from "../../../../controller/service/collaborateur.service";
-import {DatePipe} from "@angular/common";
+import { Collaborateur } from '../../../../controller/model/collaborateur.model';
+import { CollaborateurService } from '../../../../controller/service/collaborateur.service';
+import {DatePipe} from '@angular/common';
 
 @Component({
-  selector: "app-equipe-create",
-  templateUrl: "./equipe-create.component.html",
-  styleUrls: ["./equipe-create.component.scss"],
+  selector: 'app-equipe-create',
+  templateUrl: './equipe-create.component.html',
+  styleUrls: ['./equipe-create.component.scss'],
   providers: [DatePipe]
 })
 export class EquipeCreateComponent implements OnInit {
@@ -27,16 +27,17 @@ export class EquipeCreateComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.collaborateurService.findAll().subscribe(data =>this.collaborateurService.collaborateurs=data);
-    console.log(this.collaborateurs)
+    this.collaborateurService.findAll().subscribe(data => this.collaborateurService.collaborateurs = data);
+    console.log(this.collaborateurs);
   }
   public hideCreateDialog() {
     this.createDialog = false;
     this.submitted = false;
   }
   public saveMembre() {
-    console.log(this.selectedEquipe)
-    this.service.saveMembre();
+    this.selectedEquipe.membres.push(this.membreEquipe);
+    this.service.selectesEquipe.push(this.selectedEquipe);
+    console.log(this.service.selectesEquipe);
   }
 
   public save() {
@@ -45,9 +46,9 @@ export class EquipeCreateComponent implements OnInit {
       this.service.save().subscribe((data) => {
         // this.equipes.push({ ...data });
         this.messageService.add({
-          severity: "success",
-          summary: "Successful",
-          detail: "Equipe Created",
+          severity: 'success',
+          summary: 'Successful',
+          detail: 'Equipe Created',
           life: 3000,
         });
       });
@@ -93,10 +94,10 @@ export class EquipeCreateComponent implements OnInit {
     return this.service.membre;
   }
   isSelected($event: any) {
-    this.selectedEquipe.membres.push($event.target.value) ;
+    this.membreEquipe.collaborateur.codeCollaborateur = $event.target.value ;
   }
 
-    isSelecte($event: any) {
-        this.selectedEquipe.chefEquipe.collaborateur.codeCollaborateur=$event.target.value;
-    }
+    // isSelecte($event: any) {
+    //     this.selectedEquipe.chefEquipe.collaborateur.codeCollaborateur = $event.target.value;
+    // }
 }
