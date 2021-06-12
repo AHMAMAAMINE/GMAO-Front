@@ -47,6 +47,9 @@ export class AdminMenuComponent implements OnInit {
       {
         label: 'operation stock', icon: 'pi pi-fw pi-check-square', routerLink: ['view/operation']
       } ,
+      {
+        label: 'Collaborateur', icon: 'pi pi-fw pi-check-square', routerLink: ['view/admin-collaborateur']
+      } ,
     ];
   }
 
