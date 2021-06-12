@@ -160,4 +160,8 @@ export class EquipesService {
     }
     return this._membre;
   }
+
+  set membre(value: MembreEquipe) {
+    this._membre = value;
+  }
 }

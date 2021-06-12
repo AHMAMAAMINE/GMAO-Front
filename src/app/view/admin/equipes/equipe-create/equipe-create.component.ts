@@ -15,11 +15,6 @@ import {DatePipe} from '@angular/common';
   providers: [DatePipe]
 })
 export class EquipeCreateComponent implements OnInit {
-  myDate = new Date();
-  date: string;
-  valeur: string;
-  added = false;
-  private values: string;
   constructor(
     private messageService: MessageService,
     private service: EquipesService,
@@ -27,38 +22,6 @@ export class EquipeCreateComponent implements OnInit {
     private datePipe: DatePipe
   ) {
     this.date = this.datePipe.transform(this.myDate, 'yyyy-MM-dd');
-  }
-
-  ngOnInit(): void {
-    this.collaborateurService.findAll().subscribe(data => this.collaborateurService.collaborateurs = data);
-  }
-  public hideCreateDialog() {
-    this.createDialog = false;
-    this.submitted = false;
-  }
-  public saveMembre() {
-    this.valeur = this.selectedEquipe.ref;
-    this.values = this.selectedEquipe.libelle;
-    this.membres.push(this.membreEquipe);
-    this.service.selectesEquipe.push(this.selectedEquipe);
-    this.added = true;
-  }
-
-  public save() {
-    this.submitted = true;
-    if (this.selectedEquipe.ref.trim()) {
-      this.service.save().subscribe((data) => {
-        // this.equipes.push({ ...data });
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Successful',
-          detail: 'Equipe Created',
-          life: 3000,
-        });
-      });
-      this.createDialog = false;
-      this.selectedEquipe = new Equipe();
-    }
   }
   get selectedEquipe(): Equipe {
     return this.service.selectedEquipe;
@@ -97,8 +60,8 @@ export class EquipeCreateComponent implements OnInit {
   get membreEquipe(): MembreEquipe {
     return this.service.membre;
   }
-  isSelected($event: any) {
-    this.membreEquipe.collaborateur.codeCollaborateur = $event.target.value ;
+  set membreEquipe(value: MembreEquipe) {
+    this.service.membre = value;
   }
   get membres(): Array<MembreEquipe> {
 
@@ -108,7 +71,58 @@ export class EquipeCreateComponent implements OnInit {
   set membres(value: Array<MembreEquipe>) {
     this.service.membres = value;
   }
+  myDate = new Date();
+  date: string;
+  valeur: string;
+  added = false;
+  private values: string;
     // isSelecte($event: any) {
     //     this.selectedEquipe.chefEquipe.collaborateur.codeCollaborateur = $event.target.value;
     // }
+  // Selected($event: any) {
+  //   console.log("ss")
+  //   console.log(this.membreEquipe.collaborateur.codeCollaborateur)
+  //   console.log($event.target.value)
+  //
+  // }
+  ngOnInit(): void {
+    this.collaborateurService.findAll().subscribe(data => this.collaborateurService.collaborateurs = data);
+  }
+  public hideCreateDialog() {
+    this.createDialog = false;
+    this.submitted = false;
+  }
+  public saveMembre() {
+    this.valeur = this.selectedEquipe.ref;
+    this.values = this.selectedEquipe.libelle;
+    this.membres.push(this.membreEquipe);
+    this.membreEquipe = null;
+    console.log(this.membres);
+    // this.service.selectesEquipe.push(this.selectedEquipe);
+    this.added = true;
+  }
+
+  public save() {
+    this.submitted = true;
+    if (this.selectedEquipe.ref.trim()) {
+      this.service.save().subscribe((data) => {
+        // this.equipes.push({ ...data });
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Successful',
+          detail: 'Equipe Created',
+          life: 3000,
+        });
+      });
+      this.createDialog = false;
+      this.selectedEquipe = new Equipe();
+    }
+  }
+
+  isSelected($event: any) {
+    this.membreEquipe.collaborateur.codeCollaborateur = $event.target.value ;
+  }
+  checkCheckBoxvalue(event: any){
+    console.log(event.collaborateur.codeCollaborateur);
+  }
 }
