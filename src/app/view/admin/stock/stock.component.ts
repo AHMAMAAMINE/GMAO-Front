@@ -14,6 +14,7 @@ import interactionPlugin from "@fullcalendar/interaction";
 })
 export class StockComponent implements OnInit {
   constructor(
+      private equipeService:EquipesService,
     private interventionService: InterventionService,
     private collaborateurService: CollaborateurService
   ) {}
@@ -64,6 +65,9 @@ export class StockComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.equipeService.findAll().subscribe((data)=>{
+      this.numEquipes = data.length;
+    })
     this.collaborateurService.findAll().subscribe((data) => {
       this.numColaborateur = data.length;
     });

@@ -1,30 +1,26 @@
 <div class="p-grid layout-dashboard">
-  <div class="p-col-12 p-md-6 p-lg-3">
+  <div class="p-col-12 p-md-6 p-lg-3" routerLink="/admin/view/commande">
     <div class="overview-box card">
       <div class="overview-box-value">{{ totalInterventions }}</div>
       <div class="overview-box-title">TOTAL</div>
-      <!-- <img src="assets/layout/images/dashboard/graph-tasks.svg" alt="" /> -->
-      <!-- <div class="overview-box-status">
-        +8.9% <i class="pi pi-arrow-circle-up"></i>
-      </div> -->
     </div>
   </div>
-  <div class="p-col-12 p-md-6 p-lg-3">
+  <div class="p-col-12 p-md-6 p-lg-3" routerLink="/admin/view/commande">
     <div class="overview-box card">
       <div class="overview-box-value">{{ encoursInterventions }}</div>
       <div class="overview-box-title">ENCOURS</div>
     </div>
   </div>
-  <div class="p-col-12 p-md-6 p-lg-3">
+  <div class="p-col-12 p-md-6 p-lg-3" routerLink="/collaborateur/list" >
     <div class="overview-box card">
       <div class="overview-box-value">{{ numColaborateur }}</div>
       <div class="overview-box-title">COLLABORATEURS</div>
     </div>
   </div>
-  <div class="p-col-12 p-md-6 p-lg-3">
+  <div class="p-col-12 p-md-6 p-lg-3" routerLink="/admin/view/equipes">
     <div class="overview-box card">
-      <div class="overview-box-value">42</div>
-      <div class="overview-box-title">MESSAGES</div>
+      <div class="overview-box-value">{{numEquipes}}</div>
+      <div class="overview-box-title">EQUIPES</div>
     </div>
   </div>
   <div class="p-col-12 p-xl-6">
