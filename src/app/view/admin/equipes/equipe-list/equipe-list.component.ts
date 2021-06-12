@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Equipe } from 'src/app/controller/model/equipe.model';
 import { EquipesService } from 'src/app/controller/service/equipes.service';
+import {MembreEquipe} from '../../../../controller/model/membre-equipe.model';
 
 @Component({
   selector: 'app-equipe-list',
@@ -11,7 +12,7 @@ import { EquipesService } from 'src/app/controller/service/equipes.service';
 export class EquipeListComponent implements OnInit {
   cols: any[];
   constructor(private messageService: MessageService, private confirmationService: ConfirmationService,
-    private service: EquipesService) { }
+              private service: EquipesService) { }
     ngOnInit(): void {
       this.initCol();
       this.service.findAll().subscribe(data => this.equipes = data);
@@ -43,7 +44,7 @@ export class EquipeListComponent implements OnInit {
           header: 'Confirm',
           icon: 'pi pi-exclamation-triangle',
           accept: () => {
-              this.service.deleteMultipleByRef().subscribe(data =>{
+              this.service.deleteMultipleByRef().subscribe(data => {
                   this.service.deleteMultipleIndexById();
                   this.selectesEquipe = null;
                   this.messageService.add({
@@ -61,22 +62,39 @@ export class EquipeListComponent implements OnInit {
       this.submitted = false;
       this.createDialog = true;
   }
+    get selectevEquipe(): Equipe {
 
-  public edit(Equipe: Equipe) {
-      this.selectedEquipe = {...Equipe};
+        return this.service.selectevEquipe;
+    }
+
+    set selectevEquipe(value: Equipe) {
+        this.service.selectevEquipe = value;
+    }
+  public edit(equipe: Equipe) {
+      this.selectevEquipe = {...equipe};
+      this.service.ref = equipe.ref;
+      this.service.findByRef(equipe.ref).subscribe(data => this.membres = data.membres);
       this.editDialog = true;
   }
-  public view(Equipe: Equipe) {
-      this.selectedEquipe = {...Equipe};
+
+  public view(equipe: Equipe) {
+      this.selectedEquipe = {...equipe};
       this.viewDialog = true;
   }
+    get membres(): Array<MembreEquipe> {
 
+        return this.service.membres;
+    }
+
+    set membres(value: Array<MembreEquipe>) {
+        this.service.membres = value;
+    }
   private initCol() {
       this.cols = [
-          
+
           {field: 'ref', header: 'Reference'},
           {field: 'libelle', header: 'Total'},
-        
+
       ];
   }
 

@@ -101,7 +101,7 @@ export class EquipeCreateComponent implements OnInit {
     this.selectedEquipe.libelle = this.values;
     this.selectedEquipe.membres = this.membres;
     this.service.save().subscribe((data) => {
-        // this.equipes.push({ ...data });
+        this.equipes.push({ ...data });
         this.messageService.add({
           severity: 'success',
           summary: 'Successful',
