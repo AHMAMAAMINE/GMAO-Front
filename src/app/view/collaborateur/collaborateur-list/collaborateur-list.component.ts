@@ -22,6 +22,7 @@ export class CollaborateurListComponent implements OnInit {
 
   ngOnInit(): void {
     this.initCol();
+    this.collaborateurService.findAll().subscribe(data => this.collaborateurService.collaborateurs = data);
   }
 
   public openCreate() {
