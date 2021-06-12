@@ -55,6 +55,8 @@ export class CreateComponent implements OnInit {
   // get stocks(): Array<Stock> {
   //   return this.service.stocks;
   // }
+  velues: any;
+  valeur: any;
 
   get selected(): Stock {
     return this.service.selected;
@@ -117,6 +119,8 @@ export class CreateComponent implements OnInit {
           console.log(error);
         }
     );
+    this.magasinService.findAll();
+    this.materialService.findAll();
   }
 
   deleteMultiple() {
@@ -127,15 +131,15 @@ export class CreateComponent implements OnInit {
     return null;
   }
 
-  isSelected($event: Event) {
-    return null;
+  isSelected($event: any) {
+    this.selected.magasin.reference = $event.target.value;
   }
 
   evaluate() {
-    return null;
+    return this.service.save();
   }
 
-  isSelecte($event: Event) {
-    return null;
+  isSelecte($event: any) {
+    this.selected.material.reference = $event.target.value;
   }
 }

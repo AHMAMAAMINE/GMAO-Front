@@ -15,6 +15,7 @@
         [(ngModel)]="selectedEquipe.ref"
         required
         autofocus
+        [disabled]="added"
       />
       <small class="p-invalid" *ngIf="submitted && !selectedEquipe.ref"
         >ref is required.</small
@@ -29,6 +30,7 @@
         [(ngModel)]="selectedEquipe.libelle"
         required
         autofocus
+        [disabled]="added"
       />
       <small class="p-invalid" *ngIf="submitted && !selectedEquipe.libelle"
         >libelle is required.</small
@@ -51,8 +53,8 @@
     ></button>
       <div class="card" style="height: 1000px">
 
-          <p-table  [value]="service.selectesEquipe" [columns]="cols" [rows]="4" [paginator]="true" [globalFilterFields]="['reference','total','totalPaye']"
-                    [(selection)]="membres" [rowHover]="true" dataKey="id"
+          <p-table  [value]="membres" [columns]="cols" [rows]="4" [paginator]="true" [globalFilterFields]="['reference','total','totalPaye']"
+                    [(selection)]="membre" [rowHover]="true" dataKey="id"
                     styleClass="p-datatable-customers"
                     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
               <ng-template pTemplate="caption">
@@ -62,9 +64,6 @@
               </ng-template>
               <ng-template pTemplate="header">
                   <tr>
-                      <th style="width: 3rem">
-                          <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-                      </th>
                       <th>Reference</th>
                       <th>libelle</th>
                       <th>Membre equipe</th>
@@ -75,13 +74,10 @@
               </ng-template>
               <ng-template pTemplate="body" let-equipe>
                   <tr>
-                      <td>
-                          <p-tableCheckbox [value]="equipe"></p-tableCheckbox>
-                      </td>
-                      <td>{{equipe.ref}}</td>
-                      <td>{{equipe.libelle}}</td>
                       <td>{{valeur}}</td>
-
+                      <td>{{values}}</td>
+                      <td>{{membreEquipe.collaborateur.codeCollaborateur}}</td>
+                     <td> <p-tableCheckbox [value]="equipe"></p-tableCheckbox></td>
                   </tr>
               </ng-template>
           </p-table>

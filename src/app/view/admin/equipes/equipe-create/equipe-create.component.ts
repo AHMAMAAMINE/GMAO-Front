@@ -17,6 +17,9 @@ import {DatePipe} from '@angular/common';
 export class EquipeCreateComponent implements OnInit {
   myDate = new Date();
   date: string;
+  valeur: string;
+  added = false;
+  private values: string;
   constructor(
     private messageService: MessageService,
     private service: EquipesService,
@@ -28,16 +31,17 @@ export class EquipeCreateComponent implements OnInit {
 
   ngOnInit(): void {
     this.collaborateurService.findAll().subscribe(data => this.collaborateurService.collaborateurs = data);
-    console.log(this.collaborateurs);
   }
   public hideCreateDialog() {
     this.createDialog = false;
     this.submitted = false;
   }
   public saveMembre() {
-    this.selectedEquipe.membres.push(this.membreEquipe);
+    this.valeur = this.selectedEquipe.ref;
+    this.values = this.selectedEquipe.libelle;
+    this.membres.push(this.membreEquipe);
     this.service.selectesEquipe.push(this.selectedEquipe);
-    console.log(this.service.selectesEquipe);
+    this.added = true;
   }
 
   public save() {
@@ -96,7 +100,14 @@ export class EquipeCreateComponent implements OnInit {
   isSelected($event: any) {
     this.membreEquipe.collaborateur.codeCollaborateur = $event.target.value ;
   }
+  get membres(): Array<MembreEquipe> {
 
+    return this.service.membres;
+  }
+
+  set membres(value: Array<MembreEquipe>) {
+    this.service.membres = value;
+  }
     // isSelecte($event: any) {
     //     this.selectedEquipe.chefEquipe.collaborateur.codeCollaborateur = $event.target.value;
     // }
