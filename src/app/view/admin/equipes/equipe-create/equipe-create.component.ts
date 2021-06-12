@@ -40,7 +40,9 @@ export class EquipeCreateComponent implements OnInit {
     this.valeur = this.selectedEquipe.ref;
     this.values = this.selectedEquipe.libelle;
     this.membres.push(this.membreEquipe);
-    this.service.selectesEquipe.push(this.selectedEquipe);
+    this.membreEquipe = null;
+    console.log(this.membres)
+    // this.service.selectesEquipe.push(this.selectedEquipe);
     this.added = true;
   }
 
@@ -97,6 +99,9 @@ export class EquipeCreateComponent implements OnInit {
   get membreEquipe(): MembreEquipe {
     return this.service.membre;
   }
+  set membreEquipe(value: MembreEquipe) {
+    this.service.membre = value;
+  }
   isSelected($event: any) {
     this.membreEquipe.collaborateur.codeCollaborateur = $event.target.value ;
   }
@@ -111,4 +116,13 @@ export class EquipeCreateComponent implements OnInit {
     // isSelecte($event: any) {
     //     this.selectedEquipe.chefEquipe.collaborateur.codeCollaborateur = $event.target.value;
     // }
+  Selected($event: any) {
+    console.log("ss")
+    console.log(this.membreEquipe.collaborateur.codeCollaborateur)
+    console.log($event.target.value)
+
+  }
+  checkCheckBoxvalue(event){
+    console.log(event.checked)
+  }
 }
