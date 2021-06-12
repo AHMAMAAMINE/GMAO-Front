@@ -1,5 +1,5 @@
 <div class="p-card" style="height: 1000px">
-<div class="p-card-body" >
+<div class="p-card-body" [hidden]="viewDialog">
     <div class="p-field">
         <label for="">magasin</label>
         <select class="form-control" pInputText (change)="isSelected($event)" [(ngModel)]="velues">
@@ -40,11 +40,8 @@
               currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
         <ng-template pTemplate="caption">
             <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header">
-                <h5 class="p-m-0">Manage Intervention</h5>
-                <span class="p-input-icon-left">
-                        <i class="pi pi-search"></i>
-                        <input pInputText type="text"  placeholder="Search..." />
-                    </span>
+                <h5 class="p-m-0">Stock Intervention</h5>
+
             </div>
         </ng-template>
         <ng-template pTemplate="header">

@@ -87,7 +87,13 @@ export class InterventionStockComponent implements OnInit {
   isupdateable() {
     // return this.stock.id != null;
   }
+  get viewDialog(): boolean {
+    return this.service.viewDialog;
+  }
 
+  set viewDialog(value: boolean) {
+    this.service.viewDialog = value;
+  }
   public Save() {
     return this.stockService.save();
   }
