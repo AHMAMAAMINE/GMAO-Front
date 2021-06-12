@@ -6,14 +6,18 @@ import { Component, OnInit } from "@angular/core";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
+import {DatePipe} from '@angular/common';
 
 @Component({
   selector: "app-stock",
   templateUrl: "./stock.component.html",
   styleUrls: ["./stock.component.scss"],
+  providers: [DatePipe]
 })
 export class StockComponent implements OnInit {
   constructor(
+      private datePipe: DatePipe,
+      private equipeService:EquipesService,
     private interventionService: InterventionService,
     private collaborateurService: CollaborateurService
   ) {}
@@ -64,6 +68,9 @@ export class StockComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.equipeService.findAll().subscribe((data)=>{
+      this.numEquipes = data.length;
+    })
     this.collaborateurService.findAll().subscribe((data) => {
       this.numColaborateur = data.length;
     });
@@ -105,9 +112,11 @@ export class StockComponent implements OnInit {
         console.log(this.interventionDto);
       }
     });
+    const now = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
     this.fullcalendarOptions = {
       plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
-      defaultDate: "2021-05-31",
+      defaultDate: now,
+      // defaultDate: "2021-05-31",
       header: {
         left: "prev,next",
         center: "title",
