@@ -135,10 +135,10 @@ export class InterventionMembreEquipComponent implements OnInit {
     );
   }
   get viewDialog(): boolean {
-    return this.service.viewDialog;
+    return this.serviceinterv.viewDialog;
   }
 
   set viewDialog(value: boolean) {
-    this.service.viewDialog = value;
+    this.serviceinterv.viewDialog = value;
   }
 }

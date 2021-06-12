@@ -1,7 +1,7 @@
 
 
 <div class="card" style="height: 1000px">
-    <div class="card-body" [hidden]="!viewDialog">
+    <div class="card-body" [hidden]="viewDialog">
         <div class="form-group">
 
             <label >Ref Equipe</label>
@@ -17,10 +17,10 @@
             </select>
         </div>
     </div>
-    <div class="p-card-footer" [hidden]="editDialog" [hidden]="!viewDialog">
+    <div class="p-card-footer" [hidden]="editDialog" [hidden]="viewDialog">
         <button pButton  label="Ajout"  class="p-button-text" [disabled]="isEmpty()"  (click)="saveCollaboraateur()"></button>
     </div>
-    <div class="p-card-footer" [hidden]="!editDialog" [hidden]="!viewDialog">
+    <div class="p-card-footer" [hidden]="!editDialog" [hidden]="viewDialog">
         <button pButton  label="edit"  class="p-button-text"   (click)="editliste(collaborateur)"></button>
     </div>
     <div class="card">
@@ -32,7 +32,7 @@
                  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
             <ng-template pTemplate="caption">
                 <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header">
-                    <h5 class="p-m-0">Manage Intervention</h5>
+                    <h5 class="p-m-0">Membre Equipe Intervention</h5>
                 </div>
             </ng-template>
             <ng-template pTemplate="header">
