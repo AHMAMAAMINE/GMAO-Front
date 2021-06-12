@@ -87,8 +87,8 @@ export class OperationstockService {
     this.items.splice(this.findIndexById(id), 1);
   }
   public edit(): Observable<OperationStock> {
-      console.log(this.selected.id)
-    return this.http.put<OperationStock>(this.url + '/update/' + this.selected.id , this.selected);
+      console.log(this.selected.id);
+      return this.http.put<OperationStock>(this.url + '/update/' + this.selected.id , this.selected);
   }
   public findIndexById(id: number): number {
     let index = -1;
@@ -141,4 +141,7 @@ export class OperationstockService {
     this._viewDialog = value;
   }
 
+  deleteById() {
+    return this.http.delete(this.url + '/idde/' + this.selected.id);
+  }
 }

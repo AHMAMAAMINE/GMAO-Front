@@ -119,7 +119,10 @@ export class OperationStockListComponent implements OnInit {
   }
 
 
-  delete(operationStock: any) {
+  delete(operationStock: OperationStock) {
+    this.selected = operationStock;
+    this.service.deleteById().subscribe();
+    this.items.splice(this.service.findIndexById(this.selected.id));
 
   }
 }
