@@ -73,7 +73,7 @@ export class StockService {
   constructor(private http: HttpClient) {}
 
   save() {
-    if (this.selected.id === null) {
+
       this.http.post(this.url + "/", this.selected).subscribe(
         (data) => {
           if (data === 1) {
@@ -88,17 +88,17 @@ export class StockService {
         },
         (error) => alert("error 404")
       );
-    } else {
-      const stocke = new Stock();
-      stocke.qte = this.selected.qte - this.selectes[this._index].qte;
-      stocke.id = this.selected.id;
-      stocke.material.reference = this.selected.material.reference;
-      stocke.magasin.reference = this.selected.magasin.reference;
-      this.http.post(this.url + "/", stocke).subscribe((data) => {
-        console.log(data);
-      });
-      this.items[this._index] = this.clone(this.selected);
-    }
+      //else {
+    //   const stocke = new Stock();
+    //   stocke.qte = this.selected.qte - this.selectes[this._index].qte;
+    //   stocke.id = this.selected.id;
+    //   stocke.material.reference = this.selected.material.reference;
+    //   stocke.magasin.reference = this.selected.magasin.reference;
+    //   this.http.post(this.url + "/", stocke).subscribe((data) => {
+    //     console.log(data);
+    //   });
+    //   this.items[this._index] = this.clone(this.selected);
+    // }
     this.selected = null;
   }
 

@@ -43,7 +43,6 @@ export class EquipesService {
     // return this.http.post<Equipe>(this.url, this.selectedEquipe);
   // }
   saveMembre() {
-    this.selectesEquipe.push(this.selectedEquipe);
   }
   public edit(): Observable<Equipe> {
     return this.http.put<Equipe>(this.url, this.selectedEquipe);
@@ -126,6 +125,9 @@ export class EquipesService {
     this._selectesEquipe = value;
   }
   get selectedEquipe(): Equipe {
+    if (this._selectedEquipe == null){
+      this._selectedEquipe = new Equipe();
+    }
     return this._selectedEquipe;
   }
 
@@ -133,6 +135,9 @@ export class EquipesService {
     this._selectedEquipe = value;
   }
   get equipes(): Array<Equipe> {
+    if (this._equipes == null){
+      this._equipes = new Array<Equipe>();
+    }
     return this._equipes;
   }
 
@@ -140,6 +145,9 @@ export class EquipesService {
     this._equipes = value;
   }
   get membres(): Array<MembreEquipe> {
+    if (this._membres == null){
+      this._membres = new Array<MembreEquipe>();
+    }
     return this._membres;
   }
 
