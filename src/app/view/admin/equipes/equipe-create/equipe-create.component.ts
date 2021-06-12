@@ -15,6 +15,7 @@ import {DatePipe} from '@angular/common';
   providers: [DatePipe]
 })
 export class EquipeCreateComponent implements OnInit {
+  private valorant: string;
   constructor(
     private messageService: MessageService,
     private service: EquipesService,
@@ -76,15 +77,6 @@ export class EquipeCreateComponent implements OnInit {
   valeur: string;
   added = false;
   private values: string;
-    // isSelecte($event: any) {
-    //     this.selectedEquipe.chefEquipe.collaborateur.codeCollaborateur = $event.target.value;
-    // }
-  // Selected($event: any) {
-  //   console.log("ss")
-  //   console.log(this.membreEquipe.collaborateur.codeCollaborateur)
-  //   console.log($event.target.value)
-  //
-  // }
   ngOnInit(): void {
     this.collaborateurService.findAll().subscribe(data => this.collaborateurService.collaborateurs = data);
   }
@@ -95,6 +87,7 @@ export class EquipeCreateComponent implements OnInit {
   public saveMembre() {
     this.valeur = this.selectedEquipe.ref;
     this.values = this.selectedEquipe.libelle;
+    this.valorant=this.selectedEquipe.code;
     this.membres.push(this.membreEquipe);
     this.membreEquipe = null;
     console.log(this.membres);
@@ -104,8 +97,10 @@ export class EquipeCreateComponent implements OnInit {
 
   public save() {
     this.submitted = true;
-    if (this.selectedEquipe.ref.trim()) {
-      this.service.save().subscribe((data) => {
+    this.selectedEquipe.ref = this.valeur;
+    this.selectedEquipe.libelle = this.values;
+    this.selectedEquipe.membres = this.membres;
+    this.service.save().subscribe((data) => {
         // this.equipes.push({ ...data });
         this.messageService.add({
           severity: 'success',
@@ -114,15 +109,14 @@ export class EquipeCreateComponent implements OnInit {
           life: 3000,
         });
       });
-      this.createDialog = false;
-      this.selectedEquipe = new Equipe();
-    }
+    this.createDialog = false;
+    this.selectedEquipe = new Equipe();
   }
 
   isSelected($event: any) {
     this.membreEquipe.collaborateur.codeCollaborateur = $event.target.value ;
   }
   checkCheckBoxvalue(event: any){
-    console.log(event.collaborateur.codeCollaborateur);
+    this.selectedEquipe.chefEquipe.collaborateur.codeCollaborateur = event.collaborateur.codeCollaborateur;
   }
 }
