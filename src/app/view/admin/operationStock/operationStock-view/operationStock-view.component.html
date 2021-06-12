@@ -3,25 +3,25 @@
 
         <div class="p-field">
             <label for="stockSource">Magasin Source</label>
-            <input type="text" pInputText id="stockSource" [(ngModel)]="selected.magasinSource.reference" required autofocus />
+            <input type="text" pInputText id="stockSource" [(ngModel)]="selected.magasinSource.reference" required autofocus [disabled]="viewDialog"/>
             <small class="p-invalid" *ngIf="submitted && !selected.magasinSource">stockSource is required.</small>
         </div>
 
         <div class="p-field">
             <label for="stockDestination">Magasin Destination</label>
-            <input type="text" pInputText id="stockDestination" [(ngModel)]="selected.magasinDestination.reference" required autofocus />
+            <input type="text" pInputText id="stockDestination" [(ngModel)]="selected.magasinDestination.reference" required autofocus [disabled]="viewDialog" />
             <small class="p-invalid" *ngIf="submitted && !selected.magasinDestination">stockDestination is required.</small>
         </div>
 
         <div class="p-field">
             <label for="materiel">Matériel</label>
-            <input type="text" pInputText id="materiel" [(ngModel)]="selected.material.reference" required autofocus />
+            <input type="text" pInputText id="materiel" [(ngModel)]="selected.material.reference" required autofocus [disabled]="viewDialog"/>
             <small class="p-invalid" *ngIf="submitted && !selected.material">materiel is required.</small>
         </div>
         <div class="p-formgrid p-grid">
             <div class="p-field p-col">
                 <label for="quantite">Quantité</label>
-                <p-inputNumber id="quantite" [(ngModel)]="selected.qte"> <!-- required autofocus --> </p-inputNumber>
+                <p-inputNumber id="quantite" [(ngModel)]="selected.qte" [disabled]="viewDialog"> <!-- required autofocus --> </p-inputNumber>
                 <!--    <small class="p-invalid" *ngIf="submitted && !operationstock.qte">quantite is required.</small> -->
             </div>
         </div>

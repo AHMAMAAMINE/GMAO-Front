@@ -12,7 +12,7 @@ import {Intervention} from '../model/intervention.model';
 export class OperationstockService {
 
 //  private url = environment.baseUrl + 'operationStock';
-  
+
 
   private _createDialog: boolean;
   private _editDialog: boolean;
@@ -33,9 +33,10 @@ export class OperationstockService {
   }
 
   get selecteds(): Array<OperationStock> {
-       if(this._selecteds ==null)
-         this._selecteds=new Array<OperationStock>();
-    return this._selecteds;
+       if (this._selecteds == null) {
+         this._selecteds = new Array<OperationStock>();
+       }
+       return this._selecteds;
   }
 
   set selecteds(value: Array<OperationStock>) {
@@ -51,12 +52,12 @@ export class OperationstockService {
   // findByCritere(qteMax: number, qteMin: number) {
   //   this.http.post<Array<OperationStock>>(this.urlBase+this.url+'/criteria',qte)
   // }
-   
+
     deleteByRef() {
     }
   public save() {
-      console.log(this.selected)
-    return this.http.post(this.url + '/', this.selected);
+      console.log(this.selected);
+      return this.http.post(this.url + '/', this.selected);
   }
   public update(index: number, operationStock: OperationStock) {
     this.selected = this.selected;
@@ -70,7 +71,7 @@ export class OperationstockService {
 
 
 
-  
+
 
   get items(): Array<OperationStock> {
     if (this._items == null) {
@@ -86,7 +87,8 @@ export class OperationstockService {
     this.items.splice(this.findIndexById(id), 1);
   }
   public edit(): Observable<OperationStock> {
-    return this.http.put<OperationStock>(this.url, this.selected);
+      console.log(this.selected.id)
+    return this.http.put<OperationStock>(this.url + '/update/' + this.selected.id , this.selected);
   }
   public findIndexById(id: number): number {
     let index = -1;

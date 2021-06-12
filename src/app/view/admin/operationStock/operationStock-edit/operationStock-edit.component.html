@@ -1,35 +1,48 @@
 <p-dialog [(visible)]="editDialog" [style]="{width: '1000px'}" header="Operation Stock Details" [modal]="true" styleClass="p-fluid">
-    <ng-template pTemplate="content">
+        <p-header><h2>Operation Stock</h2>  </p-header>
+        <ng-template pTemplate="content">
 
-        <div class="p-field">
-            <label for="stockSource">Magasin Source</label>
-            <input type="text" pInputText id="stockSource" [(ngModel)]="selected.magasinSource.reference" required autofocus />
-            <small class="p-invalid" *ngIf="submitted && !selected.magasinSource">stockSource is required.</small>
-        </div>
-
-        <div class="p-field">
-            <label for="stockDestination">Magasin Destination</label>
-            <input type="text" pInputText id="stockDestination" [(ngModel)]="selected.magasinDestination.reference" required autofocus />
-            <small class="p-invalid" *ngIf="submitted && !selected.magasinDestination">stockDestination is required.</small>
-        </div>
-
-        <div class="p-field">
-            <label for="materiel">Matériel</label>
-            <input type="text" pInputText id="materiel" [(ngModel)]="selected.material.reference" required autofocus />
-            <small class="p-invalid" *ngIf="submitted && !selected.material">materiel is required.</small>
-        </div>
-        <div class="p-formgrid p-grid">
-            <div class="p-field p-col">
-                <label for="quantite">Quantité</label>
-                <p-inputNumber id="quantite" [(ngModel)]="selected.qte"> <!-- required autofocus --> </p-inputNumber>
-                <!--    <small class="p-invalid" *ngIf="submitted && !operationstock.qte">quantite is required.</small> -->
+            <div class="p-field">
+                <label for=""><b>Magasin Source:</b></label>
+                <select class="form-control" pInputText (change)="isSelected($event)" [(ngModel)]="this.selected.magasinSource.reference">
+                    <option [value]=''>---select value-----</option>
+                    <option *ngFor="let c of magasins" [value]="c.reference"> {{c.reference}}</option>
+                </select>
+                <small class="p-invalid" *ngIf="submitted && !selected.magasinSource.reference">magasin is required.</small>
             </div>
-        </div>
 
-    </ng-template>
-    <ng-template pTemplate="footer">
-        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideEditDialog()"></button>
-        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="edit()"></button>
-    </ng-template>
+            <div class="p-field">
+                <label for=""><b>Magasin Destination:</b></label>
+                <select class="form-control" pInputText (change)="isSelect($event)" [(ngModel)]="this.selected.magasinDestination.reference">
+                    <option [value]=''>---select value-----</option>
+                    <option *ngFor="let c of magasins" [value]="c.reference"> {{c.reference}}</option>
+                </select>
+                <small class="p-invalid" *ngIf="submitted && !selected.magasinDestination.reference">magasin is required.</small>
+            </div>
+
+            <div class="p-field">
+                <label for=""><b>Matériel:</b></label> <br>
+                <select class="form-control" pInputText (change)="isSelects($event)" [(ngModel)]="this.selected.material.reference">
+                    <option [value]=''>---select value-----</option>
+                    <option *ngFor="let c of materials" [value]="c.reference"> {{c.reference}}</option>
+                </select>            <small class="p-invalid" *ngIf="submitted && !selected.material">materiel is required.</small>
+            </div>
+            <div class="p-formgrid p-grid">
+                <div class="p-field p-col">
+                    <label for="quantite"><b>Quantité:</b></label> <br>
+                    <p-inputNumber id="quantite" [(ngModel)]="selected.qte"> <!-- required autofocus --> </p-inputNumber>
+                    <!--    <small class="p-invalid" *ngIf="submitted && !selected.qte.toPrecision()">quantite is required.</small>  -->
+                </div>
+            </div>
+
+
+        </ng-template>
+        <ng-template pTemplate="footer">
+            <button style="border: 1px solid red; color: white; background-color: red; padding: 8px 16px; margin: 4px 2px; position: relative; right: 550px; border-radius: 5px;" pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideEditDialog() "></button>
+            <button style="border: 1px solid green; padding: 8px 16px; margin: 4px 2px; color: white; background-color: green; position: relative; right: 540px; border-radius: 5px;" pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="edit()"></button>
+        </ng-template>
+
+
+
 
 </p-dialog>
