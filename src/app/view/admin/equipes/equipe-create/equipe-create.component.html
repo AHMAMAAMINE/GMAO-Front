@@ -24,6 +24,21 @@
         >ref is required.</small
       >
     </div>
+      <div class="p-field">
+      <label for="ref">Code</label>
+      <input
+        type="text"
+        pInputText
+        id="code"
+        [(ngModel)]="selectedEquipe.code"
+        required
+        autofocus
+        [disabled]="added"
+      />
+      <small class="p-invalid" *ngIf="submitted && !selectedEquipe.code"
+        >ref is required.</small
+      >
+    </div>
     <div class="p-field">
       <label for="libelle">libelle</label>
       <input
@@ -69,6 +84,7 @@
               </ng-template>
               <ng-template pTemplate="header">
                   <tr>
+                      <th>Code</th>
                       <th>Reference</th>
                       <th>libelle</th>
                       <th>Membre equipe</th>
@@ -79,6 +95,7 @@
               </ng-template>
               <ng-template pTemplate="body" let-equipe >
                   <tr>
+                      <td>{{valorant}}</td>
                       <td>{{valeur}}</td>
                       <td>{{values}}</td>
                       <td>{{equipe.collaborateur.codeCollaborateur}}</td>
