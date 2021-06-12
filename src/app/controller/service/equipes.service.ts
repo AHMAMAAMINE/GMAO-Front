@@ -10,6 +10,7 @@ import { MembreEquipe } from '../model/membre-equipe.model';
 })
 export class EquipesService {
   items: Equipe[];
+  private _selectevEquipe: Equipe;
   constructor(private http: HttpClient) {}
   //   private urlbase = 'http://localhost:8036';
   //   private url = 'http://localhost:8036/equipe/';
@@ -39,13 +40,24 @@ export class EquipesService {
     console.log(this.selectedEquipe);
     return this.http.post<Equipe>(this.url, this.selectedEquipe);
   }
+  
   // public save(): Observable<Equipe> {
     // return this.http.post<Equipe>(this.url, this.selectedEquipe);
   // }
   saveMembre() {
   }
+  private _ref:string;
+
+  get ref(): string {
+    return this._ref;
+  }
+
+  set ref(value: string) {
+    this._ref = value;
+  }
+
   public edit(): Observable<Equipe> {
-    return this.http.put<Equipe>(this.url, this.selectedEquipe);
+    return this.http.put<Equipe>(this.url + 'ref/' + this.ref, this.selectedEquipe);
   }
 
   public deleteByRef(): Observable<number> {
@@ -123,6 +135,16 @@ export class EquipesService {
 
   set selectesEquipe(value: Array<Equipe>) {
     this._selectesEquipe = value;
+  }
+  get selectevEquipe(): Equipe {
+    if (this._selectevEquipe == null){
+      this._selectevEquipe = new Equipe();
+    }
+    return this._selectevEquipe;
+  }
+
+  set selectevEquipe(value: Equipe) {
+    this._selectevEquipe = value;
   }
   get selectedEquipe(): Equipe {
     if (this._selectedEquipe == null){
