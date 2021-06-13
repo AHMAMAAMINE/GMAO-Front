@@ -1,112 +1,40 @@
 <div class="p-grid layout-dashboard">
-<!--    <div class="p-col-12 p-md-6 p-lg-3" routerLink="/admin/view/commande">-->
-<!--        <div class="overview-box card">-->
-<!--            <div class="overview-box-value">{{ totalInterventions }}</div>-->
-<!--            <div class="overview-box-title">TOTAL</div>-->
-<!--            <div class="overview-box-status">-->
-<!--                Infos <i class="pi pi-arrow-circle-up"></i>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--    <div class="p-col-12 p-md-6 p-lg-3" routerLink="/admin/view/commande">-->
-<!--        <div class="overview-box card">-->
-<!--            <div class="overview-box-value">{{ encoursInterventions }}</div>-->
-<!--            <div class="overview-box-title">ENCOURS</div>-->
-<!--            <div class="overview-box-status">-->
-<!--                Infos <i class="pi pi-arrow-circle-up"></i>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--    <div class="p-col-12 p-md-6 p-lg-3" routerLink="/collaborateur/list" >-->
-<!--        <div class="overview-box card">-->
-<!--            <div class="overview-box-value">{{ numColaborateur }}</div>-->
-<!--            <div class="overview-box-title">COLLABORATEURS</div>-->
-<!--            <div class="overview-box-status">-->
-<!--                Infos <i class="pi pi-arrow-circle-up"></i>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--    <div class="p-col-12 p-md-6 p-lg-3" routerLink="/admin/view/equipes">-->
-<!--        <div class="overview-box card">-->
-<!--            <div class="overview-box-value">{{numEquipes}}</div>-->
-<!--            <div class="overview-box-title">EQUIPES</div>-->
-<!--            <div class="overview-box-status">-->
-<!--                Infos <i class="pi pi-arrow-circle-up"></i>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--    <div class="p-col-12 p-xl-6">-->
-<!--        <div class="card card-w-title">-->
-<!--            <h5>Calendier</h5>-->
-<!--            <p-fullCalendar-->
-<!--                    [events]="events"-->
-<!--                    [options]="fullcalendarOptions"-->
-<!--            ></p-fullCalendar>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--    <div class="p-col-12 p-md-3 p-lg-3">-->
-<!--        <div class="timeline card card-w-title">-->
-<!--            <h5>Demande Conge</h5>-->
-<!--            <ul>-->
-<!--                <li>-->
-<!--                    <i class="pi pi-users"></i>-->
-<!--                    <span class="timeline-event-title">Amine Ahmama</span>-->
-<!--                    <span class="timeline-event-time">15m</span>-->
-<!--                    <p>3tiwni conge rah bin 7ma9 wlit kan drab rassi 3afakom azwini 3afak.</p>-->
-<!--                </li>-->
-<!--                <li>-->
-<!--                    <i class="pi pi-users"></i>-->
-<!--                    <span class="timeline-event-title">Elwafi Elmehdi</span>-->
-<!--                    <span class="timeline-event-time">1h</span>-->
-<!--                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>-->
-<!--                </li>-->
-<!--                <li>-->
-<!--                    <i class="pi pi-users"></i>-->
-<!--                    <span class="timeline-event-title">Saida Id-younes</span>-->
-<!--                    <span class="timeline-event-time">11h</span>-->
-<!--                    <p>Bghit nmchi ltigmi twa7cht bzaf 3a2ilty obghit nchof anas o yasmine</p>-->
-<!--                </li>-->
-<!--                <li>-->
-<!--                    <i class="pi pi-users"></i>-->
-<!--                    <span class="timeline-event-title">Adam Idk</span>-->
-<!--                    <span class="timeline-event-time">3h</span>-->
-<!--                    <p>Ana ma3andich mochkil mat3tiwnich conge aslan lay7fdak aba zwini.</p>-->
-<!--                </li>-->
-<!--            </ul>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--    <div class="p-col-12 p-xl-3">-->
-<!--        <div class="card card-w-title">-->
-<!--            <h5>Intervention</h5>-->
-<!--        </div>-->
-<!--        <div class="overview-box card">-->
-<!--            <p-chart type="pie" [data]="data"></p-chart>-->
-<!--        </div>-->
-<!--    </div>-->
-    <div class="p-col-12 p-lg-6 p-xl-4">
-        <div class="card card-w-title">
-            <h3>Taches et Interventions</h3>
-        </div>
-        <div class="overview-box card">
-            <p-accordion [multiple]="true" *ngFor="let i of vos">
-                <p-accordionTab header="{{i.libelle}}">
-                    <div class="card card-w-title tasks">
-                        <h5>Taches</h5>
-                        <p>
-                            Vous avez  <span class="task-highlight">Complete</span> {{num1}} taches parmi {{vos.length}}.
-                        </p>
-                        <p-progressBar [value]="pourcentage * 100 "></p-progressBar>
-                        <ul *ngFor="let j of i.taches">
-                            <li>
-                                <p-checkbox (click)="completerTache(j.code.toString())" [(ngModel)]="etat" [binary]="true" ></p-checkbox>
-                                <span>{{j.description}}</span>
-                            </li>
-                        </ul>
-                    </div>
-                </p-accordionTab>
-            </p-accordion>
-
-        </div>
-
+  <div class="p-col-12 p-lg-6 p-xl-4">
+    <div class="card card-w-title">
+      <h3>Taches et Interventions</h3>
     </div>
+    <div class="overview-box card">
+      <p-accordion [multiple]="true" *ngFor="let i of vos">
+        <p-accordionTab header="{{ i.libelle }}">
+          <div class="card card-w-title tasks">
+            <h5>Taches</h5>
+            <p>
+              Vous avez <span class="task-highlight">Complete</span>
+              {{ num1 }} taches parmi {{ vos.length }}.
+            </p>
+            <p-progressBar [value]="pourcentage * 100"></p-progressBar>
+            <ul *ngFor="let j of i.taches">
+              <li>
+                <p-checkbox
+                  (click)="completerTache(j.code.toString())"
+                  [(ngModel)]="etat"
+                  [binary]="true"
+                ></p-checkbox>
+                <span>{{ j.description }}</span>
+              </li>
+            </ul>
+          </div>
+        </p-accordionTab>
+      </p-accordion>
+    </div>
+  </div>
+  <div class="p-col-12 p-xl-8">
+    <div class="card card-w-title">
+      <h5>Calendier</h5>
+      <p-fullCalendar
+        [events]="events"
+        [options]="fullcalendarOptions"
+      ></p-fullCalendar>
+    </div>
+  </div>
 </div>
