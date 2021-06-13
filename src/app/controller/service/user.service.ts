@@ -73,6 +73,9 @@ export class UserService {
       case 'chef-stock':
         this.router.navigate(['/None']);
         break;
+        case 'collaborateur':
+        this.router.navigate(['/collaborateur']);
+        break;
       default:
         break;
     }
