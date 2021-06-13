@@ -6,13 +6,22 @@
 main {
   padding: 20px;
   height: 100vh;
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    180deg,
+    rgba(2, 0, 36, 1) 6%,
+    rgba(14, 182, 144, 1) 74%
+  );
 }
 
 .links {
+  color: beige;
   text-align: center;
   margin-top: 40px;
   width: 60%;
   height: 55%;
+  background: inherit;
+  box-shadow: rgba(2, 0, 36, 1);
 }
 h1,
 h2 {
@@ -23,6 +32,14 @@ button {
   width: 60%;
   margin: 7px 0;
   text-transform: uppercase;
+  &.p-button-success {
+    border: 2px #fff solid;
+    background-color: inherit;
+    &:hover {
+      background-color: rgb(245, 240, 240);
+      color: #0eb690;
+    }
+  }
 }
 p {
   margin-left: 20px;
