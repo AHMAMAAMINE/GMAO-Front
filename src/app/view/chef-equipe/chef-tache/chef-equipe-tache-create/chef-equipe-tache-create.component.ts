@@ -36,6 +36,7 @@ export class ChefEquipeTacheCreateComponent implements OnInit {
     console.log(this.User.collaborateur.codeCollaborateur);
     this.interventionService.findByCodeChef(this.User.collaborateur.codeCollaborateur).subscribe(data => this.intervention = data.intervention);
     this.equipeService.findByCodeCollaborateur(this.User.collaborateur.codeCollaborateur).subscribe(data => this.membres = data.membres);
+    // this.membres.splice()
   }
   get User(): User {
     return this.userService.User;
@@ -53,7 +54,7 @@ export class ChefEquipeTacheCreateComponent implements OnInit {
     return this.interventionService.selected;
   }
   set membres(value: Array<MembreEquipe>){
-    this.membres = value;
+    this.equipeService.membres = value;
   }
   set intervention(value: Intervention){
     this.interventionService.selected = value;
@@ -71,11 +72,14 @@ export class ChefEquipeTacheCreateComponent implements OnInit {
     const date = new Date();
     const dates = this.datePipe.transform(date, 'yyyy-MM-dd');
     const dater = new Date(dates);
-    console.log(dater)
+    this.selected.intervention.code = this.intervention.code;
+    this.selected.date = dater;
     this.submitted = true;
     if (this.selected.code.trim()) {
+      console.log(this.selected)
       this.service.save().subscribe(data => {
-        this.items.push({...data});
+        console.log(this.selected)
+          console.log(data);
         this.messageService.add({
           severity: 'success',
           summary: 'Successful',
@@ -101,7 +105,7 @@ export class ChefEquipeTacheCreateComponent implements OnInit {
     return this.service.selected;
   }
   set selected(value: TacheIntervention) {
-    this.selected = value;
+    this.service.selected = value;
   }
   get createDialog(): boolean {
     return this.service.createDialog;

@@ -8,6 +8,8 @@ import { CollaborateurService } from "./collaborateur.service";
 import { Collaborateur } from "../model/collaborateur.model";
 import { InterventionService } from "./intervention.service";
 import { Observable } from "rxjs";
+import {User} from '../model/user.model';
+import {UserService} from './user.service';
 
 @Injectable({
   providedIn: "root",
@@ -85,15 +87,14 @@ export class TacheInterventionService {
 
   constructor(
     private http: HttpClient,
-    private collaborateurService: CollaborateurService,
+    private collaborateurService: UserService,
     private interventionService: InterventionService
   ) {}
   public save() {
-    this.selected = this.selected;
-    this.items.push(this._selected);
-    console.log(this.items);
-    this._selected = null;
-    return this.http.post<TacheIntervention>(this.url, this.selected);
+    // this.selected = this.selected;
+    // this.items.push(this.selected);
+    // this.selected = null;
+    return this.http.post<number>(this.url+'/', this.selected);
   }
 
   public getEventsVo(data: Array<TacheIntervention>) {
@@ -135,7 +136,7 @@ export class TacheInterventionService {
     // this.http.get<Array<TacheIntervention>>(this.url+"collaborateur/"+Col+"/intervention/"+{codeIntervention})
     this.http
       .get<Array<TacheIntervention>>(
-        this.url + "/collaborateur/code/" + this.collaborateur.codeCollaborateur
+        this.url + "/collaborateur/code/" + this.User.collaborateur.codeCollaborateur
       )
       .subscribe(
         (data) => {
@@ -154,8 +155,8 @@ export class TacheInterventionService {
         }
       );
   }
-  get collaborateur(): Collaborateur {
-    return this.collaborateurService.collaborateur;
+  get User(): User {
+    return this.collaborateurService.User;
   }
   get items(): Array<TacheIntervention> {
     return this._items;

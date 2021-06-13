@@ -186,6 +186,6 @@ export class EquipesService {
   }
 
     findByCodeCollaborateur(code: string) {
-        return this.http.get<Equipe>(this.url+'code/'+code);
+        return this.http.get<Equipe>(this.url+'/Chef/Collaborateur/nom/'+code);
     }
 }
