@@ -149,10 +149,10 @@ export class StockComponent implements OnInit {
   time(dateDepart: string, dateFin: string) {
 
       const date = new Date(dateDepart);
-      const date1=new Date(dateFin);
-
-      console.log(date);
-      // return date;
+      const date1 = new Date(dateFin);
+      const dates = date1.getTime() - date.getTime();
+      const diffDays = Math.ceil(dates / (1000 * 3600 * 24));
+      return diffDays;
 
   }
 }
