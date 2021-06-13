@@ -21,7 +21,6 @@ export class CollaborateurDemandeCongeCreateComponent implements OnInit {
               private etatDemandeCongeService: EtatDemandeCongeService) { }
 
   ngOnInit(): void {
-    this.demandeCongeService.findAll().subscribe(data => this.items = data);
   }
 
 
@@ -44,6 +43,7 @@ export class CollaborateurDemandeCongeCreateComponent implements OnInit {
       });
       this.createDialog = false;
       this.selected = new DemandeConge();
+      this.selected=null;
     }
   }
   get selected(): DemandeConge {

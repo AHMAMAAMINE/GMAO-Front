@@ -58,6 +58,9 @@ export class DemandeCongeService {
     }
   }
     get items(): Array<DemandeConge> {
+    if(this._items==null){
+      this._items=new Array<DemandeConge>();
+    }
     return this._items;
   }
 
@@ -66,6 +69,9 @@ export class DemandeCongeService {
   }
 
   get selected(): DemandeConge {
+    if (this._selected==null){
+      this._selected=new DemandeConge();
+    }
     return this._selected;
   }
   set selected(value: DemandeConge) {

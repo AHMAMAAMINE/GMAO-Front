@@ -46,7 +46,7 @@ export class DemandeCongeCreateComponent implements OnInit {
           });
         }else{
           this.selected = data;
-          if (this.selected.etatDemandeConge.code === 'e1'){
+
             this.items.push({...data});
             this.messageService.add({
               severity: 'success',
@@ -54,7 +54,6 @@ export class DemandeCongeCreateComponent implements OnInit {
               detail: 'Holiday Requesr created',
               life: 3000
             });
-          }else {
             this.messageService.add({
               severity: 'success',
               summary: 'Successful',
@@ -62,7 +61,6 @@ export class DemandeCongeCreateComponent implements OnInit {
               life: 3000
             });
           }
-        }
       });
       this.createDialog = false;
       this.selected = new DemandeConge();

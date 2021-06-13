@@ -22,16 +22,22 @@ export class CollaborateurDemandeCongeListComponent implements OnInit {
               private  collaborateurService: CollaborateurService) { }
 
   ngOnInit(): void {
-    this.initCol();
+    this.demandeCongeService.findAll().subscribe(data => this.items = data);
+
   }
   public openCreate() {
-    this.selected = new DemandeConge();
+    // this.selected = null;
     this.submitted = false;
     this.createDialog = true;
   }
   public view(demandeConge: DemandeConge) {
     this.selected = {...demandeConge};
-    this.viewDialog = true;
+    if (demandeConge.etatDemandeConge === true) {
+    return 'green';
+    }
+    if (demandeConge.etatDemandeConge === false){
+      return 'red';
+    }
   }
 
   public delete(selected: DemandeConge) {
@@ -149,4 +155,6 @@ export class CollaborateurDemandeCongeListComponent implements OnInit {
   get collaborateur(): Collaborateur {
     return this.collaborateurService.collaborateur;
   }
+
+
 }
