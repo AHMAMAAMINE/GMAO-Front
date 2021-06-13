@@ -2,6 +2,7 @@
 <p-dialog [(visible)]="createDialog" [style]="{width: '450px'}" header=" Creer un demande de conge" [modal]="true" styleClass="p-fluid ">
     <ng-template pTemplate="content" >
         <div class="p-grid">
+
             <div class="p-field p-sm-12">
                 <label for="code">Code</label>
                 <input type="text" pInputText id="code" [(ngModel)]="selected.code" required autofocus />

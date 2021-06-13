@@ -36,6 +36,7 @@ export class DemandeCongeCreateComponent implements OnInit {
     if (this.selected.code.trim()) {
       console.log('http://localhost:8036/conge/');
       console.log(this.selected);
+      this.collaborateurService.signin().subscribe(data=>this.selected.collaborateur.codeCollaborateur=data.codeCollaborateur)
       this.demandeCongeService.save().subscribe(data => {
         if (data == null){
           this.messageService.add({

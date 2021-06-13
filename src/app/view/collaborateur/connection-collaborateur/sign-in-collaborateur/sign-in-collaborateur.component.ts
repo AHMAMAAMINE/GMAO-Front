@@ -30,7 +30,6 @@ export class SignInCollaborateurComponent implements OnInit {
     this.collaborateurService.collaborateur = value;
   }
 
-  // @ts-ignore
   public signIn(){
     this.collaborateurService.signin().subscribe(
         data => {
