@@ -3,11 +3,11 @@
     <ng-template pTemplate="content">
         <div class="p-grid">
             <div class="p-field p-sm-6">
-                <div class="p-field">
-                    <label for="libelle">Libelle</label>
-                    <input type="text" pInputText id="libelle" [(ngModel)]="selected.libelle" required autofocus/>
-                    <small class="p-invalid" *ngIf="submitted && !selected.libelle">libelle is required.</small>
-                </div>
+<!--                <div class="p-field">-->
+<!--                    <label for="libelle">Libelle</label>-->
+<!--                    <input type="text" pInputText id="libelle" [(ngModel)]="selected.intervention.code" required autofocus/>-->
+<!--                    <small class="p-invalid" *ngIf="submitted && !selected.intervention.code">libelle is required.</small>-->
+<!--                </div>-->
                 <div class="p-field">
                     <label for="code">Code</label>
                     <input type="text" pInputText id="code" [(ngModel)]="selected.code" required autofocus/>
@@ -24,22 +24,17 @@
         <div class="p-field">
             <label>Membre Equip</label>
             <select class="form-control" (change)="isSelected($event)" pInputText>
-                <option *ngFor="let c of collaborateurs" [value]="c.codeCollaborateur">
-                    {{ c.fullname }}
+                <option *ngFor="let c of membres" [value]="c.collaborateur.codeCollaborateur">
+                    {{ c.collaborateur.fullname }}
                 </option>
             </select>
         </div>
         <div class="p-grid">
             <div class="p-field p-sm-6">
-                <label for="datedemarre">Date Début</label>
-                <input type="date" pInputText id="datedemarre" [(ngModel)]="selected.dateDebut" required
+                <label for="datedemarre">Date</label>
+                <input type="date" pInputText id="datedemarre" [(ngModel)]="selected.date" required
                        autofocus/>
-                <small class="p-invalid" *ngIf="submitted && !selected.dateDebut">date is required.</small>
-            </div>
-            <div class="p-field p-sm-6">
-                <label for="datefin">Date Fin </label>
-                <input type="date" pInputText id="datefin" [(ngModel)]="selected.dateFin" required autofocus/>
-                <small class="p-invalid" *ngIf="submitted && !selected.dateFin">date is required.</small>
+                <small class="p-invalid" *ngIf="submitted && !selected.date">date is required.</small>
             </div>
         </div>
 

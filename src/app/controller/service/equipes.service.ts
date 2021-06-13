@@ -184,4 +184,8 @@ export class EquipesService {
   set membre(value: MembreEquipe) {
     this._membre = value;
   }
+
+    findByCodeCollaborateur(code: string) {
+        return this.http.get<Equipe>(this.url+'code/'+code);
+    }
 }
