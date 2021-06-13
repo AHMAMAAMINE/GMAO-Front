@@ -1,25 +1,28 @@
-import { CollaborateurService } from "./../../../controller/service/collaborateur.service";
-import { EquipesService } from "./../../../controller/service/equipes.service";
-import { Intervention } from "./../../../controller/model/intervention.model";
-import { InterventionService } from "./../../../controller/service/intervention.service";
-import { Component, OnInit } from "@angular/core";
-import dayGridPlugin from "@fullcalendar/daygrid";
-import timeGridPlugin from "@fullcalendar/timegrid";
-import interactionPlugin from "@fullcalendar/interaction";
+import { CollaborateurService } from './../../../controller/service/collaborateur.service';
+import { EquipesService } from './../../../controller/service/equipes.service';
+import { Intervention } from './../../../controller/model/intervention.model';
+import { InterventionService } from './../../../controller/service/intervention.service';
+import { Component, OnInit } from '@angular/core';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import timeGridPlugin from '@fullcalendar/timegrid';
+import interactionPlugin from '@fullcalendar/interaction';
 import {DatePipe} from '@angular/common';
+import {DemandeCongeService} from '../../../controller/service/demande-conge.service';
+import {DemandeConge} from '../../../controller/model/demande-conge.model';
 
 @Component({
-  selector: "app-stock",
-  templateUrl: "./stock.component.html",
-  styleUrls: ["./stock.component.scss"],
+  selector: 'app-stock',
+  templateUrl: './stock.component.html',
+  styleUrls: ['./stock.component.scss'],
   providers: [DatePipe]
 })
 export class StockComponent implements OnInit {
   constructor(
       private datePipe: DatePipe,
-      private equipeService:EquipesService,
-    private interventionService: InterventionService,
-    private collaborateurService: CollaborateurService
+      private equipeService: EquipesService,
+      private interventionService: InterventionService,
+      private collaborateurService: CollaborateurService,
+      private demandeCongeService: DemandeCongeService
   ) {}
   public fullcalendarOptions: any;
   public events: any;
@@ -43,22 +46,22 @@ export class StockComponent implements OnInit {
     let i = 0;
     this.intervetions.forEach((elem) => {
       ++i;
-      let color = "";
+      let color = '';
       switch (elem.etatIntervention.couleur) {
-        case "rouge":
-          color = "red";
+        case 'rouge':
+          color = 'red';
           break;
-        case "vert":
-          color = "green";
+        case 'vert':
+          color = 'green';
           break;
 
         default:
-          color = "orange";
+          color = 'orange';
           break;
       }
-      let obj = {
+      const obj = {
         id: i,
-        color: color,
+        color,
         title: elem.libelle,
         start: elem.dateDebut.slice(0, 10),
         end: elem.dateFin.slice(0, 10),
@@ -66,12 +69,28 @@ export class StockComponent implements OnInit {
       this.interventionDto.data.push(obj);
     });
   }
+  get selected(): DemandeConge {
+    return this.demandeCongeService.selected;
+  }
+
+  set selected(value: DemandeConge) {
+    this.demandeCongeService.selected = value;
+  }
+
+
+  get items(): Array<DemandeConge> {
+    return this.demandeCongeService.items;
+  }
+
+  set items(value: Array<DemandeConge>) {
+    this.demandeCongeService.items = value;
+  }
 
   ngOnInit(): void {
     this.equipeService.findAll().subscribe((data) => {
-      console.log(data);
-      this.numEquipes = data.length;
+    this.numEquipes = data.length;
     });
+    this.demandeCongeService.findAll().subscribe(data => this.items = data);
     this.collaborateurService.findAll().subscribe((data) => {
       this.numColaborateur = data.length;
     });
@@ -82,19 +101,19 @@ export class StockComponent implements OnInit {
         this.totalInterventions = data.length;
 
         this.goodInterventions = data.filter((elem) => {
-          return elem.etatIntervention.couleur === "vert";
+          return elem.etatIntervention.couleur === 'vert';
         }).length;
 
         this.encoursInterventions = data.filter((elem) => {
-          return elem.etatIntervention.couleur === "orange";
+          return elem.etatIntervention.couleur === 'orange';
         }).length;
 
         this.badInterventions = data.filter((elem) => {
-          return elem.etatIntervention.couleur === "rouge";
+          return elem.etatIntervention.couleur === 'rouge';
         }).length;
 
         this.data = {
-          labels: ["ongoing", "completed", "cancelled"],
+          labels: ['ongoing', 'completed', 'cancelled'],
           datasets: [
             {
               data: [
@@ -102,8 +121,8 @@ export class StockComponent implements OnInit {
                 this.goodInterventions,
                 this.badInterventions,
               ],
-              backgroundColor: ["orange", "green", "red"],
-              hoverBackgroundColor: ["orange", "green", "red"],
+              backgroundColor: ['orange', 'green', 'red'],
+              hoverBackgroundColor: ['orange', 'green', 'red'],
             },
           ],
         };
@@ -119,11 +138,21 @@ export class StockComponent implements OnInit {
       defaultDate: now,
       // defaultDate: "2021-05-31",
       header: {
-        left: "prev,next",
-        center: "title",
-        right: "dayGridMonth,timeGridWeek,timeGridDay",
+        left: 'prev,next',
+        center: 'title',
+        right: 'dayGridMonth,timeGridWeek,timeGridDay',
       },
       editable: true,
     };
+  }
+
+  time(dateDepart: string, dateFin: string) {
+
+      const date = new Date(dateDepart);
+      const date1=new Date(dateFin);
+
+      console.log(date);
+      // return date;
+
   }
 }

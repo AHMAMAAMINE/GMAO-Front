@@ -10,5 +10,7 @@ export class DemandeConge {
   public  etatDemandeConge: boolean;
   public messageCollaborateur: string;
   public action: string;
+
+
 }
 

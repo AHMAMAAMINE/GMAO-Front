@@ -21,10 +21,12 @@ export class DemandeCongeCreateComponent implements OnInit {
 
   ngOnInit(): void {
     this.etatDemandeCongeService.findAll().subscribe(data => this.itemset = data);
-    this.collaborateurService.findAll();
+    this.collaborateurService.findAll().subscribe(data => this.collaborateurs = data);
 
   }
-
+  set collaborateurs(value: Array<Collaborateur>) {
+    this.collaborateurService.collaborateurs = value;
+  }
 
   public hideCreateDialog() {
     this.createDialog = false;
@@ -33,11 +35,9 @@ export class DemandeCongeCreateComponent implements OnInit {
 
   public save() {
     this.submitted = true;
-    if (this.selected.code.trim()) {
-      console.log('http://localhost:8036/conge/');
-      console.log(this.selected);
-      this.collaborateurService.signin().subscribe(data=>this.selected.collaborateur.codeCollaborateur=data.codeCollaborateur)
-      this.demandeCongeService.save().subscribe(data => {
+    console.log('http://localhost:8036/conge/');
+    console.log(this.selected);
+    this.demandeCongeService.save().subscribe(data => {
         if (data == null){
           this.messageService.add({
             severity: 'error',
@@ -47,14 +47,14 @@ export class DemandeCongeCreateComponent implements OnInit {
         }else{
           this.selected = data;
 
-            this.items.push({...data});
-            this.messageService.add({
+          this.items.push({...data});
+          this.messageService.add({
               severity: 'success',
               summary: 'Successful',
               detail: 'Holiday Requesr created',
               life: 3000
             });
-            this.messageService.add({
+          this.messageService.add({
               severity: 'success',
               summary: 'Successful',
               detail: 'Holiday Requesr created',
@@ -62,9 +62,8 @@ export class DemandeCongeCreateComponent implements OnInit {
             });
           }
       });
-      this.createDialog = false;
-      this.selected = new DemandeConge();
-    }
+    this.createDialog = false;
+    this.selected = new DemandeConge();
   }
 
   get selected(): DemandeConge {
@@ -117,4 +116,8 @@ export class DemandeCongeCreateComponent implements OnInit {
     this.etatDemandeCongeService.items = value;
   }
 
+  isSelected($event: any) {
+    this.selected.collaborateur.codeCollaborateur = $event.target.value;
+    console.log(this.selected.collaborateur.codeCollaborateur);
+  }
 }

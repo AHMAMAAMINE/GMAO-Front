@@ -1,7 +1,14 @@
 <p-dialog [(visible)]="createDialog" [style]="{width: '450px'}" header=" Create a new request" [modal]="true" styleClass="p-fluid ">
     <ng-template pTemplate="content" >
+        <div>
+            <label>Code congee</label>
+            <input type="text"  pInputTextarea autoResize="autoResize" [(ngModel)]="selected.code">
+        </div>
         <div class="p-grid">
+
+
             <div class="p-field p-sm-12">
+                <label>collaborateur</label>
                 <select class="form-control" (change)="isSelected($event)" pInputText>
                     <option *ngFor="let c of collaborateurs" [value]="c.codeCollaborateur">
                         {{ c.fullname }}
@@ -26,10 +33,7 @@
                 <small class="p-invalid" *ngIf="submitted && !selected.dateFin">date is required.</small>
             </div>
         </div>
-        <div class="p-fluid">
-            <label>Commentaire</label>
-            <textarea rows="5" cols="30" pInputTextarea autoResize="autoResize" [(ngModel)]="selected.commentaireValidateur"></textarea>
-        </div>
+
 
     </ng-template>
     <ng-template pTemplate="footer">

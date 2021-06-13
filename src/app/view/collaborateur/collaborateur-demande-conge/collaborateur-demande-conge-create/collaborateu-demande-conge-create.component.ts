@@ -21,8 +21,8 @@ export class CollaborateurDemandeCongeCreateComponent implements OnInit {
               private etatDemandeCongeService: EtatDemandeCongeService) { }
 
   ngOnInit(): void {
-    this.demandeCongeService.findAll().subscribe(data => this.items = data);
-
+    this.selected.collaborateur.codeCollaborateur=this.collaborateur.codeCollaborateur;
+    this.demandeCongeService.findByCollaborateur().subscribe(data => this.items = data);
   }
 
 

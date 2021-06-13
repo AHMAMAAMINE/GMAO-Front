@@ -82,7 +82,8 @@ export class DemandeCongeListComponent implements OnInit {
     if (indexe === 2){
       demandeConge.etatDemandeConge = false;
     }
-    this.editDialog = true;
+    this.selected = demandeConge;
+    this.demandeCongeService.edit().subscribe() ;
   }
   private initCol() {
     this.cols = [
@@ -154,4 +155,32 @@ export class DemandeCongeListComponent implements OnInit {
     this.demandeCongeService.selectes = value;
   }
 
+  isSet(demandeConge: any) {
+    return demandeConge.etatDemandeConge != null;
+  }
+
+  isvalide(demandeConge: DemandeConge) {
+    if(demandeConge.etatDemandeConge === null){
+      return true;
+    }
+    if(demandeConge.etatDemandeConge===true){
+      return true;
+    }
+    if(demandeConge.etatDemandeConge===false){
+      return false;
+    }
+
+  }
+
+  isvalides(demandeConge: any) {
+    if(demandeConge.etatDemandeConge === null){
+      return false;
+    }
+    if(demandeConge.etatDemandeConge===true){
+      return true;
+    }
+    if(demandeConge.etatDemandeConge===false){
+      return false;
+    }
+  }
 }
