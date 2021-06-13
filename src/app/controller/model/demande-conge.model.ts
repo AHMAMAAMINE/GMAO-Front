@@ -7,7 +7,7 @@ export class DemandeConge {
   public  dateDepart: string;
   public  dateFin: string;
   public  collaborateur = new Collaborateur();
-  public  etatDemandeConge: EtatDemandeConge;
+  public  etatDemandeConge: boolean;
   public messageCollaborateur: string;
   public action: string;
 }

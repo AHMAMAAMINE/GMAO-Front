@@ -22,6 +22,7 @@ export class CollaborateurDemandeCongeCreateComponent implements OnInit {
 
   ngOnInit(): void {
     this.demandeCongeService.findAll().subscribe(data => this.items = data);
+
   }
 
 
@@ -31,10 +32,13 @@ export class CollaborateurDemandeCongeCreateComponent implements OnInit {
   }
   public save() {
     this.submitted = true;
+
     if (this.selected.code.trim()) {
       this.selected.collaborateur.codeCollaborateur=this.collaborateur.codeCollaborateur;
       // this.collaborateurService.signin().subscribe(data=>this.v=);
+      console.log(this.selected)
       this.demandeCongeService.save().subscribe(data => {
+        console.log(data);
         this.messageService.add({
           severity: 'success',
           summary: 'Successful',
@@ -44,6 +48,7 @@ export class CollaborateurDemandeCongeCreateComponent implements OnInit {
       });
       this.createDialog = false;
       this.selected = new DemandeConge();
+      this.selected=null;
     }
   }
   get selected(): DemandeConge {

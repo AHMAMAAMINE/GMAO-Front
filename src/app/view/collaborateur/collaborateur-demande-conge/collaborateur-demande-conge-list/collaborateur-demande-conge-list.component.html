@@ -33,14 +33,14 @@
                         <th pSortableColumn="dateDepart">Date départ <p-sortIcon field="dateDepart"></p-sortIcon></th>
                         <th pSortableColumn="dateFin">Date fin <p-sortIcon field="dateFin"></p-sortIcon></th>
                         <th pSortableColumn="message">message <p-sortIcon field="message"></p-sortIcon></th>
-                        <th pSortableColumn="message">action <p-sortIcon field="message"></p-sortIcon></th>
+                        <th pSortableColumn="message">etat de conge <p-sortIcon field="message"></p-sortIcon></th>
                         <th></th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-demandeConge>
                     <tr>
                         <td>
-                            <p-tableCheckbox [value]="demandeConge"></p-tableCheckbox>
+                            <p-tableCheckbox [value]="demandeConge" ></p-tableCheckbox>
                         </td>
                         <!-- <td>{{demandeConge.code}}</td>-->
                         <td>{{demandeConge.code}}</td>
@@ -48,7 +48,7 @@
                         <td>{{demandeConge.dateFin}}</td>
                         <td>{{demandeConge.messageCollaborateur}}</td>
                         <td>
-                            <button pButton pRipple icon="pi pi-list" class="p-button-rounded p-button-info p-mr-2" (click)="view(demandeConge)"></button>
+                            <button pButton pRipple icon="pi pi-list" class="p-button-rounded p-button-info p-mr-2" [style.background-color]="view(demandeConge)" ></button>
                             <!--<button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="delete(demandeConge)"></button>-->
                         </td>
                     </tr>

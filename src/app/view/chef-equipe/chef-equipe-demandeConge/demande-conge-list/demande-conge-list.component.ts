@@ -18,7 +18,7 @@ export class DemandeCongeListComponent implements OnInit {
 
   ngOnInit(): void {
     this.initCol();
-    this.demandeCongeService.findAll().subscribe(data => this.items = data.filter(demandeConge => demandeConge.etatDemandeConge.id ==29 ));
+    this.demandeCongeService.findAll().subscribe(data => this.items = data);
 
   }
 
@@ -74,14 +74,8 @@ export class DemandeCongeListComponent implements OnInit {
       }
     });
   }
-  public edit(demandeConge: DemandeConge, state: number) {
+  public edit(demandeConge: DemandeConge) {
     this.selected = {...demandeConge};
-    if (state === 1) {
-      this.selected.etatDemandeConge.code = 'e2';
-    }
-    if (state === 2) {
-      this.selected.etatDemandeConge.code = 'e3';
-    }
     this.editDialog = true;
 
   }

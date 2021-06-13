@@ -56,6 +56,7 @@ export class CollaborateurService {
     return this._http.get<Array<Collaborateur>>(this.url + '/');
   }
   public save(): Observable<Collaborateur> {
+    console.log(this.collaborateur)
     return this._http.post<Collaborateur>(this.url+'/', this.collaborateur);
   }
   get collaborateur(): Collaborateur {
