@@ -6,6 +6,7 @@ import {EtatDemandeConge} from '../../../../controller/model/etat-demande-conge.
 import {Collaborateur} from '../../../../controller/model/collaborateur.model';
 import {DemandeConge} from '../../../../controller/model/demande-conge.model';
 import {EtatDemandeCongeService} from '../../../../controller/service/etat-demande-conge.service';
+import {UserService} from '../../../../controller/service/user.service';
 
 @Component({
   selector: 'app-collaborateur-demande-conge-create',
@@ -28,12 +29,12 @@ export class CollaborateurDemandeCongeCreateComponent implements OnInit {
     this.createDialog = false;
     this.submitted = false;
   }
-
   public save() {
     this.submitted = true;
     if (this.selected.code.trim()) {
+      this.selected.collaborateur.codeCollaborateur=this.collaborateur.codeCollaborateur;
+      // this.collaborateurService.signin().subscribe(data=>this.v=);
       this.demandeCongeService.save().subscribe(data => {
-        this.items.push({...data});
         this.messageService.add({
           severity: 'success',
           summary: 'Successful',
@@ -83,7 +84,13 @@ export class CollaborateurDemandeCongeCreateComponent implements OnInit {
   set selectes(value: Array<Collaborateur>) {
     this.collaborateurService.selectes = value;
   }
+  get collaborateur(): Collaborateur {
+    return this.collaborateurService.collaborateur;
+  }
 
+  set collaborateur(value: Collaborateur){
+    this.collaborateurService.collaborateur = value;
+  }
   get collaborateurs(): Array<Collaborateur> {
     return this.collaborateurService.collaborateurs;
   }

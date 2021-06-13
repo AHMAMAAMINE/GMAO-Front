@@ -88,8 +88,7 @@ export class CollaborateurService {
   }
 
   public signin(): Observable<Collaborateur> {
-    console.log(this._collaborateur);
-    return this._http.post<Collaborateur>(this.url + '/signin', this._collaborateur);
+    return this._http.get<Collaborateur>(this.url + '/signin/'+ this.collaborateur.login+'/password/'+this.collaborateur.password);
   }
   //   addCollaborateur(collaborateur: Collaborateur) {
   //     this.http.post(this.url + '/', collaborateur).subscribe(

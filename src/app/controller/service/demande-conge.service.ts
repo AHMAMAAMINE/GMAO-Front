@@ -22,12 +22,12 @@ export class DemandeCongeService {
   constructor(private http: HttpClient) { }
 
   findAll() {
-    return this.http.get<Array<DemandeConge>>(this.url + '/');
+    return this.http.get<Array<DemandeConge>>(this.url);
   }
 
   public save(){
     return this.http.post<DemandeConge>(this.url, this.selected);
-    console.log(this.selected);
+
   }
   public edit(): Observable<DemandeConge> {
     return this.http.put<DemandeConge>(this.url, this.selected);

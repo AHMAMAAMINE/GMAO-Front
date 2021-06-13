@@ -29,7 +29,6 @@ export class SignInComponent implements OnInit {
     this.adminService.selected = value;
   }
 
-  // @ts-ignore
   public signIn(){
     this.adminService.seConnecter().subscribe(
         data => {
