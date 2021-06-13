@@ -161,15 +161,12 @@ export class DemandeCongeListComponent implements OnInit {
 
   isvalide(demandeConge: DemandeConge) {
     if(demandeConge.etatDemandeConge === null){
-      console.log('null')
       return true;
     }
     if(demandeConge.etatDemandeConge===true){
-      console.log('true')
       return true;
     }
     if(demandeConge.etatDemandeConge===false){
-      console.log('false')
       return false;
     }
 
@@ -177,15 +174,12 @@ export class DemandeCongeListComponent implements OnInit {
 
   isvalides(demandeConge: any) {
     if(demandeConge.etatDemandeConge === null){
-      console.log('null')
       return false;
     }
     if(demandeConge.etatDemandeConge===true){
-      console.log('true')
       return true;
     }
     if(demandeConge.etatDemandeConge===false){
-      console.log('false')
       return false;
     }
   }

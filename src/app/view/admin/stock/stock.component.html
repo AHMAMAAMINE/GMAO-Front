@@ -47,31 +47,31 @@
   <div class="p-col-12 p-md-3 p-lg-3">
     <div class="timeline card card-w-title">
       <h5>Demande Conge</h5>
-      <ul>
+      <ul *ngFor="let c of items">
         <li>
           <i class="pi pi-users"></i>
-          <span class="timeline-event-title">Amine Ahmama</span>
-          <span class="timeline-event-time">15m</span>
-          <p>3tiwni conge rah bin 7ma9 wlit kan drab rassi 3afakom azwini 3afak.</p>
+          <span class="timeline-event-title">{{c.collaborateur.fullname}}</span>
+          <span class="timeline-event-time">{{time(c.dateDepart,c.dateFin)}}</span>
+          <p>{{c.messageCollaborateur}}</p>
         </li>
-        <li>
-          <i class="pi pi-users"></i>
-          <span class="timeline-event-title">Elwafi Elmehdi</span>
-          <span class="timeline-event-time">1h</span>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-        </li>
-        <li>
-          <i class="pi pi-users"></i>
-          <span class="timeline-event-title">Saida Id-younes</span>
-          <span class="timeline-event-time">11h</span>
-          <p>Bghit nmchi ltigmi twa7cht bzaf 3a2ilty obghit nchof anas o yasmine</p>
-        </li>
-        <li>
-          <i class="pi pi-users"></i>
-          <span class="timeline-event-title">Adam Idk</span>
-          <span class="timeline-event-time">3h</span>
-          <p>Ana ma3andich mochkil mat3tiwnich conge aslan lay7fdak aba zwini.</p>
-        </li>
+<!--        <li>-->
+<!--          <i class="pi pi-users"></i>-->
+<!--          <span class="timeline-event-title">Elwafi Elmehdi</span>-->
+<!--          <span class="timeline-event-time">1h</span>-->
+<!--          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>-->
+<!--        </li>-->
+<!--        <li>-->
+<!--          <i class="pi pi-users"></i>-->
+<!--          <span class="timeline-event-title">Saida Id-younes</span>-->
+<!--          <span class="timeline-event-time">11h</span>-->
+<!--          <p>Bghit nmchi ltigmi twa7cht bzaf 3a2ilty obghit nchof anas o yasmine</p>-->
+<!--        </li>-->
+<!--        <li>-->
+<!--          <i class="pi pi-users"></i>-->
+<!--          <span class="timeline-event-title">Adam Idk</span>-->
+<!--          <span class="timeline-event-time">3h</span>-->
+<!--          <p>Ana ma3andich mochkil mat3tiwnich conge aslan lay7fdak aba zwini.</p>-->
+<!--        </li>-->
       </ul>
     </div>
   </div>
