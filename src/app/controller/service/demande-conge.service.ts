@@ -30,7 +30,7 @@ export class DemandeCongeService {
 
   }
   public edit(): Observable<DemandeConge> {
-    return this.http.put<DemandeConge>(this.url, this.selected);
+    return this.http.put<DemandeConge>(this.url+'code/'+this.selected.code, this.selected);
   }
   public deleteByCode(): Observable<number> {
     return this.http.delete<number>(this.url + 'code/' + this.selected.code);

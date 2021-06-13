@@ -155,4 +155,7 @@ export class CollaborateurDemandeCongeListComponent implements OnInit {
   }
 
 
+  show(demandeConge: any) {
+    console.log(demandeConge)
+  }
 }

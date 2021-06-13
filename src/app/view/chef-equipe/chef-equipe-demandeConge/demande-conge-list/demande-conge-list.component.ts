@@ -82,7 +82,8 @@ export class DemandeCongeListComponent implements OnInit {
     if (indexe === 2){
       demandeConge.etatDemandeConge = false;
     }
-    this.editDialog = true;
+    this.selected = demandeConge;
+    this.demandeCongeService.edit().subscribe() ;
   }
   private initCol() {
     this.cols = [
