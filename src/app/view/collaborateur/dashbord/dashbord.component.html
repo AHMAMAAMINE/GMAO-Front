@@ -88,21 +88,15 @@
             <h5>Taches et Interventions</h5>
         </div>
         <div class="overview-box card">
-            <p-accordion [multiple]="true">
+            <p-accordion [multiple]="true" *ngFor="">
                 <p-accordionTab header="Header 1">
                     Content 1
-                </p-accordionTab>
-                <p-accordionTab header="Header 2">
-                    Content 2
-                </p-accordionTab>
-                <p-accordionTab header="Header 3">
-                    Content 3
                 </p-accordionTab>
             </p-accordion>
             <div class="card card-w-title tasks">
                 <h3>Tasks</h3>
                 <p>
-                    You have <span class="task-highlight">completed</span> 3 tasks out of 6.
+                    Vous avez  <span class="task-highlight">Complete</span> 3 taches parmi 6.
                 </p>
                 <p-progressBar [value]="50"></p-progressBar>
 

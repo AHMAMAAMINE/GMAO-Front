@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AccordionModule} from 'primeng/accordion';
+import {TacheInterventionService} from '../../../controller/service/tache-intervention.service';
+import {CollaborateurService} from '../../../controller/service/collaborateur.service';
 
 @Component({
   selector: 'app-dashbord',
@@ -8,9 +10,10 @@ import {AccordionModule} from 'primeng/accordion';
 })
 export class DashbordComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service:TacheInterventionService) { }
 
   ngOnInit(): void {
+    this.service.findAllInterventions();
   }
 
 }
