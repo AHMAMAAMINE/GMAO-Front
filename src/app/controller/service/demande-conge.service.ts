@@ -3,7 +3,7 @@ import {environment} from '../../../environments/environment';
 import {DemandeConge} from '../model/demande-conge.model';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {Equipe} from "../model/equipe.model";
+import {Equipe} from '../model/equipe.model';
 
 
 
@@ -30,7 +30,7 @@ export class DemandeCongeService {
 
   }
   public edit(): Observable<DemandeConge> {
-    return this.http.put<DemandeConge>(this.url+'code/'+this.selected.code, this.selected);
+    return this.http.put<DemandeConge>(this.url + 'code/' + this.selected.code, this.selected);
   }
   public deleteByCode(): Observable<number> {
     return this.http.delete<number>(this.url + 'code/' + this.selected.code);
@@ -58,8 +58,8 @@ export class DemandeCongeService {
     }
   }
     get items(): Array<DemandeConge> {
-    if(this._items==null){
-      this._items=new Array<DemandeConge>();
+    if (this._items == null){
+      this._items = new Array<DemandeConge>();
     }
     return this._items;
   }
@@ -69,8 +69,8 @@ export class DemandeCongeService {
   }
 
   get selected(): DemandeConge {
-    if (this._selected==null){
-      this._selected=new DemandeConge();
+    if (this._selected == null){
+      this._selected = new DemandeConge();
     }
     return this._selected;
   }
@@ -79,8 +79,8 @@ export class DemandeCongeService {
   }
 
   get selectes(): Array<DemandeConge> {
-    if (this._selectes==null){
-      this._selectes=new Array<DemandeConge>();
+    if (this._selectes == null){
+      this._selectes = new Array<DemandeConge>();
     }
     return this._selectes;
   }
@@ -121,4 +121,8 @@ export class DemandeCongeService {
     this._submitted = value;
   }
 
+  findByCollaborateur(): Observable<Array<DemandeConge>> {
+    console.log(this.selected.collaborateur.codeCollaborateur)
+    return this.http.get<Array<DemandeConge>>(this.url + 'collaborateur/' + this.selected.collaborateur.codeCollaborateur);
+  }
 }

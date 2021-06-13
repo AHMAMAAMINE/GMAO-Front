@@ -37,7 +37,7 @@
                         <th pSortableColumn="dateDepart">Date départ <p-sortIcon field="dateDepart"></p-sortIcon></th>
                         <th pSortableColumn="dateFin">Date fin <p-sortIcon field="dateFin"></p-sortIcon></th>
                         <th pSortableColumn="etatDemandeConfeLibelle">Etat Demande<p-sortIcon field="etatDemandeConfeLibelle"></p-sortIcon></th>
-                        <th></th>
+                        <th>Action</th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-demandeConge>
@@ -49,13 +49,13 @@
                         <td>{{demandeConge.collaborateur.fullname}}</td>
                         <td>{{demandeConge.dateDepart}}</td>
                         <td>{{demandeConge.dateFin}}</td>
-<!--                        <td>{{demandeConge.etatDemandeConge.libelle}}</td>-->
                         <td>
-                            <button pButton pRipple icon="pi pi-check" class="p-button-rounded p-button-success p-mr-2" (click)="edit(demandeConge,1)"></button>
-                            <button pButton pRipple icon="pi pi-times" class="p-button-rounded p-button-danger p-mr-2" (click)="edit(demandeConge,2)"></button>
-                            <button pButton pRipple icon="pi pi-list" class="p-button-rounded p-button-info p-mr-2" (click)="view(demandeConge)"></button>
-                            <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="delete(demandeConge)"></button>
+                            <span [hidden]="!isvalide(demandeConge)"><button pButton pRipple icon="pi pi-check"  class="p-button-rounded p-button-success p-mr-2" (click)="edit(demandeConge,1)"></button></span>
+                            <span [hidden]="isvalides(demandeConge)"><button pButton pRipple icon="pi pi-times" class="p-button-rounded p-button-danger p-mr-2" (click)="edit(demandeConge,2)"></button></span>
                         </td>
+                       <td> <button pButton pRipple icon="pi pi-list" class="p-button-rounded p-button-info p-mr-2" (click)="view(demandeConge)"></button>
+                        <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="delete(demandeConge)"></button>
+                       </td>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="summary">

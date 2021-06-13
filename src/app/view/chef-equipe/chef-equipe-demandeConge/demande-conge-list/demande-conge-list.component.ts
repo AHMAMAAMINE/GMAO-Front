@@ -155,4 +155,38 @@ export class DemandeCongeListComponent implements OnInit {
     this.demandeCongeService.selectes = value;
   }
 
+  isSet(demandeConge: any) {
+    return demandeConge.etatDemandeConge != null;
+  }
+
+  isvalide(demandeConge: DemandeConge) {
+    if(demandeConge.etatDemandeConge === null){
+      console.log('null')
+      return true;
+    }
+    if(demandeConge.etatDemandeConge===true){
+      console.log('true')
+      return true;
+    }
+    if(demandeConge.etatDemandeConge===false){
+      console.log('false')
+      return false;
+    }
+
+  }
+
+  isvalides(demandeConge: any) {
+    if(demandeConge.etatDemandeConge === null){
+      console.log('null')
+      return false;
+    }
+    if(demandeConge.etatDemandeConge===true){
+      console.log('true')
+      return true;
+    }
+    if(demandeConge.etatDemandeConge===false){
+      console.log('false')
+      return false;
+    }
+  }
 }
