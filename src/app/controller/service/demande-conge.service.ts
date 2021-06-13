@@ -79,6 +79,9 @@ export class DemandeCongeService {
   }
 
   get selectes(): Array<DemandeConge> {
+    if (this._selectes==null){
+      this._selectes=new Array<DemandeConge>();
+    }
     return this._selectes;
   }
 

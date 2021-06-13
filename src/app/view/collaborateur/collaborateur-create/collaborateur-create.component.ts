@@ -29,6 +29,7 @@ export class CollaborateurCreateComponent implements OnInit {
     this.submitted = true;
     if (this.collaborateur.codeCollaborateur.trim()) {
       this.collaborateurService.save().subscribe((data) => {
+        console.log(data)
         this.collaborateurs.push({ ...data });
         this.messageService.add({
           severity: "success",

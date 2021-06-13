@@ -22,16 +22,14 @@ export class CollaborateurDemandeCongeListComponent implements OnInit {
               private  collaborateurService: CollaborateurService) { }
 
   ngOnInit(): void {
-    this.demandeCongeService.findAll().subscribe(data => this.items = data);
-
   }
   public openCreate() {
-    // this.selected = null;
+    this.selected = null;
     this.submitted = false;
     this.createDialog = true;
   }
   public view(demandeConge: DemandeConge) {
-    this.selected = {...demandeConge};
+    // this.selected = {...demandeConge};
     if (demandeConge.etatDemandeConge === true) {
     return 'green';
     }
@@ -39,49 +37,49 @@ export class CollaborateurDemandeCongeListComponent implements OnInit {
       return 'red';
     }
   }
-
-  public delete(selected: DemandeConge) {
-    this.selected = selected;
-    this.confirmationService.confirm({
-      message: 'are you sure to delete ' + selected.code + '?',
-      header: 'Confirm',
-      icon: 'pi pi-exclamation-triangle',
-      accept: () => {
-        this.demandeCongeService.deleteByCode().subscribe(data => {
-          this.items = this.items.filter(val => val.id !== this.selected.id);
-          this.selected = new DemandeConge();
-          this.messageService.add({
-            severity: 'success',
-            summary: 'Successful',
-            detail: 'Holiday request deleted',
-            life: 3000
-          });
-        });
-      }
-    });
-  }
-
-  public deleteMultiple() {
-    this.confirmationService.confirm({
-      message: 'Are you sure to delete these leave requests?',
-      header: 'Confirm',
-      icon: 'pi pi-exclamation-triangle',
-      accept: () => {
-        this.demandeCongeService.deleteMultipleByCode().subscribe(data => {
-          this.demandeCongeService.deleteMultipleIndexById();
-          this.selectes = null;
-          this.messageService.add({
-            severity: 'success',
-            summary: 'Successful',
-            detail: 'leave requests deleted',
-            life: 3000
-          });
-        });
-      }
-    });
-  }
-
-
+  //
+  // public delete(selected: DemandeConge) {
+  //   this.selected = selected;
+  //   this.confirmationService.confirm({
+  //     message: 'are you sure to delete ' + selected.code + '?',
+  //     header: 'Confirm',
+  //     icon: 'pi pi-exclamation-triangle',
+  //     accept: () => {
+  //       this.demandeCongeService.deleteByCode().subscribe(data => {
+  //         this.items = this.items.filter(val => val.id !== this.selected.id);
+  //         this.selected = new DemandeConge();
+  //         this.messageService.add({
+  //           severity: 'success',
+  //           summary: 'Successful',
+  //           detail: 'Holiday request deleted',
+  //           life: 3000
+  //         });
+  //       });
+  //     }
+  //   });
+  // }
+  //
+  // public deleteMultiple() {
+  //   this.confirmationService.confirm({
+  //     message: 'Are you sure to delete these leave requests?',
+  //     header: 'Confirm',
+  //     icon: 'pi pi-exclamation-triangle',
+  //     accept: () => {
+  //       this.demandeCongeService.deleteMultipleByCode().subscribe(data => {
+  //         this.demandeCongeService.deleteMultipleIndexById();
+  //         this.selectes = null;
+  //         this.messageService.add({
+  //           severity: 'success',
+  //           summary: 'Successful',
+  //           detail: 'leave requests deleted',
+  //           life: 3000
+  //         });
+  //       });
+  //     }
+  //   });
+  // }
+  //
+  //
   private initCol() {
     this.cols = [
       {field: 'id', header: 'Id'},
