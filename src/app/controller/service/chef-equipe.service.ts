@@ -28,7 +28,7 @@ export class ChefEquipeService {
   }
   public seConnecter(): Observable<ChefEquipe> {
     console.log(this._selected);
-    return this.http.post<ChefEquipe>(this.url + 'seconnecter', this._selected);
+    return this.http.get<ChefEquipe>(this.url + 'seconnecter/' + this.selected.login + '/password/' + this.selected.password);
   }
   get items(): Array<ChefEquipe> {
     return this._items;
