@@ -85,54 +85,27 @@
 <!--    </div>-->
     <div class="p-col-12 p-lg-6 p-xl-4">
         <div class="card card-w-title">
-            <h5>Taches et Interventions</h5>
+            <h3>Taches et Interventions</h3>
         </div>
         <div class="overview-box card">
-            <p-accordion [multiple]="true" *ngFor="">
-                <p-accordionTab header="Header 1">
-                    Content 1
+            <p-accordion [multiple]="true" *ngFor="let i of vos">
+                <p-accordionTab header="{{i.libelle}}">
+                    <div class="card card-w-title tasks">
+                        <h5>Taches</h5>
+                        <p>
+                            Vous avez  <span class="task-highlight">Complete</span> {{num1}} taches parmi {{vos.length}}.
+                        </p>
+                        <p-progressBar [value]="pourcentage * 100 "></p-progressBar>
+                        <ul *ngFor="let j of i.taches">
+                            <li>
+                                <p-checkbox (click)="completerTache(j.code.toString())" [(ngModel)]="etat" [binary]="true" ></p-checkbox>
+                                <span>{{j.description}}</span>
+                            </li>
+                        </ul>
+                    </div>
                 </p-accordionTab>
             </p-accordion>
-            <div class="card card-w-title tasks">
-                <h3>Tasks</h3>
-                <p>
-                    Vous avez  <span class="task-highlight">Complete</span> 3 taches parmi 6.
-                </p>
-                <p-progressBar [value]="50"></p-progressBar>
 
-                <ul>
-                    <li>
-                        <p-checkbox></p-checkbox>
-                        <span>Sales Reports</span>
-                        <span class="task-badge-open">Open</span>
-                    </li>
-                    <li>
-                        <p-checkbox></p-checkbox>
-                        <span>Pay Invoices</span>
-                        <span class="task-badge-open">Open</span>
-                    </li>
-                    <li>
-                        <p-checkbox></p-checkbox>
-                        <span>Birthday Party</span>
-                        <span class="task-badge-open">Open</span>
-                    </li>
-                    <li>
-                        <p-checkbox></p-checkbox>
-                        <span>Client Meeting</span>
-                        <span class="task-badge-closed">Closed</span>
-                    </li>
-                    <li>
-                        <p-checkbox></p-checkbox>
-                        <span>New Themes</span>
-                        <span class="task-badge-closed">Closed</span>
-                    </li>
-                    <li>
-                        <p-checkbox></p-checkbox>
-                        <span>Flight Ticket</span>
-                        <span class="task-badge-closed">Closed</span>
-                    </li>
-                </ul>
-            </div>
         </div>
 
     </div>

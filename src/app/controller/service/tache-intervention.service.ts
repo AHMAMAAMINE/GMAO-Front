@@ -7,12 +7,21 @@ import {HttpClient} from '@angular/common/http';
 import {CollaborateurService} from './collaborateur.service';
 import {Collaborateur} from '../model/collaborateur.model';
 import {InterventionService} from './intervention.service';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TacheInterventionService {
+  get vos(): any[] {
+    return this._vos;
+  }
+
+  set vos(value: any[]) {
+    this._vos = value;
+  }
   private url = environment.baseUrl + '/tacheIntervention';
+  private url2 = environment.baseUrl + '/Collaborateurintervention-api/Collaborateurintervention/code/';
   private _items: Array<TacheIntervention>;
   private _selected: TacheIntervention;
   private _selectes: Array<TacheIntervention>;
@@ -20,6 +29,8 @@ export class TacheInterventionService {
   private _editDialog: boolean;
   private _viewDialog: boolean;
   private _submitted: boolean;
+  private _vos = Array();
+  private interventionVo = new Map<string, string>();
 
 
   get selected(): TacheIntervention {
@@ -81,11 +92,34 @@ export class TacheInterventionService {
     return this.http.post<TacheIntervention>(this.url, this.selected);
   }
 
+  public getTacheVo(data: Array<TacheIntervention>,codeInterventions: Map<string,string>){
+    const vos = new Array();
+
+  for(let s of codeInterventions.keys()){
+        const taches = data.filter((item) => {
+          return item.intervention.code === s;
+      });
+      const vo = {
+        libelle: codeInterventions.get(s),
+        taches
+      };
+        vos.push(vo);
+
+    }
+    return vos;
+  }
+
   public findAllInterventions(){
     // this.http.get<Array<TacheIntervention>>(this.url+"collaborateur/"+Col+"/intervention/"+{codeIntervention})
-    this.http.get<Array<TacheIntervention>>(this.url + '/collaborateur/code/'+this.collaborateur.codeCollaborateur).subscribe(
+    this.http.get<Array<TacheIntervention>>(this.url + '/collaborateur/code/' + this.collaborateur.codeCollaborateur).subscribe(
         (data) => {
-          console.log(data);
+
+          data.forEach((item) => {
+            this.interventionVo.set(item.intervention.code,item.intervention.libelle);
+          });
+          console.log(this.interventionVo);
+          this._vos = this.getTacheVo(data, this.interventionVo);
+          console.log(this._vos);
         },
         (error) => {
           console.log(error);
@@ -104,4 +138,7 @@ export class TacheInterventionService {
   }
 
 
+  completerTache(s: string) {
+    return this.http.get<number>(this.url + '/completerTache/'+ s);
+  }
 }
