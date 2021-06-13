@@ -74,10 +74,15 @@ export class DemandeCongeListComponent implements OnInit {
       }
     });
   }
-  public edit(demandeConge: DemandeConge) {
+  public edit(demandeConge: DemandeConge, indexe: number) {
     this.selected = {...demandeConge};
+    if (indexe === 1){
+      demandeConge.etatDemandeConge = true;
+    }
+    if (indexe === 2){
+      demandeConge.etatDemandeConge = false;
+    }
     this.editDialog = true;
-
   }
   private initCol() {
     this.cols = [
