@@ -28,6 +28,7 @@ import { DemandeCongeListComponent } from "./view/chef-equipe/chef-equipe-demand
 import { ChefEquipeTacheListComponent } from "./view/chef-equipe/chef-tache/chef-equipe-tache-list/chef-equipe-tache-list.component";
 
 import {AdmincollaborateurComponent} from "./view/admin/admincollaborateur/admincollaborateur.component";
+import {DashbordComponent} from './view/collaborateur/dashbord/dashbord.component';
 
 @NgModule({
   imports: [
@@ -75,7 +76,7 @@ import {AdmincollaborateurComponent} from "./view/admin/admincollaborateur/admin
           path: "collaborateur",
           component: CollaborateurMainComponent,
           children: [
-            { path: "", component: DashboardDemoComponent },
+            { path: "", component: DashbordComponent },
             {
               path: "collaborateur/demande/conge",
               component: CollaborateurDemandeCongeComponent,
