@@ -1,7 +1,16 @@
 <div class="p-grid layout-dashboard">
-  <div class="p-col-12 p-lg-6 p-xl-4">
+  <div class="p-col-12 p-xl-8">
     <div class="card card-w-title">
-      <h3>Taches et Interventions</h3>
+      <h5>Calendier</h5>
+      <p-fullCalendar
+        [events]="events"
+        [options]="fullcalendarOptions"
+      ></p-fullCalendar>
+    </div>
+  </div>
+  <div class="p-col-12 p-lg-4">
+    <div class="card card-w-title">
+      <h5>Taches</h5>
     </div>
     <div class="overview-box card">
       <p-accordion [multiple]="true" *ngFor="let i of vos">
@@ -27,14 +36,19 @@
         </p-accordionTab>
       </p-accordion>
     </div>
-  </div>
-  <div class="p-col-12 p-xl-8">
-    <div class="card card-w-title">
-      <h5>Calendier</h5>
-      <p-fullCalendar
-        [events]="events"
-        [options]="fullcalendarOptions"
-      ></p-fullCalendar>
+
+    <div class="p-col-12 p-lg-12" style="padding: 0; margin-top: 10px">
+      <div class="timeline card card-w-title">
+        <h5>Conciels</h5>
+        <ul *ngFor="let c of items">
+          <li>
+            <i class="pi pi-users"></i>
+            <span class="timeline-event-title">Amine Ahmama</span>
+            <span class="timeline-event-time">4 jours</span>
+            <p>Ne Perdez pas votre temps, concentrez vos sur l'objectif</p>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>
