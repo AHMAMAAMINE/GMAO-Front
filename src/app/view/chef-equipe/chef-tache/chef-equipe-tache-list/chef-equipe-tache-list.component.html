@@ -34,10 +34,12 @@
                         <th style="width: 3rem">
                             <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                         </th>
-                        <th pSortableColumn="libelle">Libelle <p-sortIcon field="libelle"></p-sortIcon></th>
-                        <th pSortableColumn="datedemarre">Date debut <p-sortIcon field="datedemarre"></p-sortIcon></th>
-                        <th pSortableColumn="responsable">date fin <p-sortIcon field="responsable"></p-sortIcon></th>
-                        <th pSortableColumn="categorieTache">collaborateur <p-sortIcon field="categorieTache"></p-sortIcon></th>
+                        <th pSortableColumn="libelle">Code <p-sortIcon field="libelle"></p-sortIcon></th>
+                        <th pSortableColumn="datedemarre">Date  <p-sortIcon field="datedemarre"></p-sortIcon></th>
+                        <th pSortableColumn="responsable">Description <p-sortIcon field="responsable"></p-sortIcon></th>
+                        <th pSortableColumn="categorieTache">Etat Tache <p-sortIcon field="categorieTache"></p-sortIcon></th>
+                        <th pSortableColumn="categorieTache">Libelle <p-sortIcon field="categorieTache"></p-sortIcon></th>
+                        <th pSortableColumn="categorieTache">fullname <p-sortIcon field="categorieTache"></p-sortIcon></th>
                         <th>Action</th>
                     </tr>
                 </ng-template>
@@ -46,10 +48,13 @@
                         <td>
                             <p-tableCheckbox [value]="tacheIntervention"></p-tableCheckbox>
                         </td>
-                        <td>{{tacheIntervention.libelle}}</td>
-                        <td>{{tacheIntervention.dateDebut}}</td>
-                        <td>{{tacheIntervention.dateFin}}</td>
+                        <td>{{tacheIntervention.code}}</td>
+                        <td>{{tacheIntervention.date}}</td>
+                        <td>{{tacheIntervention.description}}</td>
+                        <td>{{tacheIntervention.etatTache}}</td>
+                        <td>{{tacheIntervention.intervention.libelle}}</td>
                         <td>{{tacheIntervention.membreEquipe.collaborateur.fullname}}</td>
+
                         <td>
 
                         </td>

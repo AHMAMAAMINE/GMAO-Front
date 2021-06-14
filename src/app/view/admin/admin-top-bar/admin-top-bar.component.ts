@@ -3,6 +3,7 @@ import {AdminMainComponent} from '../admin-main/admin-main.component';
 import {AppComponent} from '../../../app.component';
 import {AdminService} from '../../../controller/service/admin.service';
 import {Admin} from '../../../controller/model/admin.model';
+import {UserService} from '../../../controller/service/user.service';
 
 @Component({
   selector: 'app-admin-top-bar',
@@ -11,7 +12,7 @@ import {Admin} from '../../../controller/model/admin.model';
 })
 export class AdminTopBarComponent implements OnInit {
 
-  constructor(public app: AppComponent, public appMain: AdminMainComponent, private service: AdminService) {}
+  constructor(public app: AppComponent, public appMain: AdminMainComponent, private service: AdminService,private userService: UserService) {}
 
 
   get selected(): Admin {
@@ -24,4 +25,8 @@ export class AdminTopBarComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+    sedeconnecte() {
+        this.userService.User = null;
+    }
 }

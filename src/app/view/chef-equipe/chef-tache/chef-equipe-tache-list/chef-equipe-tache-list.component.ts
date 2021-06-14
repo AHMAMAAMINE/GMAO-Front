@@ -19,6 +19,7 @@ export class ChefEquipeTacheListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.service.findAll().subscribe(data => this.items = data);
     this.initCol();
   }
   public openCreate() {
