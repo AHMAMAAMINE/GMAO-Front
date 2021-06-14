@@ -1,18 +1,18 @@
-import { Injectable } from "@angular/core";
-import { environment } from "../../../environments/environment";
-import { DemandeConge } from "../model/demande-conge.model";
-import { TacheIntervention } from "../model/tache-intervention.model";
-import { Equipe } from "../model/equipe.model";
-import { HttpClient } from "@angular/common/http";
-import { CollaborateurService } from "./collaborateur.service";
-import { Collaborateur } from "../model/collaborateur.model";
-import { InterventionService } from "./intervention.service";
-import { Observable } from "rxjs";
+import { Injectable } from '@angular/core';
+import { environment } from '../../../environments/environment';
+import { DemandeConge } from '../model/demande-conge.model';
+import { TacheIntervention } from '../model/tache-intervention.model';
+import { Equipe } from '../model/equipe.model';
+import { HttpClient } from '@angular/common/http';
+import { CollaborateurService } from './collaborateur.service';
+import { Collaborateur } from '../model/collaborateur.model';
+import { InterventionService } from './intervention.service';
+import { Observable } from 'rxjs';
 import {User} from '../model/user.model';
 import {UserService} from './user.service';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class TacheInterventionService {
   get vos(): any[] {
@@ -22,10 +22,10 @@ export class TacheInterventionService {
   set vos(value: any[]) {
     this._vos = value;
   }
-  private url = environment.baseUrl + "/tacheIntervention";
+  private url = environment.baseUrl + '/tacheIntervention';
   private url2 =
     environment.baseUrl +
-    "/Collaborateurintervention-api/Collaborateurintervention/code/";
+    '/Collaborateurintervention-api/Collaborateurintervention/code/';
   private _items: Array<TacheIntervention>;
   private _selected: TacheIntervention;
   private _selectes: Array<TacheIntervention>;
@@ -94,11 +94,11 @@ export class TacheInterventionService {
     // this.selected = this.selected;
     // this.items.push(this.selected);
     // this.selected = null;
-    return this.http.post<number>(this.url+'/', this.selected);
+    return this.http.post<number>(this.url + '/', this.selected);
   }
 
   public getEventsVo(data: Array<TacheIntervention>) {
-    let vos = new Array();
+    const vos = new Array();
     let i = 0;
     data.forEach((tache) => {
       i++;
@@ -119,7 +119,7 @@ export class TacheInterventionService {
   ) {
     const vos = new Array();
 
-    for (let s of codeInterventions.keys()) {
+    for (const s of codeInterventions.keys()) {
       const taches = data.filter((item) => {
         return item.intervention.code === s;
       });
@@ -135,7 +135,7 @@ export class TacheInterventionService {
   public findAllInterventions() {
     this.http
       .get<Array<TacheIntervention>>(
-        this.url + "/collaborateur/code/" + this.User.collaborateur.codeCollaborateur
+        this.url + '/collaborateur/code/' + this.User.collaborateur.codeCollaborateur
       )
       .subscribe(
         (data) => {
@@ -166,6 +166,10 @@ export class TacheInterventionService {
   }
 
   completerTache(s: string) {
-    return this.http.get<number>(this.url + "/completerTache/" + s);
+    return this.http.get<number>(this.url + '/completerTache/' + s);
+  }
+
+  findAll(): Observable<Array<TacheIntervention>>{
+    return this.http.get<Array<TacheIntervention>>(this.url + '/');
   }
 }
