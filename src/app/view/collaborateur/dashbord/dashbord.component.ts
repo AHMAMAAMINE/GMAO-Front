@@ -36,6 +36,8 @@ export class DashbordComponent implements OnInit {
   private pourcentage = Number().toFixed(this.num1 / this.vos.length);
   ngOnInit(): void {
     this.service.findAllInterventions();
+    console.log(this.events_service);
+
     this.events = this.events_service;
 
     const now = this.datePipe.transform(new Date(), "yyyy-MM-dd");
