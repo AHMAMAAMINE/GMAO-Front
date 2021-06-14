@@ -200,6 +200,7 @@ import {CreateComponent} from './view/admin/stock-jdid/create/create.component';
 import {StockJdidComponent} from './view/admin/stock-jdid/stock-jdid.component';
 import { AdmincollaborateurComponent } from './view/admin/admincollaborateur/admincollaborateur.component';
 import { DashbordComponent } from './view/collaborateur/dashbord/dashbord.component';
+import { DashboardComponent } from './view/chef-equipe/dashboard/dashboard.component';
 
 @NgModule({
   imports: [
@@ -397,6 +398,7 @@ import { DashbordComponent } from './view/collaborateur/dashbord/dashbord.compon
     CollaborateurComponent,
     AdmincollaborateurComponent,
     DashbordComponent,
+    DashboardComponent,
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },

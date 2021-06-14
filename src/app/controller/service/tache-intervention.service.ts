@@ -108,7 +108,7 @@ export class TacheInterventionService {
         start: tache.intervention.dateDebut,
         end: tache.intervention.dateFin,
       };
-      this._events.data.push(vo);
+      this.events.data.push(vo);
     });
   }
 
@@ -146,10 +146,9 @@ export class TacheInterventionService {
               item.intervention.libelle
             );
           });
-          console.log(this.interventionVo);
-          this._vos = this.getTacheVo(data, this.interventionVo);
-          console.log(this.events);
+          this.vos = this.getTacheVo(data, this.interventionVo);
           this.getEventsVo(data);
+          console.log(this.events);
         },
         (error) => {
           console.log(error);
@@ -172,7 +171,7 @@ export class TacheInterventionService {
   }
 
   get events(): any {
-    if (this._events === null) return new Object();
+    if (this._events === null) return { data: [] };
     return this._events;
   }
   set events(value: any) {

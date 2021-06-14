@@ -16,6 +16,10 @@ import { TacheIntervention } from "../../../controller/model/tache-intervention.
 })
 export class DashbordComponent implements OnInit {
   private fullcalendarOptions = new Object();
+
+  private etat: boolean;
+  private events: any;
+
   constructor(
     private datePipe: DatePipe,
     private service: TacheInterventionService
@@ -24,15 +28,12 @@ export class DashbordComponent implements OnInit {
   private completed = this.vos.filter((item) => {
     return item.etatTache === true;
   });
-  private num1 = this.completed.length;
-  private pourcentage = Number().toFixed(this.num1 / this.vos.length);
-  private etat: boolean;
-  private events: any;
 
   get events_service(): any {
     return this.service.events;
   }
-
+  private num1 = this.completed.length;
+  private pourcentage = Number().toFixed(this.num1 / this.vos.length);
   ngOnInit(): void {
     this.service.findAllInterventions();
     this.events = this.events_service;
