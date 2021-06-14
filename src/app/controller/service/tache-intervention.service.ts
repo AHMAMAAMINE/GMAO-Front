@@ -133,7 +133,6 @@ export class TacheInterventionService {
   }
 
   public findAllInterventions() {
-    // this.http.get<Array<TacheIntervention>>(this.url+"collaborateur/"+Col+"/intervention/"+{codeIntervention})
     this.http
       .get<Array<TacheIntervention>>(
         this.url + "/collaborateur/code/" + this.User.collaborateur.codeCollaborateur
