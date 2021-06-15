@@ -102,7 +102,6 @@ export class EquipeCreateComponent implements OnInit {
     this.selectedEquipe.libelle = this.values;
     this.selectedEquipe.membres = this.membres;
     this.service.save().subscribe((data) => {
-      this.equipes.push(this.selectedEquipe);
       console.log({ ...this.selectedEquipe });
       this.messageService.add({
         severity: "success",
@@ -112,6 +111,7 @@ export class EquipeCreateComponent implements OnInit {
       });
     });
     this.createDialog = false;
+    this.equipes.push(this.selectedEquipe);
     this.selectedEquipe = new Equipe();
   }
 

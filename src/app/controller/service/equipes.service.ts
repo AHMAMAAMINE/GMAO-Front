@@ -37,8 +37,6 @@ export class EquipesService {
     return this.http.get<Equipe>(this.url + "/reference/" + ref);
   }
   public save() {
-    console.log(this.selectedEquipe);
-    this.equipes.push(this.selectedEquipe);
     return this.http.post<Equipe>(this.url, this.selectedEquipe);
   }
 

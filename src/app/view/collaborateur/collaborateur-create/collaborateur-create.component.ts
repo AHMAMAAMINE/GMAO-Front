@@ -3,22 +3,22 @@ import { MessageService } from "primeng/api";
 import { Collaborateur } from "./../../../controller/model/collaborateur.model";
 import { Component, OnInit } from "@angular/core";
 
-
 @Component({
   selector: "app-collaborateur-create",
   templateUrl: "./collaborateur-create.component.html",
   styleUrls: ["./collaborateur-create.component.scss"],
 })
 export class CollaborateurCreateComponent implements OnInit {
-
-  constructor(private messageService: MessageService,
-              private collaborateurService: CollaborateurService,
-              ) { }
+  constructor(
+    private messageService: MessageService,
+    private collaborateurService: CollaborateurService
+  ) {}
 
   ngOnInit(): void {
-    this.collaborateurService.findAll().subscribe(data => this.collaborateurs = data);
+    this.collaborateurService
+      .findAll()
+      .subscribe((data) => (this.collaborateurs = data));
   }
-
 
   public hideCreateDialog() {
     this.createDialog = false;
@@ -29,8 +29,6 @@ export class CollaborateurCreateComponent implements OnInit {
     this.submitted = true;
     if (this.collaborateur.codeCollaborateur.trim()) {
       this.collaborateurService.save().subscribe((data) => {
-        console.log(data)
-        this.collaborateurs.push({ ...data });
         this.messageService.add({
           severity: "success",
           summary: "Successful",
@@ -38,6 +36,7 @@ export class CollaborateurCreateComponent implements OnInit {
           life: 3000,
         });
       });
+      this.collaborateurs.push(this.collaborateur);
       this.createDialog = false;
       this.collaborateur = new Collaborateur();
     }
@@ -80,5 +79,4 @@ export class CollaborateurCreateComponent implements OnInit {
   set collaborateur(value: Collaborateur) {
     this.collaborateurService.collaborateur = value;
   }
-
 }

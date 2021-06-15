@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
 import { Stock } from "../model/Stock.model";
 import { HttpClient } from "@angular/common/http";
-import {environment} from '../../../environments/environment';
-import {MateraialIntervention} from '../model/materaial-intervention.model';
+import { environment } from "../../../environments/environment";
+import { MateraialIntervention } from "../model/materaial-intervention.model";
 @Injectable({
   providedIn: "root",
 })
@@ -73,22 +73,21 @@ export class StockService {
   constructor(private http: HttpClient) {}
 
   save() {
-
-      this.http.post(this.url + "/", this.selected).subscribe(
-        (data) => {
-          if (data === 1) {
-            this.findAll();
-          }
-          if (data === -2) {
-            alert("donner une valeur deja existante ");
-          }
-          if (data === 2) {
-            this.findAll();
-          }
-        },
-        (error) => alert("error 404")
-      );
-      //else {
+    this.http.post(this.url + "/", this.selected).subscribe(
+      (data) => {
+        if (data === 1) {
+          this.findAll();
+        }
+        if (data === -2) {
+          alert("donner une valeur deja existante ");
+        }
+        if (data === 2) {
+          this.findAll();
+        }
+      },
+      (error) => alert("error 404")
+    );
+    //else {
     //   const stocke = new Stock();
     //   stocke.qte = this.selected.qte - this.selectes[this._index].qte;
     //   stocke.id = this.selected.id;
@@ -99,7 +98,9 @@ export class StockService {
     //   });
     //   this.items[this._index] = this.clone(this.selected);
     // }
-    this.selected = null;
+    this.items.push(this.selected);
+    this.selected = new Stock();
+    this._createDialog = null;
   }
 
   findAll() {
