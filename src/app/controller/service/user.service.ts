@@ -53,11 +53,14 @@ export class UserService {
         }
       });
   }
+
   seConnecter(username: string, password: string) {
     this.http
       .get<User>(this.UrlBase + '/login/' + username + '/pswrd/' + password)
       .subscribe((data) => {
         this._User = data;
+        localStorage.setItem(this.User.login, username);
+        localStorage.setItem(this.User.password, password);
       });
     this.redirect(this._User.role);
   }

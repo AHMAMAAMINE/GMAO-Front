@@ -14,6 +14,7 @@ import {Intervention} from '../../../../controller/model/intervention.model';
 import {DatePipe} from '@angular/common';
 import {UserService} from '../../../../controller/service/user.service';
 import { User } from 'src/app/controller/model/user.model';
+import {UrlComponent} from '../../../../controller/service/season';
 
 @Component({
   selector: 'app-chef-equipe-tache-create',
@@ -33,7 +34,6 @@ export class ChefEquipeTacheCreateComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.User.collaborateur.codeCollaborateur);
     this.interventionService.findByCodeChef(this.User.collaborateur.codeCollaborateur).subscribe(data => this.intervention = data.intervention);
     this.equipeService.findByCodeCollaborateur(this.User.collaborateur.codeCollaborateur).subscribe(data => this.membres = data.membres);
     // this.membres.splice()
