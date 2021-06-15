@@ -29,4 +29,5 @@ export class AdminTopBarComponent implements OnInit {
     sedeconnecte() {
         this.userService.User = null;
     }
+
 }
