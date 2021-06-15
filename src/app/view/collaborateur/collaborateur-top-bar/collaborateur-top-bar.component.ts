@@ -25,4 +25,9 @@ export class CollaborateurTopBarComponent implements OnInit {
   ngOnInit(): void {
   }
 
+    disconnect() {
+      localStorage.removeItem('Array');
+      localStorage.removeItem('Arrays');
+      localStorage.removeItem('collaborateur');
+    }
 }

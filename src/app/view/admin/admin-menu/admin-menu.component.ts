@@ -36,7 +36,7 @@ export class AdminMenuComponent implements OnInit {
   ngOnInit() {
     this.model = [
       {
-        label: 'interventions', icon: 'pi pi-fw pi-tablet', routerLink: ['view/commande']
+        label: 'interventions', icon: 'pi pi-fw pi-tablet white', routerLink: ['view/commande']
       } ,
       {
         label: 'stock jdid', icon: 'pi pi-fw pi-tablet', routerLink: ['view/stock-jadid']
