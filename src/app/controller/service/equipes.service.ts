@@ -1,12 +1,12 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
-import { Equipe } from '../model/equipe.model';
-import { MembreEquipe } from '../model/membre-equipe.model';
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
+import { environment } from "src/environments/environment";
+import { Equipe } from "../model/equipe.model";
+import { MembreEquipe } from "../model/membre-equipe.model";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class EquipesService {
   items: Equipe[];
@@ -21,8 +21,8 @@ export class EquipesService {
   private _selectesEquipe: Array<Equipe>;
   private _membre: MembreEquipe;
   private _membres: Array<MembreEquipe>;
-  private baseUrl = 'http://localhost:8036';
-  private url = environment.baseUrl + '/equipe/';
+  private baseUrl = "http://localhost:8036";
+  private url = environment.baseUrl + "/equipe/";
 
   private _index: number;
   private _createDialog: boolean;
@@ -33,20 +33,20 @@ export class EquipesService {
   public findAll(): Observable<Array<Equipe>> {
     return this.http.get<Array<Equipe>>(this.url);
   }
-  public findByRef(ref: string): Observable<Equipe>{
-    return this.http.get<Equipe>(this.url + '/reference/' + ref);
+  public findByRef(ref: string): Observable<Equipe> {
+    return this.http.get<Equipe>(this.url + "/reference/" + ref);
   }
   public save() {
     console.log(this.selectedEquipe);
+    this.equipes.push(this.selectedEquipe);
     return this.http.post<Equipe>(this.url, this.selectedEquipe);
   }
-  
+
   // public save(): Observable<Equipe> {
-    // return this.http.post<Equipe>(this.url, this.selectedEquipe);
+  // return this.http.post<Equipe>(this.url, this.selectedEquipe);
   // }
-  saveMembre() {
-  }
-  private _ref:string;
+  saveMembre() {}
+  private _ref: string;
 
   get ref(): string {
     return this._ref;
@@ -57,16 +57,19 @@ export class EquipesService {
   }
 
   public edit(): Observable<Equipe> {
-    return this.http.put<Equipe>(this.url + 'ref/' + this.ref, this.selectedEquipe);
+    return this.http.put<Equipe>(
+      this.url + "ref/" + this.ref,
+      this.selectedEquipe
+    );
   }
 
   public deleteByRef() {
-    return this.http.delete(this.url + 'reference/' + this.selectedEquipe.ref);
+    return this.http.delete(this.url + "reference/" + this.selectedEquipe.ref);
   }
 
   public deleteMultipleByRef(): Observable<number> {
     return this.http.post<number>(
-      this.url + 'delete-multiple-by-ref',
+      this.url + "delete-multiple-by-ref",
       this.selectesEquipe
     );
   }
@@ -125,7 +128,7 @@ export class EquipesService {
   }
 
   get selectesEquipe(): Array<Equipe> {
-    if (this._selectesEquipe == null){
+    if (this._selectesEquipe == null) {
       this._selectesEquipe = new Array<Equipe>();
     }
     return this._selectesEquipe;
@@ -135,7 +138,7 @@ export class EquipesService {
     this._selectesEquipe = value;
   }
   get selectevEquipe(): Equipe {
-    if (this._selectevEquipe == null){
+    if (this._selectevEquipe == null) {
       this._selectevEquipe = new Equipe();
     }
     return this._selectevEquipe;
@@ -145,7 +148,7 @@ export class EquipesService {
     this._selectevEquipe = value;
   }
   get selectedEquipe(): Equipe {
-    if (this._selectedEquipe == null){
+    if (this._selectedEquipe == null) {
       this._selectedEquipe = new Equipe();
     }
     return this._selectedEquipe;
@@ -155,7 +158,7 @@ export class EquipesService {
     this._selectedEquipe = value;
   }
   get equipes(): Array<Equipe> {
-    if (this._equipes == null){
+    if (this._equipes == null) {
       this._equipes = new Array<Equipe>();
     }
     return this._equipes;
@@ -165,7 +168,7 @@ export class EquipesService {
     this._equipes = value;
   }
   get membres(): Array<MembreEquipe> {
-    if (this._membres == null){
+    if (this._membres == null) {
       this._membres = new Array<MembreEquipe>();
     }
     return this._membres;
@@ -185,7 +188,7 @@ export class EquipesService {
     this._membre = value;
   }
 
-    findByCodeCollaborateur(code: string) {
-        return this.http.get<Equipe>(this.url+'/Chef/Collaborateur/nom/'+code);
-    }
+  findByCodeCollaborateur(code: string) {
+    return this.http.get<Equipe>(this.url + "/Chef/Collaborateur/nom/" + code);
+  }
 }

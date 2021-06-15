@@ -1,18 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { MessageService } from 'primeng/api';
-import { Equipe } from 'src/app/controller/model/equipe.model';
-import { EquipesService } from 'src/app/controller/service/equipes.service';
-import { MembreEquipe } from '../../../../controller/model/membre-equipe.model';
+import { Component, OnInit } from "@angular/core";
+import { MessageService } from "primeng/api";
+import { Equipe } from "src/app/controller/model/equipe.model";
+import { EquipesService } from "src/app/controller/service/equipes.service";
+import { MembreEquipe } from "../../../../controller/model/membre-equipe.model";
 
-import { Collaborateur } from '../../../../controller/model/collaborateur.model';
-import { CollaborateurService } from '../../../../controller/service/collaborateur.service';
-import {DatePipe} from '@angular/common';
+import { Collaborateur } from "../../../../controller/model/collaborateur.model";
+import { CollaborateurService } from "../../../../controller/service/collaborateur.service";
+import { DatePipe } from "@angular/common";
 
 @Component({
-  selector: 'app-equipe-create',
-  templateUrl: './equipe-create.component.html',
-  styleUrls: ['./equipe-create.component.scss'],
-  providers: [DatePipe]
+  selector: "app-equipe-create",
+  templateUrl: "./equipe-create.component.html",
+  styleUrls: ["./equipe-create.component.scss"],
+  providers: [DatePipe],
 })
 export class EquipeCreateComponent implements OnInit {
   private valorant: string;
@@ -22,7 +22,7 @@ export class EquipeCreateComponent implements OnInit {
     private collaborateurService: CollaborateurService,
     private datePipe: DatePipe
   ) {
-    this.date = this.datePipe.transform(this.myDate, 'yyyy-MM-dd');
+    this.date = this.datePipe.transform(this.myDate, "yyyy-MM-dd");
   }
   get selectedEquipe(): Equipe {
     return this.service.selectedEquipe;
@@ -38,7 +38,6 @@ export class EquipeCreateComponent implements OnInit {
 
   set createDialog(value: boolean) {
     this.service.createDialog = value;
-
   }
 
   get submitted(): boolean {
@@ -66,7 +65,6 @@ export class EquipeCreateComponent implements OnInit {
     this.service.membre = value;
   }
   get membres(): Array<MembreEquipe> {
-
     return this.service.membres;
   }
 
@@ -79,7 +77,9 @@ export class EquipeCreateComponent implements OnInit {
   added = false;
   private values: string;
   ngOnInit(): void {
-    this.collaborateurService.findAll().subscribe(data => this.collaborateurService.collaborateurs = data);
+    this.collaborateurService
+      .findAll()
+      .subscribe((data) => (this.collaborateurService.collaborateurs = data));
   }
   public hideCreateDialog() {
     this.createDialog = false;
@@ -102,22 +102,24 @@ export class EquipeCreateComponent implements OnInit {
     this.selectedEquipe.libelle = this.values;
     this.selectedEquipe.membres = this.membres;
     this.service.save().subscribe((data) => {
-        this.equipes.push({ ...data });
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Successful',
-          detail: 'Equipe Created',
-          life: 3000,
-        });
+      this.equipes.push(this.selectedEquipe);
+      console.log({ ...this.selectedEquipe });
+      this.messageService.add({
+        severity: "success",
+        summary: "Successful",
+        detail: "Equipe Created",
+        life: 3000,
       });
+    });
     this.createDialog = false;
     this.selectedEquipe = new Equipe();
   }
 
   isSelected($event: any) {
-    this.membreEquipe.collaborateur.codeCollaborateur = $event.target.value ;
+    this.membreEquipe.collaborateur.codeCollaborateur = $event.target.value;
   }
-  checkCheckBoxvalue(event: any){
-    this.selectedEquipe.chefEquipe.collaborateur.codeCollaborateur = event.collaborateur.codeCollaborateur;
+  checkCheckBoxvalue(event: any) {
+    this.selectedEquipe.chefEquipe.collaborateur.codeCollaborateur =
+      event.collaborateur.codeCollaborateur;
   }
 }
