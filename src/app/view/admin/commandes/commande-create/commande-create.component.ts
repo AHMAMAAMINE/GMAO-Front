@@ -29,9 +29,9 @@ export class CommandeCreateComponent implements OnInit {
 
     public save() {
         this.submitted = true;
+        this.items.push(this.selected);
         if (this.selected.code.trim()) {
             this.service.save().subscribe(data => {
-                this.items.push({...data});
                 this.messageService.add({
                     severity: 'success',
                     summary: 'Successful',
