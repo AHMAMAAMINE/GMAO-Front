@@ -37,7 +37,7 @@ export class CollaborateurDemandeCongeCreateComponent implements OnInit {
     if (this.selected.code.trim()) {
       this.selected.collaborateur.codeCollaborateur = this.collaborateur.collaborateur.codeCollaborateur;
       // this.collaborateurService.signin().subscribe(data=>this.v=);
-      console.log(this.selected);
+      this.demandeCongeService.items.push(this.selected);
       this.demandeCongeService.save().subscribe(data => {
         console.log(data);
         this.messageService.add({
