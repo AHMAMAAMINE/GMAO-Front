@@ -78,13 +78,20 @@
         <!--        </li>-->
       </ul>
     </div>
-  </div>
-  <div class="p-col-12 p-xl-3">
-    <div class="card card-w-title">
-      <h5>Intervention</h5>
-    </div>
-    <div class="overview-box card">
-      <p-chart type="pie" [data]="data"></p-chart>
+    <div class="p-col-12 p-xl-12" style="padding: 0; margin-top: 10px">
+      <div class="card card-w-title">
+        <h5>Intervention</h5>
+      </div>
+      <div
+        class="overview-box card"
+        style="height: 223px; padding: 0; position: relative"
+      >
+        <p-chart
+          type="pie"
+          [data]="data"
+          style="position: absolute; top: 30px"
+        ></p-chart>
+      </div>
     </div>
   </div>
 </div>
