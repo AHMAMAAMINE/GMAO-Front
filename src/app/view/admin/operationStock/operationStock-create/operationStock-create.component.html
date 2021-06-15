@@ -1,47 +1,92 @@
-<p-dialog [(visible)]="createDialog" [style]="{width: '1300px'}" [modal]="true" styleClass="p-fluid">
-    <p-header><h2>Operation Stock</h2> <span style="position:relative; left: 565px;"> {{date  | date:'yyyy-MM-dd'}}</span> </p-header>
-    <ng-template pTemplate="content">
+<p-dialog
+  [(visible)]="createDialog"
+  [style]="{ width: '600px' }"
+  [modal]="true"
+  styleClass="p-fluid"
+>
+  <p-header
+    ><h2>Operation Stock</h2>
+    <span> {{ date | date: "yyyy-MM-dd" }}</span>
+  </p-header>
+  <ng-template pTemplate="content">
+    <div class="p-field">
+      <label for=""><b>Magasin Source:</b></label>
+      <select class="form-control" pInputText (change)="isSelected($event)">
+        <option [value]="">---select value-----</option>
+        <option *ngFor="let c of magasins">{{ c.reference }}</option>
+      </select>
+      <small
+        class="p-invalid"
+        *ngIf="submitted && !selected.magasinSource.reference"
+        >magasin is required.</small
+      >
+    </div>
 
-        <div class="p-field">
-            <label for=""><b>Magasin Source:</b></label>
-            <select class="form-control" pInputText (change)="isSelected($event)">
-                <option [value]=''>---select value-----</option>
-                <option *ngFor="let c of magasins" > {{c.reference}}</option>
-            </select>
-            <small class="p-invalid" *ngIf="submitted && !selected.magasinSource.reference">magasin is required.</small>
-        </div>
+    <div class="p-field">
+      <label for=""><b>Magasin Destination:</b></label>
+      <select class="form-control" pInputText (change)="isSelect($event)">
+        <option [value]="">---select value-----</option>
+        <option *ngFor="let c of magasins">{{ c.reference }}</option>
+      </select>
+      <small
+        class="p-invalid"
+        *ngIf="submitted && !selected.magasinDestination.reference"
+        >magasin is required.</small
+      >
+    </div>
 
-        <div class="p-field">
-            <label for=""><b>Magasin Destination:</b></label>
-            <select class="form-control" pInputText (change)="isSelect($event)">
-                <option [value]=''>---select value-----</option>
-                <option *ngFor="let c of magasins" > {{c.reference}}</option>
-            </select>
-            <small class="p-invalid" *ngIf="submitted && !selected.magasinDestination.reference">magasin is required.</small>
-        </div>
-
-        <div class="p-field">
-            <label for=""><b>Matériel:</b></label> <br>
-            <select class="form-control" pInputText (change)="isSelects($event)">
-                <option [value]=''>---select value-----</option>
-                <option *ngFor="let c of materials" > {{c.reference}}</option>
-            </select>            <small class="p-invalid" *ngIf="submitted && !selected.material">materiel is required.</small>
-        </div>
-      <div class="p-formgrid p-grid">
-        <div class="p-field p-col">
-            <label for="quantite"><b>Quantité:</b></label> <br>
-            <p-inputNumber id="quantite" [(ngModel)]="selected.qte"> <!-- required autofocus --> </p-inputNumber>
+    <div class="p-field">
+      <label for=""><b>Matériel:</b></label> <br />
+      <select class="form-control" pInputText (change)="isSelects($event)">
+        <option [value]="">---select value-----</option>
+        <option *ngFor="let c of materials">{{ c.reference }}</option>
+      </select>
+      <small class="p-invalid" *ngIf="submitted && !selected.material"
+        >materiel is required.</small
+      >
+    </div>
+    <div class="p-formgrid p-grid">
+      <div class="p-field p-col">
+        <label for="quantite"><b>Quantité:</b></label> <br />
+        <p-inputNumber id="quantite" [(ngModel)]="selected.qte">
+          <!-- required autofocus -->
+        </p-inputNumber>
         <!--    <small class="p-invalid" *ngIf="submitted && !selected.qte.toPrecision()">quantite is required.</small>  -->
-        </div>
       </div>
-
-
-    </ng-template>
-            <ng-template pTemplate="footer">
-                <button style="border: 1px solid red; color: white; background-color: red; padding: 8px 16px; margin: 4px 2px; position: relative; right: 550px; border-radius: 5px;" pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideCreateDialog()"></button>
-                <button style="border: 1px solid green; padding: 8px 16px; margin: 4px 2px; color: white; background-color: green; position: relative; right: 540px; border-radius: 5px;" pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="save()"></button>
-            </ng-template>
-
+    </div>
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <button
+      style="
+        border: 1px solid red;
+        color: white;
+        background-color: red;
+        padding: 8px 16px;
+        margin: 4px 2px;
+        border-radius: 5px;
+      "
+      pButton
+      pRipple
+      label="Cancel"
+      icon="pi pi-times"
+      class="p-button-text"
+      (click)="hideCreateDialog()"
+    ></button>
+    <button
+      style="
+        border: 1px solid green;
+        padding: 8px 16px;
+        margin: 4px 2px;
+        border-radius: 5px;
+        color: white;
+        background-color: green;
+      "
+      pButton
+      pRipple
+      label="Save"
+      icon="pi pi-check"
+      class="p-button-text"
+      (click)="save()"
+    ></button>
+  </ng-template>
 </p-dialog>
-
-

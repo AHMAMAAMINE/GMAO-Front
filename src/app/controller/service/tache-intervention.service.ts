@@ -136,7 +136,7 @@ export class TacheInterventionService {
       .get<Array<TacheIntervention>>(
         this.url +
           "/collaborateur/code/" +
-          this.User.collaborateur.codeCollaborateur
+          localStorage.getItem("collaborateur")
       )
       .subscribe(
         (data) => {
