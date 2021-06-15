@@ -68,6 +68,11 @@ export class CollaborateurMenuComponent implements OnInit {
         icon: "pi pi-fw pi-tablet",
         routerLink: ["collaborateur/demande/conge"],
       },
+      {
+        label: "Operation Stock",
+        icon: "pi pi-fw pi-check-square",
+        routerLink: ["view/operation"],
+      },
     ];
   }
 

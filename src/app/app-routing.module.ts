@@ -61,7 +61,7 @@ import { DashboardComponent } from "./view/chef-equipe/dashboard/dashboard.compo
             { path: "view/commande", component: CommandesComponent },
             { path: "view/stock-jadid", component: StockJdidComponent },
             { path: "view/equipes", component: EquipesComponent },
-            { path: "view/operation", component: OperationStockComponent },
+
             {
               path: "view/admin-collaborateur",
               component: AdmincollaborateurComponent,
@@ -85,7 +85,7 @@ import { DashboardComponent } from "./view/chef-equipe/dashboard/dashboard.compo
               path: "collaborateur/demande/conge",
               component: CollaborateurDemandeCongeComponent,
             },
-            { path: "list", component: CollaborateurListComponent },
+            { path: "view/operation", component: OperationStockComponent },
           ],
         },
         { path: "error", component: AppErrorComponent },
