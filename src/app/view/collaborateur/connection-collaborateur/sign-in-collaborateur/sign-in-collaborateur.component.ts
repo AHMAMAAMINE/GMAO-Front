@@ -32,6 +32,7 @@ export class SignInCollaborateurComponent implements OnInit {
     this.collaborateurService.User = value;
   }
 
+
   public signIn(){
     this.collaborateurService.seConnecter(this.collaborateur.login, this.collaborateur.password);
   }

@@ -23,8 +23,7 @@ export class CollaborateurDemandeCongeCreateComponent implements OnInit {
               private userService: UserService) { }
 
   ngOnInit(): void {
-    this.selected.collaborateur.codeCollaborateur = this.collaborateur.collaborateur.codeCollaborateur;
-    this.demandeCongeService.findByCollaborateur(this.selected.collaborateur.codeCollaborateur).subscribe(data => this.items = data);
+      this.demandeCongeService.findByCollaborateur(localStorage.getItem('collaborateur')).subscribe(data => this.items = data);
   }
 
 
@@ -38,7 +37,7 @@ export class CollaborateurDemandeCongeCreateComponent implements OnInit {
     if (this.selected.code.trim()) {
       this.selected.collaborateur.codeCollaborateur = this.collaborateur.collaborateur.codeCollaborateur;
       // this.collaborateurService.signin().subscribe(data=>this.v=);
-      console.log(this.selected)
+      console.log(this.selected);
       this.demandeCongeService.save().subscribe(data => {
         console.log(data);
         this.messageService.add({
@@ -50,7 +49,7 @@ export class CollaborateurDemandeCongeCreateComponent implements OnInit {
       });
       this.createDialog = false;
       this.selected = new DemandeConge();
-      this.selected=null;
+      this.selected = null;
     }
   }
   get selected(): DemandeConge {

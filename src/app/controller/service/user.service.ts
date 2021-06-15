@@ -55,12 +55,15 @@ export class UserService {
   }
 
   seConnecter(username: string, password: string) {
-    this.http
-      .get<User>(this.UrlBase + '/login/' + username + '/pswrd/' + password)
+    this.http.get<User>(this.UrlBase + '/login/' + username + '/pswrd/' + password)
       .subscribe((data) => {
-        this._User = data;
-        localStorage.setItem(this.User.login, username);
-        localStorage.setItem(this.User.password, password);
+        if(data) {
+          this._User = data;
+          console.log(data)
+          localStorage.setItem('Array', this.User.login);
+          localStorage.setItem('Arrays', this.User.password );
+          localStorage.setItem('collaborateur',this.User.collaborateur.codeCollaborateur);
+        }
       });
     this.redirect(this._User.role);
   }

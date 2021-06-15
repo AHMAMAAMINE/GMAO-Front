@@ -14,7 +14,6 @@ import {Intervention} from '../../../../controller/model/intervention.model';
 import {DatePipe} from '@angular/common';
 import {UserService} from '../../../../controller/service/user.service';
 import { User } from 'src/app/controller/model/user.model';
-import {UrlComponent} from '../../../../controller/service/season';
 
 @Component({
   selector: 'app-chef-equipe-tache-create',
