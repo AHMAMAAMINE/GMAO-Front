@@ -3,6 +3,8 @@ import {AppComponent} from '../../../app.component';
 import {ChefEquipeMainComponent} from '../chef-equipe-main/chef-equipe-main.component';
 import {ChefEquipeService} from '../../../controller/service/chef-equipe.service';
 import {ChefEquipe} from '../../../controller/model/chef-equipe.model';
+import {User} from '../../../controller/model/user.model';
+import {UserService} from '../../../controller/service/user.service';
 
 @Component({
   selector: 'app-chef-equipe-top-bar',
@@ -12,7 +14,7 @@ import {ChefEquipe} from '../../../controller/model/chef-equipe.model';
 export class ChefEquipeTopBarComponent implements OnInit {
 
 
-  constructor(public app: AppComponent, public appMain: ChefEquipeMainComponent, private service: ChefEquipeService) {}
+  constructor(public app: AppComponent, public appMain: ChefEquipeMainComponent, private service: ChefEquipeService, private userService: UserService) {}
 
 
   get selected(): ChefEquipe {
@@ -23,7 +25,18 @@ export class ChefEquipeTopBarComponent implements OnInit {
     this.service.selected = value;
   }
 
+  get user(): User{
+    return  this.userService.User;
+  }
+  set user(value: User){
+    this.userService.User = value;
+  }
+
   ngOnInit(): void {
   }
 
+    sedeconnecter() {
+      this.user.login = null;
+      this.user.password = null;
+    }
 }

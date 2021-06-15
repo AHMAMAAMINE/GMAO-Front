@@ -73,6 +73,7 @@ export class InterventionStockComponent implements OnInit {
   ngOnInit(): void {
     this.materialService.findAll();
     this.magasinService.findAll();
+    this.stock.qte=null;
   }
 
   // value() {
