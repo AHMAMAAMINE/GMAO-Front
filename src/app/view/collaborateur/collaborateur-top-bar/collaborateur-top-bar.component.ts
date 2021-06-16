@@ -38,5 +38,6 @@ export class CollaborateurTopBarComponent implements OnInit {
       localStorage.removeItem('collaborateur');
       this.user.login = null;
       this.user.password = null;
+      this.user.role=null;
     }
 }

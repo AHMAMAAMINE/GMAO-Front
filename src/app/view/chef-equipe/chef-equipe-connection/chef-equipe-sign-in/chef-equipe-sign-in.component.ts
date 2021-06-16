@@ -5,6 +5,8 @@ import {Router} from '@angular/router';
 import {ChefEquipe} from '../../../../controller/model/chef-equipe.model';
 import {User} from '../../../../controller/model/user.model';
 import {UserService} from '../../../../controller/service/user.service';
+import {CollaborateurService} from '../../../../controller/service/collaborateur.service';
+import {Collaborateur} from '../../../../controller/model/collaborateur.model';
 
 @Component({
   selector: 'app-chef-equipe-sign-in',
@@ -17,7 +19,7 @@ export class ChefEquipeSignInComponent implements OnInit {
   constructor(private chefEquipeService: ChefEquipeService,
               private router: Router,
               private messageService: MessageService,
-              private userService: UserService) {
+              private userService: UserService, private collaborateurService: CollaborateurService) {
   }
 
   ngOnInit(): void {
@@ -37,6 +39,14 @@ export class ChefEquipeSignInComponent implements OnInit {
     set User(value: User){
       this.userService.User = value;
     }
+  get code(): string {
+    return this.userService.code;
+  }
+
+  set code(value: string) {
+    this.userService.code = value;
+  }
+
   public signIn(){
     this.userService.seConnecter(this.user.login, this.user.password);
     // .subscribe(
@@ -58,5 +68,30 @@ export class ChefEquipeSignInComponent implements OnInit {
     //     }
     // );
   }
+  get collaborateur(): Collaborateur {
+    return this.collaborateurService.collaborateur;
+  }
 
+  set collaborateur(value: Collaborateur) {
+    this.collaborateurService.collaborateur = value;
+  }
+    forgotpass() {
+        if (this.user.login == null) {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'error',
+            detail: 'veuiliezz entre ton login',
+            life: 3000,
+          });
+        }
+        else {
+          this.collaborateurService.findByLogin(this.user.login).subscribe(data => {
+            if (data){
+              this.router.navigate(['/forgot']);
+              this.collaborateur = data;
+              this.userService.envoiDeCode(data.email).subscribe();
+            }
+          });
+        }
+    }
 }

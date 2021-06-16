@@ -38,5 +38,6 @@ export class ChefEquipeTopBarComponent implements OnInit {
     sedeconnecter() {
       this.user.login = null;
       this.user.password = null;
+      this.user.role=null;
     }
 }
