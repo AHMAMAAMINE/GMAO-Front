@@ -3,6 +3,8 @@ import {Admin} from '../../../../controller/model/admin.model';
 import {AdminService} from '../../../../controller/service/admin.service';
 import {Router} from '@angular/router';
 import { MessageService } from 'primeng/api';
+import {UserService} from '../../../../controller/service/user.service';
+import {User} from '../../../../controller/model/user.model';
 
 @Component({
   selector: 'app-sign-in',
@@ -13,7 +15,7 @@ import { MessageService } from 'primeng/api';
 export class SignInComponent implements OnInit {
 
 
-  constructor(private adminService: AdminService,
+  constructor(private adminService: UserService,
               private router: Router,
               private messageService: MessageService) {
   }
@@ -21,32 +23,15 @@ export class SignInComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  get selected(): Admin {
-    return this.adminService.selected;
+  get selected(): User {
+    return this.adminService.User;
   }
 
-  set selected(value: Admin){
-    this.adminService.selected = value;
+  set selected(value: User){
+    this.adminService.User = value;
   }
 
   public signIn(){
-    this.adminService.seConnecter().subscribe(
-        data => {
-          console.log(data);
-          if (2 === 2) {
-            this.selected = data;
-            this.router.navigateByUrl('admin');
-          }else{
-            this.messageService.add(
-                {
-                  severity: 'error',
-                  summary: 'login failed',
-                  detail: 'login ou mot de passe incorrect',
-                  life: 3000
-                }
-            );
-          }
-        }
-    );
+    this.adminService.seConnecter(this.selected.login,this.selected.password);
   }
 }
