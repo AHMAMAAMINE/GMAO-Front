@@ -201,6 +201,7 @@ import {StockJdidComponent} from './view/admin/stock-jdid/stock-jdid.component';
 import { AdmincollaborateurComponent } from './view/admin/admincollaborateur/admincollaborateur.component';
 import { DashbordComponent } from './view/collaborateur/dashbord/dashbord.component';
 import { DashboardComponent } from './view/chef-equipe/dashboard/dashboard.component';
+import { ForgotPasswordComponent } from './view/forgot-password/forgot-password.component';
 
 @NgModule({
   imports: [
@@ -399,6 +400,7 @@ import { DashboardComponent } from './view/chef-equipe/dashboard/dashboard.compo
     AdmincollaborateurComponent,
     DashbordComponent,
     DashboardComponent,
+    ForgotPasswordComponent,
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },

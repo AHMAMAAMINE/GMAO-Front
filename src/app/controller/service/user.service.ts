@@ -9,9 +9,12 @@ import { Router } from "@angular/router";
   providedIn: "root",
 })
 export class UserService {
+<<<<<<< HEAD
   private _User: User;
   private _Users: Array<User>;
   private UrlBase = "http://localhost:8036/Gmao/User-api";
+=======
+>>>>>>> 7f198a17475949c63ef5df95a192d9cd7f1fbfe7
 
   get User(): User {
     if (this._User == null) {
@@ -41,6 +44,18 @@ export class UserService {
     private securityService: SecurityService
   ) {}
 
+  get code(): string {
+    return this._code;
+  }
+
+  set code(value: string) {
+    this._code = value;
+  }
+  private _User: User;
+  private _Users: Array<User>;
+  private UrlBase = 'http://localhost:8036/Gmao/User-api';
+  private _code: string;
+
   isconnected() {
     this.http
       .get(
@@ -67,7 +82,8 @@ export class UserService {
           this._User = data;
         }
       });
-    this.redirect(this._User.role);
+    console.log(this.User.role);
+    this.redirect(this.User.role);
   }
 
   redirect(role: string) {
@@ -87,5 +103,15 @@ export class UserService {
       default:
         break;
     }
+  }
+
+  envoiDeCode(email: string){
+   return  this.http.get<string>(this.UrlBase + '/connected/' + email);
+  }
+  testerLeCode(code: string, codeProvided: string){
+    return this.http.get(this.UrlBase + '/iscodeTrue/' + code );
+  }
+  update(password: string){
+    return this.http.get(this.UrlBase + '/login/' + this.User.login + '/password/' + password);
   }
 }

@@ -30,6 +30,7 @@ import { ChefEquipeTacheListComponent } from "./view/chef-equipe/chef-tache/chef
 import { AdmincollaborateurComponent } from "./view/admin/admincollaborateur/admincollaborateur.component";
 import { DashbordComponent } from "./view/collaborateur/dashbord/dashbord.component";
 import { DashboardComponent } from "./view/chef-equipe/dashboard/dashboard.component";
+import {ForgotPasswordComponent} from './view/forgot-password/forgot-password.component';
 
 @NgModule({
   imports: [
@@ -88,6 +89,8 @@ import { DashboardComponent } from "./view/chef-equipe/dashboard/dashboard.compo
             { path: "view/operation", component: OperationStockComponent },
           ],
         },
+          {path:"forgot",component: ForgotPasswordComponent},
+
         { path: "error", component: AppErrorComponent },
         { path: "404", component: AppNotfoundComponent },
         { path: "**", redirectTo: "/404" },
