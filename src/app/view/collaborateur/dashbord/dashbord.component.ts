@@ -44,7 +44,6 @@ export class DashbordComponent implements OnInit {
     this.fullcalendarOptions = {
       plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
       defaultDate: now,
-      // defaultDate: "2021-05-31",
       header: {
         left: "prev,next",
         center: "title",
