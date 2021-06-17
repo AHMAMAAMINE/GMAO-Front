@@ -9,13 +9,6 @@ import { Router } from "@angular/router";
   providedIn: "root",
 })
 export class UserService {
-<<<<<<< HEAD
-  private _User: User;
-  private _Users: Array<User>;
-  private UrlBase = "http://localhost:8036/Gmao/User-api";
-=======
->>>>>>> 7f198a17475949c63ef5df95a192d9cd7f1fbfe7
-
   get User(): User {
     if (this._User == null) {
       this._User = new User();
@@ -53,7 +46,7 @@ export class UserService {
   }
   private _User: User;
   private _Users: Array<User>;
-  private UrlBase = 'http://localhost:8036/Gmao/User-api';
+  private UrlBase = "http://localhost:8036/Gmao/User-api";
   private _code: string;
 
   isconnected() {
@@ -105,13 +98,15 @@ export class UserService {
     }
   }
 
-  envoiDeCode(email: string){
-   return  this.http.get<string>(this.UrlBase + '/connected/' + email);
+  envoiDeCode(email: string) {
+    return this.http.get<string>(this.UrlBase + "/connected/" + email);
   }
-  testerLeCode(code: string, codeProvided: string){
-    return this.http.get(this.UrlBase + '/iscodeTrue/' + code );
+  testerLeCode(code: string, codeProvided: string) {
+    return this.http.get(this.UrlBase + "/iscodeTrue/" + code);
   }
-  update(password: string){
-    return this.http.get(this.UrlBase + '/login/' + this.User.login + '/password/' + password);
+  update(password: string) {
+    return this.http.get(
+      this.UrlBase + "/login/" + this.User.login + "/password/" + password
+    );
   }
 }
