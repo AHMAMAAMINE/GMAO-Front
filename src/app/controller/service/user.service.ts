@@ -1,20 +1,15 @@
-import { SecurityService } from "./security.service";
-import { AppRoutingModule } from "./../../app-routing.module";
-import { Injectable } from "@angular/core";
-import { User } from "../model/user.model";
-import { HttpClient } from "@angular/common/http";
-import { Router } from "@angular/router";
+import { SecurityService } from './security.service';
+import { AppRoutingModule } from './../../app-routing.module';
+import { Injectable } from '@angular/core';
+import { User } from '../model/user.model';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class UserService {
-<<<<<<< HEAD
-  private _User: User;
-  private _Users: Array<User>;
-  private UrlBase = "http://localhost:8036/Gmao/User-api";
-=======
->>>>>>> 7f198a17475949c63ef5df95a192d9cd7f1fbfe7
+
 
   get User(): User {
     if (this._User == null) {
@@ -60,26 +55,32 @@ export class UserService {
     this.http
       .get(
         this.UrlBase +
-          "/connected/" +
+          '/connected/' +
           this.User.login +
-          "/pswrd/" +
+          '/pswrd/' +
           this.User.password
       )
       .subscribe((data) => {
         if (data === 2) {
-          console.log("succes");
+          console.log('succes');
         } else {
-          console.log("failed");
+          console.log('failed');
         }
       });
   }
 
   seConnecter(username: string, password: string) {
     this.http
-      .get<User>(this.UrlBase + "/login/" + username + "/pswrd/" + password)
+      .get<User>(this.UrlBase + '/login/' + username + '/pswrd/' + password)
       .subscribe((data) => {
         if (data) {
           this._User = data;
+          this.securityService.registerUser(data);
+          this.User = this.securityService.getConnectedUser();
+          console.log(this.User);
+          console.log(this.securityService.getConnectedUser());
+          console.log(this.securityService.isUserInRole(this.User.role));
+          console.log(this.securityService.getUrl());
         }
       });
     console.log(this.User.role);
@@ -88,17 +89,17 @@ export class UserService {
 
   redirect(role: string) {
     switch (role) {
-      case "admin":
-        this.router.navigate(["/admin"]);
+      case 'admin':
+        this.router.navigate(['/admin']);
         break;
-      case "chef-equipe":
-        this.router.navigate(["/chef-equipe"]);
+      case 'chef-equipe':
+        this.router.navigate(['/chef-equipe']);
         break;
-      case "chef-stock":
-        this.router.navigate(["/None"]);
+      case 'chef-stock':
+        this.router.navigate(['/None']);
         break;
-      case "collaborateur":
-        this.router.navigate(["/collaborateur"]);
+      case 'collaborateur':
+        this.router.navigate(['/collaborateur']);
         break;
       default:
         break;
