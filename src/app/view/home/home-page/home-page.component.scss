@@ -1,36 +1,61 @@
 .logo {
-  color: #537f2d;
-  font-size: 5rem;
+
+  font-size: 8rem;
+  color: #12a846;
 }
 
 main {
   padding: 20px;
   height: 100vh;
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+                  180deg,
+                  rgba(2, 0, 36, 1) 6%,
+                  rgba(14, 182, 144, 1) 74%
+  );
+  position: relative;
 }
+.btns{
+  position: absolute;
+  top: 300px;
+  left: 110px;
+  height: 500px;
+  width: 600px;
 
+}
 .links {
+  color: #0a3e41;
   text-align: center;
   margin-top: 40px;
   width: 60%;
   height: 55%;
+  box-shadow: rgba(4, 0, 39, 1);
 }
 h1,
 h2 {
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 }
 button {
   font-size: 1.5rem;
-  width: 60%;
+  width: 70%;
   margin: 7px 0;
   text-transform: uppercase;
+  &.p-button-success {
+    border: 2px #fff solid;
+    &:hover {
+      background-color: rgb(245, 240, 240);
+      color: #1e7f4a;
+    }
+  }
 }
 p {
   margin-left: 20px;
   font-size: 2rem;
-  color: #8c8d8a;
+  color: #0a3e41;
 }
 
 .label {
-  margin-left: 150px;
-  margin-top: 70px;
+  margin-left: 800px;
+  margin-top: 50px;
+
 }
