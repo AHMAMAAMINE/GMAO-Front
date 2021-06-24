@@ -5,6 +5,8 @@ import {MessageService} from 'primeng/api';
 
 import {CollaborateurService} from '../../../../controller/service/collaborateur.service';
 import {Collaborateur} from '../../../../controller/model/collaborateur.model';
+import {User} from '../../../../controller/model/user.model';
+import {UserService} from '../../../../controller/service/user.service';
 
 @Component({
   selector: 'app-sign-in-collaborateur',
@@ -14,7 +16,7 @@ import {Collaborateur} from '../../../../controller/model/collaborateur.model';
 })
 export class SignInCollaborateurComponent implements OnInit {
 
-  constructor(private collaborateurService: CollaborateurService,
+  constructor(private collaborateurService: UserService,
               private router: Router,
               private messageService: MessageService) {
   }
@@ -22,33 +24,17 @@ export class SignInCollaborateurComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  get collaborateur(): Collaborateur {
-    return this.collaborateurService.collaborateur;
+  get collaborateur(): User {
+    return this.collaborateurService.User;
   }
 
-  set collaborateur(value: Collaborateur){
-    this.collaborateurService.collaborateur = value;
+  set collaborateur(value: User){
+    this.collaborateurService.User = value;
   }
+
 
   public signIn(){
-    this.collaborateurService.signin().subscribe(
-        data => {
-          console.log(data);
-          if (data) {
-            this.collaborateur = data;
-            this.router.navigateByUrl('collaborateur');
-          }else{
-            this.messageService.add(
-                {
-                  severity: 'error',
-                  summary: 'login failed',
-                  detail: 'login ou mot de passe incorrect',
-                  life: 3000
-                }
-            );
-          }
-        }
-    );
+    this.collaborateurService.seConnecter(this.collaborateur.login, this.collaborateur.password);
   }
 
 }

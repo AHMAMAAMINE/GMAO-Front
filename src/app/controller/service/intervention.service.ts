@@ -468,4 +468,8 @@ export class InterventionService {
   deletes(interv: string, codeCollaborateur: string, message: string) {
     return this.http.delete(this.urlconsigne + '/code/' + codeCollaborateur + '/message/' + message + '/interv/' + interv);
   }
+
+  findByCodeChef(code : string) : Observable<InterventionMembreEquipe>{
+   return  this.http.get<InterventionMembreEquipe>(this.urlmembre + '/code/' + code);
+  }
 }

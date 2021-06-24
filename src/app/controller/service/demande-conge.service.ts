@@ -121,8 +121,8 @@ export class DemandeCongeService {
     this._submitted = value;
   }
 
-  findByCollaborateur(): Observable<Array<DemandeConge>> {
+  findByCollaborateur(ref:string): Observable<Array<DemandeConge>> {
     console.log(this.selected.collaborateur.codeCollaborateur)
-    return this.http.get<Array<DemandeConge>>(this.url + 'collaborateur/' + this.selected.collaborateur.codeCollaborateur);
+    return this.http.get<Array<DemandeConge>>(this.url + 'collaborateur/' + ref);
   }
 }

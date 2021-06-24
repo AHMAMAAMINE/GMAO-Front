@@ -27,8 +27,10 @@ import { StockJdidComponent } from "./view/admin/stock-jdid/stock-jdid.component
 import { DemandeCongeListComponent } from "./view/chef-equipe/chef-equipe-demandeConge/demande-conge-list/demande-conge-list.component";
 import { ChefEquipeTacheListComponent } from "./view/chef-equipe/chef-tache/chef-equipe-tache-list/chef-equipe-tache-list.component";
 
-import {AdmincollaborateurComponent} from "./view/admin/admincollaborateur/admincollaborateur.component";
-import {DashbordComponent} from './view/collaborateur/dashbord/dashbord.component';
+import { AdmincollaborateurComponent } from "./view/admin/admincollaborateur/admincollaborateur.component";
+import { DashbordComponent } from "./view/collaborateur/dashbord/dashbord.component";
+import { DashboardComponent } from "./view/chef-equipe/dashboard/dashboard.component";
+import {ForgotPasswordComponent} from './view/forgot-password/forgot-password.component';
 
 @NgModule({
   imports: [
@@ -43,7 +45,7 @@ import {DashbordComponent} from './view/collaborateur/dashbord/dashbord.componen
           path: "chef-equipe",
           component: ChefEquipeMainComponent,
           children: [
-            { path: "", component: DashboardDemoComponent },
+            { path: "", component: DashboardComponent },
             { path: "chef-equipe-conge", component: DemandeCongeListComponent },
             {
               path: "chef-equipe-tache",
@@ -60,8 +62,11 @@ import {DashbordComponent} from './view/collaborateur/dashbord/dashbord.componen
             { path: "view/commande", component: CommandesComponent },
             { path: "view/stock-jadid", component: StockJdidComponent },
             { path: "view/equipes", component: EquipesComponent },
-            { path: "view/operation", component: OperationStockComponent },
-              { path: "view/admin-collaborateur", component: AdmincollaborateurComponent },
+
+            {
+              path: "view/admin-collaborateur",
+              component: AdmincollaborateurComponent,
+            },
           ],
         },
         {
@@ -81,9 +86,11 @@ import {DashbordComponent} from './view/collaborateur/dashbord/dashbord.componen
               path: "collaborateur/demande/conge",
               component: CollaborateurDemandeCongeComponent,
             },
-            { path: "list", component: CollaborateurListComponent },
+            { path: "view/operation", component: OperationStockComponent },
           ],
         },
+          {path:"forgot",component: ForgotPasswordComponent},
+
         { path: "error", component: AppErrorComponent },
         { path: "404", component: AppNotfoundComponent },
         { path: "**", redirectTo: "/404" },

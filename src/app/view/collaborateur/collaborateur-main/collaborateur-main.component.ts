@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {MenuService} from '../../../controller/service/app.menu.service';
 import {PrimeNGConfig} from 'primeng/api';
 import {AppComponent} from '../../../app.component';
+import {UserService} from '../../../controller/service/user.service';
+import {DemandeConge} from '../../../controller/model/demande-conge.model';
+import {DemandeCongeService} from '../../../controller/service/demande-conge.service';
 
 @Component({
   selector: 'app-collaborateur-main',
@@ -44,7 +47,7 @@ export class CollaborateurMainComponent implements OnInit {
 
   inlineUserMenuActive = false;
 
-  constructor(private menuService: MenuService, private primengConfig: PrimeNGConfig, public app: AppComponent) { }
+  constructor(private menuService: MenuService, private primengConfig: PrimeNGConfig, public app: AppComponent, private userService: UserService, private demandeCongeService: DemandeCongeService) { }
 
   onLayoutClick() {
     if (!this.userMenuClick) {
@@ -214,6 +217,14 @@ export class CollaborateurMainComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.userService.seConnecter(localStorage.getItem('Array'), localStorage.getItem('Arrays'));
+    this.selected.collaborateur.codeCollaborateur = localStorage.getItem('collaborateur');
+  }
+  get selected(): DemandeConge {
+    return this.demandeCongeService.selected;
   }
 
+  set selected(value: DemandeConge) {
+    this.demandeCongeService.selected = value;
+  }
 }

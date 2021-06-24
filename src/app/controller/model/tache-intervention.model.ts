@@ -6,9 +6,8 @@ export class TacheIntervention {
     public  id: number;
     public  code: string;
     public  description: string;
-    public dateDebut: string;
-    public dateFin: string;
+    public date: Date;
     public etatTache: boolean;
-    public intervention: Intervention;
-    public membreEquipe = MembreEquipe;
+    public intervention = new Intervention();
+    public membreEquipe = new MembreEquipe();
 }

@@ -6,36 +6,79 @@ import {EquipesService} from '../../../../controller/service/equipes.service';
 import {TacheInterventionService} from '../../../../controller/service/tache-intervention.service';
 import {CollaborateurService} from '../../../../controller/service/collaborateur.service';
 import {Collaborateur} from '../../../../controller/model/collaborateur.model';
+import {InterventionService} from '../../../../controller/service/intervention.service';
+import {ChefEquipe} from '../../../../controller/model/chef-equipe.model';
+import {ChefEquipeService} from '../../../../controller/service/chef-equipe.service';
+import {MembreEquipe} from '../../../../controller/model/membre-equipe.model';
+import {Intervention} from '../../../../controller/model/intervention.model';
+import {DatePipe} from '@angular/common';
+import {UserService} from '../../../../controller/service/user.service';
+import { User } from 'src/app/controller/model/user.model';
 
 @Component({
   selector: 'app-chef-equipe-tache-create',
   templateUrl: './chef-equipe-tache-create.component.html',
-  styleUrls: ['./chef-equipe-tache-create.component.scss']
+  styleUrls: ['./chef-equipe-tache-create.component.scss'],
+  providers: [DatePipe]
 })
 export class ChefEquipeTacheCreateComponent implements OnInit {
 
   constructor(private messageService: MessageService,
               private service: TacheInterventionService,
-              private equipesService: EquipesService,
+              private interventionService: InterventionService,
               private etatTacheService: EtatTacheService,
-              private collaborateurService: CollaborateurService,
+              private equipeService: EquipesService,
+              private chefEquipeService: ChefEquipeService, private datePipe: DatePipe, private userService: UserService
               ) {
   }
 
   ngOnInit(): void {
-
+    this.interventionService.findByCodeChef(this.User.collaborateur.codeCollaborateur).subscribe(data => this.intervention = data.intervention);
+    this.equipeService.findByCodeCollaborateur(this.User.collaborateur.codeCollaborateur).subscribe(data => this.membres = data.membres);
+    // this.membres.splice()
+  }
+  get User(): User {
+    return this.userService.User;
   }
 
+  set User(value: User) {
+    this.userService.User = value;
+  }
+
+
+  get membres(): Array<MembreEquipe> {
+    return this.equipeService.membres;
+  }
+  get intervention(): Intervention {
+    return this.interventionService.selected;
+  }
+  set membres(value: Array<MembreEquipe>){
+    this.equipeService.membres = value;
+  }
+  set intervention(value: Intervention){
+    this.interventionService.selected = value;
+  }
+
+  // set chef(value: ChefEquipe) {
+  //   this._selected = value;
+  // }
   public hideCreateDialog() {
     this.createDialog = false;
     this.submitted = false;
   }
 
   public save() {
+    const date = new Date();
+    const dates = this.datePipe.transform(date, 'yyyy-MM-dd');
+    const dater = new Date(dates);
+    this.selected.intervention.code = this.intervention.code;
+    this.selected.date = dater;
     this.submitted = true;
     if (this.selected.code.trim()) {
+      console.log(this.selected)
       this.service.save().subscribe(data => {
-        this.items.push({...data});
+        console.log(this.selected)
+          console.log(data);
         this.messageService.add({
           severity: 'success',
           summary: 'Successful',
@@ -47,20 +90,21 @@ export class ChefEquipeTacheCreateComponent implements OnInit {
       this.selected = new TacheIntervention();
     }
   }
-  get collaborateur(): Collaborateur {
-    return this.collaborateurService.collaborateur;
-  }
-  set collaborateur(value: Collaborateur) {
-    this.collaborateurService.collaborateur = value;
-  }
-  get collaborateurs(): Array<Collaborateur> {
-    return this.collaborateurService.collaborateurs;
-  }
+  // get collaborateur(): Collaborateur {
+  //   return this.collaborateurService.collaborateur;
+  // }
+  // set collaborateur(value: Collaborateur) {
+  //   this.collaborateurService.collaborateur = value;
+  // }
+  // get collaborateurs(): Array<Collaborateur> {
+  //   return this.collaborateurService.collaborateurs;
+  // }
+
   get selected(): TacheIntervention {
     return this.service.selected;
   }
   set selected(value: TacheIntervention) {
-    this.selected = value;
+    this.service.selected = value;
   }
   get createDialog(): boolean {
     return this.service.createDialog;
@@ -80,5 +124,12 @@ export class ChefEquipeTacheCreateComponent implements OnInit {
 
   get items(): Array<TacheIntervention> {
     return this.service.items;
+  }
+
+  isSelected($event: any) {
+    this.selected.membreEquipe.collaborateur.codeCollaborateur = $event.target.value;
+  }
+  isSelect($event: any){
+    this.selected.intervention.code = $event.target.value;
   }
 }

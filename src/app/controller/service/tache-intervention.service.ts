@@ -1,16 +1,18 @@
-import { Injectable } from '@angular/core';
-import {environment} from '../../../environments/environment';
-import {DemandeConge} from '../model/demande-conge.model';
-import {TacheIntervention} from '../model/tache-intervention.model';
-import {Equipe} from '../model/equipe.model';
-import {HttpClient} from '@angular/common/http';
-import {CollaborateurService} from './collaborateur.service';
-import {Collaborateur} from '../model/collaborateur.model';
-import {InterventionService} from './intervention.service';
-import {Observable} from 'rxjs';
+import { Injectable } from "@angular/core";
+import { environment } from "../../../environments/environment";
+import { DemandeConge } from "../model/demande-conge.model";
+import { TacheIntervention } from "../model/tache-intervention.model";
+import { Equipe } from "../model/equipe.model";
+import { HttpClient } from "@angular/common/http";
+import { CollaborateurService } from "./collaborateur.service";
+import { Collaborateur } from "../model/collaborateur.model";
+import { InterventionService } from "./intervention.service";
+import { Observable } from "rxjs";
+import { User } from "../model/user.model";
+import { UserService } from "./user.service";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class TacheInterventionService {
   get vos(): any[] {
@@ -20,8 +22,10 @@ export class TacheInterventionService {
   set vos(value: any[]) {
     this._vos = value;
   }
-  private url = environment.baseUrl + '/tacheIntervention';
-  private url2 = environment.baseUrl + '/Collaborateurintervention-api/Collaborateurintervention/code/';
+  private url = environment.baseUrl + "/tacheIntervention";
+  private url2 =
+    environment.baseUrl +
+    "/Collaborateurintervention-api/Collaborateurintervention/code/";
   private _items: Array<TacheIntervention>;
   private _selected: TacheIntervention;
   private _selectes: Array<TacheIntervention>;
@@ -30,8 +34,9 @@ export class TacheInterventionService {
   private _viewDialog: boolean;
   private _submitted: boolean;
   private _vos = Array();
-  private interventionVo = new Map<string, string>();
+  private _events;
 
+  private interventionVo = new Map<string, string>();
 
   get selected(): TacheIntervention {
     return this._selected;
@@ -81,53 +86,77 @@ export class TacheInterventionService {
     this._submitted = value;
   }
 
-  constructor(private http: HttpClient,
-              private collaborateurService: CollaborateurService,
-              private interventionService: InterventionService) { }
+  constructor(
+    private http: HttpClient,
+    private collaborateurService: UserService,
+    private interventionService: InterventionService
+  ) {}
   public save() {
-    this.selected = this.selected;
-    this.items.push(this._selected);
-    console.log(this.items);
-    this._selected = null;
-    return this.http.post<TacheIntervention>(this.url, this.selected);
+    // this.selected = this.selected;
+    // this.items.push(this.selected);
+    // this.selected = null;
+    return this.http.post<number>(this.url + "/", this.selected);
   }
 
-  public getTacheVo(data: Array<TacheIntervention>,codeInterventions: Map<string,string>){
+  public getEventsVo(data: Array<TacheIntervention>) {
+    let i = 0;
+    data.forEach((tache) => {
+      i++;
+      const vo = {
+        id: i,
+        title: tache.description,
+        start: tache.intervention.dateDebut,
+        end: tache.intervention.dateFin,
+      };
+      this.events.data.push(vo);
+    });
+  }
+
+  public getTacheVo(
+    data: Array<TacheIntervention>,
+    codeInterventions: Map<string, string>
+  ) {
     const vos = new Array();
 
-  for(let s of codeInterventions.keys()){
-        const taches = data.filter((item) => {
-          return item.intervention.code === s;
+    for (const s of codeInterventions.keys()) {
+      const taches = data.filter((item) => {
+        return item.intervention.code === s;
       });
       const vo = {
         libelle: codeInterventions.get(s),
-        taches
+        taches,
       };
-        vos.push(vo);
-
+      vos.push(vo);
     }
     return vos;
   }
 
-  public findAllInterventions(){
-    // this.http.get<Array<TacheIntervention>>(this.url+"collaborateur/"+Col+"/intervention/"+{codeIntervention})
-    this.http.get<Array<TacheIntervention>>(this.url + '/collaborateur/code/' + this.collaborateur.codeCollaborateur).subscribe(
+  public findAllInterventions() {
+    this.http
+      .get<Array<TacheIntervention>>(
+        this.url +
+          "/collaborateur/code/" +
+          localStorage.getItem("collaborateur")
+      )
+      .subscribe(
         (data) => {
-
           data.forEach((item) => {
-            this.interventionVo.set(item.intervention.code,item.intervention.libelle);
+            this.interventionVo.set(
+              item.intervention.code,
+              item.intervention.libelle
+            );
           });
-          console.log(this.interventionVo);
-          this._vos = this.getTacheVo(data, this.interventionVo);
-          console.log(this._vos);
+          this.vos = this.getTacheVo(data, this.interventionVo);
+          this.getEventsVo(data);
+          console.log(this.events);
         },
         (error) => {
           console.log(error);
         }
-    );
+      );
   }
-  get collaborateur(): Collaborateur {
-    return this.collaborateurService.collaborateur;
+  get User(): User {
+    return this.collaborateurService.User;
   }
   get items(): Array<TacheIntervention> {
     return this._items;
@@ -137,8 +166,19 @@ export class TacheInterventionService {
     this._items = value;
   }
 
-
   completerTache(s: string) {
-    return this.http.get<number>(this.url + '/completerTache/'+ s);
+    return this.http.get<number>(this.url + "/completerTache/" + s);
+  }
+
+  get events(): any {
+    if (this._events === null) return { data: [] };
+    return this._events;
+  }
+  set events(value: any) {
+    this._events = value;
+  }
+
+  findAll(): Observable<Array<TacheIntervention>> {
+    return this.http.get<Array<TacheIntervention>>(this.url + "/");
   }
 }

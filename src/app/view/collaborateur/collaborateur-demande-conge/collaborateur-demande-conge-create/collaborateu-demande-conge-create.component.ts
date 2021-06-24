@@ -7,6 +7,7 @@ import {Collaborateur} from '../../../../controller/model/collaborateur.model';
 import {DemandeConge} from '../../../../controller/model/demande-conge.model';
 import {EtatDemandeCongeService} from '../../../../controller/service/etat-demande-conge.service';
 import {UserService} from '../../../../controller/service/user.service';
+import {User} from '../../../../controller/model/user.model';
 
 @Component({
   selector: 'app-collaborateur-demande-conge-create',
@@ -18,11 +19,11 @@ export class CollaborateurDemandeCongeCreateComponent implements OnInit {
   constructor(private demandeCongeService: DemandeCongeService,
               private messageService: MessageService,
               private collaborateurService: CollaborateurService,
-              private etatDemandeCongeService: EtatDemandeCongeService) { }
+              private etatDemandeCongeService: EtatDemandeCongeService,
+              private userService: UserService) { }
 
   ngOnInit(): void {
-    this.selected.collaborateur.codeCollaborateur=this.collaborateur.codeCollaborateur;
-    this.demandeCongeService.findByCollaborateur().subscribe(data => this.items = data);
+      this.demandeCongeService.findByCollaborateur(localStorage.getItem('collaborateur')).subscribe(data => this.items = data);
   }
 
 
@@ -34,9 +35,9 @@ export class CollaborateurDemandeCongeCreateComponent implements OnInit {
     this.submitted = true;
 
     if (this.selected.code.trim()) {
-      this.selected.collaborateur.codeCollaborateur=this.collaborateur.codeCollaborateur;
+      this.selected.collaborateur.codeCollaborateur = this.collaborateur.collaborateur.codeCollaborateur;
       // this.collaborateurService.signin().subscribe(data=>this.v=);
-      console.log(this.selected)
+      this.demandeCongeService.items.push(this.selected);
       this.demandeCongeService.save().subscribe(data => {
         console.log(data);
         this.messageService.add({
@@ -48,7 +49,7 @@ export class CollaborateurDemandeCongeCreateComponent implements OnInit {
       });
       this.createDialog = false;
       this.selected = new DemandeConge();
-      this.selected=null;
+      this.selected = null;
     }
   }
   get selected(): DemandeConge {
@@ -89,12 +90,12 @@ export class CollaborateurDemandeCongeCreateComponent implements OnInit {
   set selectes(value: Array<Collaborateur>) {
     this.collaborateurService.selectes = value;
   }
-  get collaborateur(): Collaborateur {
-    return this.collaborateurService.collaborateur;
+  get collaborateur(): User {
+    return this.userService.User;
   }
 
-  set collaborateur(value: Collaborateur){
-    this.collaborateurService.collaborateur = value;
+  set collaborateur(value: User){
+    this.userService.User = value;
   }
   get collaborateurs(): Array<Collaborateur> {
     return this.collaborateurService.collaborateurs;

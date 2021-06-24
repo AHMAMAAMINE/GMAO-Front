@@ -8,10 +8,10 @@
             </div>
         </div>
     </div>
-    <div class="p-card-footer" [hidden]="editDialog" [hidden]="viewDialog">
+    <div class="p-card-footer" [hidden]="editDialog || viewDialog">
         <button pButton  label="Ajout"  class="p-button-text" (click)="ajouter()"></button>
     </div>
-    <div class="p-card-footer" [hidden]="!editDialog" [hidden]="viewDialog">
+    <div class="p-card-footer" [hidden]="!editDialog || viewDialog">
         <button pButton  label="edit"  class="p-button-text"   (click)="editliste(conseilIntervention)"></button>
     </div>
     <p-table  [value]="conseilInterventions" [columns]="cols" [rows]="4" [paginator]="true" [globalFilterFields]="['reference','total','totalPaye']"

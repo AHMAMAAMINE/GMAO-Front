@@ -18,7 +18,7 @@ export class CollaborateurService {
   private _createDialog: boolean;
   private _editDialog: boolean;
   private _viewDialog: boolean;
-  private _submitted: boolean;  
+  private _submitted: boolean;
 
   get viewDialog(): boolean {
     return this._viewDialog;
@@ -56,8 +56,8 @@ export class CollaborateurService {
     return this._http.get<Array<Collaborateur>>(this.url + '/');
   }
   public save(): Observable<Collaborateur> {
-    console.log(this.collaborateur)
-    return this._http.post<Collaborateur>(this.url+'/', this.collaborateur);
+    console.log(this.collaborateur);
+    return this._http.post<Collaborateur>(this.url + '/', this.collaborateur);
   }
   get collaborateur(): Collaborateur {
     if (this._collaborateur == null) {
@@ -89,7 +89,7 @@ export class CollaborateurService {
   }
 
   public signin(): Observable<Collaborateur> {
-    return this._http.get<Collaborateur>(this.url + '/signin/'+ this.collaborateur.login+'/password/'+this.collaborateur.password);
+    return this._http.get<Collaborateur>(this.url + '/signin/' + this.collaborateur.login + '/password/' + this.collaborateur.password);
   }
   //   addCollaborateur(collaborateur: Collaborateur) {
   //     this.http.post(this.url + '/', collaborateur).subscribe(
@@ -132,5 +132,8 @@ export class CollaborateurService {
 
   public deleteIndexById(id: number) {
     this.collaborateurs.splice(this.findIndexById(id), 1);
+  }
+  public findByLogin(login: string): Observable<Collaborateur>{
+    return this._http.get<Collaborateur>(this.url + '/login/' + login);
   }
   }
