@@ -1,22 +1,66 @@
+<!--<div class="login-body">-->
+<!--    <p-toast></p-toast>-->
+<!--    <div class="card login-panel p-fluid">-->
+<!--        <div class="login-panel-content">-->
+<!--            <div class="p-grid">-->
+<!--                <div class="p-col-12 p-sm-6 p-md-6 logo-container">-->
+<!--                    <span class="guest-sign-in">Welcome</span>-->
+<!--                </div>-->
+<!--                <div class="p-col-12 username-container">-->
+<!--                    &lt;!&ndash; <h:panelGroup> &ndash;&gt;-->
+<!--                    <label>Username</label>-->
+<!--                    <div class="login-input">-->
+<!--                        <input id="input" type="text" [(ngModel)]="collaborateur.login" pInputText>-->
+<!--                    </div>-->
+<!--                    &lt;!&ndash; </h:panelGroup> &ndash;&gt;-->
+<!--                </div>-->
+<!--                <div class="p-col-12 password-container">-->
+<!--                    &lt;!&ndash; <h:panelGroup> &ndash;&gt;-->
+<!--                    <label>Password</label>-->
+<!--                    <div class="login-input">-->
+<!--                        <input pInputText type="password" [(ngModel)]="collaborateur.password" />-->
+<!--                    </div>-->
+<!--                    &lt;!&ndash; </h:panelGroup> &ndash;&gt;-->
+<!--                </div>-->
+<!--                <div class="p-col-12 p-sm-6 p-md-6 rememberme-container">-->
+<!--                    <p-checkbox></p-checkbox>-->
+<!--                    <label> Remember me</label>-->
+<!--                </div>-->
+
+<!--                <div class="p-col-12 p-sm-6 p-md-6 forgetpassword-container">-->
+<!--                    <a href="#" class="forget-password">Forget Password ?</a>-->
+<!--                </div>-->
+
+<!--                <div class="p-col-12 p-sm-6 p-md-6">-->
+<!--                    <button pButton type="button" icon="pi pi-sign-in" label="Sign In" (click)="signIn()" ></button>-->
+<!--                </div>-->
+<!--                <div class="p-col-12 p-sm-6 p-md-6 rememberme-container">-->
+<!--                    <button [routerLink]="['/collaborateur-signup']"  pButton type="button" icon="pi " label="Creer un compte"></button>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 <div class="login-body">
     <p-toast></p-toast>
     <div class="card login-panel p-fluid">
         <div class="login-panel-content">
             <div class="p-grid">
                 <div class="p-col-12 p-sm-6 p-md-6 logo-container">
-                    <span class="guest-sign-in">Welcome</span>
+                    <span class="guest-sign-in" style="font-size: 2rem; font-weight: bold">Bienvenue</span>
                 </div>
                 <div class="p-col-12 username-container">
                     <!-- <h:panelGroup> -->
-                    <label>Username</label>
-                    <div class="login-input">
+                    <label>Nom Utilisateur</label>
+                    <div class="login-input" >
                         <input id="input" type="text" [(ngModel)]="collaborateur.login" pInputText>
                     </div>
                     <!-- </h:panelGroup> -->
                 </div>
                 <div class="p-col-12 password-container">
                     <!-- <h:panelGroup> -->
-                    <label>Password</label>
+                    <label>Mot de Passe</label>
                     <div class="login-input">
                         <input pInputText type="password" [(ngModel)]="collaborateur.password" />
                     </div>
@@ -24,21 +68,19 @@
                 </div>
                 <div class="p-col-12 p-sm-6 p-md-6 rememberme-container">
                     <p-checkbox></p-checkbox>
-                    <label> Remember me</label>
+                    <label> Sauvegarder </label>
                 </div>
 
                 <div class="p-col-12 p-sm-6 p-md-6 forgetpassword-container">
-                    <a href="#" class="forget-password">Forget Password ?</a>
+                    <a href="#" class="forget-password" style="color:#12a846 ">Mot de passe oublie ?</a>
                 </div>
 
-                <div class="p-col-12 p-sm-6 p-md-6">
-                    <button pButton type="button" icon="pi pi-sign-in" label="Sign In" (click)="signIn()" ></button>
-                </div>
-                <div class="p-col-12 p-sm-6 p-md-6 rememberme-container">
-                    <button [routerLink]="['/collaborateur-signup']"  pButton type="button" icon="pi " label="Creer un compte"></button>
+                <div class="p-col-17 p-sm-9 p-md-6">
+                    <button pButton type="button"style="background-color: #12a846;border: none" icon="pi pi-sign-in" label="Sign In" (click)="signIn()" ></button>
                 </div>
             </div>
 
         </div>
     </div>
 </div>
+

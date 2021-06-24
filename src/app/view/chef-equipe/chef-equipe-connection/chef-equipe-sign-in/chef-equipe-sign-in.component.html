@@ -4,13 +4,13 @@
     <div class="login-panel-content">
       <div class="p-grid">
         <div class="p-col-12 p-sm-6 p-md-6 logo-container">
-          <span class="guest-sign-in">Bonjour Gmao</span>
+          <span class="guest-sign-in" style="font-size: 2rem; font-weight: bold">Bienvenue</span>
         </div>
         <div class="p-col-12 username-container">
           <!-- <h:panelGroup> -->
           <label>Nom Utilisateur</label>
-          <div class="login-input">
-            <input id="input" type="text" [(ngModel)]="user.login" pInputText />
+          <div class="login-input" >
+            <input id="input" type="text" [(ngModel)]="user.login" pInputText>
           </div>
           <!-- </h:panelGroup> -->
         </div>
@@ -24,36 +24,18 @@
         </div>
         <div class="p-col-12 p-sm-6 p-md-6 rememberme-container">
           <p-checkbox></p-checkbox>
-          <label> Sauvegarder</label>
+          <label> Sauvegarder </label>
         </div>
 
         <div class="p-col-12 p-sm-6 p-md-6 forgetpassword-container">
-          <label href="" class="forget-password" (click)="forgotpass()"
-            >Mot de passe oublie ?</label
-          >
+          <a href="#" class="forget-password" style="color:#12a846 " (click)="forgotpass()">Mot de passe oublie ?</a>
         </div>
 
-        <div class="p-col-12 p-sm-6 p-md-6">
-          <button
-            pButton
-            type="button"
-            icon="pi pi-sign-in"
-            label="Sign In"
-            (click)="signIn()"
-            style="border: none; background-color: rgba(14, 182, 144, 1)"
-          ></button>
-        </div>
-        <div class="p-col-12 p-sm-6 p-md-6 rememberme-container">
-          <button
-            [routerLink]="['/collaborateur-sign-up']"
-            pButton
-            type="button"
-            icon="pi "
-            label="Creer un compte"
-            style="border: none; background-color: rgba(14, 182, 144, 1)"
-          ></button>
+        <div class="p-col-17 p-sm-9 p-md-6">
+          <button pButton type="button"style="background-color: #12a846;border: none" icon="pi pi-sign-in" label="Sign In" (click)="signIn()" ></button>
         </div>
       </div>
+
     </div>
   </div>
 </div>

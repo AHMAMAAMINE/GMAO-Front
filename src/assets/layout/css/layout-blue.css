@@ -4177,12 +4177,8 @@ a {
   margin: 0 auto;
   position: relative;
   height: 100vh;
-  background: linear-gradient(
-    180deg,
-    rgba(2, 0, 36, 1) 6%,
-    rgba(14, 182, 144, 1) 74%
-  );
-  background-size: cover;
+  background: url("../images/logg.jpg") no-repeat;
+  background-size: 60%;
 }
 .login-body .login-panel {
   padding: 0 70px 20px 70px;
