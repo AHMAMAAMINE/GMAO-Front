@@ -1,7 +1,7 @@
        <div class="p-card-body">
         <div class="p-field">
             <label for="code">Code</label>
-            <input type="text" pInputText id="code" [(ngModel)]="selected.code" required autofocus [disabled]="viewDialog" />
+            <input type="text" pInputText id="code" [(ngModel)]="selected.code" required autofocus [disabled]="viewDialog || editDialog" />
             <small class="p-invalid" *ngIf="submitted && !selected.code">code is required.</small>
         </div>
         <div class="p-field">

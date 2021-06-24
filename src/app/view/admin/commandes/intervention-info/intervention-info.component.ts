@@ -12,6 +12,9 @@ export class InterventionInfoComponent implements OnInit {
   constructor(private service: InterventionService) {
 
   }
+  get editDialog(): boolean {
+    return this.service.editDialog;
+  }
 
   get intervention(): Intervention {
     return this.service.selected;

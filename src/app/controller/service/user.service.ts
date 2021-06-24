@@ -9,12 +9,8 @@ import { Router } from "@angular/router";
   providedIn: "root",
 })
 export class UserService {
-<<<<<<< HEAD
-  private _User: User;
-  private _Users: Array<User>;
-  private UrlBase = "http://localhost:8036/Gmao/User-api";
-=======
->>>>>>> 7f198a17475949c63ef5df95a192d9cd7f1fbfe7
+
+
 
   get User(): User {
     if (this._User == null) {

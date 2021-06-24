@@ -21,9 +21,11 @@ export class InterventionEditComponent implements OnInit {
         this.submitted = true;
         if (this.selected.code.trim()) {
             if (this.selected.id) {
+                console.log(this.selected);
                 this.items[this.service.findIndexById(this.selected.id)] = this.selected;
                 console.log(this.selected)
                 this.service.edit().subscribe(data => {
+                    console.log(data);
                     this.selected = data;
                     this.messageService.add({
                         severity: 'success',

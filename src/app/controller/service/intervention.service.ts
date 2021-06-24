@@ -304,7 +304,7 @@ export class InterventionService {
     // this.selected.conseils = this.conseilInterventions;
     console.log(this.selected);
     const stringifi = JSON.stringify(this.selected, this.getCircularReplacer());
-    return this.http.put<Intervention>(this.url + '/code/' + this.interv.code,  JSON.parse(stringifi));
+    return this.http.put<Intervention>(this.url + '/code/' + this.selected.code,  JSON.parse(stringifi));
   }
   getCircularReplacer = () => {
     const seen = new WeakSet();
