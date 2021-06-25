@@ -41,25 +41,25 @@
   <div class="p-col-12 p-md-6 p-lg-6">
     <div class="timeline card card-w-title">
       <h5>Demande Conge</h5>
-      <ul>
+      <ul *ngFor="let item of items">
         <li>
           <i class="pi pi-users"></i>
-          <span class="timeline-event-title"> Amine Bayoud </span>
-          <span class="timeline-event-time">20 jours</span>
-          <p>Décès : Ma grand-mère est morte , je ne serai pas disponible</p>
+          <span class="timeline-event-title"> {{item.collaborateur.fullname}} </span>
+          <span class="timeline-event-time">{{time(item.dateDepart,item.dateFin)}} jours</span>
+          <p>{{item.messageCollaborateur}}</p>
         </li>
-        <li>
-          <i class="pi pi-users"></i>
-          <span class="timeline-event-title"> Amina Khelfaoui </span>
-          <span class="timeline-event-time">10 jours</span>
-          <p>Maladie : Je ne peux pas venir travailler, je suis malade</p>
-        </li>
-        <li>
-          <i class="pi pi-users"></i>
-          <span class="timeline-event-title"> Aziz Kadimi </span>
-          <span class="timeline-event-time">5 jours</span>
-          <p>Maladie : Je ne peux pas venir travailler, je suis malade</p>
-        </li>
+<!--        <li>-->
+<!--          <i class="pi pi-users"></i>-->
+<!--          <span class="timeline-event-title"> Amina Khelfaoui </span>-->
+<!--          <span class="timeline-event-time">10 jours</span>-->
+<!--          <p>Maladie : Je ne peux pas venir travailler, je suis malade</p>-->
+<!--        </li>-->
+<!--        <li>-->
+<!--          <i class="pi pi-users"></i>-->
+<!--          <span class="timeline-event-title"> Aziz Kadimi </span>-->
+<!--          <span class="timeline-event-time">5 jours</span>-->
+<!--          <p>Maladie : Je ne peux pas venir travailler, je suis malade</p>-->
+<!--        </li>-->
       </ul>
     </div>
   </div>
