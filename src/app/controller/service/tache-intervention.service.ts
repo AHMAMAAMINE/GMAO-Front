@@ -10,11 +10,21 @@ import { InterventionService } from "./intervention.service";
 import { Observable } from "rxjs";
 import { User } from "../model/user.model";
 import { UserService } from "./user.service";
+import {Conseils} from '../model/conseils.model';
 
 @Injectable({
   providedIn: "root",
 })
 export class TacheInterventionService {
+  get conciels(): Array<Conseils> {
+    if(this._conciels == null)
+      return new Array<Conseils>();
+    return this._conciels;
+  }
+
+  set conciels(value: Array<Conseils>) {
+    this._conciels = value;
+  }
   get vos() {
     return this._vos;
   }
@@ -34,6 +44,7 @@ export class TacheInterventionService {
   private _viewDialog: boolean;
   private _submitted: boolean;
   private _vos = Array();
+  private _conciels : Array<Conseils>;
   private _events = {
     data: []
   };
@@ -100,8 +111,18 @@ export class TacheInterventionService {
     return this.http.post<number>(this.url + "/", this.selected);
   }
 
+  public getInterventionConseils(){
+    this.http.get<Array<Conseils>>(environment.baseUrl+'/GMAO/Conseils-api/intervention/'+localStorage.getItem('codeIntervention'))
+        .subscribe(data => {
+          if(data){
+            this.conciels = data;
+          }
+        });
+  }
+
   public getEventsVo(data: Array<TacheIntervention>) {
     let i = 0;
+    this.events.data = [];
     data.forEach((tache) => {
       i++;
       const vo = {
@@ -143,6 +164,7 @@ export class TacheInterventionService {
       )
       .subscribe(
         (data) => {
+          localStorage.setItem('codeIntervention', data[0].intervention.code);
           data.forEach((item) => {
             this.interventionVo.set(
               item.intervention.code,
@@ -184,4 +206,7 @@ export class TacheInterventionService {
   findAll(): Observable<Array<TacheIntervention>> {
     return this.http.get<Array<TacheIntervention>>(this.url + "/");
   }
+
+
+
 }

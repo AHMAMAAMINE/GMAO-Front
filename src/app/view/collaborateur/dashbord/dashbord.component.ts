@@ -3,10 +3,9 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import { DatePipe } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
-import { AccordionModule } from "primeng/accordion";
 import { TacheInterventionService } from "../../../controller/service/tache-intervention.service";
-import { CollaborateurService } from "../../../controller/service/collaborateur.service";
 import { TacheIntervention } from "../../../controller/model/tache-intervention.model";
+import {Conseils} from '../../../controller/model/conseils.model';
 
 @Component({
   selector: "app-dashbord",
@@ -36,6 +35,7 @@ export class DashbordComponent implements OnInit {
   private pourcentage : string;
   ngOnInit(): void {
     this.service.findAllInterventions();
+    this.service.getInterventionConseils();
     this.num1 = this.completed.length;
     this.pourcentage = Number().toFixed(this.num1 / this.vos.length);
     this.events = this.events_service.data;
@@ -47,7 +47,7 @@ export class DashbordComponent implements OnInit {
       header: {
         left: "prev,next",
         center: "title",
-        right: "dayGridMonth,timeGridWeek,timeGridDay",
+        right: 'dayGridMonth,timeGridWeek,timeGridDay',
       },
       editable: true,
     };
@@ -55,10 +55,15 @@ export class DashbordComponent implements OnInit {
   get vos(): any[] {
     return this.service.vos;
   }
+  get conciels(): Array<Conseils> {
+    return this.service.conciels;
+  }
 
   get items(): Array<TacheIntervention> {
     return this.service.items;
   }
+
+
 
   completerTache(s: string) {
     this.service.completerTache(s).subscribe((data) => {
