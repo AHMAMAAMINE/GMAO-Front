@@ -4,6 +4,7 @@ import {TacheInterventionService} from '../../../controller/service/tache-interv
 import {CollaborateurService} from '../../../controller/service/collaborateur.service';
 import {DatePipe} from '@angular/common';
 import {DemandeConge} from '../../../controller/model/demande-conge.model';
+import {TacheIntervention} from '../../../controller/model/tache-intervention.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -19,9 +20,10 @@ export class DashboardComponent implements OnInit {
       private tacheService: TacheInterventionService,
       private collabService: CollaborateurService
   ) { }
-  private demandesNum:number;
-  private tacheNum:number;
-  private collabNum:number;
+  private demandesNum: number;
+  private tacheNum: number;
+  private collabNum: number;
+  private taches: Array<TacheIntervention>;
 
   get items(): Array<DemandeConge> {
     return this.demandeCongeService.items;
@@ -36,6 +38,7 @@ export class DashboardComponent implements OnInit {
       this.items = data;
     });
     this.tacheService.findAll().subscribe(data => {
+      this.taches = data;
       this.tacheNum = data.length;
     });
     this.collabService.findAll().subscribe(data => {
