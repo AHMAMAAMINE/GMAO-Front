@@ -34,7 +34,9 @@ export class TacheInterventionService {
   private _viewDialog: boolean;
   private _submitted: boolean;
   private _vos = Array();
-  private _events;
+  private _events = {
+    data: []
+  };
 
   private interventionVo = new Map<string, string>();
 
@@ -141,7 +143,6 @@ export class TacheInterventionService {
       )
       .subscribe(
         (data) => {
-          console.log(data);
           data.forEach((item) => {
             this.interventionVo.set(
               item.intervention.code,

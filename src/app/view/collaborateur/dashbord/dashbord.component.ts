@@ -32,14 +32,14 @@ export class DashbordComponent implements OnInit {
   get events_service(): any {
     return this.service.events;
   }
-  private num1 = this.completed.length;
-  private pourcentage = Number().toFixed(this.num1 / this.vos.length);
+  private num1 :number;
+  private pourcentage : string;
   ngOnInit(): void {
     this.service.findAllInterventions();
-    console.log(this.events_service);
-
-    this.events = this.events_service;
-
+    this.num1 = this.completed.length;
+    this.pourcentage = Number().toFixed(this.num1 / this.vos.length);
+    this.events = this.events_service.data;
+    console.log(this.events);
     const now = this.datePipe.transform(new Date(), "yyyy-MM-dd");
     this.fullcalendarOptions = {
       plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
