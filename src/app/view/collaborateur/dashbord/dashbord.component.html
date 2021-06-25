@@ -26,8 +26,8 @@
               <li>
                 <p-checkbox
                   (click)="completerTache(j.code.toString())"
-                  [(ngModel)]="etat"
-                  [binary]="true"
+                  [(ngModel)]="j.etatTache"
+                  [binary]="j.etatTache"
                 ></p-checkbox>
                 <span>{{ j.description }}</span>
               </li>
@@ -40,12 +40,12 @@
     <div class="p-col-12 p-lg-12" style="padding: 0; margin-top: 10px">
       <div class="timeline card card-w-title">
         <h5>Conciels</h5>
-        <ul *ngFor="let c of items">
-          <li>
+        <ul >
+          <li *ngFor="let c of conciels;index as i">
             <i class="pi pi-users"></i>
-            <span class="timeline-event-title">Amine Ahmama</span>
-            <span class="timeline-event-time">4 jours</span>
-            <p>Ne Perdez pas votre temps, concentrez vos sur l'objectif</p>
+            <span class="timeline-event-title">{{c.collaborateur.fullname}}</span>
+            <span class="timeline-event-time">{{c.dateDeMessage}}</span>
+            <p>{{c.message}}</p>
           </li>
         </ul>
       </div>

@@ -51,6 +51,7 @@ import {ForgotPasswordComponent} from './view/forgot-password/forgot-password.co
               path: "chef-equipe-tache",
               component: ChefEquipeTacheListComponent,
             },
+              {path: 'collaborateur', component: CollaborateurListComponent}
           ],
         },
         {

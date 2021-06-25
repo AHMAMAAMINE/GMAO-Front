@@ -42,6 +42,9 @@ export class ChefEquipeMenuComponent implements OnInit {
       {
         label: 'tache', icon: 'pi pi-fw pi-tablet', routerLink: ['chef-equipe-tache']
       } ,
+      {
+        label: 'collaborateur', icon: 'pi pi-fw pi-tablet', routerLink: ['collaborateur']
+      } ,
     ];
   }
 
