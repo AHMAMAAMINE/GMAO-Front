@@ -73,6 +73,7 @@ export class UserService {
       .subscribe((data) => {
         if (data) {
           this._User = data;
+          localStorage.setItem('codeCollaborateur',data.collaborateur.codeCollaborateur);
         }
       });
     console.log(this.User.role);

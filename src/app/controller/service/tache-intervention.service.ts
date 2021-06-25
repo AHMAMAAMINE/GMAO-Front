@@ -15,7 +15,7 @@ import { UserService } from "./user.service";
   providedIn: "root",
 })
 export class TacheInterventionService {
-  get vos(): any[] {
+  get vos() {
     return this._vos;
   }
 
@@ -112,6 +112,7 @@ export class TacheInterventionService {
     });
   }
 
+
   public getTacheVo(
     data: Array<TacheIntervention>,
     codeInterventions: Map<string, string>
@@ -136,10 +137,11 @@ export class TacheInterventionService {
       .get<Array<TacheIntervention>>(
         this.url +
           "/collaborateur/code/" +
-          localStorage.getItem("collaborateur")
+          localStorage.getItem("codeCollaborateur")
       )
       .subscribe(
         (data) => {
+          console.log(data);
           data.forEach((item) => {
             this.interventionVo.set(
               item.intervention.code,
