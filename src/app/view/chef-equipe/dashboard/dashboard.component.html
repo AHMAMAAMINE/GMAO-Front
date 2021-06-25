@@ -1,17 +1,17 @@
 <div class="p-grid layout-dashboard">
-  <div class="p-col-12 p-md-6 p-lg-3" routerLink="/admin/view/commande">
+  <div class="p-col-12 p-md-6 p-lg-3" routerLink="/chef-equipe/chef-equipe-conge">
     <div class="overview-box card">
-      <div class="overview-box-value">14</div>
+      <div class="overview-box-value">{{demandesNum}}</div>
       <div class="overview-box-title">DEMANDES CONGE</div>
       <div class="overview-box-status">
         Infos <i class="pi pi-arrow-circle-up"></i>
       </div>
     </div>
   </div>
-  <div class="p-col-12 p-md-6 p-lg-3" routerLink="/admin/view/commande">
+  <div class="p-col-12 p-md-6 p-lg-3" routerLink="/chef-equipe/chef-equipe-tache">
     <div class="overview-box card">
-      <div class="overview-box-value">8</div>
-      <div class="overview-box-title">TACHES VALIDEE</div>
+      <div class="overview-box-value">{{tacheNum}}</div>
+      <div class="overview-box-title">TACHES </div>
       <div class="overview-box-status">
         Infos <i class="pi pi-arrow-circle-up"></i>
       </div>
@@ -22,7 +22,7 @@
     routerLink="/admin/view/admin-collaborateur"
   >
     <div class="overview-box card">
-      <div class="overview-box-value">27</div>
+      <div class="overview-box-value">{{collabNum}}</div>
       <div class="overview-box-title">COLLABORATEURS</div>
       <div class="overview-box-status">
         Infos <i class="pi pi-arrow-circle-up"></i>
@@ -96,7 +96,7 @@
         </li>
         <li>
           <i class="pi pi-users"></i>
-          <span class="timeline-event-title">Miloud wld 9ahba </span>
+          <span class="timeline-event-title">Nada Azouzi</span>
           <span class="timeline-event-time">Non Valide</span>
           <p>Installation Base de donnees MYSQL</p>
         </li>
