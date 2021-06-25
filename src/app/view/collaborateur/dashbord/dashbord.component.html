@@ -26,8 +26,8 @@
               <li>
                 <p-checkbox
                   (click)="completerTache(j.code.toString())"
-                  [(ngModel)]="etat"
-                  [binary]="true"
+                  [(ngModel)]="j.etatTache"
+                  [binary]="j.etatTache"
                 ></p-checkbox>
                 <span>{{ j.description }}</span>
               </li>
