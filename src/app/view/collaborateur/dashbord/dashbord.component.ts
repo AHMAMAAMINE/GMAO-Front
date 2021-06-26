@@ -15,7 +15,6 @@ import {Conseils} from '../../../controller/model/conseils.model';
 })
 export class DashbordComponent implements OnInit {
   private fullcalendarOptions = new Object();
-
   private codeInter: boolean;
   private events: any;
 
@@ -62,8 +61,6 @@ export class DashbordComponent implements OnInit {
   get items(): Array<TacheIntervention> {
     return this.service.items;
   }
-
-
 
   completerTache(s: string) {
     console.log(s);

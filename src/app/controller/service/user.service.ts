@@ -72,8 +72,8 @@ export class UserService {
       .get<User>(this.UrlBase + "/login/" + username + "/pswrd/" + password)
       .subscribe((data) => {
         if (data) {
-          this._User = data;
           localStorage.setItem('codeCollaborateur',data.collaborateur.codeCollaborateur);
+          this._User = data;
         }
       });
     console.log(this.User.role);
