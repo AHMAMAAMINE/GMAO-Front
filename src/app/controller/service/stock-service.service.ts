@@ -169,4 +169,8 @@ export class StockService {
     }
     return index;
   }
+
+  deleteByMagasinRefAndMatRef() {
+    return this.http.delete(this.url + '/refMaterial/' + this.selected.material.reference + '/reference/' + this.selected.magasin.reference);
+  }
 }

@@ -4,6 +4,7 @@ import {MaterialService} from '../../../../controller/service/material.service';
 import {ConfirmationService, MessageService} from 'primeng/api';
 import {Stock} from '../../../../controller/model/Stock.model';
 import {Material} from '../../../../controller/model/material.model';
+import {Intervention} from '../../../../controller/model/intervention.model';
 
 @Component({
   selector: 'app-list',
@@ -16,7 +17,7 @@ export class ListComponent implements OnInit {
   constructor(
       private service: StockService,
       private materialService: MaterialService,
-      private messageService: MessageService
+      private messageService: MessageService,private confirmationService: ConfirmationService
   ) {}
 
   cols: any[];
@@ -33,14 +34,13 @@ export class ListComponent implements OnInit {
     //   .subscribe((data) => (this.selected = data));
     // console.log(this.selected);
     this.editDialog = true;
-    this.selected.material.reference=stock.material.reference;
-    this.selected.magasin.reference=stock.magasin.reference;
+    this.selected.material.reference = stock.material.reference;
+    this.selected.magasin.reference = stock.magasin.reference;
   }
-  public view(commande: Stock) {
-    // console.log(commande.code);
-    // this.findByCode(commande.code);
-    // this.selected = { ...commande };
-    // console.log(commande.etatIntervention.couleur);
+  public view(stock: Stock) {
+    this.selected.material.reference = stock.material.reference;
+    this.selected.magasin.reference = stock.magasin.reference;
+    this.selected.qte=stock.qte;
     this.viewDialog = true;
   }
 
@@ -120,5 +120,24 @@ export class ListComponent implements OnInit {
   }
 
 
-
+  delete(stock: Stock) {
+    this.selected = stock;
+    this.confirmationService.confirm({
+      message: 'Are you sure you want to delete ' + stock.magasin.reference + '?',
+      header: 'Confirm',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.service.deleteByMagasinRefAndMatRef().subscribe(data => {
+          this.items = this.items.filter(val => val.id !== this.selected.id);
+          this.selected = new Stock();
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Successful',
+            detail: 'Commande Deleted',
+            life: 3000
+          });
+        });
+      }
+    });
+  }
 }

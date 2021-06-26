@@ -1,0 +1,53 @@
+<p-dialog
+        [(visible)]="viewDialog"
+        [style]="{ width: '1000px' }"
+        [modal]="true"
+        styleClass="p-fluid"
+>
+    <p-header
+    ><h2>Stock Details</h2>
+        <span style="position: relative; left: 180px"> </span>
+    </p-header>
+    <ng-template pTemplate="content">
+        <div class="p-field">
+            <label for="">magasin</label>
+            <input
+                    class="form-control"
+                    pInputText
+                    [(ngModel)]="selected.magasin.reference"
+                    disabled
+            >
+
+        </div>
+        <div class="p-field">
+            <label for="">material</label>
+            <input
+                    class="form-control"
+                    pInputText
+                    [(ngModel)]="selected.material.reference"
+                    disabled
+            >
+
+
+
+        </div>
+        <div class="p-field">
+            <label for="qte">quantite</label>
+            <input
+                    type="number"
+                    pInputText
+                    id="qte"
+                    [(ngModel)]="selected.qte"
+                    required
+                    autofocus
+                    disabled
+            />
+
+        </div>
+
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <button style="border: 1px solid red; color: white; background-color: red; padding: 8px 16px; margin: 4px 2px; position: relative; right: 550px; border-radius: 5px;" pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideViewDialog() "></button>
+    </ng-template>
+
+</p-dialog>

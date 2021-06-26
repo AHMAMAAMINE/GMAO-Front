@@ -30,10 +30,8 @@ export class StockEditComponent implements OnInit {
   public edit() {
     this.submitted = true;
 
-      console.log("s");
-      this.items[this.service.findIndexById(this.selected.magasin.reference,this.selected.material.reference)] = this.selected;
+      this.items[this.service.findIndexById(this.selected.magasin.reference, this.selected.material.reference)] = this.selected;
       this.service.edit().subscribe( data => {
-        console.log(data)
         this.messageService.add({
           severity: 'success',
           summary: 'Successful',

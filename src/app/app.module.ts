@@ -203,6 +203,7 @@ import { DashbordComponent } from './view/collaborateur/dashbord/dashbord.compon
 import { DashboardComponent } from './view/chef-equipe/dashboard/dashboard.component';
 import { ForgotPasswordComponent } from './view/forgot-password/forgot-password.component';
 import { StockEditComponent } from './view/admin/stock-jdid/stock-edit/stock-edit.component';
+import { StockViewComponent } from './view/admin/stock-jdid/stock-view/stock-view.component';
 
 @NgModule({
   imports: [
@@ -403,6 +404,7 @@ import { StockEditComponent } from './view/admin/stock-jdid/stock-edit/stock-edi
     DashboardComponent,
     ForgotPasswordComponent,
     StockEditComponent,
+    StockViewComponent,
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },
