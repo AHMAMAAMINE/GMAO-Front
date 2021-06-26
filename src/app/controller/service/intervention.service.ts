@@ -321,6 +321,7 @@ export class InterventionService {
 
   public save(): Observable<Intervention> {
     const stringifi = JSON.stringify(this.selected, this.getCircularReplacer());
+    console.log(this.selected);
     return this.http.post<Intervention>(this.url + '/', JSON.parse(stringifi));
   }
   // public update(index: numb0er, intervention: Intervention) {

@@ -1,13 +1,13 @@
-import { Injectable } from "@angular/core";
-import { Stock } from "../model/Stock.model";
-import { HttpClient } from "@angular/common/http";
-import { environment } from "../../../environments/environment";
-import { MateraialIntervention } from "../model/materaial-intervention.model";
+import { Injectable } from '@angular/core';
+import { Stock } from '../model/Stock.model';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
+import { MateraialIntervention } from '../model/materaial-intervention.model';
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class StockService {
-  private url = environment.baseUrl + "/Stock-api/Stockage";
+  private url = environment.baseUrl + '/Stock-api/Stockage';
   private _items: Array<Stock>;
   private _selected: Stock;
   private _selectes: Array<Stock>;
@@ -73,21 +73,21 @@ export class StockService {
   constructor(private http: HttpClient) {}
 
   save() {
-    this.http.post(this.url + "/", this.selected).subscribe(
+    this.http.post(this.url + '/', this.selected).subscribe(
       (data) => {
         if (data === 1) {
           this.findAll();
         }
         if (data === -2) {
-          alert("donner une valeur deja existante ");
+          alert('donner une valeur deja existante ');
         }
         if (data === 2) {
           this.findAll();
         }
       },
-      (error) => alert("error 404")
+      (error) => alert('error 404')
     );
-    //else {
+    // else {
     //   const stocke = new Stock();
     //   stocke.qte = this.selected.qte - this.selectes[this._index].qte;
     //   stocke.id = this.selected.id;
@@ -104,7 +104,7 @@ export class StockService {
   }
 
   findAll() {
-    return this.http.get<Array<Stock>>(this.url + "/");
+    return this.http.get<Array<Stock>>(this.url + '/');
   }
 
   clone(stock: Stock) {
@@ -154,5 +154,19 @@ export class StockService {
 
   set selectes(value: Array<Stock>) {
     this._selectes = value;
+  }
+
+  edit() {
+    return this.http.put<Stock>(this.url + '/update/' + this.selected.qte , this.selected);
+  }
+  public findIndexById(refMag: string, refMat: string): number {
+    let index = -1;
+    for (let i = 0; i < this.items.length; i++) {
+      if (this.items[i].magasin.reference === refMag && this.items[i].material.reference === refMat) {
+        index = i;
+        break;
+      }
+    }
+    return index;
   }
 }

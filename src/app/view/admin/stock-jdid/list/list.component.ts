@@ -27,20 +27,22 @@ export class ListComponent implements OnInit {
     this.createDialog = true;
   }
 
-  // public edit(commande: Stock) {
-  //   // this.service
-  //   //   .findByCode(commande.code)
-  //   //   .subscribe((data) => (this.selected = data));
-  //   // console.log(this.selected);
-  //   this.editDialog = true;
-  // }
-  // public view(commande: Stock) {
-  //   // console.log(commande.code);
-  //   // this.findByCode(commande.code);
-  //   // this.selected = { ...commande };
-  //   // console.log(commande.etatIntervention.couleur);
-  //   this.viewDialog = true;
-  // }
+  public edit(stock: Stock) {
+    // this.service
+    //   .findByCode(commande.code)
+    //   .subscribe((data) => (this.selected = data));
+    // console.log(this.selected);
+    this.editDialog = true;
+    this.selected.material.reference=stock.material.reference;
+    this.selected.magasin.reference=stock.magasin.reference;
+  }
+  public view(commande: Stock) {
+    // console.log(commande.code);
+    // this.findByCode(commande.code);
+    // this.selected = { ...commande };
+    // console.log(commande.etatIntervention.couleur);
+    this.viewDialog = true;
+  }
 
   private initCol() {
     this.cols = [
@@ -116,6 +118,7 @@ export class ListComponent implements OnInit {
         }
     );
   }
+
 
 
 }
