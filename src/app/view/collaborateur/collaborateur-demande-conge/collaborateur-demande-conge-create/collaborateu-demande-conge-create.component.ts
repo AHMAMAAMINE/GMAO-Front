@@ -23,7 +23,7 @@ export class CollaborateurDemandeCongeCreateComponent implements OnInit {
               private userService: UserService) { }
 
   ngOnInit(): void {
-      this.demandeCongeService.findByCollaborateur(JSON.parse(localStorage.getItem('user')).collaborateur.codeCollaborateur).subscribe(data => this.items = data);
+      this.demandeCongeService.findByCollaborateur(localStorage.getItem('codeCollaborateur')).subscribe(data => this.items = data);
   }
 
 
