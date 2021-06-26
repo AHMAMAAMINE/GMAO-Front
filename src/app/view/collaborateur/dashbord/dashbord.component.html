@@ -41,7 +41,7 @@
       <div class="timeline card card-w-title">
         <h5>Conciels</h5>
         <ul >
-          <li *ngFor="let c of conciels;index as i">
+          <li *ngFor="let c of conciels.slice(0,5);index as i">
             <i class="pi pi-users"></i>
             <span class="timeline-event-title">{{c.collaborateur.fullname}}</span>
             <span class="timeline-event-time">{{c.dateDeMessage}}</span>
