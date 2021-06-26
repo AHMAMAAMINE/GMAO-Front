@@ -204,6 +204,7 @@ import { DashboardComponent } from './view/chef-equipe/dashboard/dashboard.compo
 import { ForgotPasswordComponent } from './view/forgot-password/forgot-password.component';
 import { StockEditComponent } from './view/admin/stock-jdid/stock-edit/stock-edit.component';
 import { StockViewComponent } from './view/admin/stock-jdid/stock-view/stock-view.component';
+import { DemandeCongeViewComponent } from './view/chef-equipe/chef-equipe-demandeConge/demande-conge-view/demande-conge-view.component';
 
 @NgModule({
   imports: [
@@ -405,6 +406,7 @@ import { StockViewComponent } from './view/admin/stock-jdid/stock-view/stock-vie
     ForgotPasswordComponent,
     StockEditComponent,
     StockViewComponent,
+    DemandeCongeViewComponent,
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },
