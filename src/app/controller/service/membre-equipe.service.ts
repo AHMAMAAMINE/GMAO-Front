@@ -1,18 +1,22 @@
 import { Injectable } from '@angular/core';
 import { MembreEquipe } from '../model/membre-equipe.model';
+import {environment} from '../../../environments/environment';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
-export class MembreMembreEquipeService {
+export class MembreEquipeService {
 
   private _createDialog: boolean;
   private _editDialog: boolean;
   private _viewDialog: boolean;
   private _submitted: boolean;
-
+  private url=environment.baseUrl+'/membreEquipe/';
  
- 
+ findAll(){
+   return this.http.get<Array<MembreEquipe>>(this.url);
+ }
 
 
 
@@ -48,5 +52,5 @@ export class MembreMembreEquipeService {
   set viewDialog(value: boolean) {
     this._viewDialog = value;
   }
-  constructor() { }
+  constructor(private http:HttpClient) { }
 }

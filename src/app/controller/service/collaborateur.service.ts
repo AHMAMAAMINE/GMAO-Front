@@ -4,21 +4,36 @@ import { Injectable } from '@angular/core';
 import {environment} from '../../../environments/environment';
 import {Observable} from 'rxjs';
 import {Equipe} from '../model/equipe.model';
+import {MembreEquipe} from '../model/membre-equipe.model';
+import {newArray} from '@angular/compiler/src/util';
+import {MembreEquipeService} from './membre-equipe.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CollaborateurService {
-  constructor(private _http: HttpClient) {}
+  constructor(private _http: HttpClient, private membreService: MembreEquipeService) {}
   private url = environment.baseUrl + '/collaborateur';
   public _collaborateur: Collaborateur;
   public _collaborateurs: Array<Collaborateur>;
   private _selectes: Array<Collaborateur>;
-
+  private _membre: Array<MembreEquipe>;
   private _createDialog: boolean;
   private _editDialog: boolean;
   private _viewDialog: boolean;
   private _submitted: boolean;
+
+
+  get membre(): Array<MembreEquipe> {
+    if (this._membre == null){
+      this._membre = new Array<MembreEquipe>();
+    }
+    return this._membre;
+  }
+
+  set membre(value: Array<MembreEquipe>) {
+    this._membre = value;
+  }
 
   get viewDialog(): boolean {
     return this._viewDialog;
@@ -54,6 +69,15 @@ export class CollaborateurService {
 
   findAll() {
     return this._http.get<Array<Collaborateur>>(this.url + '/');
+  }
+  filter(){
+    this.membreService.findAll().subscribe(data => this.membre = data);
+    this.findAll().subscribe(data => {
+      for (let i = 0; i < this.membre.length; i++){
+        data.splice(this.findIndexById(this.membre[i].collaborateur.id));
+      }
+      this.collaborateurs = data;
+    });
   }
   public save(): Observable<Collaborateur> {
     console.log(this.collaborateur);
